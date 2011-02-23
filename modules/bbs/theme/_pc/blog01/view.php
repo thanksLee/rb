@@ -43,7 +43,7 @@
 
 		<div id="vContent" class="content">
 
-			<?php echo getContents($R['content'],$R['html'],$keyword)?>
+			<?php echo getContents($R['content'],$R['html'])?>
 
 			<?php if($d['theme']['show_score1']||$d['theme']['show_score2']):?>
 			<div class="scorebox">

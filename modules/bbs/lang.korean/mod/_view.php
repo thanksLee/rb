@@ -1,9 +1,6 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
-$R = $R['uid'] ? $R : getUidData($table[$m.'data'],$uid);
-if (!$R['uid']) getLink($g['s'].'/','','존재하지 않는 게시물입니다.','');
-
 if (!$my['admin'] && !strpos('_'.$d['bbs']['admin'],','.$my['id'].','))
 {
 	if ($d['bbs']['perm_l_view'] > $my['level'] || strpos('_'.$d['bbs']['perm_g_view'],'['.$my['sosok'].']'))

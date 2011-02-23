@@ -35,7 +35,7 @@ $TPG = getTotalPage($NUM,$recnum);
 
 	<?php while($R=db_fetch_array($RCD)):?> 
 	<?php $R['mobile']=isMobileConnect($R['agent'])?>
-	<div class="list<?php if($R['uid'] == $uid):?> dselected<?php endif?>" onclick="goHref('<?php echo getPostLink($_R)?>');">
+	<div class="list<?php if($R['uid'] == $uid):?> dselected<?php endif?>" onclick="goHref('<?php echo getPostLink($R)?>');">
 		<div class="sbj">
 			<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
 			<?php if($R['category']):?><span class="cat">[<?php echo $R['category']?>]</span><?php endif?>

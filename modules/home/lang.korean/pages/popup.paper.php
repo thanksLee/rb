@@ -44,9 +44,15 @@ if ($my['is_paper'])
 	<div class="line3"></div>
 	
 	<div class="wrap">
-			
+		
+		<?php if($R['by_mbruid']==$my['uid']):?>
+		<?php $M1 = getDbData($table['s_mbrdata'],'memberuid='.$R['my_mbruid'],'*')?>
+		<div class="i1"><span class="b">수신회원</span> : <?php if($M1['memberuid']):?><?php echo $M1['name']?>(<?php echo $M1['nic']?>)<?php else:?>관리자<?php endif?></div>
+		<div class="i1"><span class="b">쪽지확인</span> : <span class="date"><?php echo $R['d_read'] ? getDateFormat($R['d_read'],'Y-m-d H:i') : '미확인'?></span></div>
+		<?php else:?>
 		<div class="i1"><span class="b">보낸사람</span> : <?php if($M['memberuid']):?><?php echo $M['name']?>(<?php echo $M['nic']?>)<?php else:?>관리자<?php endif?></div>
-		<div class="i1"><span class="b">받은시간</span> : <span class="date"><?php echo getDateFormat($R['d_regis'],'Y-m-d H:i')?></span></div>
+		<div class="i1"><span class="b">보낸시간</span> : <span class="date"><?php echo getDateFormat($R['d_regis'],'Y-m-d H:i')?></span></div>
+		<?php endif?>
 		<div class="msg<?php if ($g['mobile']&&$_SESSION['pcmode']!='Y'):?>1<?php endif?> scrollbar01"><?php echo getContents($R['content'],$R['html'],'')?></div>
 
 		<div class="pagebox01">

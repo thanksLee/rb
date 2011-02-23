@@ -75,7 +75,7 @@ $TPG = getTotalPage($NUM,$recnum);
 
 	<?php while($R=db_fetch_array($RCD)):?>
 	<?php $R['content']=str_replace('&nbsp;',' ',$R['content'])?>
-	<?php $M=getDbData($table['s_mbrdata'],'memberuid='.$R[($index==3?'m':'b').'y_mbruid'],'*')?>
+	<?php $M=$inbox<3?getDbData($table['s_mbrdata'],'memberuid='.$R['by_mbruid'],'*'):getDbData($table['s_mbrdata'],'memberuid='.$R['my_mbruid'],'*')?>
 	<tr>
 	<td><input type="checkbox" name="members[]" value="<?php echo $R['uid']?>" /></td>
 	<td class="cat"><?php echo $M[$_HS['nametype']]?$M[$_HS['nametype']]:'시스템'?></td>

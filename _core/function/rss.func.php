@@ -33,7 +33,7 @@ function getUrlData($url,$sec)
 }
 function getRssArray($url,$tag)
 {
-	return explode('<'.$tag.'>',getUrlData($url));
+	return explode('<'.$tag.'>',getUrlData($url,10));
 }
 function getRssTagValue($str,$tag)
 {

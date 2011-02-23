@@ -43,12 +43,12 @@
 			<span class="dragstr">마우스로 드래그하면 순서를 변경할 수 있습니다.</span> 
 		</div>
 		<div class="xr">
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/lib/kimsqSwfuploader.js" charset="utf-8"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/lib/kimsqSwfuploader.js" charset="utf-8"></script>
 			<script type="text/javascript">
 			var object_Id = 'kimsqSwfuploader';
 			var limitFile = '<?php echo $LimitNum?>';
 			var limitSize = '<?php echo $LimitSize?>';
-			var flash_Src = '<?php echo $g['url_root']?>/_core/lib/kimsqSwfuploaderFile.swf';
+			var flash_Src = '<?php echo $g['s']?>/_core/lib/kimsqSwfuploaderFile.swf';
 			var quploader = '../../index.php';
 			var qupload_m = '<?php echo $m?>';
 			var qupload_a = 'upload';
@@ -81,12 +81,12 @@
 			<div class="ibox scrollbar01">
 			<?php if($N):?>
 
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/core.js"></script>
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/events.js"></script>
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/css.js"></script>
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/coordinates.js"></script>
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/drag.js"></script>
-			<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/dragsort.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/core.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/events.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/css.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/coordinates.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/drag.js"></script>
+			<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/dragsort.js"></script>
 
 			<script type="text/javascript">
 			//<![CDATA[

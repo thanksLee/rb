@@ -32,11 +32,10 @@ var dragsort = ToolMan.dragsort();
 			<img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" title="추가" class="hand" onclick="regisSosok();" />
 			<?php if($editmode!='Y'):?>
 			<a href="<?php echo $g['adm_href']?>&amp;editmode=Y"><img src="<?php echo $g['img_core']?>/_public/btn_edit.gif" alt="그룹명칭 변경모드로 전환" title="그룹명칭 변경모드로 전환" class="trans hand" /></a>
-			<input type="image" src="<?php echo $g['img_core']?>/_public/btn_save.gif" alt="save" title="그룹순서 저장" />
 			<?php else:?>
 			<a href="<?php echo $g['adm_href']?>"><img src="<?php echo $g['img_core']?>/_public/btn_edit.gif" alt="그룹순서 변경모드로 전환" title="그룹순서 변경모드로 전환" class="hand" /></a>
-			<img src="<?php echo $g['img_core']?>/_public/btn_save.gif" alt="" title="" class="trans" />
 			<?php endif?>
+			<input type="image" src="<?php echo $g['img_core']?>/_public/btn_save.gif" alt="save" title="그룹순서 저장" />
 		</div>
 		<div class="clear"></div>
 	</div>

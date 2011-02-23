@@ -15,7 +15,7 @@ if ($type == 'layout')
 }
 if ($type == 'widget')
 {
-	DirDelete($g['path_widget'].$pack);
+	DirDelete($g['path_widget'].str_replace('.','',str_replace('./widgets/','',$pack)));
 }
 if ($type == 'bbstheme')
 {

@@ -1,7 +1,7 @@
 <?php
 define('__KIMS__',true);
 error_reporting(E_ALL ^ E_NOTICE);
-session_save_path('./_tmp/session/');
+session_save_path('./_tmp/session');
 session_start();
 
 $g = array();
@@ -9,7 +9,7 @@ $d = array();
 
 $g['time_split']	= explode(' ',microtime());
 $g['time_start']	= $g['time_split'][0]+$g['time_split'][1];
-$g['url_root']		= 'http'.($_SERVER['HTTPS']=='on'?'s':'').'://'.$_SERVER['SERVER_NAME'].($_SERVER['SERVER_PORT']=='80'?'':':'.$_SERVER['SERVER_PORT']).str_replace('/index.php','',$_SERVER['SCRIPT_NAME']);
+$g['url_root']		= 'http'.($_SERVER['HTTPS']=='on'?'s':'').'://'.$_SERVER['HTTP_HOST'].str_replace('/index.php','',$_SERVER['SCRIPT_NAME']);
 $g['path_root']		= './';
 $g['path_core']		= $g['path_root'].'_core/';
 $g['path_var']		= $g['path_root'].'_var/';
@@ -333,6 +333,9 @@ var myagent	= navigator.appName.indexOf('Explorer') != -1 ? 'ie' : 'ns';
 <?php else:?>
 <li><?php echo $lang['top']['edit']?></li>
 <?php endif?>
+<li>
+<a title="Editor" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y');" />E</a>ㆍ<a title="Widget" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.widget&iframe=Y&isWcode=Y');" />W</a>
+</li>
 </ul>
 </div>
 <div class="aright">

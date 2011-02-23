@@ -54,7 +54,7 @@ else
 	<br />
 	<div class="btnbox">
 	<input type="button" value=" 창닫기 " class="btngray" onclick="top.close();" />
-	<input type="submit" value=" 소스적용하기 " class="btnblue" />
+	<?php if($droparea):?><input type="submit" value=" 소스적용하기 " class="btnblue" /><?php endif?>
 	</div>
 	</form>
 
@@ -86,7 +86,7 @@ function writeCheck(f)
 }
 function editStart()
 {
-	document.writeForm.content.value = opener.getId('<?php echo $droparea?>').value;
+	<?php if($droparea):?>document.writeForm.content.value = opener.getId('<?php echo $droparea?>').value;<?php endif?>
 	getId('editFrame').src = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=editor&toolbox=Y&reSize=N';
 	document.title = "편집기";
 	document.body.style.padding = '5px';

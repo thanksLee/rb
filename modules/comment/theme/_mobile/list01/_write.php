@@ -24,10 +24,8 @@
 
 		<div class="inputbox">
 			<?php if(!$my['id']):?>
-			<div>
-				<input type="text" name="name" value="<?php echo $R['name']?>" class="input1" /> <span>(이름)</span>
-				<input type="password" name="pw" value="<?php echo $pw?>" class="input1" /> <span>(비번)</span>
-			</div>
+			<div><input type="text" name="name" value="<?php echo $R['name']?>" class="input1" /> <span>(이름)</span></div>
+			<div><input type="password" name="pw" value="<?php echo $pw?>" class="input1" /> <span>(비번)</span></div>
 			<?php endif?>
 			<?php if($d['comment']['use_subject']):?>
 			<div>

@@ -19,6 +19,25 @@ if ($uid)
 	$R = getUidData($table['s_comment'],$uid);
 	if (!$R['uid']) getLink($g['s'].'/?r='.$r.'&m='.$m.($bid?'&bid='.$bid:''),'','존재하지 않는 댓글입니다.','');
 	
+	$isSECRETCHECK = true;
+	if ($R['hidden'])
+	{
+		$isSECRETCHECK = false;
+		if ($my['admin'] || ($my['id']&&$my['id']==$R['id']) || strstr($_SESSION['module_'.$m.'_view'],'['.$R['uid'].']'))
+		{
+			$isSECRETCHECK = true;
+		}
+		else {
+			if ($pw)
+			{
+				if(md5($pw) != $R['pw'])
+				{
+					getLink('','','비밀번호가 일치하지 않습니다.','-1');
+				}
+				$isSECRETCHECK = true;
+			}
+		}
+	}
 	if ($type == 'modify')
 	{
 		if (!$my['id'] || ($my['id'] != $R['id'] && !$my['admin']))
@@ -64,7 +83,7 @@ if ($uid)
 		}
 		$d['upload']['count'] = $d['_pload']['count'];
 	}
-	if (!strstr($_SESSION['module_'.$m.'_view'],'['.$R['uid'].']'))
+	if ($isSECRETCHECK && !strstr($_SESSION['module_'.$m.'_view'],'['.$R['uid'].']'))
 	{
 		getDbUpdate($table['s_comment'],'hit=hit+1','uid='.$R['uid']);
 		$_SESSION['module_'.$m.'_view'] .= '['.$R['uid'].']';
@@ -75,14 +94,14 @@ if ($uid)
 	$OCD = array();
 	if ($R['oneline'])
 	{
-		$TCD = getDbArray($table['s_oneline'],'parent='.$R['uid'],'*','uid','asc',0,0);
+		$TCD = getDbArray($table['s_oneline'],'parent='.$R['uid'],'*','uid',$d['comment']['orderby2'],0,0);
 		while($_R = db_fetch_array($TCD)) $OCD[] = $_R;
 	}
 }
 
 $mod	= 'main';
 $sort	= $sort ? $sort : 'uid';
-$orderby= $orderby ? $orderby : 'asc';
+$orderby= $orderby ? $orderby : $d['comment']['orderby1'];
 $recnum	= $recnum && $recnum < 200 ? $recnum : $d['comment']['recnum'];
 
 $cmentque = " and parent='".$cyncArr['data'][0].$cyncArr['data'][1]."'";

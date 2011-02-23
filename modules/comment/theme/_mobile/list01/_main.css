@@ -43,7 +43,7 @@
 #cview .wbox .boxresize {margin-top:3px;font-size:11px;font-family:dotum;color:#c0c0c0;cursor:pointer;text-decoration:underline;}
 
 #pwbox {display:none;position:absolute;z-index:10000;}
-#chkbox {border:#dfdfdf solid 1px;width:350px;padding:20px 10px 20px 10px;margin:0;background:url('../../../../../_core/image/_public/bg_list_tt.jpg') #ffffff repeat-x top;}
+#chkbox {border:#dfdfdf solid 1px;padding:20px 0 20px 0;margin:0;background:url('../../../../../_core/image/_public/bg_list_tt.jpg') #ffffff repeat-x top;}
 #chkbox .msg {}
 #chkbox .msg h3 {margin:0;padding:0 0 9px 0;font-size:14px;font-weight:bold;font-family:"malgun gothic","dotum";border-bottom:#dfdfdf dashed 1px;}
 #chkbox .msg h3 img {position:relative;top:3px;}

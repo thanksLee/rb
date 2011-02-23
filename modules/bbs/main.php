@@ -7,15 +7,11 @@ $d['bbs']['isperm'] = true;
 
 if($uid)
 {
-	include_once $g['dir_module'].'lang.'.$_HS['lang'].'/mod/_view.php';
+	$R = $R['uid'] ? $R : getUidData($table[$m.'data'],$uid);
+	if (!$R['uid']) getLink($g['s'].'/','','존재하지 않는 게시물입니다.','');
 	$B = getUidData($table[$m.'list'],$R['bbs']);
-	if($R['mbruid']) $g['member'] = getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*');
-	if(!$_HS['titlefix']) $g['browtitle'] = $_HS['title'].' - '.strip_tags($R['subject']);
-	$g['meta_tit']	= $R['subject'];
-	$g['meta_key']	= $R['tag'] ? $R['tag'] : $R['subject'];
-	$g['meta_des']	= getStrCut(str_replace('&nbsp;','',strip_tags($R['content'])),100,'');
-	$bid = $B['id'];
 	include_once $g['dir_module'].'var/var.'.$B['id'].'.php';
+	include_once $g['dir_module'].'lang.'.$_HS['lang'].'/mod/_view.php';
 	if ($d['bbs']['isperm'])
 	{
 		if(strpos('_'.$B['puthead'],'[v]'))
@@ -28,6 +24,11 @@ if($uid)
 			$g['add_footer_inc'] = $g['dir_module'].'var/code/'.$B['id'].'.footer.php';
 			if($B['imgfoot']) $g['add_footer_img'] = $g['url_module'].'/var/files/'.$B['imgfoot'];
 		}
+		if($R['mbruid']) $g['member'] = getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*');
+		if(!$_HS['titlefix']) $g['browtitle'] = $_HS['title'].' - '.strip_tags($R['subject']);
+		$g['meta_tit']	= $R['subject'];
+		$g['meta_key']	= $R['tag'] ? $R['tag'] : $R['subject'];
+		$g['meta_des']	= getStrCut(str_replace('&nbsp;','',strip_tags($R['content'])),100,'');
 	}
 }
 else {

@@ -253,12 +253,14 @@ if ($uid)
 					<option value="0">&nbsp;+ 연동안함</option>
 					<option value="0">--------------------------------</option>
 					<?php $tdir = $g['path_module'].'social/inc/'?>
+					<?php if(is_dir($tdir)):?>
 					<?php $dirs = opendir($tdir)?>
 					<?php while(false !== ($skin = readdir($dirs))):?>
 					<?php if($skin=='.' || $skin == '..')continue?>
 					<option value="social/inc/<?php echo $skin?>"<?php if($d['bbs']['snsconnect']=='social/inc/'.$skin):?> selected="selected"<?php endif?>>ㆍ<?php echo str_replace('.php','',$skin)?></option>
 					<?php endwhile?>
 					<?php closedir($dirs)?>
+					<?php endif?>
 					</select>
 					<div id="guide_snsconnect" class="guide hide">
 					게시물 등록시 SNS에 동시등록을 가능하게 합니다.<br />

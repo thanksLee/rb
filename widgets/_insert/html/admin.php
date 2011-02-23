@@ -10,7 +10,7 @@
 	이 위젯은 위젯코드를 지원하지 않습니다.
 	</div>
 	<?php else:?>
-	<form name="procform" action="<?php echo $g['s']?>" method="post" target="_action_frame_">
+	<form name="procform" action="<?php echo $g['s']?>/" method="post" target="_action_frame_">
 	<input type="hidden" name="r" value="<?php echo $r?>" />
 	<input type="hidden" name="m" value="<?php echo $g['sys_module']?>" />
 	<input type="hidden" name="a" value="widgetdata_save" />

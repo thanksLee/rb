@@ -6,7 +6,11 @@
 <?php else:?>
 
 	<?php if($R['uid']):?>
+		<?php if ($isSECRETCHECK):?>
 		<?php include_once $g['dir_module_skin'].'_view.php'?>
+		<?php else:?>
+		<?php include_once $g['dir_module_skin'].'_pwcheck.php'?>
+		<?php endif?>
 	<?php endif?>
 
 	<?php include_once $g['dir_module_skin'].'_list.php'?>
@@ -38,7 +42,7 @@ function frameSetting()
 		wdj.style.height = (wh>nh?wh:nh+(vh?vh:0)+30)+'px';
 	}
 	
-	<?php if($type != 'modify' && $uid):?>
+	<?php if($type != 'modify' && $uid && $isSECRETCHECK):?>
 	var ofs = getOfs(getId('vContent')); 
 	getDivWidth(ofs.width,'vContent');
 	<?php endif?>

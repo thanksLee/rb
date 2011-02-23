@@ -314,7 +314,7 @@ function layerShowHide(layer,show,hide)
 //회원레이어
 function getMemberLayer(uid,e)
 {
-	if(memberid=='') return false;
+	if(memberid==''||uid=='0') return false;
 	eval('frames._action_frame_'+moduleid).location.href = rooturl+'/?system=layer.member&uid=' + uid;
 	var ly = getId('_action_layer_');
 	var xy = getEventXY(e);

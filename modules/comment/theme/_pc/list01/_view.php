@@ -26,7 +26,7 @@
 			<div class="clear"></div>
 		</div>
 		<div id="vContent" class="content">
-			<?php echo getContents($R['content'],$R['html'],$keyword)?>
+			<?php echo getContents($R['content'],$R['html'])?>
 		</div>
 		<div class="scorebtn">
 			<a href="<?php echo $g['cment_action']?>score&amp;value=good&amp;uid=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 평가하시겠습니까?');"><img src="<?php echo $g['img_module_skin']?>/btn_s_1.gif" alt="공감" /></a>
@@ -66,7 +66,7 @@
 					<div class="icon hand" onclick="getMemberLayer('<?php echo $O['mbruid']?>',event);"><?php if($g['member']['photo']):?><img src="<?php echo $g['url_root']?>/_var/simbol/<?php echo $g['member']['photo']?>" alt="" /><?php endif?></div>
 				</div>
 				<div class="cont">
-					<?php echo getContents($O['content'],$O['html'],$keyword)?>
+					<?php echo getContents($O['content'],$O['html'])?>
 					<div>
 					<?php if($O['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $O['mobile']?>)로 등록된 글입니다" /><?php endif?>
 					<?php echo $O[$_HS['nametype']]?> | <?php echo getDateFormat($O['d_regis'],'Y.m.d H:i')?>

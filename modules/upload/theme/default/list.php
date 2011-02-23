@@ -1,12 +1,12 @@
 <?php $gparamExp = explode('|',$gparam)?>
 
 
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/core.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/events.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/css.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/coordinates.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/drag.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/dragsort.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/core.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/events.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/css.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/coordinates.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/drag.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/dragsort.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 var dragsort = ToolMan.dragsort();

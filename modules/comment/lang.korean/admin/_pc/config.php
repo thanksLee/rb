@@ -104,12 +104,14 @@ include_once $g['path_module'].$module.'/var/var.php';
 				<option value="0">&nbsp;+ 연동안함</option>
 				<option value="0">--------------------------------</option>
 				<?php $tdir = $g['path_module'].'social/inc/'?>
+				<?php if(is_dir($tdir)):?>
 				<?php $dirs = opendir($tdir)?>
 				<?php while(false !== ($skin = readdir($dirs))):?>
 				<?php if($skin=='.' || $skin == '..')continue?>
 				<option value="social/inc/<?php echo $skin?>"<?php if($d['comment']['snsconnect']=='social/inc/'.$skin):?> selected="selected"<?php endif?>>ㆍ<?php echo str_replace('.php','',$skin)?></option>
 				<?php endwhile?>
 				<?php closedir($dirs)?>
+				<?php endif?>
 				</select> (소셜모듈을 설치 후 사용가능)
 			</td>
 		</tr>
@@ -144,6 +146,20 @@ include_once $g['path_module'].$module.'/var/var.php';
 			<td class="td1">댓글출력수</td>
 			<td class="td2">
 				<input type="text" name="recnum" value="<?php echo $d['comment']['recnum']?>" size="5" class="input" />개
+			</td>
+		</tr>
+		<tr>
+			<td class="td1">댓글정렬</td>
+			<td class="td2 shift">
+				<input type="radio" name="orderby1" value="asc"<?php if(!$d['comment']['orderby1']||$d['comment']['orderby1']=='asc'):?> checked="checked"<?php endif?> />최근댓글이 위로정렬
+				<input type="radio" name="orderby1" value="desc"<?php if($d['comment']['orderby1']=='desc'):?> checked="checked"<?php endif?> />최근댓글이 아래로정렬
+			</td>
+		</tr>
+		<tr>
+			<td class="td1">한줄의견정렬</td>
+			<td class="td2 shift">
+				<input type="radio" name="orderby2" value="desc"<?php if($d['comment']['orderby2']=='desc'):?> checked="checked"<?php endif?> />최근한줄의견이 위로정렬
+				<input type="radio" name="orderby2" value="asc"<?php if(!$d['comment']['orderby2']||$d['comment']['orderby2']=='asc'):?> checked="checked"<?php endif?> />최근한줄의견이 아래로정렬
 			</td>
 		</tr>
 		<tr>

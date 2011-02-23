@@ -310,7 +310,7 @@ function getPostLink($arr)
 //위젯불러오기
 function getWidget($widget,$wdgvar)
 {
-	global $DB_CONNECT,$table,$date,$my,$r,$m,$g,$d,$c,$mod,$_HH,$_HD,$_HS,$_HM,$_HP,$_CA;
+	global $DB_CONNECT,$table,$date,$my,$r,$s,$m,$g,$d,$c,$mod,$_HH,$_HD,$_HS,$_HM,$_HP,$_CA;
 	static $wcsswjsc;
 	if (!strpos('_'.$wcsswjsc,'['.$widget.']'))
 	{
@@ -320,6 +320,7 @@ function getWidget($widget,$wdgvar)
 		if (is_file($wjsc)) echo '<script type="text/javascript" charset="utf-8" src="'.$g['s'].'/widgets/'.$widget.'/main.js" /></script>';
 		$wcsswjsc.='['.$widget.']';
 	}
+	$wdgvar['widget_id'] = $widget;
 	include $g['path_widget'].$widget.'/main.php';
 }
 ?>
