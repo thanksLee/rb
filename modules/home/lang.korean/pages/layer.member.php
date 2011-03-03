@@ -25,7 +25,7 @@ $SNSSET = array
 		<div class="name">
 		<span>
 		<?php echo $M[$_HS['nametype']]?>님
-		<?php if($M['sex']):?><img src="<?php echo $g['img_core']?>/_public/ico_sex_<?php echo $M['sex']?>.gif" alt="" title="<?php echo getSex($M['sex'])?>성"  /><?php endif?>
+		<?php if($M['sex']):?><img src="<?php echo $g['img_core']?>/_public/ico_sex_<?php echo $M['sex']?>.gif" alt="" title="<?php echo getSex($M['sex'])?>성(<?php echo getAge($M['birth1'])?>세)"  /><?php endif?>
 		</span>
 		</div>
 
@@ -34,7 +34,7 @@ $SNSSET = array
 	</div>
 	<div class="clear"></div>
 	<div class="level">
-		<div title="<?php echo $L['name']?>(<?php echo $my['level']?>/<?php echo $X['uid']?>)"><img src="<?php echo $g['url_root']?>/_core/image/level/<?php echo $M['level']?>.gif" alt=""  /></div>
+		<div title="<?php echo $L['name']?>(<?php echo $M['level']?>/<?php echo $X['uid']?>)"><img src="<?php echo $g['url_root']?>/_core/image/level/<?php echo $M['level']?>.gif" alt=""  /></div>
 	</div>
 	<div class="close">
 		<div title="닫기" onclick="closeMemberLayer();"><img src="<?php echo $g['img_core']?>/_public/btn_del_s01.gif" alt="닫기" /></div>

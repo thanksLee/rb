@@ -59,7 +59,7 @@
 	</td>
 	<td class="sbj">
 		<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
-		<a href="<?php echo $g['bbs_view'].$R['uid']?>" class="b"><?php echo $R['subject']?></a>
+		<a href="<?php echo $g['bbs_view'].$R['uid']?>" class="b"><?php echo getStrCut($R['subject'],$d['bbs']['sbjcut'],'')?></a>
 		<?php if(strstr($R['content'],'.jpg')):?><img src="<?php echo $g['img_core']?>/_public/ico_pic.gif" class="imgpos" alt="사진" title="사진" /><?php endif?>
 		<?php if($R['upload']):?><img src="<?php echo $g['img_core']?>/_public/ico_file.gif" class="imgpos" alt="첨부파일" title="첨부파일" /><?php endif?>
 		<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
@@ -84,13 +84,13 @@
 		<?php $R['mobile']=isMobileConnect($R['agent'])?>
 		<?php $_thumbimg=getUploadImage($R['upload'],$R['d_regis'],$R['content'],$d['theme']['picimgext'])?>
 
-		<div class="picbox" style="width:<?php echo $d['theme']['picwidth']+6?>px;height:<?php echo $d['theme']['picheight']+45?>px;">
+		<div class="picbox" style="width:<?php echo $d['theme']['picwidth']+6?>px;height:<?php echo $d['theme']['picheight']+80?>px;">
 			<div class="pic" style="height:<?php echo $d['theme']['picheight']?>px;">
-				<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php if($_thumbimg):?><img src="<?php echo $_thumbimg?>" width="<?php echo $d['theme']['picwidth']?>" height="<?php echo $d['theme']['picheight']?>" alt="" /></a><?php endif?>
+				<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php if($_thumbimg):?><img src="<?php echo $_thumbimg?>" width="<?php echo $d['theme']['picwidth']?>" height="<?php echo $d['theme']['picheight']?>" alt="" /><?php endif?></a>
 			</div>
 			<div class="sbjx">
 				<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
-				<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php if($R['category']):?><span class="cat">[<?php echo $R['category']?>]</span><?php endif?><?php echo $R['subject']?></a>
+				<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php if($R['category']):?><span class="cat">[<?php echo $R['category']?>]</span><?php endif?><?php echo getStrCut($R['subject'],$d['bbs']['sbjcut'],'')?></a>
 				<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
 				<?php if($R['comment']):?><span class="comment">[<?php echo $R['comment']?><?php if($R['oneline']):?>+<?php echo $R['oneline']?><?php endif?>]</span><?php endif?>
 				<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>

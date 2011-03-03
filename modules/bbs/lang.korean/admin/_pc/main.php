@@ -455,8 +455,8 @@ if ($uid)
 				<td class="td1">조회수증가</td>
 				<td class="td2 shift">
 					<div class="shift">
-					<input type="radio" name="hitcount" value="1"<?php if($d['bbs']['m_skin']):?> checked="checked"<?php endif?> />무조건증가
-					<input type="radio" name="hitcount" value="0"<?php if(!$d['bbs']['m_skin']):?> checked="checked"<?php endif?> />1회만증가
+					<input type="radio" name="hitcount" value="1"<?php if($d['bbs']['hitcount']):?> checked="checked"<?php endif?> />무조건증가
+					<input type="radio" name="hitcount" value="0"<?php if(!$d['bbs']['hitcount']):?> checked="checked"<?php endif?> />1회만증가
 					</div>
 				</td>
 			</tr>

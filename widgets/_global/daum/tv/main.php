@@ -1,1 +1,0 @@
-<script src="http://widgetprovider.daum.net/view?url=http://widgetcfs1.daum.net/xml/19/widget/2009/10/05/11/04/4ac9543c724fd.xml&&width=166&height=249&widgetId=535&scrap=1" type="text/javascript"></script>

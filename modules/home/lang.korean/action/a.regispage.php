@@ -35,8 +35,21 @@ if ($uid)
 		$mfile2 = $g['path_page'].$id.'.widget.php';
 		@rename($mfile1,$mfile2);
 		@chmod($mfile2,0707);
+		@unlink($g['path_page'].$orign_id.'.txt');
 	}
-
+	if ($cachetime)
+	{
+		$fp = fopen($g['path_page'].$id.'.txt','w');
+		fwrite($fp, $cachetime);
+		fclose($fp);
+		@chmod($g['path_page'].$id.'.txt',0707);
+	}
+	else {
+		if (file_exists($g['path_page'].$id.'.txt'))
+		{
+			unlink($g['path_page'].$id.'.txt');
+		}
+	}
 
 	if($pagetype==1) $joint = str_replace('cync=Y','cync=['.$m.'][p'.$uid.'][,,,][][][mod:'.$id.']',$joint);
 
@@ -69,6 +82,14 @@ else {
 	fclose($fp);
 	@chmod($mfile,0707);
 	
+	if ($cachetime)
+	{
+		$fp = fopen($g['path_page'].$id.'.txt','w');
+		fwrite($fp, $cachetime);
+		fclose($fp);
+		@chmod($g['path_page'].$id.'.txt',0707);
+	}
+
 
 	$QKEY = "pagetype,ismain,mobile,id,category,name,perm_g,perm_l,layout,joint,hit,sosokmenu,d_regis,d_update";
 	$QVAL = "'$pagetype','$ismain','$mobile','$id','$category','$name','$perm_g','$perm_l','$layout','$joint','$hit','$sosokmenu','$d_regis','$d_update'";

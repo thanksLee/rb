@@ -100,6 +100,20 @@ if ($cat && !$vtype)
 		}
 	}
 
+	if ($cachetime)
+	{
+		$fp = fopen($vfile.'.txt','w');
+		fwrite($fp, $cachetime);
+		fclose($fp);
+		@chmod($vfile.'.txt',0707);
+	}
+	else {
+		if(is_file($vfile.'.txt'))
+		{
+			unlink($vfile.'.txt');
+		}
+	}
+
 
 	if ($subcopy == 1)
 	{
@@ -180,6 +194,14 @@ else {
 			fwrite($fp, trim(stripslashes($codfoot)));
 			fclose($fp);
 			@chmod($mfile.'.footer.php',0707);
+		}
+
+		if ($cachetime)
+		{
+			$fp = fopen($mfile.'.txt','w');
+			fwrite($fp, $cachetime);
+			fclose($fp);
+			@chmod($mfile.'.txt',0707);
 		}
 	}
 	

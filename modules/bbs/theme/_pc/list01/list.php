@@ -59,7 +59,7 @@
 	</td>
 	<td class="sbj">
 		<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
-		<a href="<?php echo $g['bbs_view'].$R['uid']?>" class="b"><?php echo $R['subject']?></a>
+		<a href="<?php echo $g['bbs_view'].$R['uid']?>" class="b"><?php echo getStrCut($R['subject'],$d['bbs']['sbjcut'],'')?></a>
 		<?php if(strstr($R['content'],'.jpg')):?><img src="<?php echo $g['img_core']?>/_public/ico_pic.gif" class="imgpos" alt="사진" title="사진" /><?php endif?>
 		<?php if($R['upload']):?><img src="<?php echo $g['img_core']?>/_public/ico_file.gif" class="imgpos" alt="첨부파일" title="첨부파일" /><?php endif?>
 		<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
@@ -87,7 +87,7 @@
 		<?php if($R['depth']):?><img src="<?php echo $g['img_core']?>/blank.gif" width="<?php echo ($R['depth']-1)*13?>" height="1"><img src="<?php echo $g['img_module_skin']?>/ico_re.gif" alt="답글" /><?php endif?>
 		<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
 		<?php if($R['category']):?><span class="cat">[<?php echo $R['category']?>]</span><?php endif?>
-		<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php echo $R['subject']?></a>
+		<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php echo getStrCut($R['subject'],$d['bbs']['sbjcut'],'')?></a>
 		<?php if(strstr($R['content'],'.jpg')):?><img src="<?php echo $g['img_core']?>/_public/ico_pic.gif" class="imgpos" alt="사진" title="사진" /><?php endif?>
 		<?php if($R['upload']):?><img src="<?php echo $g['img_core']?>/_public/ico_file.gif" class="imgpos" alt="첨부파일" title="첨부파일" /><?php endif?>
 		<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>

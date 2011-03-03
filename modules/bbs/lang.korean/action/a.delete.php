@@ -6,9 +6,13 @@ if (!$R['uid']) getLink('','','삭제되었거나 존재하지 않는 게시물�
 $B = getUidData($table[$m.'list'],$R['bbs']);
 if (!$B['uid']) getLink('','','존재하지 않는 게시판입니다.','');
 
+include_once $g['dir_module'].'var/var.php';
+include_once $g['dir_module'].'var/var.'.$B['id'].'.php';
+include_once $g['path_module'].'upload/var/var.php';
+
 $backUrl = getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('bid','skin','iframe','cat','p','sort','orderby','recnum','type','where','keyword'));
 
-if ($my['uid'] != $R['mbruid'] && !$my['admin'])
+if ($my['uid'] != $R['mbruid'] && !$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').',',','.$my['id'].','))
 {
 	if (!strstr($_SESSION['module_'.$m.'_pwcheck'],$R['uid']))
 	{
@@ -21,9 +25,6 @@ if ($my['uid'] != $R['mbruid'] && !$my['admin'])
 		}
 	}
 }
-
-include_once $g['dir_module'].'var/var.php';
-include_once $g['path_module'].'upload/var/var.php';
 
 if ($d['bbs']['commentdel'])
 {

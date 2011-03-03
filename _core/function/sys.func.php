@@ -214,7 +214,7 @@ function getKeyword($url)
 	if (!trim($urlexp[1])) return '';
 	$queexp = explode('&' , $urlexp[1]);
 	$quenum = count($queexp);
-	for ($i = 0; $i < $quenum; $i++){$valexp = explode('=',trim($queexp[$i])); if ($valexp[1] > 'z') return $valexp[1] == getUTFtoUTF($valexp[1]) ? $valexp[1] : getKRtoUTF($valexp[1]);}
+	for ($i = 0; $i < $quenum; $i++){$valexp = explode('=',trim($queexp[$i])); if (strstr(',query,q,p,',','.$valexp[0].',')&&!is_numeric($valexp[1])) return $valexp[1] == getUTFtoUTF($valexp[1]) ? $valexp[1] : getKRtoUTF($valexp[1]);}
 	return '';
 }
 //검색엔진

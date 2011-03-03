@@ -720,6 +720,29 @@ $TPG = getTotalPage($NUM,$recnum);
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td class="td1">
+				캐 시 적 용
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_cache','block','none');" />
+			</td>
+			<td class="td2">
+				<?php $cachefile = $g['path_page'].$R['id'].'.txt'?>
+				<?php $cachetime = file_exists($cachefile) ? implode('',file($cachefile)) : 0?>
+				<select name="cachetime" class="select1">
+				<option value="">&nbsp;+ 적용안함</option>
+				<option value="">--------------------------------</option>
+				<?php for($i = 1; $i < 61; $i++):?>
+				<option value="<?php echo $i?>"<?php if($cachetime==$i):?> selected="selected"<?php endif?>><?php echo sprintf('%02d',$i)?>분</option>
+				<?php endfor?>
+				</select>
+
+				<div id="guide_cache" class="guide hide">
+				DB접속이 많거나 위젯을 많이 사용하는 페이지일 경우 캐시를 적용하면<br />
+				서버부하를 줄 일 수 있으며 속도를 높일 수 있습니다.<br />
+				다만 반드시 실시간 처리를 요하는 페이지일 경우 적용하지 마세요.
+				</div>
+			</td>
+		</tr>
 		<?php if($R['uid']):?>
 		<tr>
 			<td class="td1">
@@ -1173,6 +1196,29 @@ if ($is_regismode)
 					<div id="guide_permg" class="guide hide">
 					선택된 그룹에 속한 회원들은 이 메뉴에 대한 접근이 차단됩니다.<br />
 					복수의 그룹을 선택하려면 드래그또는 Ctrl키를 누른다음 클릭해 주세요.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="td1">
+					캐시적용
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_cache','block','none');" />
+				</td>
+				<td class="td2">
+					<?php $cachefile = $g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.txt'?>
+					<?php $cachetime = file_exists($cachefile) ? implode('',file($cachefile)) : 0?>
+					<select name="cachetime" class="select1">
+					<option value="">&nbsp;+ 적용안함</option>
+					<option value="">--------------------------------</option>
+					<?php for($i = 1; $i < 61; $i++):?>
+					<option value="<?php echo $i?>"<?php if($cachetime==$i):?> selected="selected"<?php endif?>><?php echo sprintf('%02d',$i)?>분</option>
+					<?php endfor?>
+					</select>
+
+					<div id="guide_cache" class="guide hide">
+					DB접속이 많거나 위젯을 많이 사용하는 메뉴일 경우 캐시를 적용하면<br />
+					서버부하를 줄 일 수 있으며 속도를 높일 수 있습니다.<br />
+					다만 반드시 실시간 처리를 요하는 메뉴일 경우 적용하지 마세요.
 					</div>
 				</td>
 			</tr>

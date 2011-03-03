@@ -89,6 +89,24 @@ include_once $g['path_module'].$module.'/var/var.php';
 			</td>
 		</tr>
 		<tr>
+			<td class="td1">게시물출력</td>
+			<td class="td2">
+				<input type="text" name="recnum" value="<?php echo $d['bbs']['recnum']?$d['bbs']['recnum']:20?>" size="5" class="input" />개(한페이지에 출력할 게시물의 수)
+			</td>
+		</tr>
+		<tr>
+			<td class="td1">제목끊기</td>
+			<td class="td2">
+				<input type="text" name="sbjcut" value="<?php echo $d['bbs']['sbjcut']?$d['bbs']['sbjcut']:40?>" size="5" class="input" />자(제목이 길 경우 자르기)
+			</td>
+		</tr>
+		<tr>
+			<td class="td1">새글유지시간</td>
+			<td class="td2">
+				<input type="text" name="newtime" value="<?php echo $d['bbs']['newtime']?$d['bbs']['newtime']:24?>" size="5" class="input" />시간(새글로 인식되는 시간)
+			</td>
+		</tr>
+		<tr>
 			<td class="td1">답글인식문자</td>
 			<td class="td2">
 				<input type="text" name="restr" value="<?php echo $d['bbs']['restr']?>" size="5" class="input" />

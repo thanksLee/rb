@@ -168,7 +168,7 @@
 			<?php $_month = date('Ym',mktime(0,0,0,substr($date['today'],4,2)-$i,substr($date['today'],6,2),$date['year']))?>
 			<?php $_num = getDbCnt($table['bbsmonth'],'sum(num)',"date='".$_month."' and site=".$s)?>
 			<li>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;where=term&amp;keyword=<?php echo $_month?>"><?php echo getDateFormat($_month,'Y M')?></a>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=bbs&amp;where=term&amp;keyword=<?php echo $_month?>"><?php echo getDateFormat($_month,'Y M')?></a>
 			<span>(<?php echo $_num?>)</span>
 			</li>
 			<?php endfor?>
@@ -225,7 +225,7 @@
 						<td width="14%" class="sys_f_11d">
 						<?php if((($i == 1 && $startday == $j) || $day > 0) && $day < $endday): $day++?>
 						<?php if($_D[$onday]):?>
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;where=term&amp;keyword=<?php echo $onday?>" title="<?php echo $_D[$onday]?> Post">
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=bbs&amp;where=term&amp;keyword=<?php echo $onday?>" title="<?php echo $_D[$onday]?> Post">
 							<?php if($j == 0):?>
 							<span class="sunday b"><?php echo $pday?></span>
 							<?php else:?>

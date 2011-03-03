@@ -95,14 +95,9 @@ function setEditMode()
 	EditForm.document.designMode = 'on';
 	EditForm.document.write(getId('setCssCode').innerHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 
-	//if(parent.myagent == 'ie')
-	//{
-		EditRange = EditForm.document.selection; 
-	//}
-	//else {
-	//	EditForm.document.open("text/html", "replace"); 
-	//	EditForm.document.close();
-	//}
+	EditRange = EditForm.document.selection;
+	if(navigator.userAgent.indexOf('Chrome') != -1 || navigator.userAgent.indexOf('Safari') != -1) frames.editAreaIframe.focus();
+
 	if (!editParentHtml)
 	{
 		getId('editSizeBtn').style.display = 'none';
@@ -125,4 +120,3 @@ function setEditMode()
 window.onload = setEditMode;
 //]]>
 </script>
-

@@ -48,8 +48,40 @@ if (is_file($g['main']))
 			}
 		}
 
-		include_once $g['main'];
+		$d['cachetime'] = file_exists($d['page']['cctime']) ? implode('',file($d['page']['cctime'])) : 0;
 
+		if ($d['cachetime'] && substr($d['page']['source'],0,8)=='./pages/')
+		{
+			$g['cache'] = str_replace('.php','.cache',$d['page']['source']);
+			$g['recache'] = true;
+			if(file_exists($g['cache']))
+			{
+				if(mktime() - filemtime($g['cache']) > $d['cachetime'] * 60) unlink($g['cache']);
+				else
+				{
+					readfile($g['cache']);
+					$g['recache'] = false;
+				}
+			}
+			if ($g['recache'])
+			{
+				ob_start();
+
+				include_once $g['main'];
+
+				$g['buffer'] = ob_get_contents(); 
+				ob_end_clean();
+				echo $g['buffer'];
+
+				$fp = fopen($g['cache'],'w');
+				fwrite($fp,$g['buffer']);
+				fclose($fp);
+				@chmod($g['cache'],0707);
+			}
+		}
+		else {
+			include_once $g['main'];
+		}
 
 		if ($_HM['putfoot'] == 0)
 		{

@@ -135,21 +135,26 @@ $TPG = getTotalPage($NUM,$recnum);
 	</thead>
 	<tbody>
 <?php $j=0;while($R=db_fetch_array($RCD)):$j++?>
-<?php if($R['mbruid']) $M=getDbData($table['memberdata'],'memberuid='.$R['mbruid'],'*')?>
 <?php $_engine = getSearchEngine($R['referer'])?>
 <?php $_outkey = getKeyword($R['referer'])?>
 <?php $_browse = getBrowzer($R['agent'])?>
 <?php $_domain = getDomain($R['referer'])?>
+<?php $_mobile = isMobileConnect($R['agent'])?>
 
 	<tr class="rooptd<?php echo (++$i%2)?>">
 		<td class="check"><input type="checkbox" name="members[]" value="<?php echo $R['uid']?>" /></td>
 		<td class="number"><?php echo ($NUM-((($p-1)*$recnum)+$_recnum++))?></td>
 		<td class="name"><a href="#." onclick="whoisSearch('<?php echo $R['ip']?>');" title="후이즈 IP정보"><?php echo $R['ip']?></a></td>
-		<td><?php echo $M['name']?></td>
+		<td>
+			<?php if($R['mbruid']):?>
+			<?php $M=getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*')?>
+			<a href="javascript:OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=Y&m=member&front=manager&page=log&mbruid=<?php echo $M['memberuid']?>');" title="접속기록"><?php echo $M[$_HS['nametype']]?></a>
+			<?php endif?>
+		</td>
 		<td><a href="<?php echo $R['referer']?>" target="_blank"><?php if($_engine=='etc'):?><?php echo $_domain?><?php else:?><img src="<?php echo $g['img_module_admin']?>/ico_<?php echo $_engine?>.gif" title="<?php echo $_domain?>" /><?php endif?></a></td>
 		<td class="agent">
-		<?php if($_browse=='Mobile'):?>
-		<img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo isMobileConnect($R['agent'])?>)접속" />
+		<?php if($_mobile):?>
+		<img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $_mobile?>)접속" />
 		<?php endif?>		
 		<?php echo strtoupper($_browse)?>
 		</td>

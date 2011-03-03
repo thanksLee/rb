@@ -229,7 +229,7 @@ if ($uid)
 
 	if ($reply == 'Y')
 	{
-		if (!$my['admin'] && !strstr($d['bbs']['admin'],','.$my['id'].','))
+		if (!$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').',',','.$my['id'].','))
 		{
 			if ($d['bbs']['perm_l_write'] > $my['level'] || strstr($d['bbs']['perm_g_write'],'['.$my['sosok'].']'))
 			{
@@ -282,7 +282,7 @@ if ($uid)
 	else
 	{	
 
-		if ($my['uid'] != $R['mbruid'] && !$my['admin'])
+		if ($my['uid'] != $R['mbruid'] && !$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').',',','.$my['id'].','))
 		{
 			 if (!strstr($_SESSION['module_'.$m.'_pwcheck'],$R['uid'])) getLink('','','정상적인 접근이 아닙니다.','');
 		}
@@ -295,7 +295,7 @@ if ($uid)
 }
 else 
 {
-	if (!$my['admin'] && !strstr($d['bbs']['admin'],','.$my['id'].','))
+	if (!$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').',',','.$my['id'].','))
 	{
 		if ($d['bbs']['perm_l_write'] > $my['level'] || strstr($d['bbs']['perm_g_write'],'['.$my['sosok'].']'))
 		{

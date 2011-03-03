@@ -1,7 +1,7 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
-if (!$my['admin'] && !strpos('_'.$d['bbs']['admin'],','.$my['id'].','))
+if (!$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').',',','.$my['id'].','))
 {
 	if ($d['bbs']['perm_l_view'] > $my['level'] || strpos('_'.$d['bbs']['perm_g_view'],'['.$my['sosok'].']'))
 	{
@@ -22,7 +22,7 @@ if ($d['bbs']['isperm'] && $R['hidden'])
 	}
 }
 
-if ($d['bbs']['isperm'] && !strpos('_'.$_SESSION['module_'.$m.'_view'],'['.$R['uid'].']'))
+if ($d['bbs']['isperm'] && ($d['bbs']['hitcount'] || !strpos('_'.$_SESSION['module_'.$m.'_view'],'['.$R['uid'].']')))
 {
 	if ($R['point2'])
 	{

@@ -64,16 +64,8 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_bbsidname','block','none');" />
 			</td>
 			<td class="td2">
-				<input type="text" name="name" value="<?php echo $R['name']?>" class="input sname" />
-				<?php if($R['id']):?>
-				<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=deletebbs&amp;uid=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')">삭제하기</a></span>
-				<span class="btn01"><a href="<?php echo RW('m='.$module.'&bid='.$R['id'])?>">게시판보기</a></span>
-				<?php else:?>
-
+				<input type="text" name="name" value="" class="input sname" />
 				아이디 <input type="text" name="id" value="" class="input sname2" />
-
-				<?php endif?>
-
 				<div id="guide_bbsidname" class="guide hide">
 				<span class="b">게시판이름</span> : 한글,영문등 자유롭게 등록할 수 있습니다.<br />
 				<span class="b">아이디</span> : 영문 대소문자+숫자+_ 조합으로 만듭니다.<br />
@@ -87,7 +79,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_category','block','none');" />
 			</td>
 			<td class="td2">
-				<input type="text" name="category" value="<?php echo $R['category']?>" class="input sname1" />
+				<input type="text" name="category" value="" class="input sname1" />
 				<div id="guide_category" class="guide hide">
 				<span class="b">콤마(,)</span>로 구분해 주세요. <span class="b">첫분류는 분류제목</span>이 됩니다.<br />
 				보기)<span class="b">구분</span>,유머,공포,엽기,무협,기타
@@ -106,7 +98,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 				<option value="">--------------------------------</option>
 				<?php while(false !== ($tpl1 = readdir($dirs1))):?>
 				<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
-				<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($d['bbs']['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>>ㆍ<?php echo getFolderName($g['path_layout'].$tpl)?>(<?php echo str_replace('.php','',$tpl1)?>)</option>
+				<option value="<?php echo $tpl?>/<?php echo $tpl1?>">ㆍ<?php echo getFolderName($g['path_layout'].$tpl)?>(<?php echo str_replace('.php','',$tpl1)?>)</option>
 				<?php endwhile?>
 				<?php closedir($dirs1)?>
 				<?php endwhile?>
@@ -120,11 +112,11 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 				<select name="skin" class="select1">
 				<option value="">&nbsp;+ 게시판 대표테마</option>
 				<option value="">--------------------------------</option>
-				<?php $tdir = $g['path_module'].$module.'/theme/_pc/'?>
+				<?php $tdir = $g['path_module'].$smodule.'/theme/_pc/'?>
 				<?php $dirs = opendir($tdir)?>
 				<?php while(false !== ($skin = readdir($dirs))):?>
 				<?php if($skin=='.' || $skin == '..' || is_file($tdir.$skin))continue?>
-				<option value="_pc/<?php echo $skin?>" title="<?php echo $skin?>"<?php if($d['bbs']['skin']=='_pc/'.$skin):?> selected="selected"<?php endif?>>ㆍ<?php echo getFolderName($tdir.$skin)?>(<?php echo $skin?>)</option>
+				<option value="_pc/<?php echo $skin?>" title="<?php echo $skin?>">ㆍ<?php echo getFolderName($tdir.$skin)?>(<?php echo $skin?>)</option>
 				<?php endwhile?>
 				<?php closedir($dirs)?>
 				</select>
@@ -136,11 +128,11 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 				<select name="m_skin" class="select1">
 				<option value="">&nbsp;+ 모바일 대표테마</option>
 				<option value="">--------------------------------</option>
-				<?php $tdir = $g['path_module'].$module.'/theme/_mobile/'?>
+				<?php $tdir = $g['path_module'].$smodule.'/theme/_mobile/'?>
 				<?php $dirs = opendir($tdir)?>
 				<?php while(false !== ($skin = readdir($dirs))):?>
 				<?php if($skin=='.' || $skin == '..' || is_file($tdir.$skin))continue?>
-				<option value="_mobile/<?php echo $skin?>" title="<?php echo $skin?>"<?php if($d['bbs']['m_skin']=='_mobile/'.$skin):?> selected="selected"<?php endif?>>ㆍ<?php echo getFolderName($tdir.$skin)?>(<?php echo $skin?>)</option>
+				<option value="_mobile/<?php echo $skin?>" title="<?php echo $skin?>">ㆍ<?php echo getFolderName($tdir.$skin)?>(<?php echo $skin?>)</option>
 				<?php endwhile?>
 				<?php closedir($dirs)?>
 				</select>
@@ -262,7 +254,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 #mjointbox {}
 #mjointbox .title {border-bottom:#dfdfdf dashed 1px;padding:0 0 10px 0;margin:0 0 20px 0;}
 #mjointbox .title .cat {width:120px;}
-#mjointbox table {width:100%;}
+#mjointbox table {width:98%;}
 #mjointbox table .name {width:160px;}
 #mjointbox table .name span {font-size:11px;font-family:arial;color:#c0c0c0;padding:0 0 0 3px;}
 #mjointbox table .cat {text-align:right;}
@@ -288,7 +280,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 #mjointbox .td2 textarea {padding:5px;margin:0;width:330px;height:100px;overflow-x:hidden;overflow-y:auto;line-height:150%;color:#000000;font-family:Courier new, arial, dotum;font-size:9pt;text-align:left;}
 #mjointbox .sfont1 {font:normal 11px dotum;color:#c0c0c0;}
 #mjointbox .notice {padding:15px 0 10px 15px;margin:0 0 20px 0;font-size:11px;font-family:dotum;color:#02B6D6;border-bottom:#dfdfdf dashed 1px;line-height:150%;}
-#mjointbox .submitbox {margin:20px 0 20px 0;padding:15px 0 0 107px;border-top:#dfdfdf dashed 1px;}
+#mjointbox .submitbox {margin:20px 0 20px 0;padding:15px 0 20px 107px;border-top:#dfdfdf dashed 1px;}
 #mjointbox .submitbox a {font-size:11px;font-family:dotum;text-decoration:underline;color:#c0c0c0;padding:0 0 0 10px;}
 
 </style>

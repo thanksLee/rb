@@ -39,15 +39,6 @@
 	<td class="td3"><input type="text" name="link" value="<?php echo $wdgvar['link']?>" size="36" class="input" /></td>
 	</tr>
 	<tr>
-	<td class="td1"></td>
-	<td class="td2"></td>
-	<td class="td4">
-		링크입력시 more(더보기) 링크가 출력됩니다.<br />
-		메뉴에 연결된 게시판일 경우 <span class="u">메뉴의 링크</span><br />
-		를 입력해 주세요<br />
-	</td>
-	</tr>
-	<tr>
 	<td class="td1">노출개수</td>
 	<td class="td2">:</td>
 	<td class="td3">
@@ -59,18 +50,24 @@
 	</td>
 	</tr>
 	<tr>
-	<td class="td1">사진사이즈</td>
+	<td class="td1">가로사이즈</td>
 	<td class="td2">:</td>
 	<td class="td3">
-		<input type="text" name="width" value="<?php echo $wdgvar['width']?$wdgvar['width']:80?>" size="3" class="input" /> *
-		<input type="text" name="height" value="<?php echo $wdgvar['height']?$wdgvar['height']:''?>" size="3" class="input" /> 픽셀(세로 공백시 가로비율유지)
+		<input type="text" name="width" value="<?php echo $wdgvar['width']?$wdgvar['width']:(!$wdgvar['width']&&!$wdgvar['height']?'80':'')?>" size="3" class="input" />픽셀(세로 공백시 가로비율유지)
+	</td>
+	</tr>
+	<tr>
+	<td class="td1">세로사이즈</td>
+	<td class="td2">:</td>
+	<td class="td3">
+		<input type="text" name="height" value="<?php echo $wdgvar['height']?$wdgvar['height']:''?>" size="3" class="input" />픽셀(가로 공백시 세로비율유지)
 	</td>
 	</tr>
 	<tr>
 	<td class="td1">내용물길이</td>
 	<td class="td2">:</td>
 	<td class="td3">
-		<input type="text" name="length" value="<?php echo $wdgvar['length']?$wdgvar['length']:100?>" size="3" class="input" />자
+		<input type="text" name="length" value="<?php echo $wdgvar['length']?$wdgvar['length']:200?>" size="3" class="input" />자
 	</td>
 	</tr>
 	<tr>

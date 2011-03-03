@@ -1,7 +1,6 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
-
 if ($system)
 {
 	if (strpos('[edit.page][edit.menu][edit.all][popup.image][popup.joint][popup.widget]',$system))
@@ -11,7 +10,6 @@ if ($system)
 			$system = 'nopage';
 		}
 	}
-
 	if ($_menu)
 	{
 		$_HM = getUidData($table['s_menu'],$_menu);
@@ -59,26 +57,32 @@ else
 		}
 		elseif ($_HM['menutype'] == 2)
 		{
+			$_HM['mcode'] = sprintf('%05d',$_HM['uid']);
 			$d['page']['widget'] = array();
-			include_once $g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.widget.php';
+			$d['page']['cctime'] = $g['path_page'].'menu/'.$_HM['mcode'].'.txt';
+			$d['page']['source'] = $g['path_page'].'menu/'.$_HM['mcode'].'.widget.php';
+			include_once $d['page']['source'];
 			$g['main'] = $g['path_core'].'engine/widget.engine.php';
 		}
 		else
 		{
+			$_HM['mcode'] = sprintf('%05d',$_HM['uid']);
 			$g['dir_module_skin'] = $g['path_page'].'menu/';
 			$g['url_module_skin'] = $g['s'].'/pages/menu';
 			$g['img_module_skin'] = $g['s'].'/pages/image';
-			$g['dir_module_mode'] = $g['dir_module_skin'].sprintf('%05d',$_HM['uid']);
-			$g['url_module_mode'] = $g['url_module_skin'].'/'.sprintf('%05d',$_HM['uid']);
-			$g['main'] = $g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.php';
+			$g['dir_module_mode'] = $g['dir_module_skin'].$_HM['mcode'];
+			$g['url_module_mode'] = $g['url_module_skin'].'/'.$_HM['mcode'];
+			$g['main'] = $g['path_page'].'menu/'.$_HM['mcode'].'.php';
 			
 			if ($g['mobile']&&$_SESSION['pcmode']!='Y')
 			{
-				if (is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php'))
+				if (is_file($g['path_page'].'menu/'.$_HM['mcode'].'.mobile.php'))
 				{
-					$g['main'] = $g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php';
+					$g['main'] = $g['path_page'].'menu/'.$_HM['mcode'].'.mobile.php';
 				}
 			}
+			$d['page']['cctime'] = $g['path_page'].'menu/'.$_HM['mcode'].'.txt';
+			$d['page']['source'] = $g['main'];
 		}
 	}
 
@@ -100,7 +104,9 @@ else
 		elseif ($_HP['pagetype'] == 2)
 		{
 			$d['page']['widget'] = array();
-			include_once $g['path_page'].$_HP['id'].'.widget.php';
+			$d['page']['cctime'] = $g['path_page'].$_HP['id'].'.txt';
+			$d['page']['source'] = $g['path_page'].$_HP['id'].'.widget.php';
+			include_once $d['page']['source'];
 			$g['main'] = $g['path_core'].'engine/widget.engine.php';
 		}
 		else
@@ -120,6 +126,8 @@ else
 					$g['main'] = $g['path_page'].$_HP['id'].'.mobile.php';
 				}
 			}
+			$d['page']['cctime'] = $g['path_page'].$_HP['id'].'.txt';
+			$d['page']['source'] = $g['main'];
 		}
 
 		if($_HP['sosokmenu'])

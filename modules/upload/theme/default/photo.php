@@ -14,7 +14,7 @@
 			<input type="hidden" name="r" value="<?php echo $r?>" />
 			<input type="hidden" name="m" value="<?php echo $m?>" />
 			<input type="hidden" name="a" value="upload" />
-			<input type="hidden" name="sess_Code" value="<?php echo $sescode?>" />
+			<input type="hidden" name="sess_Code" value="<?php echo $sescode?>_<?php echo $my['uid']?>" />
 			<input type="hidden" name="saveDir" value="<?php echo $g['path_file']?>" />
 			<input type="hidden" name="upType" value="normal" />
 			<input type="hidden" name="mod" value="<?php echo $mod?>" />
@@ -57,7 +57,7 @@
 				var qupload_m = '<?php echo $m?>';
 				var qupload_a = 'upload';
 				var save_Path = '<?php echo $g['path_file']?>';
-				var sess_Code = '<?php echo $sescode?>';
+				var sess_Code = '<?php echo $sescode?>_<?php echo $my['uid']?>';
 				var Permision = 'true';
 				var Overwrite = 'false';
 				var ftypeName = '<?php echo $d['upload']['name_img']?>';

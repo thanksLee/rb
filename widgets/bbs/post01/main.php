@@ -2,9 +2,9 @@
 
 <div class="widget_post01">
 	<?php if($wdgvar['link']):?>
-	<h2><a href="<?php echo $wdgvar['link']?>"><?php echo $wdgvar['title']?></a></h2> 
+	<h6><a href="<?php echo $wdgvar['link']?>"><?php echo $wdgvar['title']?></a></h6> 
 	<?php else:?>
-	<h2><?php echo $wdgvar['title']?></h2> 
+	<h6><?php echo $wdgvar['title']?></h6> 
 	<?php endif?>
 	<ul> 
 	<?php $_RCD=getDbArray($table['bbsdata'],($wdgvar['bid']?'bbs='.$wdgvar['bid'].' and ':'').'display=1 and site='.$_HS['uid'],'*','gid','asc',$wdgvar['limit'],1)?>
@@ -17,5 +17,5 @@
 	<?php endwhile?>
 	<?php if(!db_num_rows($_RCD)):?><li class="none"></li><?php endif?> 
 	</ul> 
-	<?php if($wdgvar['link']):?><a href="<?php echo $wdgvar['link']?>" class="more" title="더보기">more</a><?php endif?>
+	<?php if($wdgvar['link']):?><a href="<?php echo $wdgvar['link']?>" class="more" title="더보기">더보기</a><?php endif?>
 </div>

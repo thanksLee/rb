@@ -12,4 +12,7 @@ $d['bbs']['badword_escape'] = "*";
 $d['bbs']['singo_del'] = "";
 $d['bbs']['singo_del_num'] = "20";
 $d['bbs']['singo_del_act'] = "1";
+$d['bbs']['recnum'] = "20";
+$d['bbs']['sbjcut'] = "40";
+$d['bbs']['newtime'] = "24";
 ?>

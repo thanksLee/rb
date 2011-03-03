@@ -24,6 +24,11 @@ if ($subQue)
 		@unlink($_xfile.'.js');
 		@unlink($_xfile.'.header.php');
 		@unlink($_xfile.'.footer.php');
+		
+		@unlink($_xfile.'.txt');
+		@unlink($_xfile.'.cache');
+		@unlink($_xfile.'.widget.cache');
+		@unlink($_xfile.'.mobile.cache');
 
 		@unlink($g['path_var'].'menu/'.$R['imghead']);
 		@unlink($g['path_var'].'menu/'.$R['imgfoot']);	

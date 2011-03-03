@@ -11,7 +11,7 @@ if (!$B['uid']) getLink('','','존재하지 않는 게시판입니다.','');
 $mbruid		= $my['uid'];
 $category	= $_HM['name']?$_HM['name']:$B['name'];
 $subject	= addslashes($R['subject']);
-$url	    = getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('bid','skin','iframe'));
+$url	    = getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('bid','uid','skin','iframe'));
 $d_regis	= $date['totime'];
 
 if (getDbRows($table['s_scrap'],"mbruid=".$mbruid." and url='".$url."'"))

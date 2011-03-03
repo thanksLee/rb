@@ -52,6 +52,11 @@ else {
 	}
 }
 
+$cachefile_pc = str_replace('.php','.cache',$vfile);
+$cachefile_mobile = str_replace('.php','.cache',$vfile.'.mobile');
+if(file_exists($cachefile_pc)) unlink($cachefile_pc);
+if(file_exists($cachefile_mobile)) unlink($cachefile_mobile);
+
 if ($backgo)
 {
 	if ($type == 'menu')

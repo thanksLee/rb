@@ -14,6 +14,9 @@ unlink($g['path_page'].$R['id'].'.widget.php');
 @unlink($g['path_page'].$R['id'].'.css');
 @unlink($g['path_page'].$R['id'].'.js');
 
+@unlink($g['path_page'].$R['id'].'.txt');
+@unlink($g['path_page'].$R['id'].'.cache');
+@unlink($g['path_page'].$R['id'].'.mobile.cache');
 
 if($_HS['startpage'] && $_HS['startpage'] == $R['uid'])
 {

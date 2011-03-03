@@ -4,8 +4,9 @@ if(!defined('__KIMS__')) exit;
 include_once $g['path_core'].'function/thumb.func.php';
 include_once $g['dir_module'].'var/var.php';
 
-$tmpcode	= $sess_Code;
-$mbruid		= $my['uid'];
+$sessArr	= explode('_',$sess_Code);
+$tmpcode	= $sessArr[0];
+$mbruid		= $sessArr[1];
 $fserver	= $d['upload']['use_fileserver'];
 $url		= $fserver ? $d['upload']['ftp_urlpath'] : $g['url_root'].'/files/';
 $name		= strtolower($_FILES['Filedata']['name']);

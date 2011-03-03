@@ -13,7 +13,8 @@ fwrite($fp, "?>");
 
 fclose($fp);
 @chmod($vfile,0707);
-
+$cachefile = str_replace('.php','.cache',$vfile);
+if(file_exists($cachefile)) unlink($cachefile);
 
 if ($backgo)
 {
