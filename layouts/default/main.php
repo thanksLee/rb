@@ -40,7 +40,7 @@
 			</dl>
 			</div>
 			<?php endif?>
-			<a href="<?php echo RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>" class="m1<?php if(in_array($_M1['id'],$_CA)):$_parent=$_M1['uid']?> selected1<?php endif?>"><?php echo $_M1['name']?></a>
+			<a href="<?php echo $_M1['redirect']?$_M1['joint']:RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>" class="m1<?php if(in_array($_M1['id'],$_CA)):$_parent=$_M1['uid']?> selected1<?php endif?>"><?php echo $_M1['name']?></a>
 			</li>
 			<?php $_i++; if($_i >= $d['layout']['menunum']) break; endwhile?>
 			<?php if($_i < db_num_rows($_MENUS1)):?>
@@ -48,7 +48,7 @@
 			<div id="subMenuBox0">
 			<dl>
 			<?php while($_M1=db_fetch_array($_MENUS1)):?>
-			<dt<?php if(in_array($_M1['id'],$_CA)):$_parent=$_M1['uid']?> class="selected2"<?php endif?>><a href="<?php echo RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>"><?php echo $_M1['name']?></a></dt>
+			<dt<?php if(in_array($_M1['id'],$_CA)):$_parent=$_M1['uid']?> class="selected2"<?php endif?>><a href="<?php echo $_M1['redirect']?$_M1['joint']:RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>"><?php echo $_M1['name']?></a></dt>
 			<?php if($_M1['isson']):?>
 			<?php $_MENUS2=getDbSelect($table['s_menu'],'site='.$s.' and parent='.$_M1['uid'].' and hidden=0 and depth=2 order by gid asc','*')?>
 			<?php while($_M2=db_fetch_array($_MENUS2)):?>

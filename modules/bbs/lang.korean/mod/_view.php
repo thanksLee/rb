@@ -10,7 +10,7 @@ if (!$my['admin'] && !strstr(','.($d['bbs']['admin']?$d['bbs']['admin']:'.').','
 	}
 }
 
-if ($d['bbs']['isperm'] && $R['hidden'])
+if ($R['hidden'])
 {	
 	if ($my['uid'] != $R['mbruid'] && $my['uid'] != $R['pw'] && !$my['admin'])
 	{

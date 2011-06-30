@@ -23,6 +23,6 @@ $cyncArr = getArrayString($C['cync']);
 $fdexp = explode(',',$cyncArr['data'][2]);
 if ($fdexp[0]&&$fdexp[2]&&$cyncArr['data'][3]) getDbUpdate($cyncArr['data'][3],$fdexp[2].'='.$fdexp[2].'-1',$fdexp[0].'='.$cyncArr['data'][1]);
 
-getLink(getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('skin','iframe','sort','orderby','recnum','where','keyword')).'&uid='.$R['parent'],'parent.','','');
+getLink(getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('skin','iframe','sort','orderby','recnum','where','keyword')).'&uid='.$R['parent'].'&oneOpen=Y','parent.','','');
 
 ?>

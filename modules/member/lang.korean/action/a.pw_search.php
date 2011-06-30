@@ -3,7 +3,7 @@ if(!defined('__KIMS__')) exit;
 
 $result_num = 1;
 $id		= trim($new_id);
-$pw_a	= trim($new_pw_a);
+$pw_a	= stripslashes(trim($new_pw_a));
 $pw1	= trim($new_pw1);
 $pw2	= trim($new_pw2);
 

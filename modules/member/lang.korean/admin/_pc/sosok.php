@@ -120,7 +120,7 @@ var dragsort = ToolMan.dragsort();
 	<td><?php echo $R['num']?number_format($R['num']):''?></td>
 	<td><input type="text" name="name_<?php echo $R['uid']?>" size="10" value="<?php echo $R['name']?>" class="input" /></td>
 	<td><input type="text" name="login_<?php echo $R['uid']?>" size="6" value="<?php echo $R['login']?$R['login']:''?>" class="input" onkeyup="numFormat1(this);" onkeypress="numFormat1(this);"<?php if(!$i):?> onblur="autoNumber(this);" title="입력하시면 자동완성됩니다."<?php endif?> /></td>
-	<td><input type="text" name="post_<?php echo $R['uid']?>" size="6" value="<?php echo $R['post']?$R['post']:''?>" class="input" onkeyup="numForma1t(this);" onkeypress="numFormat1(this);"<?php if(!$i):?> onblur="autoNumber(this);" title="입력하시면 자동완성됩니다."<?php endif?> /></td>
+	<td><input type="text" name="post_<?php echo $R['uid']?>" size="6" value="<?php echo $R['post']?$R['post']:''?>" class="input" onkeyup="numFormat1(this);" onkeypress="numFormat1(this);"<?php if(!$i):?> onblur="autoNumber(this);" title="입력하시면 자동완성됩니다."<?php endif?> /></td>
 	<td><input type="text" name="comment_<?php echo $R['uid']?>" size="6" value="<?php echo $R['comment']?$R['comment']:''?>" class="input" onkeyup="numFormat1(this);" onkeypress="numFormat1(this);"<?php if(!$i):?> onblur="autoNumber(this);" title="입력하시면 자동완성됩니다."<?php endif?> /></td>
 	</tr>
 	<?php $i++; endwhile?>

@@ -85,5 +85,5 @@ else
 	}
 }
 
-getLink(getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('skin','iframe','sort','orderby','recnum','where','keyword')).'&uid='.$parent,'parent.','','');
+getLink(getLinkFilter($g['s'].'/?'.($_HS['usescode']?'r='.$r.'&amp;':'').($c?'c='.$c:'m='.$m),array('skin','iframe','sort','orderby','recnum','where','keyword')).'&uid='.$parent.'&oneOpen=Y','parent.','','');
 ?>

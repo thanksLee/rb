@@ -16,15 +16,12 @@ foreach ($post_members as $val)
 	if (!$R['uid']) continue;
 	if ($R['bbs']==$B['uid']) continue;
 
-	$mingid = getDbCnt($table[$m.'data'],'min(gid)','');
-	$gid = $mingid ? $mingid-1 : 100000000.00;
-
 	$month = substr($R['d_regis'],0,6);
 	$today = substr($R['d_regis'],0,8);
 
 	//게시물이동
-	getDbUpdate($table[$m.'data'],'gid='.$gid.',bbs='.$B['uid'].",bbsid='".$B['id']."'",'uid='.$R['uid']);
-	getDbUpdate($table[$m.'idx'],'bbs='.$B['uid'].',gid='.$gid,'gid='.$R['gid']);
+	getDbUpdate($table[$m.'data'],'bbs='.$B['uid'].",bbsid='".$B['id']."'",'uid='.$R['uid']);
+	getDbUpdate($table[$m.'idx'],'bbs='.$B['uid'],'gid='.$R['gid']);
 
 	getDbUpdate($table[$m.'list'],"num_r=num_r-1",'uid='.$R['bbs']);
 	getDbUpdate($table[$m.'list'],"num_r=num_r+1",'uid='.$B['uid']);

@@ -30,7 +30,7 @@ function getPageLink($lnum,$p,$tpage,$img)
 //문자열끊기
 function getStrCut($long_str,$cutting_len,$cutting_str)
 {
-	$rtn = array();if($cutting_len < 30) $long_str = strip_tags($long_str);
+	$rtn = array();$long_str = trim($long_str);
     return preg_match('/.{'.$cutting_len.'}/su', $long_str, $rtn) ? $rtn[0].$cutting_str : $long_str;
 }
 //링크필터링

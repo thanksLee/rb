@@ -11,6 +11,7 @@
 	<input type="hidden" name="pwd" value="<?php echo $pwd?>" />
 	<input type="hidden" name="dropfield" value="<?php echo $dropfield?>" />
 	<input type="hidden" name="option" value="<?php echo $option?>" />
+	<input type="hidden" name="isWcode" value="<?php echo $isWcode?>" />
 	<table>
 	<tr>
 	<td class="td1">요약위젯갯수</td>

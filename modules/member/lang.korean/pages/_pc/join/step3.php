@@ -392,7 +392,6 @@
 		</div>
 		<div><input type="text" name="comp_addr1" id="comp_addr1" value="" size="55" readonly="readonly" class="input" /></div>
 		<div><input type="text" name="comp_addr2" id="comp_addr2" value="" size="55" class="input" /></div>
-		</div>
 	</td>
 	</tr>
 	</tbody>

@@ -16,7 +16,7 @@ $id			= $my['id'];
 $name		= $my['uid'] ? $my['name'] : trim($name);
 $nic		= $my['uid'] ? $my['nic'] : $name;
 $category	= trim($category);
-$subject	= $my['admin'] ? trim($subject) : strip_tags(trim($subject));
+$subject	= $my['admin'] ? trim($subject) : htmlspecialchars(trim($subject));
 $content	= trim($content);
 $html		= $html ? $html : 'TEXT';
 $tag		= trim($tag);
@@ -287,7 +287,9 @@ if ($uid)
 			 if (!strstr($_SESSION['module_'.$m.'_pwcheck'],$R['uid'])) getLink('','','정상적인 접근이 아닙니다.','');
 		}
 
-		$QVAL = "display='$display',hidden='$hidden',notice='$notice',category='$category',subject='$subject',content='$content',html='$html',tag='$tag',point3='$point3',point4='$point4',d_modify='$d_regis',upload='$upload',adddata='$adddata'";
+		$pw = !$R['pw'] && !$R['hidden'] && $hidden && $R['mbruid'] ? $R['mbruid'] : $R['pw'];
+
+		$QVAL = "display='$display',hidden='$hidden',notice='$notice',pw='$pw',category='$category',subject='$subject',content='$content',html='$html',tag='$tag',point3='$point3',point4='$point4',d_modify='$d_regis',upload='$upload',adddata='$adddata'";
 		getDbUpdate($table[$m.'data'],$QVAL,'uid='.$R['uid']);
 		getDbUpdate($table[$m.'idx'],'notice='.$notice,'gid='.$R['gid']);
 		if ($cuid) getDbUpdate($table['s_menu'],"num='".getDbCnt($table[$m.'month'],'sum(num)','site='.$R['site'].' and bbs='.$R['bbs'])."'",'uid='.$cuid);

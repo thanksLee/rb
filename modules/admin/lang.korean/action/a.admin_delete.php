@@ -7,7 +7,7 @@ foreach ($mbrmembers as $val)
 {
 	if ($my['uid'] == $val) continue;
 	$M=getDbData($table['s_mbrid'],'uid='.$val,'*');
-	getDbUpdate($table['s_mbrdata'],"admin=0,adm_name='',adm_view=''",'memberuid='.$M['uid']);
+	getDbUpdate($table['s_mbrdata'],"admin=0,adm_view=''",'memberuid='.$M['uid']);
 	unlink($g['dir_module'].'var/users/'.$M['id'].'.widget.php');
 }
 

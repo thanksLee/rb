@@ -23,7 +23,7 @@
 		<?php $_MENUS1=getDbSelect($table['s_menu'],'site='.$s.' and hidden=0 and depth=1 and mobile=1 order by gid asc','*')?>
 		<?php $_i=0; while($_M1=db_fetch_array($_MENUS1)):?>
 		<li class="m1<?php if($_M1['id']==$c):?> selected1<?php endif?>">
-		<a href="<?php echo RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>">
+		<a href="<?php echo $_M1['redirect']?$_M1['joint']:RW('c='.$_M1['id'])?>" target="<?php echo $_M1['target']?>">
 		<?php echo $_M1['name']?>
 		<?php if($_M1['num']):?><span class="num">(<?php echo $_M1['num']?>)</span><?php endif?>
 		<?php if(getNew($_M1['d_last'],$d['layout']['newhour'])):?><span class="new">new</span><?php endif?>

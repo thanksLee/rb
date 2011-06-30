@@ -73,7 +73,7 @@ if ($d['member']['login_point'])
 	}
 }
 
-getDbUpdate($table['s_mbrdata'],"level=".$my_level.",point=point+".$login_point.",num_login=num_login+1,now_log=1,last_log='".$date['totime']."',tmpcode=''",'memberuid='.$M['uid']);
+getDbUpdate($table['s_mbrdata'],"level=".$my_level.",point=point+".$login_point.",num_login=num_login+1,now_log=1,last_log='".$date['totime']."'",'memberuid='.$M['uid']);
 getDbUpdate($table['s_numinfo'],'login=login+1',"date='".$date['today']."' and site=".$s);
 getDbUpdate($table['s_referer'],'mbruid='.$M['uid'],"d_regis like '".$date['today']."%' and site=".$s." and mbruid=0 and ip='".$_SERVER['REMOTE_ADDR']."'");
 
@@ -87,7 +87,7 @@ else {
 }
 
 $_SESSION['mbr_uid'] = $M['uid'];
-$_SESSION['mbr_pw']  = md5($pw);
+$_SESSION['mbr_pw']  = $M['pw'];
 $referer = $referer ? urldecode($referer) : $_SERVER['HTTP_REFERER'];
 
 

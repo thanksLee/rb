@@ -49,7 +49,7 @@ if ($fserver)
 	{
 		if ($type == 2)
 		{
-			$thumbname = md5($tmpname);
+			$thumbname = md5($tmpname).'.'.$fileExt;
 			$thumbFile = $g['path_tmp'].'backup/'.$thumbname;
 			ResizeWidth($_FILES['Filedata']['tmp_name'],$thumbFile,150);
 			$IM = getimagesize($_FILES['Filedata']['tmp_name']);
@@ -80,7 +80,7 @@ else {
 		move_uploaded_file($_FILES['Filedata']['tmp_name'], $saveFile);
 		if ($type == 2)
 		{
-			$thumbname = md5($tmpname);
+			$thumbname = md5($tmpname).'.'.$fileExt;
 			$thumbFile = $savePath3.'/'.$thumbname;
 			ResizeWidth($saveFile,$thumbFile,150);
 			@chmod($thumbFile,0707);
