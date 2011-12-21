@@ -84,7 +84,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<td class="cat"><?php echo $M[$_HS['nametype']]?$M[$_HS['nametype']]:'시스템'?></td>
 	<td><img src="<?php echo $g['img_core']?>/_public/ico_paper.gif" alt=""<?php if($R['d_read']):?> title="<?php echo getDateFormat($R['d_read'],'Y.m.d H:i 열람')?>" class="isread"<?php endif?> /></td>
 	<td class="sbj">
-		<a href="#." onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.paper&iframe=Y&uid=<?php echo $R['uid']?>');" title="<?php echo getStrCut(htmlspecialchars(strip_tags($R['content'])),100,'...')?>" onmouseover="qTilePop(this);" onmouseout="qTilePopKill(this);"><?php echo getStrCut(strip_tags($R['content']),50,'..')?></a>
+		<a href="#." onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&type=send&rcvmbr=<?php echo $M['memberuid']?>','메세지 보내기',300,270,event,true,'b');"><?php echo getStripTags($R['content'])?></a>
 		<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 	</td>
 	<td><?php echo getDateFormat($R['d_regis'],'Y.m.d H:i')?></td>
@@ -116,7 +116,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<input type="button" value="보관" class="btngray" onclick="actCheck('paper_save');" />
 	<?php endif?>
 	<?php endif?>
-	&nbsp;&nbsp;<input type="button" value="쪽지쓰기" class="btnblue" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y');" />
+	&nbsp;&nbsp;<input type="button" value="쪽지쓰기" class="btnblue" onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.send_multi&iframe=Y','메세지 보내기',300,270,event,true,'r');" />
 	</form>
 	
 
@@ -127,30 +127,6 @@ $TPG = getTotalPage($NUM,$recnum);
 <script type="text/javascript">
 //<![CDATA[
 // list
-function qTilePop(obj)
-{
-    var content ='<div style="width:300px;line-height:150%;font-family:dotum;color:#666666;border:#999999 solid 1px;padding:3px;background:lightyellow;">'+obj.title+'</div>';
-	skn.style.position= 'absolute';
-	skn.style.display = 'block';
-	skn.style.zIndex = '1';
-	itt = obj.title;
-	obj.title = '';
-	skn.innerHTML = content;
-}
-function get_mouse(e) 
-{
-    var x = myagent != 'ie' ? e.pageX : event.x + (document.documentElement.clientLeft || document.body.clientLeft);
-    var y = myagent != 'ie' ? e.pageY : event.y + (document.documentElement.clientTop || document.body.clientTop);
-    skn.style.left = (x - 0) + 'px';
-    skn.style.top  = (y + 20) + 'px';
-}
-function qTilePopKill(obj) 
-{
-	obj.title = itt;
-	itt = '';
-	skn.style.top = '10000';
-	skn.style.display = 'none';
-}
 function submitCheck(f)
 {
 	if (f.a.value == '')
@@ -185,11 +161,6 @@ function actCheck(act)
 		f.submit();
 	}
 }
-if (myagent != 'ie') document.captureEvents(Event.MOUSEMOVE);
-document.onmousemove = get_mouse;
-
-var skn = getId('qTilePopDiv');
-var itt = '';
 //]]>
 </script>
 

@@ -8,7 +8,7 @@ if ($_HM['putfoot'] == 1)
 		if(is_file($_HM['incfile'].'.footer.php'))
 		{
 			echo "<div>";
-			include_once $_HM['incfile'].'.footer.php';
+			include $_HM['incfile'].'.footer.php';
 			echo "</div>";
 		}
 		if ($_HM['imgfoot'])

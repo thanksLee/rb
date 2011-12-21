@@ -251,17 +251,6 @@
 	</tr>
 	<?php endif?>
 
-	<?php $SNSSET=array('트위터','페이스북','미투데이','요즘')?>
-	<?php for($i = 0; $i < 4; $i++):?>
-	<?php if(!$d['member']['form_sns_'.($i+1)]) continue?>
-	<tr>
-	<td class="key"><?php echo $SNSSET[$i]?> ID</td>
-	<td>
-		<input type="text" name="sns_<?php echo $i?>" value="" class="input" />
-	</td>
-	</tr>
-	<?php endfor?>
-
 	<?php $_add = file($g['dir_module'].'var/add_field.txt')?>
 	<?php foreach($_add as $_key):?>
 	<?php $_val = explode('|',trim($_key))?>

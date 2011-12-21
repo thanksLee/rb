@@ -63,7 +63,8 @@ if ($uid)
 
 	if ($backgo)
 	{
-		getLink(RW('mod='.$id),'parent.','','');
+		if ($iframe=='Y') getLink(RW('mod='.$id),'parent.parent.','','');
+		else getLink(RW('mod='.$id),'parent.','','');
 	}
 	else {
 		getLink('reload','parent.','','');
@@ -118,11 +119,11 @@ else {
 			2=>'widget',
 			3=>'source',
 		);
-		getLink($g['s'].'/?r='.$r.'&system=edit.page&_page='.$lastpage.'&type='.$typeset[$pagetype],'parent.','','');
+		getLink($g['s'].'/?r='.$r.'&iframe='.$iframe.'&system=edit.page&_page='.$lastpage.'&type='.$typeset[$pagetype],'parent.','','');
 	}
 	elseif($backc=='add')
 	{
-		getLink($g['s'].'/?r='.$r.'&system=edit.all&type=page','parent.','','');
+		getLink($g['s'].'/?r='.$r.'&iframe='.$iframe.'&system=edit.all&type=page','parent.','','');
 	}
 	else{
 		getLink('reload','parent.','','');

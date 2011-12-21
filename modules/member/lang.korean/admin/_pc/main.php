@@ -48,10 +48,11 @@ if ($addr0)
 }
 if ($where && $keyw) $_WHERE .= " and ".$where." like '%".trim($keyw)."%'";
 
+$RCD = getDbArray($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE,'*',$sort,$orderby,$recnum,$p);
+$NUM = getDbRows($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE);
 
-
-$RCD = getDbArray($table['s_mbrdata'],$_WHERE,'*',$sort,$orderby,$recnum,$p);
-$NUM = getDbRows($table['s_mbrdata'],$_WHERE);
+//$RCD = getDbArray($table['s_mbrdata'],$_WHERE,'*',$sort,$orderby,$recnum,$p);
+//$NUM = getDbRows($table['s_mbrdata'],$_WHERE);
 $TPG = getTotalPage($NUM,$recnum);
 $autharr = array('','인증','보류','대기','탈퇴');
 

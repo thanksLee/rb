@@ -1,127 +1,138 @@
 <?php
-if (!$my['uid']) exit;
-include_once $g['path_module'].'member/var/var.join.php';
-$M = getDbData($table['s_mbrdata'],'memberuid='.$uid,'*');
-$M1 = getUidData($table['s_mbrid'],$M['memberuid']);
-$L = getDbData($table['s_mbrlevel'],'uid='.$M['level'],'*');
-$X = getDbData($table['s_mbrlevel'],'gid=1','*');
-$C = -getRemainDate($M['last_log']);
-$cset = array('오늘','어제','글피');
-$SNS = explode('|',$M['sns']);
-$SNSENG = array('t','f','m','y');
-$SNSSET = array
-(
-	'twitter.com'=>'트위터',
-	'facebook.com'=>'페이스북',
-	'me2day.net'=>'미투데이',
-	'yozm.daum.net'=>'요즘'
-);
+$_MH = getUidData($table['s_mbrid'],$uid);
+$_MH = array_merge(getDbData($table['s_mbrdata'],"memberuid='".$_MH['uid']."'",'*'),$_MH);
 ?>
-<div id="layerbox">
 
-	<div id="mbrLayer" onclick="mbrclick=true;setTimeout('mbrclick=false;',100);">
-	<div class="photo"><?php if($M['photo']):?><img src="<?php echo $g['url_root']?>/_var/simbol/<?php echo $M['photo']?>" alt="" /><?php endif?></div>
-	<div class="info">
-		<div class="name">
-		<span>
-		<?php echo $M[$_HS['nametype']]?>님
-		<?php if($M['sex']):?><img src="<?php echo $g['img_core']?>/_public/ico_sex_<?php echo $M['sex']?>.gif" alt="" title="<?php echo getSex($M['sex'])?>성(<?php echo getAge($M['birth1'])?>세)"  /><?php endif?>
-		</span>
+
+
+
+[RESULT:
+
+<div onmousedown="showMemberLayer();">
+<?php if($selPos=='r'):?>
+<div style="width:1px;height:1px;position:absolute;"><img src="<?php echo $g['img_core']?>/_public/arr_left.gif" alt="" style="position:relative;width:8px;height:13px;top:30px;left:-8px;" /></div>
+<?php else:?>
+<div style="width:1px;height:1px;position:absolute;"><img src="<?php echo $g['img_core']?>/_public/arr_right.gif" alt="" style="position:relative;width:8px;height:13px;top:30px;left:310px;" /></div>
+<?php endif?>
+<div style="width:1px;height:1px;position:absolute;"><img src="<?php echo $g['img_core']?>/_public/ico_x_01.gif" alt="" title="닫기" style="marign:10px;cursor:pointer;position:relative;top:10px;left:285px;" onclick="mbrclick=false;closeMemberLayer();" /></div>
+<div id="mbrlivebox">
+
+	<div class="rnote">
+		<div class="rbox">
+		<div class="xl">
+			<div><img src="<?php echo $g['s']?>/_var/simbol/180.<?php echo is_file($g['path_var'].'simbol/180.'.$_MH['photo'])?$_MH['photo']:'0.gif'?>" width="100" alt="" /></div>
+		</div>
+		<div class="xr">
+			<div class="tt"><?php echo $_MH['nic']?>님</div>
+			<div class="info">
+			가입일 : <?php echo getDateFormat($_MH['d_regis'],'Y.m.d')?> (<?php echo -getRemainDate($_MH['d_regis'])?>일전)<br /> 
+			마지막접속 : <?php echo getDateFormat($_MH['last_log'],'Y.m.d')?> (<?php echo -getRemainDate($_MH['last_log'])?>일전)<br />
+			포인트 : <?php echo number_format($_MH['point'])?> , 레벨 : <?php echo $_MH['level']?>
+			</div>
+
+			<div class="btnbox">
+			<?php if($my['uid']):?>
+			<?php if($my['uid']==$_MH['uid']):?>
+			<a class="btnGray01 plusBlue filter"><i><s>Follow</s></i></a>
+			<?php else:?>
+			<?php $ISF = getDbData($table['s_friend'],'my_mbruid='.$my['uid'].' and by_mbruid='.$_MH['uid'],'uid')?>
+			<?php if($ISF['uid']):?>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=member&amp;a=friend_unfollow&amp;fuid=<?php echo $ISF['uid']?>&amp;mbruid=<?php echo $_MH['uid']?>" class="btnGray01 plusBlue" onclick="return hrefCheck(this,true,'정말로 Unfollow 하시겠습니까?');"><i><s>Unfollow</s></i></a>
+			<?php else:?>
+			<?php $ISF = getDbData($table['s_friend'],'my_mbruid='.$_MH['uid'].' and by_mbruid='.$my['uid'],'uid')?>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=member&amp;a=friend_follow&amp;fuid=<?php echo $ISF['uid']?>&amp;mbruid=<?php echo $_MH['uid']?>" class="btnGray01 plusBlue" onclick="return hrefCheck(this,true,'정말로 Follow 하시겠습니까?');"><i><s>Follow</s></i></a>
+			<?php endif?>
+			<?php endif?>
+
+			<img src="<?php echo $g['img_core']?>/_public/btn_msg.gif" alt="메세지" class="hand" onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&type=send&rcvmbr=<?php echo $_MH['uid']?>','메세지 보내기',300,270,event,true,'b');" />
+			<?php else:?>
+			<a class="btnGray01 plusBlue filter"><i><s>Follow</s></i></a>
+			<img src="<?php echo $g['img_core']?>/_public/btn_msg.gif" alt="메세지" class="filter" />
+			<?php endif?>
+			<img src="<?php echo $g['img_core']?>/_public/btn_tool.gif" alt="SNS" class="hand" onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.sns&iframe=Y&rcvmbr=<?php echo $_MH['uid']?>','소셜 네트워크',300,150,event,true,'b');" />
 		</div>
 
-		가입일자 : <?php echo getDateFormat($M['d_regis'],'Y/m/d')?><br />
-		최근접속 : <?php echo $cset[$C]?$cset[$C]:$C.'일전'?><span class="log">(<?php echo $M['now_log']?'online':'offline'?>)</span><br />
+
+		</div>
+		<div class="clear"></div>
+		</div>
 	</div>
+
+
+
+	<ul id="mymbrlayertab" class="contTap">
+	<li class="on ls" onclick="hubTab('post','mbrLayerBox','<?php echo $_MH['uid']?>',this);"><span>게시물</span></li>
+	<li onclick="hubTab('comment','mbrLayerBox','<?php echo $_MH['uid']?>',this);"><span>댓글</span></li>
+	</ul>
 	<div class="clear"></div>
-	<div class="level">
-		<div title="<?php echo $L['name']?>(<?php echo $M['level']?>/<?php echo $X['uid']?>)"><img src="<?php echo $g['url_root']?>/_core/image/level/<?php echo $M['level']?>.gif" alt=""  /></div>
-	</div>
-	<div class="close">
-		<div title="닫기" onclick="closeMemberLayer();"><img src="<?php echo $g['img_core']?>/_public/btn_del_s01.gif" alt="닫기" /></div>
-	</div>
+	
+	<div id="mbrLayerBox" class="cont">
 
-	<div class="tool">
-		<input type="button" value="쪽지" class="btngray" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&id=<?php echo $d['member']['login_emailid']?$M['email']:$M1['id']?>');" />
-		<?php if($my['uid']==$M1['uid']):?>
-		<input type="button" value="친구" class="btngray disabled" />
-		<?php else:?>
-		<?php $ISF = getDbData($table['s_friend'],'by_mbruid='.$M1['uid'],'*')?>
-		<?php if($ISF['uid']):?>
-		<input type="button" value="친구" class="btngray disabled" />
-		<?php else:?>
-		<input type="button" value="친구" class="btngray" onclick="if(confirm('정말로 친구맺기를 요청하시겠습니까?')){frames._friend_.location.href='<?php echo $g['s']?>/?r=<?php echo $r?>&m=member&a=friend_add1&id=<?php echo $d['member']['login_emailid']?$M['email']:$M1['id']?>';}" />
-		<?php endif?>
-		<?php endif?>
-
-		<?php $i=0?>
-		<?php foreach($SNSSET as $key => $val):?>
-		<?php if($SNS[$i]):?>
-		<a href="http://<?php echo $key?>/<?php echo $SNSENG[$i]=='f'?(is_numeric($SNS[$i])?'profile.php?id='.$SNS[$i]:$SNS[$i]):$SNS[$i]?>" target="_blank"><img src="<?php echo $g['img_core']?>/_public/sns_<?php echo $SNSENG[$i]?>1.gif" alt="<?php echo $val?>" title="<?php echo $val?>" /></a>
-		<?php else:?>
-		<img src="<?php echo $g['img_core']?>/_public/sns_<?php echo $SNSENG[$i]?>1.gif" alt="<?php echo $val?>" title="<?php echo $val?>" class="nonesns" />
-		<?php endif?>
-		<?php $i++; endforeach?>
-
-	</div>
-	<div class="post">
-		<ul>
-		<?php $i=0?>
-		<?php $_RCD=getDbArray($table['bbsdata'],'mbruid='.$M1['uid'].' and site='.$s.' and display=1','*','gid','asc',5,1)?>
+		<ul class="xrecent1">
+		<?php $_RCD=getDbArray($table['bbsdata'],'site='.$s.' and mbruid='.$_MH['uid'],'*','gid','asc',10,1)?>
 		<?php while($_R=db_fetch_array($_RCD)):?>
+		<?php $_B=getUidData($table['bbslist'],$_R['bbs'])?>
+		<?php $_L=getOverTime($date['totime'],$_R['d_regis'])?>
 		<li>
-			ㆍ<a href="<?php echo getPostLink($_R)?>" title="[게시물]<?php echo htmlspecialchars($_R['subject'])?>" target="_blank"><?php echo $_R['subject']?></a>
-			<?php if($_R['comment']):?><span class="comment">[<?php echo $_R['comment']?><?php if($_R['oneline']):?>+<?php echo $_R['oneline']?><?php endif?>]</span><?php endif?>
-			<?php if(getNew($_R['d_regis'],24)):?><span class="new">N</span><?php endif?>
+		<a href="<?php echo getPostLink($_R)?>" class="sbj">
+		<?php echo $_R['subject']?>
+		<?php if($_R['comment']):?> <span class="comment">(<?php echo $_R['comment']?><?php if($_R['oneline']):?>+<?php echo $_R['oneline']?><?php endif?>)</span><?php endif?>
+		</a>
+		<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=bbs&amp;bid=<?php echo $_B['id']?>" class="link"><?php echo $_B['name']?></a>에서
+		<?php echo $_L[1]<3?$_L[0].$lang['sys']['time'][$_L[1]].'전':getDateFormat($_R['d_regis'],'Y.m.d ')?>에 남김<?php if($_R['comment']):?><span class="comment"> , 댓글 <?php echo $_R['comment']?><?php if($_R['oneline']):?>+<?php echo $_R['oneline']?><?php endif?>개 있음</span><?php endif?>
+
 		</li>
-		<?php $i++;endwhile?>
-		<?php $_RCD=getDbArray($table['s_comment'],'mbruid='.$M1['uid'].' and site='.$s.' and display=1','*','uid','asc',5,1)?>
-		<?php while($_R=db_fetch_array($_RCD)):?>
-		<li>
-			ㆍ<a href="<?php echo getCyncUrl($_R['cync'].',CMT:'.$_R['uid'])?>#CMT" title="[댓글]<?php echo htmlspecialchars($_R['subject'])?>" target="_blank"><?php echo $_R['subject']?></a>
-			<?php if($_R['oneline']):?><span class="comment">[<?php echo $_R['oneline']?>]</span><?php endif?>
-			<?php if(getNew($_R['d_regis'],24)):?><span class="new">N</span><?php endif?>
-		</li>
-		<?php $i++;endwhile?>
+		<?php endwhile?>
+		<?php if(!db_num_rows($_RCD)):?>
+		<li class="none">작성한 게시글이 없습니다.</li>
+		<?php endif?>
 		</ul>
+
 	</div>
-	</div>
-	<iframe name="_friend_" width="0" height="0" frameborder="0" scrolling="no"></iframe>
-	<style type="text/css">
-	#mbrLayer {position:relative;z-index:100001;width:210px;padding:5px 5px 5px 8px;background:#efefef;border:#dfdfdf solid 4px;}
-	#mbrLayer .level {position:absolute;}
-	#mbrLayer .level div {position:relative;top:-30px;left:187px;}
-	#mbrLayer .level div img {}
-	#mbrLayer .close {position:absolute;}
-	#mbrLayer .close div {position:relative;top:-56px;left:189px;background:#f9f9f9;}
-	#mbrLayer .close div:hover {background:#000000;}
-	#mbrLayer .close div img {padding:5px;border:#dfdfdf solid 1px;cursor:pointer;}
-	#mbrLayer .photo {float:left;width:50px;height:50px;background:url('<?php echo $g['s']?>/_var/simbol/0.gif') center center no-repeat;position:relative;top:4px;left:2px;}
-	#mbrLayer .info {margin-left:65px;font-size:11px;font-family:dotum;color:#777;line-height:130%;}
-	#mbrLayer .info div {border-bottom:#dfdfdf solid 1px;margin:0 0 4px 0;padding:7px 0 0 0;}
-	#mbrLayer .info div span {position:relative;top:-5px;font-weight:bold;color:#33ABE8;}
-	#mbrLayer .info div span img {position:relative;top:-1px;left:-2px;}
-	#mbrLayer .info .log {font-size:10px;font-family:arial;color:#FF3217;position:relative;top:-1px;left:2px;}
-	#mbrLayer .tool {border-top:#dfdfdf solid 1px;padding:7px 0 0 10px;margin:15px 0 0 0;}
-	#mbrLayer .tool .nonesns {filter:alpha(opacity=10);opacity:0.1;}
-	#mbrLayer .tool .btngray {position:relative;top:-7px;left:-6px;width:43px;height:20px;}
-	<?php if($i):?>#mbrLayer .post {padding:10px 0 10px 0;border-top:#dfdfdf solid 1px;}<?php endif?>
-	#mbrLayer .post ul {padding:0;margin:0;}
-	#mbrLayer .post li {list-style-type:none;margin:3px 0 3px 0;width:200px;height:12px;overflow:hidden;}
-	#mbrLayer .post li a {font-family:dotum;font-size:12px;color:#444;}
-	#mbrLayer .post li a:hover {text-decoration:underline;}
-	#mbrLayer .post li .comment {font:normal 11px arial;color:#FC6138;}
-	#mbrLayer .post li .new {font-family:arial;font-size:10px;color:#ff0000;}
-	#mbrLayer .disabled {filter:alpha(opacity=30);opacity:0.3;}
-	</style>
+</div>
 </div>
 
+<style type="text/css">
+#mbrlivebox {overflow:hidden;padding:0 10px 10px 10px;}
+#mbrlivebox .rnote {padding:10px 0 5px 0;}
+#mbrlivebox .rnote .rbox {padding:0 0 10px 0;}
+#mbrlivebox .rnote .rbox .xl {width:100px;float:left;}
+#mbrlivebox .rnote .rbox .xl div {width:100px;height:100px;overflow:hidden;}
+#mbrlivebox .rnote .rbox .xr {width:180px;float:left;margin-left:10px;color:#656565;font-size:11px;font-family:dotum;letter-spacing:-1px;}
+#mbrlivebox .rnote .rbox .xr a {}
+#mbrlivebox .rnote .rbox .xr .tt {color:#3A5A95;font-weight:bold;font-size:12px;padding-bottom:8px;display:inline-block;}
+#mbrlivebox .rnote .rbox .xr .info {line-height:150%;}
+#mbrlivebox .rnote .rbox .xr .btnbox {padding-top:5px}
+#mbrlivebox .rnote .rbox .xr .btnbox .btnGray01 {width:90px;float:left;margin-right:5px;}
 
-<script type="text/javascript">
-//<![CDATA[
-function layerDraw()
-{
-	parent.getId('_action_layer_').innerHTML = getId('layerbox').innerHTML;
-}
-window.onload = layerDraw;
-//]]>
-</script>
+#mbrlivebox .memberpic {padding:10px 0 30px 0;}
+#mbrlivebox .memberpic span {display:block;color:#c0c0c0;line-height:140%;font-size:11px;font-family:dotum;}
+
+#mbrlivebox .contTap {list-style-type:none;margin:0;padding:0;width:292px;height:28px;border-bottom:#BFBFBF solid 1px;}
+#mbrlivebox .contTap li {position:relative;top:-1px;float:left;text-align:center;height:27px;padding:0 10px 0 10px;margin:0 0 0 2px;background:#E1E5F1;border:#E1E5F1 solid 1px;cursor:pointer;}
+#mbrlivebox .contTap li span {display:block;padding-top:8px;font-weight:bold;font-size:11px;font-family:dotum;color:#3B5995;}
+#mbrlivebox .contTap .on {height:28px;border-top:#BFBFBF solid 1px;border-right:#BFBFBF solid 1px;border-bottom:#fff solid 1px;border-left:#BFBFBF solid 1px;background:#fff;}
+#mbrlivebox .contTap .on span {color:#333;}
+#mbrlivebox .contTap .ls {margin-left:0;}
+
+
+#mbrLayerShowHide {height:7px;border-top:#c0c0c0 solid 1px;background:#F0F1F1;text-align:center;cursor:pointer;}
+#mbrLayerShowHide img {margin-top:2px;}
+#mbrLayerShowHide:hover {background:#dfdfdf;}
+
+#mbrlivebox .cont {position:relative;margin:5px 0 0 0;height:280px;overflow-x:hidden;overflow-y:auto;}
+#mbrlivebox .cont .xrecent1 {list-style-type:none;padding:10px 0 20px 0;margin:0;}
+#mbrlivebox .cont .xrecent1 li {padding:4px 0 18px 18px;margin:0 0 0 5px;background:url('<?php echo $g['img_core']?>/_public/ico_doc.gif') left 4px no-repeat;line-height:130%;font-size:11px;font-family:;color:#999;}
+#mbrlivebox .cont .xrecent1 li a {display:block;padding-bottom:5px;font-weight:bold;font-family:dotum;font-size:12px;color:#3C5899;}
+#mbrlivebox .cont .xrecent1 li a .dsbj {margin-left:1px;}
+#mbrlivebox .cont .xrecent1 li a .dpoint {display:inline-block;background:#F3574A;color:#ffffff;font-weight:normal;font-size:11px;font-family:dotum;padding:3px 2px 0 2px;margin-left:53px;}
+#mbrlivebox .cont .xrecent1 li a .comment {color:#FF6F05;font-size:11px;font-family:arial;letter-spacing:-1px;}
+#mbrlivebox .cont .xrecent1 li a:hover {text-decoration:underline;}
+#mbrlivebox .cont .xrecent1 li .link {display:inline;font-weight:normal;font-size:11px;font-family:dotum;color:#999;}
+#mbrlivebox .cont .xrecent1 li .link:hover {text-decoration:underline;}
+#mbrlivebox .cont .xrecent1 li .product {display:inline;font-weight:normal;color:#999;font-family:;font-size:11px;}
+#mbrlivebox .cont .xrecent1 li .product:hover {text-decoration:underline;}
+#mbrlivebox .cont .xrecent1 .none {padding:10px 0 18px 0;margin:0;background:url('');line-height:130%;font-size:11px;font-family:dotum;color:#999;border-bottom:#efefef solid 1px;}
+</style>
+:RESULT]
+

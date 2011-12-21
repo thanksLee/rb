@@ -5,7 +5,7 @@ if (!$my['uid'])
 {
 	getLink('','','정상적인 접근이 아닙니다.','');
 }
-
+if ($fuid) $members = array($fuid);
 foreach($members as $val)
 {
 	$R = getUidData($table['s_friend'],$val);
@@ -16,5 +16,14 @@ foreach($members as $val)
 	}
 }
 
-getLink('reload','parent.','','');
+if ($fuid&&$mbruid)
+{
+	echo '<script type="text/javascript">';
+	echo 'parent.getMemberLayerLoad('.$mbruid.');';
+	echo '</script>';
+	getLink('','','','');
+}
+else {
+	getLink('reload','parent.','','');
+}
 ?>

@@ -30,34 +30,7 @@ if (is_uploaded_file($tmpname))
 	$extractor = new ArchiveExtractor();
 	$extractor -> extractArchive($saveFile,$extPath1);
 	unlink($saveFile);
-
-
-	$opendir = opendir($extPath1);
-	while(false !== ($file = readdir($opendir)))
-	{
-		if($file != '.' && $file != '..')
-		{
-			if (is_file($extPath1.$file))
-			{
-				if (is_file($folder.$file)) unlink($folder.$file);
-				copy($extPath1.$file,$folder.$file);
-				@chmod($folder.$file,0707);
-			}
-			else {
-
-				if (!is_dir($folder.$file))
-				{
-					mkdir($folder.$file,0707);
-					@chmod($folder.$file,0707);
-				}
-
-				DirCopy($extPath1.$file,$folder.$file);
-				DirChmod($folder.$file,0707);
-			}
-		}
-	}
-	closedir($opendir);
-
+	DirCopy($extPath1,$folder);
 	DirDelete($extPath);
 	mkdir($extPath,0707);
 	@chmod($extPath,0707);

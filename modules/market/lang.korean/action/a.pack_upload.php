@@ -7,7 +7,7 @@ $isPack		= '';
 $isUpload	= false;
 $extPath	= $g['path_tmp'].'app';
 $extPath1	= $extPath.'/';
-$typeset	= array('layout'=>'레이아웃이','widget'=>'위젯이','bbstheme'=>'게시판테마가');
+$typeset	= array('layout'=>'레이아웃이','widget'=>'위젯이','switch'=>'스위치가','bbstheme'=>'게시판테마가');
 
 if ($remote == 'Y')
 {
@@ -46,9 +46,7 @@ if ($remote == 'Y')
 				
 				mkdir($folder.$subfolder.$file,0707);
 				@chmod($folder.$subfolder.$file,0707);
-				DirCopy($extPath1.$file,$folder.$subfolder.$file);
-				DirChmod($folder.$subfolder.$file,0707);
-				
+				DirCopy($extPath1.$file,$folder.$subfolder.$file);				
 				$isUpload = true;
 				break;
 			}
@@ -94,6 +92,13 @@ else {
 				getLink('','','위젯 패키지가 아닙니다.','');
 			}
 		}
+		if ($type == 'switch')
+		{
+			if (substr($realname,0,10) != 'rb_switch_')
+			{
+				getLink('','','스위치 패키지가 아닙니다.','');
+			}
+		}
 		if ($type == 'bbstheme')
 		{
 			if (substr($realname,0,12) != 'rb_bbstheme_')
@@ -129,16 +134,12 @@ else {
 				
 				mkdir($folder.$subfolder.$file,0707);
 				@chmod($folder.$subfolder.$file,0707);
-				DirCopy($extPath1.$file,$folder.$subfolder.$file);
-				DirChmod($folder.$subfolder.$file,0707);
-				
+				DirCopy($extPath1.$file,$folder.$subfolder.$file);				
 				$isUpload = true;
 				break;
 			}
 		}
 		closedir($opendir);
-
-
 
 		DirDelete($extPath);
 		mkdir($extPath,0707);

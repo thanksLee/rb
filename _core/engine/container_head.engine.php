@@ -8,7 +8,7 @@ if ($_HM['puthead'] == 1)
 		if(is_file($_HM['incfile'].'.header.php'))
 		{
 			echo "<div>";
-			include_once $_HM['incfile'].'.header.php';
+			include $_HM['incfile'].'.header.php';
 			echo "</div>";
 		}
 		if ($_HM['imghead'])

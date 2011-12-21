@@ -40,16 +40,12 @@ if ($remote == 'Y')
 				
 				mkdir($g['path_module'].$file,0707);
 				@chmod($g['path_module'].$file,0707);
-				DirCopy($extPath1.$file,$g['path_module'].$file);
-				DirChmod($g['path_module'].$file,0707);
-				
+				DirCopy($extPath1.$file,$g['path_module'].$file);				
 				$isUpload = true;
 				break;
 			}
 		}
 		closedir($opendir);
-
-
 
 		DirDelete($extPath);
 		mkdir($extPath,0707);
@@ -108,16 +104,12 @@ else {
 				
 				mkdir($g['path_module'].$file,0707);
 				@chmod($g['path_module'].$file,0707);
-				DirCopy($extPath1.$file,$g['path_module'].$file);
-				DirChmod($g['path_module'].$file,0707);
-				
+				DirCopy($extPath1.$file,$g['path_module'].$file);				
 				$isUpload = true;
 				break;
 			}
 		}
 		closedir($opendir);
-
-
 
 		DirDelete($extPath);
 		mkdir($extPath,0707);

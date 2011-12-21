@@ -8,8 +8,9 @@ if (!$_HM['uid'])
 {
 	$type = 'config';
 }
-$g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_menu='.$_HM['uid']:'').($_make?'&amp;_make='.$_make:'');
+$g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$system.($_HM['uid']?'&amp;_menu='.$_HM['uid']:'').($_make?'&amp;_make='.$_make:'');
 ?>
+<div class="iframe<?php echo $iframe?>">
 <div id="pages_top">
 
 	<div class="title">
@@ -27,9 +28,9 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 			
 				<div id="menutype" class="morebox">
 					<ul class="dispbox">
-					<li<?php if($_HM['menutype']==1):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=menu&amp;value=1&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">모듈연결</a></li>
-					<li<?php if($_HM['menutype']==2):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=menu&amp;value=2&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">위젯전시</a></li>
-					<li<?php if($_HM['menutype']==3):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=menu&amp;value=3&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">직접코딩</a></li>
+					<li<?php if($_HM['menutype']==1):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=menu&amp;value=1&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">모듈연결</a></li>
+					<li<?php if($_HM['menutype']==2):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=menu&amp;value=2&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">위젯전시</a></li>
+					<li<?php if($_HM['menutype']==3):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=menu&amp;value=3&amp;uid=<?php echo $_HM['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">직접코딩</a></li>
 					</ul>
 				</div>
 				<a onclick="morebox('menutype');">전시형태 <img src="<?php echo $g['img_core']?>/_public/ico_arr_01.gif" alt="" /></a>
@@ -58,6 +59,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 		<input type="hidden" name="m" value="<?php echo $g['sys_module']?>" />
 		<input type="hidden" name="a" value="regismenu_user" />
 		<input type="hidden" name="uid" value="<?php echo $_HM['uid']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 
 		<table>
@@ -109,10 +111,10 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 						</div>
 					</div>
 					<div id="widgetBox" class="guide<?php if($_HM['menutype']!=2):?> hide<?php endif?>">
-						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=widget');" />
+						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=widget');" />
 					</div>
 					<div id="codeBox" class="guide<?php if($_HM['menutype']&&$_HM['menutype']!=3):?> hide<?php endif?>">
-						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=source');" />
+						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=source');" />
 					</div>
 					<div id="guide_contenttype" class="guide hide">
 					<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
@@ -134,7 +136,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 		</table>
 		
 		<div class="submitbox">
-			<input type="button" class="btngray" value="더자세히" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.all&type=menu&cat=<?php echo $_HM['uid']?>');" />
+			<input type="button" class="btngray" value="더자세히" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.all&type=menu&cat=<?php echo $_HM['uid']?>');" />
 			<input type="submit" class="btnblue" value="메뉴 속성변경" />
 			<div class="clear"></div>
 		</div>
@@ -166,6 +168,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 		<input type="hidden" name="target" value="<?php echo $_HM['target']?>" />
 		<input type="hidden" name="hidden" value="<?php echo $_HM['hidden']?>" />
 		<input type="hidden" name="reject" value="<?php echo $_HM['reject']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 
 		<table>
@@ -234,6 +237,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 	<input type="hidden" name="type" value="menu" />
 	<input type="hidden" name="escapevar" value="" />
 	<input type="hidden" name="uid" value="<?php echo $_HM['uid']?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="tt">
 		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" />
@@ -253,7 +257,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.($_HM['uid']?'&amp;_m
 
 	</form>
 
-	<div id="workSpace" class="posrel"></div>
+	<div id="workSpace" class="posrel"<?php if($iframe=='Y'):?> style="height:<?php echo $d['page']['mainheight']?$d['page']['mainheight']:700?>px;"<?php endif?>></div>
 
 </div>
 
@@ -507,6 +511,7 @@ window.onload = function()
 	<?php $i++; endforeach?>
 
 	getId('workSpace').style.height = getId('mainheight').value + 'px';
+	__resetPageSize();
 }
 //]]>
 </script>
@@ -526,6 +531,7 @@ window.onload = function()
 	<input type="hidden" name="a" value="sourcewrite" />
 	<input type="hidden" name="type" value="menu" />
 	<input type="hidden" name="uid" value="<?php echo $_HM['uid']?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="tt">
 		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" />
@@ -590,11 +596,12 @@ function tareacheck(obj)
 	else {
 		getId('sourceArea_'+obj.id).style.display = 'none';
 	}
+	__resetPageSize();
 }
 //]]>
 </script>
 <?php endif?>
-
+</div>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -636,6 +643,7 @@ function displaySelect(obj)
 		getId('widgetBox').style.display = 'none';
 		getId('codeBox').style.display = 'none';
 	}
+	__resetPageSize();
 }
 function catSelect(obj)
 {
@@ -650,6 +658,7 @@ function catSelect(obj)
 		obj.value = '';
 		obj.form.category.focus();
 	}
+	__resetPageSize();
 }
 function saveCheck(f)
 {
@@ -694,6 +703,26 @@ function displayChange()
 	}
 	return false;
 }
+function __layerShowHide(layer,show,hide)
+{
+	layerShowHide(layer,show,hide)
+	__resetPageSize();
+}
+function __resetPageSize()
+{
+	<?php if($iframe=='Y'):?>
+	parent.getId('_layer_title_').innerHTML = "사이트 빠른설정";
+	parent.getId('_box_layer_').style.top = '29px';
+	parent.getId('_box_layer_').style.height = (parseInt(document.body.offsetHeight)+50)+'px';
+	parent.getId('_box_frame_').style.height = (parseInt(document.body.offsetHeight)+20)+'px';
+	<?php endif?>
+}
+<?php if($type != 'widget'):?>
+window.onload = function ()
+{
+	__resetPageSize();
+}
+<?php endif?>
 //]]>
 </script>
 

@@ -1,4 +1,8 @@
 /* common */
+body {padding:0;margin:0;}
+img,p {border:0;margin:0;padding:0;}
+form {display:inline;margin:0;padding:0;}
+
 .b {font-weight:bold;}
 .u {text-decoration:underline;}
 .s {text-decoration:line-through;}
@@ -10,32 +14,19 @@
 .hide {display:none;}
 .sysMsgBox {padding:30px;font-size:15px;font-family:"malgun gothic",dotum;color:#ff0000;font-weight:bold;border:#dfdfdf solid 5px;background:#f9f9f9;text-align:center;}
 .sysMsgBox img {position:relative;top:2px;left:-2px;}
-.filter {filter:alpha(opacity=30);opacity:0.3;}
+.filter {filter:alpha(opacity=20);opacity:0.2;}
+.gray {filter:gray();}
+.nopm {padding:0;margin:0;}
 /* @common */
-
-/* admin */
-#adminControl {background:#575757;height:23px;}
-#adminControl .aleft {float:left;}
-#adminControl .aleft ul {margin:0;padding:0;}
-#adminControl .aleft li {list-style-type:none;float:left;padding:6px 10px 0 10px;border-right:#666666 solid 1px;font-size:11px;font-family:dotum;height:17px;color:#777;}
-#adminControl .aleft li a {color:#efefef;}
-#adminControl .aleft li a:hover {}
-#adminControl .aleft li img {margin-bottom:-3px;position:relative;top:-1px;}
-#adminControl .aleft li .rb {position:relative;top:-3px;}
-#adminControl .aleft li .editpage {color:#22ECEE;}
-#adminControl .aright {float:right;padding:0 10px 0 0;}
-#adminControl .aright a {color:#FF6600;font-family:arial;font-size:11px;}
-#adminControl .aright .asplit {font-size:10px;font-famiy:dotum;color:#999;padding:0 5px 0 5px;}
-#adminControl .aright .deskedit {position:relative;top:2px;}
-#adminControl .aright .logout {position:relative;top:3px;}
-#adminControl .aright .mbox {padding:0 10px 0 10px;}
-#adminControl .aright .admlink {color:#ffffff;font-family:dotum;font-size:11px;}
-/* @admin */
 
 /* mobile */
 #pctomobile {margin:20px 0 0 0;text-align:center;border:#dfdfdf solid 1px;background:#f9f9f9;font-size:25px;font-weight:bold;}
 #pctomobile a {display:block;margin:5px;padding:15px;}
 /* @mobile */
+
+/* member layer */
+.mbrLayerBlock {position:absolute;display:block;background:#ffffff;width:310px;height:450px;border:#333333 solid 1px;border-bottom:#333333 solid 2px;}
+/* @member layer */
 
 /* button */
 .btn00 {display:inline-block;border-top:#DFDFDF solid 1px;border-left:#DFDFDF solid 1px;border-right:#DFDFDF solid 1px;border-bottom:#C0C0C0 solid 1px;}
@@ -58,6 +49,14 @@
 
 .btnblue {cursor:pointer;border:#3399DD solid 1px;background:url('../image/_public/grad_blue.jpg') #33C9FD left bottom repeat-x;color:#ffffff;height:21px;}
 .btngray {cursor:pointer;border:#666666 solid 1px;background:url('../image/_public/grad_gray.jpg') #B3B3B3 left bottom repeat-x;color:#ffffff;height:21px;}
+
+.btnGray01 {display:block;height:27px;background:url('../image/btn/gray_01_left.jpg') left no-repeat;}
+.btnGray01 i {display:block;height:27px;background:url('../image/btn/gray_01_right.jpg') right no-repeat;font-weight:bold;font-family:dotum;font-size:11px;font-style:normal;color:#333333;}
+.btnGray01 s {display:inline-block;text-decoration:none;padding:9px 0 0 10px;letter-spacing:-1px;}
+
+.plusBlue s {background:url('../image/btn/add_01_blue.gif') 10px 6px no-repeat;padding:9px 0 0 30px;}
+.txtCenter {text-align:center;}
+.noIcon s {padding:9px 0 0 0;}
 /* @button */
 
 /* pagebpx */
@@ -82,3 +81,4 @@
 /* scroll */
 .scrollbar01 {scrollbar-base-color:#E1E1E1;scrollbar-face-color:#FFF;scrollbar-track-color:#FFF;scrollbar-highlight-color:#FFF;scrollbar-3dlight-color:#E1E1E1;scrollbar-shadow-color:#E1E1E1;scrollbar-darkshadow-color:#FFF;scrollbar-arrow-color:#7a7a7a;}
 /* @scroll */
+

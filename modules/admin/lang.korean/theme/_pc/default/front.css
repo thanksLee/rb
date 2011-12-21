@@ -57,8 +57,9 @@
 #content .location .loc2 {float:right;text-align:right;}
 #content .location .loc2 .select1 {position:relative;top:-6px;width:100px;padding:1px;}
 #content .location .loc2 .select2 {position:relative;top:-6px;width:170px;padding:1px;}
-#content .location .loc2 a {position:relative;top:-3px;}
-
+#content .location .loc2 a {position:relative;top:-3px;font-size:11px;font-family:dotum;color:#999;}
+#content .location .loc2 a:hover {color:#000;}
+#content .location .loc2 a .scr {margin-bottom:-3px;}
 #content .cwrap {padding:10px 20px 15px 0;}
 
 #footer {border-top:#dfdfdf solid 1px;margin:10px 0 20px 0;}

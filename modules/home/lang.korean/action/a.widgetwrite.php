@@ -26,10 +26,12 @@ if ($backgo)
 		$catst = '';
 		for ($i = 0; $i < $ctnum; $i++) $catst .= $ctarr[$i]['id'].'/';
 		$catst = substr($catst,0,strlen($catst)-1);
-		getLink(RW('c='.$catst),'parent.','','');
+		if ($iframe=='Y') getLink(RW('c='.$catst),'parent.parent.','','');
+		else getLink(RW('c='.$catst),'parent.','','');
 	}
 	else {
-		getLink(RW('mod='.$id),'parent.','','');
+		if ($iframe=='Y') getLink(RW('mod='.$id),'parent.parent.','','');
+		else getLink(RW('mod='.$id),'parent.','','');
 	}
 }
 else {

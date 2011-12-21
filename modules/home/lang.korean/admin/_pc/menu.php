@@ -61,12 +61,12 @@ if ($is_regismode)
 		<div class="joinimg"></div>
 		<div class="tree<?php if(strstr($_SERVER['HTTP_USER_AGENT'],'MSIE 7')):?> ie7<?php endif?>">
 		<?php if(!$_isDragScript):?>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/core.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/events.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/css.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/coordinates.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/drag.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/dragsort.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/core.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/events.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/css.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/coordinates.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/drag.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/dragsort.js"></script>
 		<script type="text/javascript">
 		//<![CDATA[
 		var dragsort = ToolMan.dragsort();
@@ -80,7 +80,7 @@ if ($is_regismode)
 		var ulink = "<?php echo $g['adm_href']?>&amp;account=<?php echo $account?>&amp;cat=";
 		//]]>
 		</script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/js/tree.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>
 		<script type="text/javascript">
 		//<![CDATA[
 		var TREE_ITEMS = [['', null, <?php getMenuShow($account,$table['s_menu'],0,0,0,$cat,$CXA,0)?>]];

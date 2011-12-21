@@ -513,7 +513,8 @@ function fieldSize(flag)
 	{
 		parent.getId(frames.name).style.height = (parseInt(document.body.clientHeight) + (navigator.appVersion.indexOf('MSIE 8')!=-1?-4:0)) + 'px';
 	}
-	if (parent.parent.getId(parent.frames.name))
+
+	if (parent.getId(parent.frames.name))
 	{
 		parent.frameSetting();
 	}

@@ -323,4 +323,23 @@ function getWidget($widget,$wdgvar)
 	$wdgvar['widget_id'] = $widget;
 	include $g['path_widget'].$widget.'/main.php';
 }
+//문자열필터(@ 1.1.0)
+function getStripTags($string)
+{
+	return str_replace('&nbsp;',' ',str_replace('&amp;nbsp;',' ',strip_tags($string)));
+}
+//스위치로드(@ 1.1.0)
+function getSwitchInc($pos)
+{
+	$incs = array();
+	$dirh = opendir($GLOBALS['g']['path_switch'].$pos);
+	while(false !== ($folder = readdir($dirh))) 
+	{ 
+		$_fins = substr($folder,-1);
+		if(strpos('_.@',$_fins)) continue;
+		$incs[] = $GLOBALS['g']['path_switch'].$pos.'/'.$folder.'/main.php';
+	} 
+	closedir($dirh);
+	return $incs;
+}
 ?>

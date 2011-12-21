@@ -96,10 +96,10 @@ window.onload = slideshowOpen;
 				<div class="clear"></div>
 				<div class="mtitle">
 					<div class="xl">
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&front=config">테마변경</a> | 
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&front=bookmark">즐겨찾기</a> | 
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&front=admin">관리자</a> | 
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>">데스크</a>
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&amp;front=config">환경/테마</a> | 
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&amp;front=switch">스위치</a> | 
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&amp;front=update">업데이트</a> | 
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $m?>&amp;front=admin">관리자</a>
 					</div>
 					<div class="xr">
 						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=market&amp;front=pack&amp;type=module" title="모듈추가"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" /></a>
@@ -148,7 +148,7 @@ window.onload = slideshowOpen;
 					현재위치 : <?php echo $MD['name']?><?php if($d['amenu'][$front]):?> &gt; <?php echo $d['amenu'][$front]?><?php endif?>
 				</div>
 				<div class="loc2">
-
+					<?php if($d['admin']['hidepannel']):?>
 					<select class="select2" onchange="goAdmPage(this);">
 					<option value="">&nbsp;+ 즐겨찾는 페이지</option>
 					<?php $_ADMPAGE = getDbArray($table['s_admpage'],'memberuid='.$my['uid'],'*','gid','asc',0,1)?>
@@ -162,6 +162,10 @@ window.onload = slideshowOpen;
 					<option value="<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $m?>&front=bookmark">ㆍ페이지 관리</option>
 					</select>
 					<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=bookmark&amp;_addmodule=<?php echo $module?>&amp;_addfront=<?php echo $front?>" target="_action_frame_<?php echo $m?>"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" title="추가" /></a>
+					<?php else:?>
+					<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=bookmark&amp;_addmodule=<?php echo $module?>&amp;_addfront=<?php echo $front?>" target="_action_frame_<?php echo $m?>"><img src="<?php echo $g['img_core']?>/_public/b_scrap.gif" class="scr" alt="" /> 이 페이지를 즐겨찾기에 추가</a>
+					<?php endif?>
+
 				</div>
 			</div>
 			<div class="cwrap">

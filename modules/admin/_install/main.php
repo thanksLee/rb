@@ -172,8 +172,11 @@ Language :
 			<tr>
 			<td class="td1"><?php echo $lang['install']['site_layout']?></td>
 			<td class="td2 shift">
-				<input type="radio" name="layout" value="default/main.php" checked="checked" /><?php echo $lang['install']['site_type1']?><br />
-				<input type="radio" name="layout" value="blog/main.php" /><?php echo $lang['install']['site_type2']?>
+				<input type="radio" name="layout" value="classic1/main.php" checked="checked" /><?php echo $lang['install']['site_type1']?><br />
+				<input type="radio" name="layout" value="classic2/main.php" /><?php echo $lang['install']['site_type2']?><br />
+				<input type="radio" name="layout" value="classic3/main.php" /><?php echo $lang['install']['site_type3']?><br />
+				<input type="radio" name="layout" value="gallery1/main.php" /><?php echo $lang['install']['site_type4']?><br />
+				<input type="radio" name="layout" value="gallery2/main.php" /><?php echo $lang['install']['site_type5']?><br />
 			</td>
 			</tr>
 
@@ -375,6 +378,7 @@ function installCheck(f)
 		isSubmit = true;
 		return true;
 	}
+	return false;
 }
 //]]>
 </script>

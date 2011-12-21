@@ -100,7 +100,7 @@ $_NUM['friend'] = getDbRows($table['s_friend'],'my_mbruid='.$my['uid'].' and rel
 	</td>
 	<td><?php echo $NUM-((($p-1)*$recnum)+$_rec++)?></td>
 	<td class="sbj">
-		<a class="hand" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&id=<?php echo $d['member']['login_emailid']?$M['email']:$M1['id']?>');"><?php echo $M[$_HS['nametype']]?>(<?php echo $d['member']['login_emailid']?$M['email']:$M1['id']?>)</a>
+		<a class="hand" onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&type=send&rcvmbr=<?php echo $M1['uid']?>','메세지 보내기',300,270,event,true,'b');"><?php echo $M[$_HS['nametype']]?>(<?php echo $d['member']['login_emailid']?$M['email']:$M1['id']?>)</a>
 		<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 	</td>
 	<td class="cat"><?php echo $R['rel']?'맞팔':($type=='follower'?'팔로워':'팔로잉')?></td>
@@ -215,7 +215,7 @@ function actCheck(act)
 			return false;
 		}
 
-		OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&id='+s);
+		getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.send_multi&iframe=Y&type=send&_toID='+s,'메세지 보내기',300,270,'','','r');
 	}
 	else {
 

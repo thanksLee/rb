@@ -16,6 +16,7 @@
 <?php endif?>
 <?php endif?>
 <?php if($backurl&&$backurl!='reload'):?><?php if($target) echo $target?>location.href="<?php echo $backurl?>";<?php endif?>
+
 //]]>
 </script>
 </head>

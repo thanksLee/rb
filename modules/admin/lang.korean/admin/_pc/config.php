@@ -36,7 +36,7 @@
 			<td class="td1">코어버젼</td>
 			<td>:</td>
 			<td class="td2">
-			kimsQ-RB <?php readfile($g['path_var'].'version.txt')?>
+			kimsQ-RB <?php echo $d['admin']['version']?>
 			</td>
 		</tr>
 		<tr>
@@ -61,6 +61,7 @@
 	<input type="hidden" name="r" value="<?php echo $r?>" />
 	<input type="hidden" name="m" value="<?php echo $module?>" />
 	<input type="hidden" name="a" value="config" />
+	<input type="hidden" name="version" value="<?php echo $d['admin']['version']?>" />
 
 	<div class="title">
 		시스템 테마
@@ -108,8 +109,10 @@
 			<td class="td1">모듈메뉴접기</td>
 			<td class="td2">
 				<div class="shift">
+				<label>
 				<input type="checkbox" name="autoclose" value="1"<?php if($d['admin']['autoclose']):?> checked="checked"<?php endif?> />
 				가로 1024픽셀이하의 해상도에서 메뉴를 자동으로 접음
+				</label>
 				</div>
 				<div class="guide">관리자모드는 가로 1200픽셀이상의 해상도를 권장합니다.</div>
 			</td>
@@ -117,8 +120,29 @@
 	</table>
 
 
+	<div class="title">
+		부가 환경설정
+	</div>
 
-
+	<table>
+		<tr>
+			<td class="td1">관리바 숨김</td>
+			<td class="td2">
+				<div class="shift">
+				<label><input type="checkbox" name="hidepannel" value="1"<?php if($d['admin']['hidepannel']):?> checked="checked"<?php endif?> />상단의 관리 패널을 출력하지 않음</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="td1">관리링크 출력</td>
+			<td class="td2">
+				<div class="shift">
+				<label><input type="radio" name="pannellink" value=""<?php if(!$d['admin']['pannellink']):?> checked="checked"<?php endif?> />적용중인 레이아웃에 출력</label>
+				<label><input type="radio" name="pannellink" value="1"<?php if($d['admin']['pannellink']):?> checked="checked"<?php endif?> />레이어에 출력</label>
+				</div>
+			</td>
+		</tr>
+	</table>
 
 	<div class="submitbox">
 		<input type="submit" class="btnblue" value=" 확인 " />

@@ -100,6 +100,7 @@ foreach ($MEMBERS as $M)
 	//회원삭제
 	if ($act == 'tool_delete')
 	{
+		getDbDelete($table['s_mbrsns'],'memberuid='.$M['memberuid']);
 		getDbDelete($table['s_mbrid'],'uid='.$M['memberuid']);
 		getDbDelete($table['s_mbrdata'],'memberuid='.$M['memberuid']);
 		getDbDelete($table['s_mbrcomp'],'memberuid='.$M['memberuid']);
@@ -115,6 +116,10 @@ foreach ($MEMBERS as $M)
 		if (is_file($g['path_var'].'simbol/'.$M['photo']))
 		{
 			unlink($g['path_var'].'simbol/'.$M['photo']);
+		}
+		if (is_file($g['path_var'].'simbol/180.'.$M['photo']))
+		{
+			unlink($g['path_var'].'simbol/180.'.$M['photo']);
 		}
 		$fp = fopen($g['path_tmp'].'out/'.$M['id'].'.txt','w');
 		fwrite($fp,$date['totime']);

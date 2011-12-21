@@ -1,6 +1,6 @@
 
 
-#catebody {margin:0 0 30px 0;padding:0 0 30px 0;}
+#catebody {margin:0 0 30px 0;padding:20px 0 30px 0;}
 #category {float:left;width:220px;padding:0 0 0 0;}
 #category .title {height:19px;background:url('../../../../../_core/image/tree/default/top.gif') left no-repeat #dfdfdf;background-position:4px 3px;padding:6px 0 0 23px;font-weight:bold;}
 
@@ -11,7 +11,8 @@
 #category .move {cursor:move;}
 #category .move span {position:relative;top:-2px;}
 
-#catinfo {margin-left:220px;padding:0 0 0 20px;}
-#catinfo li {list-style-type:none;padding:0 0 10px 0;}
+#catinfo {margin:0 0 0 230px;padding:0 0 0 20px;}
+#catinfo ul {padding:0;margin:0;}
+#catinfo li {list-style-type:none;padding:0 0 10px 0;color:#666;}
 
 

@@ -61,7 +61,6 @@ $sms		= $tel2 && $sms ? 1 : 0;
 $mailing	= $remail;
 $pw_q		= trim($pw_q);
 $pw_a		= trim($pw_a);
-$sns		= $sns_0.'|'.$sns_1.'|'.$sns_2.'|'.$sns_3.'|'.$sns_4.'|'.$sns_5.'|'.$sns_6.'|'.$sns_7.'|'.$sns_8.'|'.$sns_9.'|';
 $addfield	= '';
 
 $_addarray	= file($g['path_module'].$m.'/var/add_field.txt');
@@ -86,7 +85,7 @@ foreach($_addarray as $_key)
 }
 
 $_QVAL = "comp='$comp',email='$email',name='$name',nic='$nic',home='$home',sex='$sex',birth1='$birth1',birth2='$birth2',birthtype='$birthtype',tel1='$tel1',tel2='$tel2',";
-$_QVAL.= "zip='$zip',addr0='$addr0',addr1='$addr1',addr2='$addr2',job='$job',marr1='$marr1',marr2='$marr2',sms='$sms',mailing='$mailing',pw_q='$pw_q',pw_a='$pw_a',sns='$sns',addfield='$addfield'";
+$_QVAL.= "zip='$zip',addr0='$addr0',addr1='$addr1',addr2='$addr2',job='$job',marr1='$marr1',marr2='$marr2',sms='$sms',mailing='$mailing',pw_q='$pw_q',pw_a='$pw_a',addfield='$addfield'";
 getDbUpdate($table['s_mbrdata'],$_QVAL,'memberuid='.$memberuid);
 
 $isCOMP = getDbData($table['s_mbrcomp'],'memberuid='.$memberuid,'*');

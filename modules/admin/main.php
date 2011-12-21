@@ -1,6 +1,13 @@
 <?php
 if(!defined('__KIMS__')) exit;
-
+if(!file_exists($g['path_var'].'db.info.php'))
+{
+	$g['switch_1'] = array();
+	$g['switch_2'] = array();
+	$g['switch_3'] = array();
+	$g['switch_4'] = array();
+	$mod = 'install';
+}
 if ($mod == 'install')
 {
 	if (file_exists('./wpi.var.php'))
@@ -28,8 +35,6 @@ else {
 		$g['browtitle'] = 'kimsQ-Rb Administration Login';
 		$mod = 'login';
 	}
-
-	include_once $g['dir_module'].'var/var.system.php';
 
 	if(!$mod) $mod = 'front';
 
@@ -93,6 +98,6 @@ else {
 		$d['amenu'] = array();
 		include_once $g['adm_module_varmenu'];
 	}
-	$g['main'] = $iframe == 'Y' ? $g['adm_module'] : $g['dir_module_mode'].'.php';
+	$g['main'] = $my['admin'] && $iframe == 'Y' ? $g['adm_module'] : $g['dir_module_mode'].'.php';
 }
 ?>

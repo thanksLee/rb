@@ -36,7 +36,8 @@ if ($site_uid)
 		}
 	}
 	else {
-		getLink('reload','parent.','','');
+		if ($iframe=='Y') getLink('reload','parent.parent.','','');
+		else getLink('reload','parent.','','');
 	}
 }
 else {

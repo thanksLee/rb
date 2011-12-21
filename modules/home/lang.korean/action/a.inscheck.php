@@ -14,7 +14,7 @@ $instIp = is_file($instFp) ? implode('',file($instFp)) : $_SERVER['REMOTE_ADDR']
 <input type="hidden" name="url" value="<?php echo $g['url_root']?>" />
 <input type="hidden" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']?>" />
 <input type="hidden" name="server" value="<?php echo $_SERVER['SERVER_SOFTWARE']?>" />
-<input type="hidden" name="version" value="<?php echo implode('',file($g['path_var'].'version.txt'))?>" />
+<input type="hidden" name="version" value="<?php echo $d['admin']['version']?>" />
 <input type="hidden" name="language" value="<?php echo $g['sys_selectlang']?>" />
 </form>
 <script type="text/javascript">

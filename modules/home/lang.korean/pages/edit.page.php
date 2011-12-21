@@ -19,11 +19,12 @@ if ($_page)
 }
 if (!$_HP['uid'])
 {
-	if (!$_make) getLink($g['s'].'/?r='.$r.'&system=edit.all&type=page','','','');
+	if (!$_make) getLink($g['s'].'/?r='.$r.'&iframe='.$iframe.'&system=edit.all&type=page','','','');
 	$type = 'make';
 }
-$g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page='.$_HP['uid']:'').($_make?'&amp;_make='.$_make:'');
+$g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP['uid']?'&amp;_page='.$_HP['uid']:'').($_make?'&amp;_make='.$_make:'');
 ?>
+<div class="iframe<?php echo $iframe?>">
 <div id="pages_top">
 
 	<div class="title">
@@ -41,9 +42,9 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 			<li>
 				<div id="menutype" class="morebox">
 					<ul class="dispbox">
-					<li<?php if($_HP['pagetype']==1):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=page&amp;value=1&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">모듈연결</a></li>
-					<li<?php if($_HP['pagetype']==2):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=page&amp;value=2&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">위젯전시</a></li>
-					<li<?php if($_HP['pagetype']==3):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;type=page&amp;value=3&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">직접코딩</a></li>
+					<li<?php if($_HP['pagetype']==1):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=page&amp;value=1&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">모듈연결</a></li>
+					<li<?php if($_HP['pagetype']==2):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=page&amp;value=2&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">위젯전시</a></li>
+					<li<?php if($_HP['pagetype']==3):?> class="nowdisp"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=display_type&amp;iframe=<?php echo $iframe?>&amp;type=page&amp;value=3&amp;uid=<?php echo $_HP['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return displayChange();">직접코딩</a></li>
 					</ul>
 				</div>
 				<a onclick="morebox('menutype');">전시형태 <img src="<?php echo $g['img_core']?>/_public/ico_arr_01.gif" alt="" /></a>
@@ -78,6 +79,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 		<input type="hidden" name="a" value="regispage" />
 		<input type="hidden" name="layout" value="" />
 		<input type="hidden" name="backc" value="user" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 		<table>
 			<tr>
@@ -223,6 +225,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 		<input type="hidden" name="sosokmenu" value="<?php echo $_HP['sosokmenu']?>" />
 		<input type="hidden" name="perm_g" value="<?php echo $_HP['perm_g']?>" />
 		<input type="hidden" name="perm_l" value="<?php echo $_HP['perm_l']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 		<table>
 			<tr>
@@ -302,12 +305,12 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 					</div>
 					<div id="widgetBox" class="guide<?php if($_HP['pagetype']!=2):?> hide<?php endif?>">
 					<?php if($_HP['uid']):?>
-					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=widget');" />
+					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=widget');" />
 					<?php endif?>
 					</div>
 					<div id="codeBox" class="guide<?php if($_HP['pagetype']&&$_HP['pagetype']!=3):?> hide<?php endif?>">
 					<?php if($_HP['uid']):?>
-					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=source');" />
+					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=source');" />
 					<?php endif?>
 					</div>
 
@@ -323,7 +326,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 		</table>
 		
 		<div class="submitbox">
-			<input type="button" class="btngray" value="더자세히" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.all&type=pageadd&uid=<?php echo $_HP['uid']?>');" />
+			<input type="button" class="btngray" value="더자세히" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.all&type=pageadd&uid=<?php echo $_HP['uid']?>');" />
 			<input type="submit" class="btnblue" value="페이지 속성변경" />
 			<div class="clear"></div>
 		</div>
@@ -359,6 +362,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 		<input type="hidden" name="perm_l" value="<?php echo $_HP['perm_l']?>" />
 		<input type="hidden" name="category" value="<?php echo $_HP['category']?>" />
 		<input type="hidden" name="pagetype" value="<?php echo $_HP['pagetype']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 		<table>
 			<tr>
@@ -422,6 +426,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 	<input type="hidden" name="type" value="page" />
 	<input type="hidden" name="escapevar" value="" />
 	<input type="hidden" name="id" value="<?php echo $_HP['id']?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="tt">
 		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" />
@@ -442,7 +447,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&system='.$system.($_HP['uid']?'&amp;_page=
 
 	</form>
 
-	<div id="workSpace" class="posrel"></div>
+	<div id="workSpace" class="posrel"<?php if($iframe=='Y'):?> style="height:<?php echo $d['page']['mainheight']?$d['page']['mainheight']:700?>px;"<?php endif?>></div>
 
 </div>
 
@@ -696,6 +701,7 @@ window.onload = function()
 	<?php $i++; endforeach?>
 
 	getId('workSpace').style.height = getId('mainheight').value + 'px';
+	__resetPageSize();
 }
 //]]>
 </script>
@@ -715,6 +721,7 @@ window.onload = function()
 	<input type="hidden" name="a" value="sourcewrite" />
 	<input type="hidden" name="type" value="page" />
 	<input type="hidden" name="id" value="<?php echo $_HP['id']?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="tt">
 		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" />
@@ -779,11 +786,12 @@ function tareacheck(obj)
 	else {
 		getId('sourceArea_'+obj.id).style.display = 'none';
 	}
+	__resetPageSize();
 }
 //]]>
 </script>
 <?php endif?>
-
+</div>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -825,6 +833,7 @@ function displaySelect(obj)
 		getId('widgetBox').style.display = 'none';
 		getId('codeBox').style.display = 'none';
 	}
+	__resetPageSize();
 }
 function catSelect(obj)
 {
@@ -839,6 +848,7 @@ function catSelect(obj)
 		obj.value = '';
 		obj.form.category.focus();
 	}
+	__resetPageSize();
 }
 function makeCheck(f)
 {
@@ -890,7 +900,26 @@ function displayChange()
 	}
 	return false;
 }
-
+function __layerShowHide(layer,show,hide)
+{
+	layerShowHide(layer,show,hide)
+	__resetPageSize();
+}
+function __resetPageSize()
+{
+	<?php if($iframe=='Y'):?>
+	parent.getId('_layer_title_').innerHTML = "사이트 빠른설정";
+	parent.getId('_box_layer_').style.top = '29px';
+	parent.getId('_box_layer_').style.height = (parseInt(document.body.offsetHeight)+50)+'px';
+	parent.getId('_box_frame_').style.height = (parseInt(document.body.offsetHeight)+20)+'px';
+	<?php endif?>
+}
+<?php if($type != 'widget'):?>
+window.onload = function ()
+{
+	__resetPageSize();
+}
+<?php endif?>
 //]]>
 </script>
 

@@ -20,7 +20,8 @@ $set1 = array
 	'modules'=>'모듈',
 	'widgets'=>'위젯',
 	'pages'=>'페이지',
-	'files'=>'첨부파일'
+	'files'=>'첨부파일',
+	'switchs'=>'스위치'
 );
 $set2 = array
 (

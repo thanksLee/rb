@@ -51,3 +51,6 @@
 #pages_source .subtt img {position:relative;top:3px;}
 #pages_source .subtt .gx {font-weight:normal;color:#999;font-size:11px;font-family:dotum;}
 #pages_source .submitbtn {padding:20px 0 20px 0;text-align:center;}
+
+.iframe {padding:0;}
+.iframeY {padding:20px;}

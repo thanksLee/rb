@@ -291,15 +291,6 @@
 						</table>
 					</td>
 				</tr>
-				<tr>
-					<td class="td1"><span>SNS아이디 입력항목</span></td>
-					<td class="td2 shift" colspan="3">
-						<input type="checkbox" name="form_sns_1" value="1"<?php if($d['member']['form_sns_1']):?> checked="checked"<?php endif?> />트위터
-						<input type="checkbox" name="form_sns_2" value="1"<?php if($d['member']['form_sns_2']):?> checked="checked"<?php endif?> />페이스북
-						<input type="checkbox" name="form_sns_3" value="1"<?php if($d['member']['form_sns_3']):?> checked="checked"<?php endif?> />미투데이
-						<input type="checkbox" name="form_sns_4" value="1"<?php if($d['member']['form_sns_4']):?> checked="checked"<?php endif?> />요즘
-					</td>
-				</tr>
 			</table>
 			<table class="table">
 				<tr>

@@ -160,6 +160,7 @@ function saveCheck(f)
 	opener.createTile('440px','350px','0px','0px');
 	<?php endif?>
 
+
 	var bbsx = f.bbsid.value.split('^');
 
 	opener.blocktitle[n] = (bbsx[1]?'갤러리('+bbsx[1]+')':'갤러리(전체)');

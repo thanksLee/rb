@@ -45,7 +45,7 @@ if ($subQue)
 }
 if ($backc == 'user')
 {
-	getLink($g['s'].'/?r='.$r.'&system=edit.all&type=menu&cat='.$parent,'parent.','','');
+	getLink($g['s'].'/?r='.$r.'&iframe='.$iframe.'&system=edit.all&type=menu&cat='.$parent,'parent.','','');
 }
 else {
 	getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=menu&account='.$account.'&cat='.$parent,'parent.','','');

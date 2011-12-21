@@ -3,12 +3,10 @@ include_once $g['path_core'].'function/rss.func.php';
 include_once $g['path_module'].$module.'/var/var.info.php';
 $maxupsize  = str_replace('M','',ini_get('upload_max_filesize'));
 $zipcodenum = getUrlData(str_replace('zipcode.db','num.txt',$zipvar['serverurl']),10);
-$zipcodenum = $zipcodenum ? trim($zipcodenum) : 0;
 $zipcodearr = explode("\n",$zipcodenum);
 $zipcodelen = count($zipcodearr);
 $zipmessage = '현재 최신 우편번호 데이터를 유지하고 있습니다.';
-if ($zipcodenum > $zipvar['num']) $zipmessage = '업데이트가 필요합니다.';
-if ($zipcodelen > 3) $zipmessage = '데이터서버 주소가 잘못되었습니다.';
+if ($zipcodelen > $zipvar['num']) $zipmessage = '업데이트가 필요합니다.';
 ?>
 
 <div id="zipbox">

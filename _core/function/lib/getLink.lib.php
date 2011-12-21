@@ -20,6 +20,7 @@ var cHref = <?php if($target) echo $target?>location.href.split('#');
 <?php if($url&&$url!='reload'):?><?php if($target) echo $target?>location.href="<?php echo $url?>";<?php endif?>
 <?php if($history=='close'):?>window.top.close();<?php endif?>
 <?php if($history<0):?>history.go(<?php echo $history?>);<?php endif?>
+
 //]]>
 </script>
 </head>

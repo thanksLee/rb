@@ -7,34 +7,21 @@ $typeset = array
 	'pageadd'=>($uid?'페이지 수정':'새 페이지 추가'),
 );
 $type = $type ? $type : 'page';
-$g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
+$g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$system.'&amp;type='.$type;
 ?>
+<div class="iframe<?php echo $iframe?>">
 <div id="pages_top">
 
 	<div class="title">
-		<div class="xl"><h2><a href="<?php echo $g['url_reset']?>"><?php echo $makemenu?'새 메뉴 추가':$typeset[$type]?></a></h2></div>
+		<div class="xl"><h2><?php echo $makemenu?'새 메뉴 추가':$typeset[$type]?></h2></div>
 		<div class="xr">
 		
 			<ul>
-			<li class="leftside"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&module=<?php echo $m?>">전체사이트</a></li>
-			<li<?php if($type=='site'):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.all&amp;type=site">현재사이트</a></li>
-			<li<?php if($type=='menu'&&!$makemenu):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.all&amp;type=menu">메뉴</a></li>
-			<li<?php if($type=='page'||($type=='pageadd'&&$uid)):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.all&amp;type=page">페이지</a></li>
-			<li<?php if($type=='menu'&&$makemenu):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.all&amp;type=menu&makemenu=Y">새 메뉴</a></li>
-			<li<?php if($type=='pageadd'&&!$uid):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.all&amp;type=pageadd">새 페이지</a></li>
-			<li>
-				<div id="layoutli" class="morebox">
-					<ul>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=layout&amp;front=main&amp;layout=<?php echo $d['layout']['dir']?>&amp;sublayout=<?php echo basename($d['layout']['php'])?>">소스코드</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=layout&amp;front=main&amp;layout=<?php echo $d['layout']['dir']?>&amp;type=css">CSS</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=layout&amp;front=main&amp;layout=<?php echo $d['layout']['dir']?>&amp;type=js">J-Script</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=layout&amp;front=main&amp;layout=<?php echo $d['layout']['dir']?>&amp;type=php">변수</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=layout&amp;front=main&amp;layout=<?php echo $d['layout']['dir']?>&amp;type=image">저장소</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&module=filemanager&front=main&pwd=<?php echo urlencode($g['path_layout'].$d['layout']['dir'].'/')?>">탐색기</a></li>
-					</ul>
-				</div>
-				<a onclick="morebox('layoutli');">레이아웃 <img src="<?php echo $g['img_core']?>/_public/ico_arr_01.gif" alt="" /></a>
-			</li>
+			<li class="leftside<?php if($type=='site'):?> selected<?php endif?>"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.all&amp;type=site">사이트</a></li>
+			<li<?php if($type=='menu'&&!$makemenu):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.all&amp;type=menu">메뉴</a></li>
+			<li<?php if($type=='page'||($type=='pageadd'&&$uid)):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.all&amp;type=page">페이지</a></li>
+			<li<?php if($type=='menu'&&$makemenu):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.all&amp;type=menu&makemenu=Y">새 메뉴</a></li>
+			<li<?php if($type=='pageadd'&&!$uid):?> class="selected"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.all&amp;type=pageadd">새 페이지</a></li>
 			</ul>
 
 		</div>
@@ -54,6 +41,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 		<input type="hidden" name="a" value="regissite" />
 		<input type="hidden" name="site_uid" value="<?php echo $_HS['uid']?>" />
 		<input type="hidden" name="icon" value="<?php echo $_HS['icon']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 
 		<table cellspacing="0" cellpadding="0">
@@ -65,7 +53,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 				</td>
 				<td class="td1">
 					사이트제목
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_title','block','none');" />				
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_title','block','none');" />				
 				</td>
 				<td class="td2">
 					<input type="text" name="title" class="input sname" value="<?php echo $_HS['title']?>" />
@@ -75,7 +63,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 			<tr>
 				<td class="td1">
 					사이트언어
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_language','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_language','block','none');" />
 				</td>
 				<td class="td2">
 					<select name="sitelang" class="select1">
@@ -89,7 +77,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 				</td>
 				<td class="td1">
 					사이트코드
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_sitecode','block','none');" />	
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_sitecode','block','none');" />	
 				</td>
 				<td class="td2">
 					<input type="text" name="id" class="input sname" value="<?php echo $_HS['id']?>" title="영문 대소문자/숫자/_ 조합으로 입력해 주세요." />
@@ -135,7 +123,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 			<tr>
 				<td class="td1 m">
 					(모바일접속)
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="himg hand" onclick="layerShowHide('guide_mobile','block','none');" />				
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="himg hand" onclick="__layerShowHide('guide_mobile','block','none');" />				
 				</td>
 				<td class="td2">
 					<select name="m_layout" class="select1">
@@ -213,7 +201,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 			<tr>
 				<td class="td1">
 					퍼 포 먼 스
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_rewrite','block','none');" />	
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_rewrite','block','none');" />	
 				</td>
 				<td class="td2">
 					<div class="shift">
@@ -299,7 +287,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;system='.$system.'&amp;type='.$type;
 		</div>
 
 		<div class="submitbox">
-			<input type="button" class="btngray" value="헤더/테일코드" onclick="layerShowHide('headertail','block','none');" />
+			<input type="button" class="btngray" value="헤더/테일코드" onclick="__layerShowHide('headertail','block','none');" />
 			<input type="submit" class="btnblue" value="사이트속성 변경" />
 		</div>
 
@@ -394,6 +382,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<input type="hidden" name="type" value="<?php echo $type?>" />
 	<input type="hidden" name="orderby" value="<?php echo $orderby?>" />
 	<input type="hidden" name="recnum" value="<?php echo $recnum?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="info">
 
@@ -463,9 +452,9 @@ $TPG = getTotalPage($NUM,$recnum);
 	<tr>
 	<td><?php echo 1+((($p-1)*$recnum)+$_rec++)?></td>
 	<td class="cat"><?php echo $R['category']?></td>
-	<td class="sbj"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=pageadd&amp;uid=<?php echo $R['uid']?>" title="등록정보"><?php echo $R['name']?></a></td>
+	<td class="sbj"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=pageadd&amp;uid=<?php echo $R['uid']?>" title="등록정보"><?php echo $R['name']?></a></td>
 	<td><a href="<?php echo RW('mod='.$R['id'])?>" title="새창으로보기" target="_blank"><?php echo $R['id']?></a></td>
-	<td><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=edit.page&amp;_page=<?php echo $R['uid']?>" title="편집모드"><?php echo $typeset1[$R['pagetype']]?></a></td>
+	<td><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=edit.page&amp;_page=<?php echo $R['uid']?>" title="편집모드"><?php echo $typeset1[$R['pagetype']]?></a></td>
 	<td title="<?php echo str_replace('.php','',$R['layout'])?>"><?php echo !$R['layout']?'대표레이아웃':str_replace('.php','',$R['layout'])?></td>
 	<td><?php echo getDateFormat($R['d_regis'],'Y.m.d H:i')?></td>
 	<td><?php echo $R['d_update'] ? getDateFormat($R['d_update'],'Y.m.d H:i') : '-'?></td>
@@ -520,6 +509,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<input type="hidden" name="uid" value="<?php echo $R['uid']?>" />
 	<input type="hidden" name="orign_id" value="<?php echo $R['id']?>" />
 	<input type="hidden" name="perm_g" value="<?php echo $R['perm_g']?>" />
+	<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 	<div class="title">
 		<div class="xleft">페이지 등록정보</div>
@@ -535,7 +525,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				페이지명칭
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_startpage','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_startpage','block','none');" />
 			</td>
 			<td class="td2">
 				<input type="text" name="name" value="<?php echo $R['name']?>" class="input sname" />
@@ -561,7 +551,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				페이지코드
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_pagecode','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_pagecode','block','none');" />
 			</td>
 			<td class="td2">
 				<input type="text" name="id" value="<?php echo $R['id']?$R['id']:$_mod?>" class="input sname" />
@@ -579,7 +569,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				페이지분류
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_pagecat','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_pagecat','block','none');" />
 			</td>
 			<td class="td2">
 				<input type="text" name="category" value="<?php echo $R['category']?>" class="input sname" />
@@ -605,7 +595,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				전시할내용
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_contenttype','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_contenttype','block','none');" />
 			</td>
 			<td class="td2">
 				<select name="pagetype" class="select1" onchange="displaySelect(this);">
@@ -628,14 +618,14 @@ $TPG = getTotalPage($NUM,$recnum);
 				</div>
 				<div id="widgetBox" class="guide<?php if($R['pagetype']!=2):?> hide<?php endif?>">
 					<?php if($R['uid']):?>
-					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=widget');" />
+					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.page&_page=<?php echo $R['uid']?>&type=widget');" />
 					<?php else:?>
 					페이지 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 					<?php endif?>
 				</div>
 				<div id="codeBox" class="guide<?php if($R['pagetype']&&$R['pagetype']!=3):?> hide<?php endif?>">
 					<?php if($R['uid']):?>
-					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=source');" />
+					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.page&_page=<?php echo $R['uid']?>&type=source');" />
 					<?php else:?>
 					페이지 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 					<?php endif?>
@@ -672,7 +662,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				소 속 메 뉴
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_sosokmenu','block','none');" />				
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_sosokmenu','block','none');" />				
 			</td>
 			<td class="td2">
 				<select name="sosokmenu" class="select1">
@@ -704,7 +694,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				차 단 그 룹
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_permg','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_permg','block','none');" />
 			</td>
 			<td class="td2">
 				<select name="_perm_g" class="select1" multiple="multiple" size="5">
@@ -723,7 +713,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				캐 시 적 용
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_cache','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_cache','block','none');" />
 			</td>
 			<td class="td2">
 				<?php $cachefile = $g['path_page'].$R['id'].'.txt'?>
@@ -747,7 +737,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<tr>
 			<td class="td1">
 				페이지주소
-				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_addr','block','none');" />
+				<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_addr','block','none');" />
 			</td>
 			<td class="td2">
 				<div class="addr1">
@@ -765,7 +755,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	
 	<div class="submitbox">
 		<?php if($R['uid']):?>
-		<input type="button" class="btngray" value="편집모드" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>');" />
+		<input type="button" class="btngray" value="편집모드" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.page&_page=<?php echo $R['uid']?>');" />
 		<?php endif?>
 		<input type="submit" class="btnblue" value="<?php echo $R['uid']?'페이지속성 변경':'새페이지 등록'?>" />
 		<div class="clear"></div>
@@ -809,6 +799,7 @@ function displaySelect(obj)
 		getId('widgetBox').style.display = 'none';
 		getId('codeBox').style.display = 'none';
 	}
+	__resetPageSize();
 }
 function catSelect(obj)
 {
@@ -929,21 +920,21 @@ if ($is_regismode)
 		<div class="joinimg"></div>
 		<div class="tree<?php if(strstr($_SERVER['HTTP_USER_AGENT'],'MSIE 7')):?> ie7<?php endif?>">
 
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/core.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/events.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/css.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/coordinates.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/drag.js"></script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/dragsort.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/core.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/events.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/css.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/coordinates.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/drag.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/dragsort.js"></script>
 
 		<script type="text/javascript">
 		//<![CDATA[
 		var dragsort = ToolMan.dragsort();
 		var TreeImg = "<?php echo $g['img_core']?>/tree/default_none";
-		var ulink = "<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=";
+		var ulink = "<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=";
 		//]]>
 		</script>
-		<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/js/tree.js"></script>
+		<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>
 		<script type="text/javascript">
 		//<![CDATA[
 		var TREE_ITEMS = [['', null, <?php getMenuShow($s,$table['s_menu'],0,0,0,$cat,$CXA,0)?>]];
@@ -998,6 +989,7 @@ if ($is_regismode)
 		<input type="hidden" name="depth" value="<?php echo intval($CINFO['depth'])?>" />
 		<input type="hidden" name="parent" value="<?php echo intval($CINFO['uid'])?>" />
 		<input type="hidden" name="perm_g" value="<?php echo $CINFO['perm_g']?>" />
+		<input type="hidden" name="iframe" value="<?php echo $iframe?>" />
 
 		<div class="title">
 			<div class="xleft">
@@ -1008,7 +1000,7 @@ if ($is_regismode)
 			<?php endif?>
 			</div>
 			<div class="xright">
-				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;makemenu=Y">최상위메뉴 등록</a>
+				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;makemenu=Y">최상위메뉴 등록</a>
 			</div>
 		</div>
 
@@ -1031,7 +1023,7 @@ if ($is_regismode)
 				<td class="td1">상위메뉴</td>
 				<td class="td2 b">
 				<?php for ($i = 0; $i < $ctnum; $i++) :?>
-				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
+				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
 				<?php if($i < $ctnum-1):?> &gt; <?php endif?> 
 				<?php $catcode .= $ctarr[$i]['id'].'/';endfor?>
 				</td>
@@ -1042,7 +1034,7 @@ if ($is_regismode)
 				<td class="td1">상위메뉴</td>
 				<td class="td2 b">
 				<?php for ($i = 0; $i < $ctnum-1; $i++) :?>
-				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
+				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
 				<?php if($i < $ctnum-2):?> &gt; <?php endif?> 
 				<?php $delparent=$ctarr[$i]['uid'];$catcode .= $ctarr[$i]['id'].'/';endfor?>
 				<?php if(!$delparent):?>최상위메뉴<?php endif?>
@@ -1055,8 +1047,8 @@ if ($is_regismode)
 				<td class="td2">
 					<input type="text" name="name" value="<?php echo $CINFO['name']?>" class="input sname<?php echo $is_fcategory?1:2?>" />
 					<?php if($is_fcategory):?>
-					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $g['sys_module']?>&amp;a=deletemenu&amp;account=<?php echo $s?>&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>&amp;backc=user" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')">메뉴삭제</a></span>
-					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $cat?>&amp;vtype=sub&amp;makemenu=Y">서브메뉴등록</a></span>
+					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $g['sys_module']?>&amp;a=deletemenu&amp;account=<?php echo $s?>&amp;iframe=<?php echo $iframe?>&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>&amp;backc=user" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')">메뉴삭제</a></span>
+					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;iframe=<?php echo $iframe?>&amp;system=<?php echo $system?>&amp;type=<?php echo $type?>&amp;cat=<?php echo $cat?>&amp;vtype=sub&amp;makemenu=Y">서브메뉴등록</a></span>
 					<?php endif?>
 				</td>
 			</tr>
@@ -1064,7 +1056,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					메뉴코드
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_menucode','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_menucode','block','none');" />
 				</td>
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $CINFO['id']?>" maxlength="20" class="input sname1" /> <span>(고유키=<?php echo sprintf('%05d',$CINFO['uid'])?>)</span>
@@ -1080,7 +1072,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					전시내용
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_contenttype','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_contenttype','block','none');" />
 				</td>
 				<td class="td2">
 					<select name="menutype" class="select1" onchange="displaySelect(this);">
@@ -1107,14 +1099,14 @@ if ($is_regismode)
 					</div>
 					<div id="widgetBox" class="guide<?php if($CINFO['menutype']!=2):?> hide<?php endif?>">
 						<?php if($CINFO['uid']):?>
-						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=widget');" />
+						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=widget');" />
 						<?php else:?>
 						메뉴 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 						<?php endif?>
 					</div>
 					<div id="codeBox" class="guide<?php if($CINFO['menutype']&&$CINFO['menutype']!=3):?> hide<?php endif?>">
 						<?php if($CINFO['uid']):?>
-						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=source');" />
+						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=source');" />
 						<?php else:?>
 						메뉴 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 						<?php endif?>
@@ -1131,7 +1123,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					메뉴옵션
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_mpro','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_mpro','block','none');" />
 				</td>
 				<td class="td2 shift">
 					<input type="checkbox" name="mobile" id="xmobile" value="1"<?php if($CINFO['mobile']):?> checked="checked"<?php endif?> /><label for="xmobile">모바일메뉴출력</label>
@@ -1183,7 +1175,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					차단그룹
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_permg','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_permg','block','none');" />
 				</td>
 				<td class="td2">
 					<select name="_perm_g" class="select1" multiple="multiple" size="5">
@@ -1202,7 +1194,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					캐시적용
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_cache','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_cache','block','none');" />
 				</td>
 				<td class="td2">
 					<?php $cachefile = $g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.txt'?>
@@ -1226,7 +1218,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					메뉴주소
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_addr','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_addr','block','none');" />
 				</td>
 				<td class="td2">
 					<span class="addr1">
@@ -1331,7 +1323,7 @@ if ($is_regismode)
 			<tr>
 				<td class="td1">
 					부가필드
-					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_addinfo','block','none');" />
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="__layerShowHide('guide_addinfo','block','none');" />
 				</td>
 				<td class="td2">
 					<textarea name="addinfo" class="add"><?php echo htmlspecialchars($CINFO['addinfo'])?></textarea>
@@ -1356,7 +1348,7 @@ if ($is_regismode)
 
 			<?php if($CINFO['uid']):?>
 			<?php if($vtype!='sub'):?>
-			<input type="button" class="btngray" value="편집모드" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>');" />
+			<input type="button" class="btngray" value="편집모드" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>');" />
 			<?php else:?>
 			<input type="button" class="btngray" value="등록취소" onclick="history.go(-1);" />
 			<?php endif?>
@@ -1389,6 +1381,7 @@ function orderOpen()
 		getId('menuorder').style.display = 'none';
 		orderopen = false;
 	}
+	__resetPageSize();
 }
 function displaySelect(obj)
 {
@@ -1418,6 +1411,7 @@ function displaySelect(obj)
 		getId('widgetBox').style.display = 'none';
 		getId('codeBox').style.display = 'none';
 	}
+	__resetPageSize();
 }
 function codShowHide(layer,show,hide,img)
 {
@@ -1433,6 +1427,7 @@ function codShowHide(layer,show,hide,img)
 		img.src = img.src.replace('ico_over','ico_under');
 		setCookie('ck_'+layer,hide,1);
 	}
+	__resetPageSize();
 }
 function saveCheck(f)
 {
@@ -1520,7 +1515,7 @@ document.procForm.name.focus();
 
 
 <?php endif?>
-
+</div>
 
 
 
@@ -1529,15 +1524,23 @@ document.procForm.name.focus();
 
 <script type="text/javascript">
 //<![CDATA[
-function morebox(layer)
+function __layerShowHide(layer,show,hide)
 {
-	if (getId(layer).style.display == 'block')
-	{
-		getId(layer).style.display = 'none';
-	}
-	else {
-		getId(layer).style.display = 'block';
-	}
+	layerShowHide(layer,show,hide)
+	__resetPageSize();
+}
+function __resetPageSize()
+{
+	<?php if($iframe=='Y'):?>
+	parent.getId('_layer_title_').innerHTML = "사이트 빠른설정";
+	parent.getId('_box_layer_').style.top = '29px';
+	parent.getId('_box_layer_').style.height = (parseInt(document.body.offsetHeight)+50)+'px';
+	parent.getId('_box_frame_').style.height = (parseInt(document.body.offsetHeight)+20)+'px';
+	<?php endif?>
+}
+window.onload = function ()
+{
+	__resetPageSize();
 }
 //]]>
 </script>

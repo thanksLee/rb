@@ -14,6 +14,7 @@ if (md5($pw1) != $my['pw'])
 
 if($d['member']['join_out']==1)
 {
+	getDbDelete($table['s_mbrsns'],'memberuid='.$my['uid']);
 	getDbDelete($table['s_mbrid'],'uid='.$my['uid']);
 	getDbDelete($table['s_mbrdata'],'memberuid='.$my['uid']);
 	getDbDelete($table['s_mbrcomp'],'memberuid='.$my['uid']);
@@ -27,6 +28,10 @@ if($d['member']['join_out']==1)
 	if (is_file($g['path_var'].'simbol/'.$my['photo']))
 	{
 		unlink($g['path_var'].'simbol/'.$my['photo']);
+	}
+	if (is_file($g['path_var'].'simbol/180.'.$my['photo']))
+	{
+		unlink($g['path_var'].'simbol/180.'.$my['photo']);
 	}
 	$fp = fopen($g['path_tmp'].'out/'.$my['id'].'.txt','w');
 	fwrite($fp,$date['totime']);

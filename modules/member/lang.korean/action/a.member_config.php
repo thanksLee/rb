@@ -49,10 +49,6 @@ fwrite($fp, "\$d['member']['form_birth'] = \"".$form_birth."\";\n");
 fwrite($fp, "\$d['member']['form_birth_p'] = \"".$form_birth_p."\";\n");
 fwrite($fp, "\$d['member']['form_sex'] = \"".$form_sex."\";\n");
 fwrite($fp, "\$d['member']['form_sex_p'] = \"".$form_sex_p."\";\n");
-fwrite($fp, "\$d['member']['form_sns_1'] = \"".$form_sns_1."\";\n");
-fwrite($fp, "\$d['member']['form_sns_2'] = \"".$form_sns_2."\";\n");
-fwrite($fp, "\$d['member']['form_sns_3'] = \"".$form_sns_3."\";\n");
-fwrite($fp, "\$d['member']['form_sns_4'] = \"".$form_sns_4."\";\n");
 
 //마이페이지
 fwrite($fp, "\$d['member']['mytab_post'] = \"".$mytab_post."\";\n");

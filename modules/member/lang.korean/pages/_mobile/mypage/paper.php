@@ -81,7 +81,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<td class="cat"><?php echo $M[$_HS['nametype']]?$M[$_HS['nametype']]:'시스템'?></td>
 	<td><img src="<?php echo $g['img_core']?>/_public/ico_paper.gif" alt=""<?php if($R['d_read']):?> title="<?php echo getDateFormat($R['d_read'],'Y.m.d H:i 열람')?>" class="isread"<?php endif?> /></td>
 	<td class="sbj">
-		<a href="#." onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.paper&iframe=Y&uid=<?php echo $R['uid']?>');"><?php echo getStrCut(strip_tags($R['content']),50,'..')?></a>
+		<a href="#." onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y&type=send&rcvmbr=<?php echo $M['memberuid']?>','메세지 보내기',300,270,event,true,'b');"><?php echo getStripTags($R['content'])?></a>
 		<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 	</td>
 	<td><?php echo getDateFormat($R['d_regis'],'Y.m.d')?></td>
@@ -111,7 +111,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<?php if($inbox!=2):?>
 	<input type="button" value="보관" class="btngray" onclick="actCheck('paper_save');" />
 	<?php endif?>
-	&nbsp;&nbsp;<input type="button" value="쪽지쓰기" class="btnblue" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.papersend&iframe=Y');" />
+	&nbsp;&nbsp;<input type="button" value="쪽지쓰기" class="btnblue" onclick="getLayerBox('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.send_multi&iframe=Y','메세지 보내기',300,270,event,true,'b');" />
 	<?php endif?>
 
 	</form>

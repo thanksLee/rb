@@ -213,7 +213,7 @@ else {
 	
 	if ($backc == 'user')
 	{
-		getLink($g['s'].'/?r='.$r.'&system=edit.all&type=menu'.($parent?'&cat='.$parent:''),'parent.','','');
+		getLink($g['s'].'/?r='.$r.'&iframe='.$iframe.'&system=edit.all&type=menu'.($parent?'&cat='.$parent:''),'parent.','','');
 	}
 	else {
 		getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=menu'.($parent?'&cat='.$parent:'').'&account='.$account,'parent.','','');

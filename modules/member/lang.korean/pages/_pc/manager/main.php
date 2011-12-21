@@ -83,10 +83,11 @@ $lastlogdate = -getRemainDate($M['last_log']);
 		<?php $SNSSET=array('트위터','페이스북','미투데이','요즘')?>
 		<?php $SNSURL=array('twitter.com','facebook.com','me2day.net','yozm.daum.net')?>
 		<?php for($i = 0; $i < 4; $i++):?>
-		<?php if($SNS[$i]=='') continue?>
-		<a href="http://<?php echo $SNSURL[$i]?>/<?php echo $SNS[$i]?>" target="_blank">[<?php echo $SNSSET[$i]?>]</a>&nbsp;
+		<?php $_snsuse=explode(',',$SNS)?>
+		<?php if(!$_snsuse[1])continue?>
+		<a href="<?php echo $_snsuse[1]?>" target="_blank">[<?php echo $SNSSET[$i]?>]</a>&nbsp;
 		<?php endfor?>
-	
+
 	</td>
 	</tr>
 	</table>

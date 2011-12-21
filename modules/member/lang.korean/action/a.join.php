@@ -86,7 +86,7 @@ $last_log	= $date['totime'];
 $last_pw	= $date['totime'];
 $is_paper	= 0;
 $d_regis	= $date['totime'];
-$sns		= $sns_0.'|'.$sns_1.'|'.$sns_2.'|'.$sns_3.'|'.$sns_4.'|'.$sns_5.'|'.$sns_6.'|'.$sns_7.'|'.$sns_8.'|'.$sns_9.'|';
+$sns		= '';
 $addfield	= '';
 
 $_addarray	= file($g['path_module'].$m.'/var/add_field.txt');

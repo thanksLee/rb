@@ -17,6 +17,10 @@ if ($type == 'widget')
 {
 	DirDelete($g['path_widget'].str_replace('.','',str_replace('./widgets/','',$pack)));
 }
+if ($type == 'switch')
+{
+	DirDelete($g['path_switch'].$pack);
+}
 if ($type == 'bbstheme')
 {
 	DirDelete($g['path_module'].'bbs/theme/'.$pack);

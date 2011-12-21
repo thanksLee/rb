@@ -19,7 +19,7 @@ $date = getVDate(0);
 
 if (is_file($_tmpdfile)) getLink('./','','','');
 
-$DB_CONNECT = @mysql_connect($dbhost,$dbuser,$dbpass,$dbport);
+$DB_CONNECT = @mysql_connect($dbhost.':'.$dbport,$dbuser,$dbpass);
 if (!$DB_CONNECT)
 {
 	echo '<script type="text/javascript">parent.isSubmit=false;parent.goStep(2);</script>';
@@ -127,7 +127,7 @@ foreach($mdlarray as $_val)
 	$gid++;
 }
 
-$siteid = $layout=='default/main.php'?'home':'blog';
+$siteid = 'home';
 $QKEY = "gid,id,name,title,titlefix,icon,layout,startpage,m_layout,m_startpage,lang,open,dtd,nametype,timecal,rewrite,buffer,usescode,headercode,footercode";
 $QVAL = "'0','".$siteid."','$sitename','$sitename','0','1.png','$layout','1','mobile/main.php','9','$sitelang','1','xhtml_1','nic','0','0','0','0','',''";
 getDbInsert($table['s_site'],$QKEY,$QVAL);

@@ -1,14 +1,14 @@
 <?php
 function isConnectDb($db)
 {
-	$conn = mysql_connect($db['host'],$db['user'],$db['pass'],$db['port']);
+	$conn = mysql_connect($db['host'].':'.$db['port'],$db['user'],$db['pass']);
 	$selc = mysql_select_db($db['name'],$conn);
 	return $selc ? $conn : false;
 }
 function db_query($sql,$con)
 {
 	mysql_query('set names utf8',$con);
-	//mysql_query("set sql_mode=''",$con);
+	mysql_query('set sql_mode=\'\'',$con);
 	return mysql_query($sql,$con);
 }
 function db_fetch_array($que)

@@ -22,6 +22,7 @@ $type = $type ? $type : 'layout';
 	<li<?php if($type=='layout'):?> class="lside selected"<?php else:?> class="lside"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=layout">레이아웃</a></li>
 	<li<?php if($type=='module'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=module">모듈 <?php if(count($g['arr_module_dir'])):?><span class="num">(<?php echo count($g['arr_module_dir'])?>)</span><?php endif?></a></li>
 	<li<?php if($type=='widget'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=widget">위젯</a></li>
+	<li<?php if($type=='switch'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=switch">스위치</a></li>
 	<li<?php if($type=='theme'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=theme">게시판테마</a></li>
 	<li<?php if($type=='etc'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=etc">기타/업데이트</a></li>
 	</ul>
@@ -391,6 +392,77 @@ function getDirlist($dirpath,$nStep)
 <!-- //테마 -->
 
 
+<!-- 스위치 -->
+<?php if($type == 'switch'):?>
+<?php
+$_switchset = array(
+	'start'=>'스타트 스위치',
+	'top'=>'탑 스위치',
+	'head'=>'헤더 스위치',
+	'foot'=>'풋터 스위치',
+	'end'=>'엔드 스위치'
+);
+?>
+	<div class="m_pack">
+	<form name="procForm" action="<?php echo $g['s']?>/" method="post" enctype="multipart/form-data" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+	<input type="hidden" name="r" value="<?php echo $r?>" />
+	<input type="hidden" name="m" value="<?php echo $module?>" />
+	<input type="hidden" name="a" value="pack_upload" />
+	<input type="hidden" name="type" value="switch" />
+	<input type="hidden" name="folder" value="<?php echo $g['path_switch']?>" />
+
+	
+	<div class="msg">
+		패키지파일을 선택하신 후 등록버튼을 클릭해 주세요.<br />
+		패키지는 /switchs/ 폴더이하 지정된 스위치폴더에 등록됩니다.<br />
+		스위치의 형식은 <span class="b">rb_switch_압축폴더명.zip</span> 이어야 합니다.
+	</div>
+	
+	<div class="btnbox">
+	<select name="subfolder">
+	<?php foreach($_switchset as $_key => $_val):?>
+	<option value="<?php echo $_key?>/"><?php echo $_val?></option>
+	<?php endforeach?>
+	</select>
+	<input type="file" name="upfile" class="upfile" />
+	<input type="submit" value="등록하기" class="btnblue" />
+	</div>
+	</form>
+
+	<div class="themelist">
+		<div class="title">
+			등록된 스위치들
+		</div>
+		<ul>
+		<?php foreach($_switchset as $_key => $_val):?>
+		<li class="b" style="margin-top:15px;"><?php echo $_val?></li>
+		<?php $i=0?>
+		<?php $tdir = $g['path_switch'].$_key.'/'?>
+		<?php $dirs = opendir($tdir)?>
+		<?php while(false !== ($skin = readdir($dirs))):?>
+		<?php if($skin=='.' || $skin == '..' || is_file($tdir.$skin))continue?>
+		<?php $i++?>
+		<li<?php if($insfolder==$skin):?> class="insfolder"<?php endif?>>
+			<img src="<?php echo $g['img_core']?>/_public/ico_folder_01.gif" alt="" />
+			<?php echo getFolderName($tdir.$skin)?><span>(<?php echo str_replace('@','',$skin)?>)</span>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=pack_delete&amp;type=switch&amp;pack=<?php echo $_key?>/<?php echo $skin?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?    ');"><img src="<?php echo $g['img_core']?>/_public/btn_del_s01.gif" alt="" title="스위치삭제" /></a>
+		</li>
+		<?php endwhile?>
+		<?php closedir($dirs)?>
+		<?php if(!$i):?>
+		<li class="none">
+			<img src="<?php echo $g['img_core']?>/_public/ico_folder_01.gif" alt="" />
+			등록된 스위치가 없습니다.
+		</li>
+		<?php endif?>
+		<?php endforeach?>
+		</ul>
+	</div>
+
+	</div>
+
+<?php endif?>
+<!-- //스위치 -->
 
 
 <!-- 기타자료 -->

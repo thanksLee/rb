@@ -11,12 +11,12 @@ if (is_file($g['main']))
 			{
 				if(is_file($_HM['incfile'].'.header.php'))
 				{
-					include_once $_HM['incfile'].'.header.php';
+					include $_HM['incfile'].'.header.php';
 				}
 
 				if(is_file($g['add_header_inc']))
 				{
-					include_once $g['add_header_inc'];
+					include $g['add_header_inc'];
 				}
 
 				echo $g['add_header_cod'];
@@ -67,7 +67,7 @@ if (is_file($g['main']))
 			{
 				ob_start();
 
-				include_once $g['main'];
+				include $g['main'];
 
 				$g['buffer'] = ob_get_contents(); 
 				ob_end_clean();
@@ -80,7 +80,7 @@ if (is_file($g['main']))
 			}
 		}
 		else {
-			include_once $g['main'];
+			include $g['main'];
 		}
 
 		if ($_HM['putfoot'] == 0)
@@ -114,21 +114,21 @@ if (is_file($g['main']))
 
 				if(is_file($g['add_footer_inc']))
 				{
-					include_once $g['add_footer_inc'];
+					include $g['add_footer_inc'];
 				}
 
 				if (!$_HM['putfoot'])
 				{
 					if(is_file($_HM['incfile'].'.footer.php'))
 					{
-						include_once $_HM['incfile'].'.footer.php';
+						include $_HM['incfile'].'.footer.php';
 					}
 				}
 			}
 		}
 	}
 	else {
-		include_once $g['main'];
+		include $g['main'];
 	}
 }
 else

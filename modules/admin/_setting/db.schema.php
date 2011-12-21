@@ -792,4 +792,23 @@ KEY d_regis(d_regis)) ENGINE=".$DB['type']." CHARSET=UTF8");
 db_query($_tmp, $DB_CONNECT);
 db_query("OPTIMIZE TABLE ".$table['s_simbol'],$DB_CONNECT); 
 }
+
+//SNS테이블
+$_tmp = db_query( "select count(*) from ".$table['s_mbrsns'], $DB_CONNECT );
+if ( !$_tmp ) {
+$_tmp = ("
+
+CREATE TABLE ".$table['s_mbrsns']." (
+memberuid	INT				PRIMARY KEY		NOT NULL,
+st			VARCHAR(40)		DEFAULT ''		NOT NULL,
+sf			VARCHAR(40)		DEFAULT ''		NOT NULL,
+sm			VARCHAR(40)		DEFAULT ''		NOT NULL,
+sy			VARCHAR(40)		DEFAULT ''		NOT NULL,
+KEY st(st),
+KEY sf(sf),
+KEY sm(sm),
+KEY sy(sy)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
+db_query($_tmp, $DB_CONNECT);
+db_query("OPTIMIZE TABLE ".$table['s_mbrsns'],$DB_CONNECT); 
+}
 ?>
