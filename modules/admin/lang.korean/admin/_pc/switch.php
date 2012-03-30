@@ -6,8 +6,8 @@ function getSwitchList($pos)
 	while(false !== ($folder = readdir($dirh))) 
 	{ 
 		$_fins = substr($folder,0,1);
-		if(strpos('_.',$_fins)) continue;
-		$incs[] = $GLOBALS['g']['path_switch'].$pos.'/'.$folder.'/';
+		if(strpos('_.',$_fins) || @in_array($folder,$GLOBALS['d']['switch'][$pos])) continue;
+		$incs[] = $folder;
 	} 
 	closedir($dirh);
 	return $incs;
@@ -21,19 +21,24 @@ $_switchset = array(
 );
 ?>
 
-
 <div id="catebody">
 	<div id="category">
 
+		<form name="bbsform" action="<?php echo $g['s']?>/" method="post" onsubmit="return orderCheck(this);">
+		<input type="hidden" name="r" value="<?php echo $r?>" />
+		<input type="hidden" name="m" value="<?php echo $module?>" />
+		<input type="hidden" name="a" value="switch_order" />
 		<div class="title">
 			스위치 목록
 			<span class="add">
+				<input type="image" src="<?php echo $g['img_core']?>/_public/btn_save.gif" title="스위치 추가/위치변경" />
 			</span>
 		</div>
 		
 		<div class="tree">
 
 			<?php foreach($_switchset as $_key => $_val):?>
+			<?php foreach(getSwitchList($_key) as $_addswitch) $d['switch'][$_key][] = $_addswitch?>
 			<div class="tbox">
 			<table>
 			<tr class="tt">
@@ -45,24 +50,33 @@ $_switchset = array(
 
 			</td>
 			</tr>
-			<?php foreach(getSwitchList($_key) as $_switch):?>
-			<?php $base_switch=basename($_switch)?>
+			</table>
+			<ul id="_switch_<?php echo $_key?>">
+			<?php foreach($d['switch'][$_key] as $_switch):?>
+			<?php if(!$_switch) continue?>
+			<li>
+			<input type="checkbox" name="switchmembers_<?php echo $_key?>[]" value="<?php echo $_switch?>" checked="checked" class="hide" />
+			<table>
 			<tr>
 			<td class="t0"><img src="<?php echo $g['img_core']?>/_public/ico_f3.png" alt="" /></td>
 			<td class="t1">
-			<a href="<?php echo $g['adm_href']?>&amp;switchdir=<?php echo $_key.'/'.$base_switch?>"<?php if($_key.'/'.$base_switch==$switchdir):?> class="on"<?php endif?>><?php echo getFolderName($_switch)?></a> <span>(<?php echo str_replace('@','',$base_switch)?>)</span>
+			<a href="<?php echo $g['adm_href']?>&amp;switchdir=<?php echo $_key.'/'.$_switch?>"<?php if($_key.'/'.$_switch==$switchdir):?> class="on"<?php endif?>><?php echo getFolderName($g['path_switch'].$_key.'/'.$_switch)?></a> <span>(<?php echo str_replace('@','',$_switch)?>)</span>
 			</td>
 			<td class="t2">
-			<a href="<?php echo $g['adm_href']?>&amp;switchdir=<?php echo $_key.'/'.$base_switch?>&amp;edit=Y" title="스위치 편집"><img src="<?php echo $g['img_core']?>/_public/btn_edit.gif" alt="" /></a>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=switch_change&amp;switch_folder=<?php echo $_key?>&amp;switch=<?php echo $base_switch?>" onclick="return confirm('정말로 스위치를 <?php echo strpos($_switch,'@')?'켜':'끄'?>시겠습니까?  ');" target="_action_frame_<?php echo $m?>" title="스위치 ON/FF"><img src="<?php echo $g['img_core']?>/_public/ico_<?php echo strpos($_switch,'@')?'hide':'show'?>.gif" alt="" /></a>
+			<a href="<?php echo $g['adm_href']?>&amp;switchdir=<?php echo $_key.'/'.$_switch?>&amp;edit=Y" title="스위치 편집"><img src="<?php echo $g['img_core']?>/_public/btn_edit.gif" alt="" /></a>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=switch_change&amp;switch_folder=<?php echo $_key?>&amp;switch=<?php echo $_switch?>" onclick="return hrefCheck(this,true,'정말로 스위치를 <?php echo strpos($_switch,'@')?'켜':'끄'?>시겠습니까?');" title="스위치 ON/FF"><img src="<?php echo $g['img_core']?>/_public/ico_<?php echo strpos($_switch,'@')?'hide':'show'?>.gif" alt="" /></a>
+			<img src="<?php echo $g['img_core']?>/_public/ico_drag.gif" class="move" alt="" title="위치변경" />
 			</td>
 			</tr>
-			<?php endforeach?>
 			</table>
+			</li>
+			<?php endforeach?>
+			</ul>
 			</div>
 			<?php endforeach?>
 		
 		</div>
+		</form>
 
 	</div>
 
@@ -75,7 +89,7 @@ $_switchset = array(
 			</div>
 			<div class="xright">
 				<?php if($switchdir):?>
-				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=switch_delete&amp;switch=<?php echo $switchdir?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 이 스위치를 삭제하시겠습니까?       ');">스위치삭제</a>
+				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=switch_delete&amp;switch=<?php echo $switchdir?>" onclick="return hrefCheck(this,true,'정말로 스위치를 삭제시겠습니까?');">스위치삭제</a>
 				<?php endif?>
 			</div>
 			<div class="clear"></div>
@@ -147,7 +161,7 @@ $_switchset = array(
 			<?php if($edit=='Y'):?>
 
 
-			<form name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+			<form name="procForm" action="<?php echo $g['s']?>/" method="post" onsubmit="return saveCheck(this);">
 			<input type="hidden" name="r" value="<?php echo $r?>" />
 			<input type="hidden" name="m" value="<?php echo $module?>" />
 			<input type="hidden" name="a" value="switch_edit" />
@@ -192,10 +206,22 @@ $_switchset = array(
 
 
 
-
+<?php if(!$_isDragScript):?>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/core.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/events.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/css.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/coordinates.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/drag.js"></script>
+<script type="text/javascript" src="<?php echo $g['s']?>/_core/opensrc/tool-man/dragsort.js"></script>
+<?php endif?>
 
 <script type="text/javascript">
 //<![CDATA[
+function orderCheck(f)
+{
+	getIframeForAction(f);
+	return confirm('스위치 위치를 이 순서로 저장하시겠습니까?    ');
+}
 function saveCheck(f)
 {
 	if (f.name.value == '')
@@ -205,9 +231,15 @@ function saveCheck(f)
 		return false;
 	}
 
+	getIframeForAction(f);
 	return confirm('정말로 실행하시겠습니까?    ');
 }
+var dragsort = ToolMan.dragsort();
+dragsort.makeListSortable(getId('_switch_start'));
+dragsort.makeListSortable(getId('_switch_top'));
+dragsort.makeListSortable(getId('_switch_head'));
+dragsort.makeListSortable(getId('_switch_foot'));
+dragsort.makeListSortable(getId('_switch_end'));
 //]]>
 </script>
-
 

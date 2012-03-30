@@ -6,7 +6,7 @@ checkAdmin(0);
 $sfile = $g['path_switch'].$switch.'/main.php';
 $nfile = $g['path_switch'].$switch.'/name.txt';
 
-if (file_exists($sfile))
+if (is_file($sfile))
 {
 	$fp = fopen($nfile,'w');
 	fwrite($fp,$name);

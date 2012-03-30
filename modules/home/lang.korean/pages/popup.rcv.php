@@ -12,7 +12,7 @@ if ($uid)
 	$TPG = 1;
 }
 else {
-	$sqlque = 'my_mbruid='.$my['uid']." and inbox=1 and d_read='0'";
+	$sqlque = 'my_mbruid='.$my['uid']." and inbox=1 and (d_read='0' or d_read='')";
 	$RCD = getDbArray($table['s_paper'],$sqlque,'*',$sort,$orderby,$recnum,$p);
 	$R = db_fetch_array($RCD);
 	$NUM = getDbRows($table['s_paper'],$sqlque);
@@ -23,7 +23,7 @@ if ($R['by_mbruid'])
 {
 	$M = getDbData($table['s_mbrdata'],'memberuid='.$R['by_mbruid'],'*');
 }
-if (!$R['d_read'])
+if ($R['d_read']=='0'||!$R['d_read'])
 {
 	getDbUpdate($table['s_paper'],"d_read='".$date['totime']."'",'uid='.$R['uid']);
 }

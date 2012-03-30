@@ -147,7 +147,7 @@
 		<input type="email" name="email" value="" class="input" />
 		<input type="button" value="중복확인" class="btngray" onclick="sameCheck(this.form.email,'hLayeremail');" />
 		<div class="hmsg" id="hLayeremail"></div>
-		<?php if($d['member']['join_auth']==2):?>
+		<?php if($d['member']['join_auth']==3):?>
 		<div>가입후 입력하신 이메일로 인증메일이 발송되며 인증을 거쳐야만 가입승인이 이루어집니다.</div>
 		<?php endif?>
 		<div class="remail shift"><div class="shift"><input type="checkbox" name="remail" value="1" checked="checked" />뉴스레터/공지이메일을 수신받겠습니다.</div></div>

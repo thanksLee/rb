@@ -9,8 +9,8 @@ function LIB_getPageLink($lnum,$p,$tpage,$img)
 	$g_cn = '<img src="'.$img.'/l.gif" class="split" alt="" />';
 	$g_q  = $p > 1 ? '<a href="'.$_N.'p=1"><img src="'.$img.'/fp.gif" alt="처음페이지" /></a>' : '<img src="'.$img.'/fp1.gif" alt="처음페이지" />';
 	if($p < $lnum+1) { $g_q .= $g_p1; }
-	else{ $pp = intval(($p-1)/$lnum)*$lnum; $g_q .= '<a href="'.$_N.'p='.$pp.'">'.$g_p2.'</a>';} $g_q .= $g_cn;
-	$st1 = intval(($p-1)/$lnum)*$lnum + 1;
+	else{ $pp = (int)(($p-1)/$lnum)*$lnum; $g_q .= '<a href="'.$_N.'p='.$pp.'">'.$g_p2.'</a>';} $g_q .= $g_cn;
+	$st1 = (int)(($p-1)/$lnum)*$lnum + 1;
 	$st2 = $st1 + $lnum;
 	for($jn = $st1; $jn < $st2; $jn++)
 	if ( $jn <= $tpage)

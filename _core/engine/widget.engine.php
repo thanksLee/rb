@@ -17,17 +17,14 @@ if(!defined('__KIMS__')) exit;
 		$wdgvar[$_xval[0]]=$_xval[1];
 	}
 	$wdgvar['widget_id'] = $_prop[0];
+	if(!is_file($g['wdgcod']) && !strstr($_widgetGroup,'['.$wdgvar['widget_id'].']'))
+	{
+		$wdgvar['widget_rpath'] = $g['path_widget'].$wdgvar['widget_id'];
+		$wdgvar['widget_upath'] = $g['s'].'/widgets/'.$wdgvar['widget_id'];
+		if(is_file($wdgvar['widget_rpath'].'/main.css')) $g['widget_cssjs'] .= '<link type="text/css" rel="stylesheet" charset="utf-8" href="'.$wdgvar['widget_upath'].'/main.css" />'."\n";
+		if(is_file($wdgvar['widget_rpath'].'/main.js')) $g['widget_cssjs'] .= '<script type="text/javascript" charset="utf-8" src="'.$wdgvar['widget_upath'].'/main.js"></script>'."\n";
+	}
 	?>
-	
-	<?php if(!strstr($_widgetGroup,'['.$wdgvar['widget_id'].']')):?>
-	<?php if(is_file($g['path_widget'].$wdgvar['widget_id'].'/main.css')):?>
-	<link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['s']?>/widgets/<?php echo $wdgvar['widget_id']?>/main.css" />
-	<?php endif?>
-
-	<?php if(is_file($g['path_widget'].$wdgvar['widget_id'].'/main.js')):?>
-	<script type="text/javascript" charset="utf-8" src="<?php echo $g['s']?>/widgets/<?php echo $wdgvar['widget_id']?>/main.js"></script>
-	<?php endif?>
-	<?php endif?>
 
 	<div id="widget_<?php echo str_replace('/','_',$wdgvar['widget_id'])?>" style="position:absolute;width:<?php echo $_size[0]?>;height:<?php echo $_size[1]?>;top:<?php echo $_size[2]?>;left:<?php echo $_size[3]?>;">
 	<?php include $g['path_widget'].$wdgvar['widget_id'].'/main.php'?>

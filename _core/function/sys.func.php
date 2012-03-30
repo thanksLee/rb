@@ -312,12 +312,12 @@ function getWidget($widget,$wdgvar)
 {
 	global $DB_CONNECT,$table,$date,$my,$r,$s,$m,$g,$d,$c,$mod,$_HH,$_HD,$_HS,$_HM,$_HP,$_CA;
 	static $wcsswjsc;
-	if (!strpos('_'.$wcsswjsc,'['.$widget.']'))
+	if (!is_file($g['wdgcod']) && !strpos('_'.$wcsswjsc,'['.$widget.']'))
 	{
 		$wcss = $g['path_widget'].$widget.'/main.css';
 		$wjsc = $g['path_widget'].$widget.'/main.js';
-		if (is_file($wcss)) echo '<link type="text/css" rel="stylesheet" charset="utf-8" href="'.$g['s'].'/widgets/'.$widget.'/main.css" />';
-		if (is_file($wjsc)) echo '<script type="text/javascript" charset="utf-8" src="'.$g['s'].'/widgets/'.$widget.'/main.js" /></script>';
+		if (is_file($wcss)) $g['widget_cssjs'] .= '<link type="text/css" rel="stylesheet" charset="utf-8" href="'.$g['s'].'/widgets/'.$widget.'/main.css" />'."\n";
+		if (is_file($wjsc)) $g['widget_cssjs'] .= '<script type="text/javascript" charset="utf-8" src="'.$g['s'].'/widgets/'.$widget.'/main.js" /></script>'."\n";
 		$wcsswjsc.='['.$widget.']';
 	}
 	$wdgvar['widget_id'] = $widget;
@@ -332,14 +332,11 @@ function getStripTags($string)
 function getSwitchInc($pos)
 {
 	$incs = array();
-	$dirh = opendir($GLOBALS['g']['path_switch'].$pos);
-	while(false !== ($folder = readdir($dirh))) 
-	{ 
-		$_fins = substr($folder,-1);
-		if(strpos('_.@',$_fins)) continue;
-		$incs[] = $GLOBALS['g']['path_switch'].$pos.'/'.$folder.'/main.php';
+	foreach ($GLOBALS['d']['switch'][$pos] as $switch)
+	{
+		if(strpos($switch,'@')) continue;
+		$incs[] = $GLOBALS['g']['path_switch'].$pos.'/'.$switch.'/main.php';
 	} 
-	closedir($dirh);
 	return $incs;
 }
 ?>

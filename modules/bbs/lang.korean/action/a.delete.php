@@ -35,7 +35,8 @@ if ($d['bbs']['commentdel'])
 }
 if ($d['bbs']['replydel'])
 {	
-	if(getDbRows($table[$m.'data'],'parent='.$R['uid']))
+	$_ngid = (int)$R['gid'];
+	if(getDbRows($table[$m.'data'],'gid > '.$_ngid.' and gid < '.($_ngid+1)) && !$R['depth'])
 	{
 		getLink('','','답변글이 있는 게시물은 삭제할 수 없습니다.','');
 	}

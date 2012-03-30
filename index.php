@@ -4,7 +4,6 @@ define('__KIMS__',true);
 error_reporting(E_ALL ^ E_NOTICE);
 session_save_path('./_tmp/session');
 session_start();
-
 $d = array();
 $g = array(
 	'path_root'   => './',
@@ -19,6 +18,7 @@ $g = array(
 	'path_file'   => './files/',
 	'sys_lang'    => 'korean'
 );
+
 $g['time_split'] = explode(' ',microtime());
 $g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
 $g['url_root']   = 'http'.($_SERVER['HTTPS']=='on'?'s':'').'://'.$_SERVER['HTTP_HOST'].str_replace('/index.php','',$_SERVER['SCRIPT_NAME']);
@@ -45,11 +45,12 @@ else {
 		extract($_POST);
 	}
 }
-if (file_exists($g['path_var'].'db.info.php'))
+if (is_file($g['path_var'].'db.info.php'))
 {
 	require $g['path_module'].'admin/var/var.system.php';
 	require $g['path_var'].'db.info.php';
-	require $g['path_var'].'table.info.php';	
+	require $g['path_var'].'table.info.php';
+	require $g['path_var'].'switch.var.php';
 	require $g['path_core'].'function/db.mysql.func.php';
 	require $g['path_core'].'function/sys.func.php';
 	foreach(getSwitchInc('start') as $_switch) include $_switch;
@@ -70,17 +71,14 @@ $g['url_module'] = $g['s'].'/modules/'.$m;
 $g['img_module'] = $g['url_module'].'/image';
 $g['add_module'] = $g['dir_module'].'_main.php';
 
-if (file_exists($g['add_module'])) include $g['add_module'];
+if (is_file($g['add_module'])) include $g['add_module'];
 if ($a) require $g['path_core'].'engine/action.engine.php';
 if ($_HS['open'] > 1) require $g['path_core'].'engine/siteopen.engine.php';
 if (!$s && $m != 'admin') getLink($g['s'].'/?r='.$r.'&m=admin&module='.$g['sys_module'].'&nosite=Y','','','');
 
 include $g['dir_module'].'main.php';
 
-if ($m=='admin' || $iframe=='Y')
-{
-	$d['layout']['php'] = $_HM['layout'] = '_blank/main.php';
-}
+if ($m=='admin' || $iframe=='Y') $d['layout']['php'] = $_HM['layout'] = '_blank/main.php';
 else {
 	if (!$g['mobile']||$_SESSION['pcmode']=='Y') $d['layout']['php'] = $prelayout ? $prelayout.'.php' : ($_HM['layout'] ? $_HM['layout'] : $_HS['layout']);
 	else $d['layout']['php'] = $prelayout ? $prelayout.'.php' : ($_HS['m_layout'] ? $_HS['m_layout'] : $_HS['layout']);
@@ -98,9 +96,7 @@ if (is_file($d['layout']['var'])) include $d['layout']['var'];
 define('__KIMS_CONTENT__',$g['path_core'].'engine/content.engine.php');
 define('__KIMS_CONTAINER_HEAD__',$g['path_core'].'engine/container_head.engine.php');
 define('__KIMS_CONTAINER_FOOT__',$g['path_core'].'engine/container_foot.engine.php');
-
 foreach($g['switch_1'] as $_switch) include $_switch;
-
 if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['buffer']){$g['buffer']=true;ob_start('ob_gzhandler');}}
 ?>
 <?php if($_HS['dtd']=='xhtml_1'):?>
@@ -117,8 +113,6 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <?php endif?>
 <title><?php echo $g['browtitle']?></title>
 <?php require $g['path_core'].'engine/cssjs.engine.php'?>
-<?php foreach($g['switch_2'] as $_switch) include $_switch?>
-<?php echo $_HS['headercode']?>
 </head>
 <body>
 <?php if(!$d['admin']['hidepannel']&&$my['admin']&&!$iframe&&(!$g['mobile']||$_SESSION['pcmode']=='Y')):?>
@@ -144,4 +138,5 @@ document.onkeydown = closeImgLayer;
 </body>
 </html>
 <?php foreach($g['switch_4'] as $_switch) include $_switch?>
-<?php if ($g['buffer']) ob_end_flush()?>
+<?php if($g['widget_cssjs']) include $g['path_core'].'engine/widget.cssjs.php'?>
+<?php if($g['buffer']) ob_end_flush()?>

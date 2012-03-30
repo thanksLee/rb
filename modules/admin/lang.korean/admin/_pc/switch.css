@@ -1,8 +1,8 @@
 #catebody {margin:0 0 30px 0;padding:0 0 30px 0;}
-#category {float:left;width:250px;padding:0 0 0 0;}
+#category {float:left;width:300px;padding:0 0 0 0;}
 #category .title {height:19px;background:url('../../../../../_core/image/tree/default/top.gif') left no-repeat #dfdfdf;background-position:4px 3px;padding:6px 0 0 23px;font-weight:bold;}
 #category .title .add {position:absolute;}
-#category .title .add a {position:relative;top:-2px;left:58px;}
+#category .title .add input {position:relative;top:-2px;left:160px;}
 
 #category .tree {margin:0;padding:12px 0 0 0;}
 #category .tree .tbox {padding:0 0 10px 0;margin:0 0 10px 0;border-bottom:#c0c0c0 dotted 1px;}
@@ -12,11 +12,15 @@
 #category .tree .t1 span {font-family:arial;color:#999;font-size:11px;}
 #category .tree .t1 .on {color:#ff0000;}
 #category .tree .t2 {text-align:right;}
+#category .tree .t2 .move {border:#dfdfdf solid 1px;background:#ffffff;padding:1px;cursor:move;}
+#category .tree .t2 .move:hover {background:#efefef;}
 #category .tree .tt {}
 #category .tree .tt td {font-weight:bold;color:#3B5999;letter-spacing:-1px;padding:0 0 5px 0;}
 #category .tree .tt img {margin-bottom:-1px;}
+#category .tree ul {padding:0;margin:0;list-style-type:none;}
+#category .tree li {}
 
-#catinfo {margin-left:250px;padding:0 0 0 20px;}
+#catinfo {margin-left:300px;padding:0 0 0 20px;}
 #catinfo .title {background:#dfdfdf;height:25px;}
 #catinfo .title .xleft {float:left;padding:6px 0 0 23px;}
 #catinfo .title .xright {float:right;padding:7px 7px 0 0;}
@@ -32,7 +36,7 @@
 #catinfo textarea {width:98%;height:550px;border:#c0c0c0 solid 1px;overflow:auto;padding:5px 0 5px 5px;margin-top:20px;line-height:150%;color:#000000;font-family:Courier new, arial, dotum;font-size:9pt;text-align:left;}
 #catinfo .submitbox {margin:20px 0 20px 0;padding:15px 0 0 108px;border-top:#dfdfdf dashed 1px;}
 
-#catinfo .guidebox {width:700px;padding:30px 0 30px 0;}
+#catinfo .guidebox {width:650px;padding:30px 0 30px 0;}
 #catinfo .guidebox .gtt {font-weight:bold;font-size:20px;font-family:"malgun gothic";border-bottom:#dfdfdf solid 1px;padding:0 0 10px 0;}
 #catinfo .guidebox .gtt1 {font-weight:bold;font-size:13px;color:#0379BD;padding:10px 0 10px 0;}
 #catinfo .guidebox ol {padding:0;margin:0 0 0 30px;}

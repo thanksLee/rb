@@ -509,12 +509,12 @@ function fieldSize(flag)
 		getId('editAreaIframe').style.height = editAreaHeight + 'px';
 	}
 
-	if(parent.getId(frames.name))
+	if (parent.getId(frames.name))
 	{
 		parent.getId(frames.name).style.height = (parseInt(document.body.clientHeight) + (navigator.appVersion.indexOf('MSIE 8')!=-1?-4:0)) + 'px';
 	}
 
-	if (parent.getId(parent.frames.name))
+	if (parent.parent.getId(parent.frames.name)||parent.getId(parent.frames.name))
 	{
 		parent.frameSetting();
 	}

@@ -286,17 +286,6 @@ function chkFlag(f)
 
     for (i = 0; i < n; i++) l[i].checked = !l[i].checked;
 }
-
-//레이어팝업닫기
-function hidePopupLayer(n) 
-{ 
-	if ( getId('popCheck').checked == true )
-	{
-		var nowcookie = getCookie('popview');
-		setCookie('popview', '['+n+']' + nowcookie , 1);
-	}    
-	getId('_action_layer_').style.display = 'none';
-}
 /*문자열카피*/
 function copyStr(str) 
 {
@@ -446,14 +435,14 @@ function getLayerBox(url,title,w,h,e,ar,direction)
 	ly.style.width = w+'px';
 	ly.style.height = h+'px';
 	ly.style.display = 'block';
-	ly.style.zIndex = '2';
+	ly.style.zIndex = '100';
 	if (e)
 	{
 		var xy = getEventBoxPos(e);
 	}
 	else {
 		var xy = new Object();
-		xy.x = parseInt(screen.availWidth/2) - parseInt(w/2);
+		xy.x = parseInt(document.body.clientWidth/2) - parseInt(w/2);
 		xy.y = parseInt(screen.availHeight/2) - parseInt(h/2);
 	}
 	var bx = getOfs(ly);

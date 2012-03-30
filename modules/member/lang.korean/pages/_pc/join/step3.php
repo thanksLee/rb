@@ -145,7 +145,7 @@
 	<td>
 		<input type="text" name="email" value="" size="35" class="input" onblur="sameCheck(this,'hLayeremail');" />
 		<span class="hmsg" id="hLayeremail"></span>
-		<?php if($d['member']['join_auth']==2):?>
+		<?php if($d['member']['join_auth']==3):?>
 		<div>가입후 입력하신 이메일로 인증메일이 발송되며 인증을 거쳐야만 가입승인이 이루어집니다.</div>
 		<?php endif?>
 		<div class="remail"><input type="checkbox" name="remail" value="1" checked="checked" />뉴스레터나 공지이메일을 수신받겠습니다.</div>

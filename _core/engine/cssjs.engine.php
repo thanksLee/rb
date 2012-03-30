@@ -1,6 +1,7 @@
 <?php
 if(!defined('__KIMS__')) exit;
 $g['libdir'] = $g['path_layout'].$d['layout']['dir'].'/_lib';
+$g['wdgcod'] = $g['path_tmp'].'widget/c'.$_HM['uid'].'.p'.$_HP['uid'].'.cache';
 $g['cssset'] = array
 (
 	$d['layout']['pwd']=>$g['s'].'/layouts/'.$d['layout']['str'],
@@ -10,6 +11,9 @@ $g['cssset'] = array
 	$g['dir_module_admin']=>$g['url_module_admin'],
 );
 ?>
+<?php foreach($g['switch_2'] as $_switch):?>
+<?php include $_switch?> 
+<?php endforeach?>
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['s']?>/_core/css/sys.css" />
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['url_layout']?>/_main.css" />
 <?php if($my['admin']):?>
@@ -31,10 +35,10 @@ var myagent	= navigator.appName.indexOf('Explorer') != -1 ? 'ie' : 'ns';
 <script type="text/javascript" charset="utf-8" src="<?php echo $g['s']?>/_core/js/sys.js"></script>
 <script type="text/javascript" charset="utf-8" src="<?php echo $g['url_layout']?>/_main.js"></script>
 <?php foreach ($g['cssset'] as $_key => $_val):?>
-<?php if (file_exists($_key.'.css')):?>
+<?php if (is_file($_key.'.css')):?>
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $_val?>.css" />
 <?php endif?>
-<?php if (file_exists($_key.'.js')):?>
+<?php if (is_file($_key.'.js')):?>
 <script type="text/javascript" charset="utf-8" src="<?php echo $_val?>.js"></script>
 <?php endif?>
 <?php endforeach?>
@@ -49,3 +53,5 @@ var myagent	= navigator.appName.indexOf('Explorer') != -1 ? 'ie' : 'ns';
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['url_layout']?>/_lib/<?php echo $_lib?>" />
 <?php continue;endif?>
 <?php endwhile;closedir($_libhandle);endif?>
+<?php if(is_file($g['wdgcod'])) include $g['wdgcod']?>
+<?php echo $_HS['headercode']?>

@@ -395,7 +395,7 @@ if ($tag || $R['tag'])
 }
 
 
-if ((!$uid||$reply=='Y') && $snsCallBack && is_file($g['path_module'].$snsCallBack))
+if ($snsCallBack && ($sns_t||$sns_f||$sns_m||$sns_y))
 {
 	$xcync = "[][][][][][m:".$m.",bid:".$bbsid.",uid:".$NOWUID."]";
 	$orignSubject = strip_tags($subject);

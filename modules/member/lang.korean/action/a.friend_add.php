@@ -34,7 +34,7 @@ for ($i = 0; $i < $idlen; $i++)
 		if (!$M['memberuid']) continue;
 	}
 
-	$R = getDbData($table['s_friend'],'by_mbruid='.$M['memberuid'],'*');
+	$R = getDbData($table['s_friend'],'my_mbruid='.$my['uid'].' and by_mbruid='.$M['memberuid'],'*');
 
 	if (!$R['uid'])
 	{

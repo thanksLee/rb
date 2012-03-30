@@ -47,8 +47,8 @@
 &lt;html&gt;
 &lt;head&gt;
 &lt;style type="text/css"&gt;
-body{font-family:gulim;font-size:12px;line-height:150%;margin:0;podding:0;}
-h1,h2,h3,h4,h5,h6,p{margin:0px;padding:0px;}
+body{font-family:gulim;font-size:12px;line-height:1.5;margin:0;podding:0;}
+h1,h2,h3,h4,h5,h6,p{line-height:1.5;margin:0px;padding:0px;}
 img{border:0px;}
 a:link{text-decoration:none;color:#000000;}
 a:visited{text-decoration:none;color:#000000;}

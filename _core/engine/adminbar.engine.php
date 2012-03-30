@@ -18,7 +18,7 @@
 <li><?php echo $lang['top']['edit']?></li>
 <?php endif?>
 <li>
-<a title="Editor" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y');" />E</a>ㆍ<a title="Widget" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.widget&iframe=Y&isWcode=Y');" />W</a>
+<a title="Editor" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y');">E</a>ㆍ<a title="Widget" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.widget&iframe=Y&isWcode=Y');">W</a>ㆍ<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;a=clear_wcache" title="Clear Widget Cache" class="hand b" onclick="return hrefCheck(this,true,'');">C</a>
 </li>
 <li class="noline"></li>
 </ul>
@@ -85,7 +85,7 @@ function toolCheck0()
 	}
 	if(getId('_tool_icon_').src.indexOf('_on.')!=-1)
 	{
-		getId('_tool_icon_').src=getId('_tool_icon_').src.replace('_on.','.');
+		getId('_tool_icon_').src=getId('_tool_icon_').src.replace('ico_admintool_on.gif','ico_admintool.gif');
 		getId('_tool_icon_').style.background = 'transparent';
 		getId('_amenuBox_').style.display = 'none';
 	}
@@ -95,13 +95,13 @@ function toolCheck1(obj)
 
 	if(obj.src.indexOf('_on.')!=-1)
 	{
-		obj.src=obj.src.replace('_on.','.');
+		obj.src=obj.src.replace('ico_admintool_on.gif','ico_admintool.gif');
 		obj.style.background = 'transparent';
 		getId('_amenuBox_').style.display = 'none';
 	}
 	else
 	{
-		obj.src=obj.src.replace('.','_on.');
+		obj.src=obj.src.replace('ico_admintool.gif','ico_admintool_on.gif');
 		obj.style.background = '#ffffff';
 		getId('_amenuBox_').style.display = 'block';
 	}
