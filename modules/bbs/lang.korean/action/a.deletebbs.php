@@ -35,6 +35,7 @@ while($_R=db_fetch_array($RCD))
 							$FTP_CRESULT = ftp_login($FTP_CONNECT,$d['upload']['ftp_user'],$d['upload']['ftp_pass']); 
 							if (!$FTP_CONNECT) getLink('','','FTP서버 연결에 문제가 발생했습니다.','');
 							if (!$FTP_CRESULT) getLink('','','FTP서버 아이디나 패스워드가 일치하지 않습니다.','');
+							if($d['upload']['ftp_pasv']) ftp_pasv($FTP_CONNECT, true);
 
 							ftp_delete($FTP_CONNECT,$d['upload']['ftp_folder'].$U['folder'].'/'.$U['tmpname']);
 							if($U['type']==2) ftp_delete($FTP_CONNECT,$d['upload']['ftp_folder'].$U['folder'].'/'.$U['thumbname']);
@@ -89,6 +90,7 @@ while($_R=db_fetch_array($RCD))
 					$FTP_CRESULT = ftp_login($FTP_CONNECT,$d['upload']['ftp_user'],$d['upload']['ftp_pass']); 
 					if (!$FTP_CONNECT) getLink('','','FTP서버 연결에 문제가 발생했습니다.','');
 					if (!$FTP_CRESULT) getLink('','','FTP서버 아이디나 패스워드가 일치하지 않습니다.','');
+					if($d['upload']['ftp_pasv']) ftp_pasv($FTP_CONNECT, true);
 
 					ftp_delete($FTP_CONNECT,$d['upload']['ftp_folder'].$U['folder'].'/'.$U['tmpname']);
 					if($U['type']==2) ftp_delete($FTP_CONNECT,$d['upload']['ftp_folder'].$U['folder'].'/'.$U['thumbname']);
@@ -133,6 +135,7 @@ while($_R=db_fetch_array($RCD))
 getDbDelete($table[$m.'idx'],'bbs='.$R['uid']);
 getDbDelete($table[$m.'data'],'bbs='.$R['uid']);
 getDbDelete($table[$m.'list'],'uid='.$R['uid']);
+getDbDelete($table['s_seo'],'rel=3 and parent='.$R['uid']);
 
 unlink($g['dir_module'].'var/var.'.$R['id'].'.php');
 

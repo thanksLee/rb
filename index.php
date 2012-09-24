@@ -21,7 +21,6 @@ $g = array(
 
 $g['time_split'] = explode(' ',microtime());
 $g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
-$g['url_root']   = 'http'.($_SERVER['HTTPS']=='on'?'s':'').'://'.$_SERVER['HTTP_HOST'].str_replace('/index.php','',$_SERVER['SCRIPT_NAME']);
 
 if(!get_magic_quotes_gpc())
 {
@@ -48,6 +47,13 @@ else {
 if (is_file($g['path_var'].'db.info.php'))
 {
 	require $g['path_module'].'admin/var/var.system.php';
+	$g['url_file'] = str_replace('/index.php','',$_SERVER['SCRIPT_NAME']);
+	$g['url_host'] = 'http'.($_SERVER['HTTPS']=='on'?'s':'').'://'.$_SERVER['HTTP_HOST'];
+	$g['url_http'] = $g['url_host'].($d['admin']['http_port']!=80?':'.$d['admin']['http_port']:'');
+	$g['url_sslp'] = 'https://'.$_SERVER['HTTP_HOST'].($_SERVER['HTTPS']!='on'&&$d['admin']['ssl_port']?':'.$d['admin']['ssl_port']:'');
+	$g['url_root'] = $g['url_http'].$g['url_file'];
+	$g['ssl_root'] = $g['url_sslp'].$g['url_file'];
+	
 	require $g['path_var'].'db.info.php';
 	require $g['path_var'].'table.info.php';
 	require $g['path_var'].'switch.var.php';
@@ -81,7 +87,7 @@ include $g['dir_module'].'main.php';
 if ($m=='admin' || $iframe=='Y') $d['layout']['php'] = $_HM['layout'] = '_blank/main.php';
 else {
 	if (!$g['mobile']||$_SESSION['pcmode']=='Y') $d['layout']['php'] = $prelayout ? $prelayout.'.php' : ($_HM['layout'] ? $_HM['layout'] : $_HS['layout']);
-	else $d['layout']['php'] = $prelayout ? $prelayout.'.php' : ($_HS['m_layout'] ? $_HS['m_layout'] : $_HS['layout']);
+	else $d['layout']['php'] = $prelayout ? $prelayout.'.php' : ($_HS['m_layout'] ? $_HS['m_layout'] : ($_HM['layout'] ? $_HM['layout'] : $_HS['layout']));
 }
 
 $d['layout']['dir'] = dirname($d['layout']['php']);
@@ -92,7 +98,6 @@ $d['layout']['var'] = $g['path_layout'].$d['layout']['dir'].'/_main.php';
 $g['url_layout'] = $g['s'].'/layouts/'.$d['layout']['dir'];
 $g['img_layout'] = $g['url_layout'].'/image';
 if (is_file($d['layout']['var'])) include $d['layout']['var'];
-
 define('__KIMS_CONTENT__',$g['path_core'].'engine/content.engine.php');
 define('__KIMS_CONTAINER_HEAD__',$g['path_core'].'engine/container_head.engine.php');
 define('__KIMS_CONTAINER_FOOT__',$g['path_core'].'engine/container_foot.engine.php');
@@ -109,7 +114,9 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <?php if($g['mobile']&&$_SESSION['pcmode']!='Y'&&$_HS['m_layout']):?>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi" />
+<meta name="apple-mobile-web-app-capable" content="no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <?php endif?>
 <title><?php echo $g['browtitle']?></title>
 <?php require $g['path_core'].'engine/cssjs.engine.php'?>
@@ -123,9 +130,11 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <?php if($g['mobile']&&$_SESSION['pcmode']=='Y'&&$iframe!='Y'):?>
 <div id="pctomobile"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;a=mobilemode"><?php echo sprintf($lang['sys']['viewpcmode'],$m=='admin'?$lang['top']['adminmode']:$lang['top']['homepage'])?></a></div>
 <?php endif?>
+
 <div id="_box_layer_"></div>
 <div id="_action_layer_"></div>
 <div id="_hidden_layer_"></div>
+<div id="_overLayer_" class="hide"></div>
 <iframe name="_action_frame_<?php echo $m?>" width="0" height="0" frameborder="0" scrolling="no"></iframe>
 <script type="text/javascript">
 //<![CDATA[

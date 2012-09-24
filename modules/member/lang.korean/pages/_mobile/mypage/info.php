@@ -134,9 +134,9 @@
 	<tr>
 	<td class="key">휴대전화<?php if($d['member']['form_tel2_p']):?><span>*</span><?php endif?></td>
 	<td><?php $tel2=explode('-',$my['tel2'])?>
-		<input type="number" name="tel2_1" value="<?php echo $tel2[0]?>" maxlength="3" size="4" class="input" />-
-		<input type="number" name="tel2_2" value="<?php echo $tel2[1]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="tel2_3" value="<?php echo $tel2[2]?>" maxlength="4" size="4" class="input" />
+		<input type="tel" name="tel2_1" value="<?php echo $tel2[0]?>" maxlength="3" size="4" class="input" />-
+		<input type="tel" name="tel2_2" value="<?php echo $tel2[1]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="tel2_3" value="<?php echo $tel2[2]?>" maxlength="4" size="4" class="input" />
 		<div class="remail"><input type="checkbox" name="sms" value="1"<?php if($my['sms']):?> checked="checked"<?php endif?> />알림문자를 받음</div>
 	</td>
 	</tr>
@@ -146,9 +146,9 @@
 	<tr>
 	<td class="key">전화번호<?php if($d['member']['form_tel1_p']):?><span>*</span><?php endif?></td>
 	<td><?php $tel1=explode('-',$my['tel1'])?>
-		<input type="number" name="tel1_1" value="<?php echo $tel1[0]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="tel1_2" value="<?php echo $tel1[1]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="tel1_3" value="<?php echo $tel1[2]?>" maxlength="4" size="4" class="input" />
+		<input type="tel" name="tel1_1" value="<?php echo $tel1[0]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="tel1_2" value="<?php echo $tel1[1]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="tel1_3" value="<?php echo $tel1[2]?>" maxlength="4" size="4" class="input" />
 	</td>
 	</tr>
 	<?php endif?>
@@ -334,17 +334,17 @@
 	<tr>
 	<td class="key">대표전화<span>*</span></td>
 	<td>
-		<input type="number" name="comp_tel_1" value="<?php echo $tel[0]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="comp_tel_2" value="<?php echo $tel[1]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="comp_tel_3" value="<?php echo $tel[2]?>" maxlength="4" size="4" class="input" />
+		<input type="tel" name="comp_tel_1" value="<?php echo $tel[0]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="comp_tel_2" value="<?php echo $tel[1]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="comp_tel_3" value="<?php echo $tel[2]?>" maxlength="4" size="4" class="input" />
 	</td>
 	</tr>
 	<tr>
 	<td class="key">팩스</td>
 	<td>
-		<input type="number" name="comp_fax_1" value="<?php echo $fax[0]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="comp_fax_2" value="<?php echo $fax[1]?>" maxlength="4" size="4" class="input" />-
-		<input type="number" name="comp_fax_3" value="<?php echo $fax[2]?>" maxlength="4" size="4" class="input" />
+		<input type="tel" name="comp_fax_1" value="<?php echo $fax[0]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="comp_fax_2" value="<?php echo $fax[1]?>" maxlength="4" size="4" class="input" />-
+		<input type="tel" name="comp_fax_3" value="<?php echo $fax[2]?>" maxlength="4" size="4" class="input" />
 	</td>
 	</tr>
 	<tr>

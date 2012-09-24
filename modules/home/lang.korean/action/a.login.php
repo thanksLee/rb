@@ -1,13 +1,17 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
+$history = $__target ? '-1' : '';
 $id = trim($id);
 if (!$id || !$pw)
 {
-	getLink('','','아이디와 패스워드를 입력해 주세요.','');
+	getLink('','','아이디와 패스워드를 입력해 주세요.',$history);
 }
 
 include_once $g['path_module'].'member/var/var.join.php';
+
+$d['member']['login_emailid'] = (strpos($id,'@')) ? 1:0;
+
 if ($d['member']['login_emailid'])
 {
 	$M1 = getDbData($table['s_mbrdata'],"email='".$id."'",'*');
@@ -20,24 +24,24 @@ else {
 
 if (!$M['uid'] || $M1['auth'] == 4)
 {
-	getLink('','','존재하지 않는 아이디입니다.','');
+	getLink('','','존재하지 않는 아이디입니다.',$history);
 }
 if ($M1['auth'] == 2)
 {
-	getLink('','','회원님은 인증보류 상태입니다.','');
+	getLink('','','회원님은 인증보류 상태입니다.',$history);
 }
 if ($M1['auth'] == 3)
 {
-	getLink('','','회원님은 이메일 인증대기 상태입니다.','');
+	getLink('','','회원님은 이메일 인증대기 상태입니다.',$history);
 }
 if ($M['pw'] != md5($pw) && $M1['tmpcode'] != md5($pw))
 {
-	getLink('','','패스워드가 일치하지 않습니다.','');
+	getLink('','','패스워드가 일치하지 않습니다.',$history);
 }
 
 if ($usertype == 'admin')
 {
-	if (!$M1['admin']) getLink('','','회원님은 관리자가 아닙니다.','');
+	if (!$M1['admin']) getLink('','','회원님은 관리자가 아닙니다.',$history);
 }
 
 $my_level = $M1['level'];
@@ -106,12 +110,12 @@ while(false !== ($file = readdir($opendir)))
 closedir($opendir);
 
 
-
-if ($drop == 'Y')
+if ($__target)
 {
-	getLink($referer,'top.opener.','','close');
+	getLink($referer.'&__target='.$__target,'',$__msg,$__close?'close':'');
 }
 else {
-	getLink($referer,'parent.','','');
+	if ($drop == 'Y') getLink($referer,'top.opener.','','close');
+	else getLink($referer,'parent.','','');
 }
 ?>

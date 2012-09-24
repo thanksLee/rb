@@ -84,7 +84,7 @@ window.onload = slideshowOpen;
 					<div class="module<?php if($R['id']==$module):?> selected<?php endif?>" title="<?php echo $R['id']?>">
 						<div class="name move<?php if($R['id']==$module):?> nselected<?php endif?>" ondblclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $R['id']?>');"><span><?php echo $R['name']?></span></div>
 						<input type="checkbox" name="modulemembers1[]" value="<?php echo $R['id']?>" checked="checked" />
-						<div class="icon" style="background:url('<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>') center center no-repeat;" onselectstart="return false;"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><img src="<?php echo $g['img_core']?>/blank.gif" alt="<?php echo $R['name']?>(<?php echo $R['id']?>)" /></a></div>
+						<div class="icon" onselectstart="return false;"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><img src="<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>" alt="<?php echo $R['name']?>(<?php echo $R['id']?>)" /></a></div>
 					</div>
 					</li>
 					<?php $i++?>
@@ -115,7 +115,7 @@ window.onload = slideshowOpen;
 					<div class="module<?php if($R['id']==$module):?> selected<?php endif?>" title="<?php echo $R['id']?>">
 						<div class="name move<?php if($R['id']==$module):?> nselected<?php endif?>" ondblclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $R['id']?>');"><span><?php echo $R['name']?></span></div>
 						<input type="checkbox" name="modulemembers1[]" value="<?php echo $R['id']?>" checked="checked" />
-						<div class="icon" style="background:url('<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>') center center no-repeat;" onselectstart="return false;"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><img src="<?php echo $g['img_core']?>/blank.gif" alt="<?php echo $R['name']?>(<?php echo $R['id']?>)" /></a></div>
+						<div class="icon" onselectstart="return false;"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><img src="<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>" alt="<?php echo $R['name']?>(<?php echo $R['id']?>)" /></a></div>
 					</div>
 					</li>
 					<?php endwhile?>

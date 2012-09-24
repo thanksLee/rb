@@ -29,6 +29,8 @@ if ($R['uid'])
 
 		@unlink($g['path_var'].'menu/'.$_M['imghead']);
 		@unlink($g['path_var'].'menu/'.$_M['imgfoot']);	
+		
+		getDbDelete($table['s_seo'],'rel=1 and parent='.$_M['uid']);
 	}
 
 	getDbDelete($table['s_menu'],'site='.$R['uid']);

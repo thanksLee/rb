@@ -1,7 +1,7 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
-if (!$_SESSION['wcode']||$_SESSION['wcode']!=$pcode) exit;
+//if (!$_SESSION['wcode']||$_SESSION['wcode']!=$pcode) exit;
 include_once $g['dir_module'].'var/var.php';
 
 $cync		= trim($_SESSION[$m.'cync']);

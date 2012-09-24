@@ -15,6 +15,7 @@ $d['upload']['use_fileserver'] = "";
 $d['upload']['ftp_host'] = "";
 $d['upload']['ftp_port'] = "21";
 $d['upload']['ftp_user'] = "";
+$d['upload']['ftp_pasv'] = "1";
 $d['upload']['ftp_pass'] = "";
 $d['upload']['ftp_folder'] = "";
 $d['upload']['ftp_urlpath'] = "";

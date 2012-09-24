@@ -75,7 +75,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $_HM['id']?>" maxlength="20" class="input sname" /> <span>(고유키=<?php echo sprintf('%05d',$_HM['uid'])?>)</span>
 					<div id="guide_menucode" class="guide hide">
-					메뉴 호출시에 사용되는 코드이며 영문대소문자/숫자/_ 조합으로 등록할 수 있습니다.<br />
+					메뉴 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 메뉴호출주소 : ./?c=<span class="b">메뉴코드</span><br />
 					이 메뉴를 잘 표현할 수 있는 단어로 입력해 주세요.<br />
 					같은 사이트내에서 메뉴코드는 중복될 수 없습니다.<br />
@@ -676,7 +676,7 @@ function saveCheck(f)
 	}
 	if (!chkFnameValue(f.id.value))
 	{
-		alert('메뉴코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+		alert('메뉴코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 		f.id.focus();
 		return false;
 	}

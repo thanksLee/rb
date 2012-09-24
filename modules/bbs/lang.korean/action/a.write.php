@@ -1,7 +1,7 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
-if (!$_SESSION['wcode']||$_SESSION['wcode']!=$pcode) exit;
+//if (!$_SESSION['wcode']||$_SESSION['wcode']!=$pcode) exit;
 if (!$bid) getLink('','','게시판 아이디가 지정되지 않았습니다.','');
 $B = getDbData($table[$m.'list'],"id='".$bid."'",'*');
 if (!$B['uid']) getLink('','','존재하지 않는 게시판입니다.','');
@@ -83,7 +83,7 @@ if ($num_upfile || $num_photo)
 		$FTP_CRESULT = ftp_login($FTP_CONNECT,$d['upload']['ftp_user'],$d['upload']['ftp_pass']); 
 		if (!$FTP_CONNECT) getLink('','','FTP서버 연결에 문제가 발생했습니다.','');
 		if (!$FTP_CRESULT) getLink('','','FTP서버 아이디나 패스워드가 일치하지 않습니다.','');
-
+		if ($d['upload']['ftp_pasv']) ftp_pasv($FTP_CONNECT, true);
 		ftp_chdir($FTP_CONNECT,$d['upload']['ftp_folder']);
 		for ($i = 1; $i < 4; $i++)
 		{

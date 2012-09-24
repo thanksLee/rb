@@ -21,8 +21,8 @@ if(!defined('__KIMS__')) exit;
 	{
 		$wdgvar['widget_rpath'] = $g['path_widget'].$wdgvar['widget_id'];
 		$wdgvar['widget_upath'] = $g['s'].'/widgets/'.$wdgvar['widget_id'];
-		if(is_file($wdgvar['widget_rpath'].'/main.css')) $g['widget_cssjs'] .= '<link type="text/css" rel="stylesheet" charset="utf-8" href="'.$wdgvar['widget_upath'].'/main.css" />'."\n";
-		if(is_file($wdgvar['widget_rpath'].'/main.js')) $g['widget_cssjs'] .= '<script type="text/javascript" charset="utf-8" src="'.$wdgvar['widget_upath'].'/main.js"></script>'."\n";
+		if(is_file($wdgvar['widget_rpath'].'/main.css')) $g['widget_cssjs'] .= '<link type="text/css" rel="stylesheet" charset="utf-8" href="'.$wdgvar['widget_upath'].'/main.css'.$g['wcache'].'" />'."\n";
+		if(is_file($wdgvar['widget_rpath'].'/main.js')) $g['widget_cssjs'] .= '<script type="text/javascript" charset="utf-8" src="'.$wdgvar['widget_upath'].'/main.js'.$g['wcache'].'"></script>'."\n";
 	}
 	?>
 

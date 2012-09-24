@@ -2,7 +2,7 @@
 $lang['top']['home'] = '홈';
 $lang['top']['admin'] = '어드민';
 $lang['top']['desk'] = '데스크꾸미기';
-$lang['top']['edit'] = '꾸미기';
+$lang['top']['edit'] = '편집';
 $lang['top']['site'] = '사이트';
 $lang['top']['menu'] = '메뉴';
 $lang['top']['page'] = '페이지';
@@ -21,4 +21,5 @@ $lang['top']['admin1'] = '최고관리자';
 $lang['top']['admin2'] = '파트관리자';
 $lang['top']['logtime'] = '마지막 접속시간';
 $lang['top']['logout'] = '로그아웃';
+$lang['top']['config'] = '꾸미기';
 ?>

@@ -38,6 +38,7 @@ if ($fserver)
 	if (!$FTP_CONNECT) exit;
 	if (!$FTP_CRESULT) exit;
 
+	if($d['upload']['ftp_pasv']) ftp_pasv($FTP_CONNECT, true);
 	ftp_chdir($FTP_CONNECT,$d['upload']['ftp_folder']);
 
 	for ($i = 1; $i < 4; $i++)

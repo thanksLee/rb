@@ -42,40 +42,40 @@ function db_insert_id($conn)
 //DB-UID데이터 
 function getUidData($table,$uid)
 {
-	return getDbData($table,'uid='.$uid,'*');
+	return getDbData($table,'uid='.(int)$uid,'*');
 }
 //DB데이터 1ROW
 function getDbData($table,$where,$data)
 {
-	$row = db_fetch_array(getDbSelect($table,$where,$data));
+	$row = db_fetch_array(getDbSelect($table,getSqlFilter($where),$data));
 	return $row;
 }
 //DB데이터 ARRAY
 function getDbArray($table,$where,$data,$sort,$orderby,$recnum,$p)
 {
 	global $DB_CONNECT;
-	$rcd = db_query('select '.$data.' from '.$table.($where?' where '.$where:'').' order by '.$sort.' '.$orderby.($recnum?' limit '.(($p-1)*$recnum).', '.$recnum:''),$DB_CONNECT);
+	$rcd = db_query('select '.$data.' from '.$table.($where?' where '.getSqlFilter($where):'').' order by '.$sort.' '.$orderby.($recnum?' limit '.(($p-1)*$recnum).', '.$recnum:''),$DB_CONNECT);
 	return $rcd;
 }
 //DB데이터 NUM
 function getDbRows($table,$where)
 {
 	global $DB_CONNECT;
-	$rows = db_fetch_array(db_query('select count(*) from '.$table.($where?' where '.$where:''),$DB_CONNECT));
+	$rows = db_fetch_array(db_query('select count(*) from '.$table.($where?' where '.getSqlFilter($where):''),$DB_CONNECT));
 	return $rows[0] ? $rows[0] : 0;
 }
 //DB데이터 MAX
 function getDbCnt($table,$type,$where)
 {
 	global $DB_CONNECT;
-	$cnts = db_fetch_array(db_query('select '.$type.' from '.$table.($where?' where '.$where:''),$DB_CONNECT));
+	$cnts = db_fetch_array(db_query('select '.$type.' from '.$table.($where?' where '.getSqlFilter($where):''),$DB_CONNECT));
 	return $cnts[0] ? $cnts[0] : 0;
 }
 //DB셀렉트
 function getDbSelect($table,$where,$data)
 {
 	global $DB_CONNECT;
-	$r = db_query('select '.$data.' from '.$table.($where?' where '.$where:''),$DB_CONNECT);
+	$r = db_query('select '.$data.' from '.$table.($where?' where '.getSqlFilter($where):''),$DB_CONNECT);
 	return $r;
 }
 //DB삽입
@@ -88,12 +88,17 @@ function getDbInsert($table,$key,$val)
 function getDbUpdate($table,$set,$where)
 {
 	global $DB_CONNECT;
-	db_query("update ".$table." set ".$set.($where?' where '.$where:''),$DB_CONNECT);
+	db_query("update ".$table." set ".$set.($where?' where '.getSqlFilter($where):''),$DB_CONNECT);
 }
 //DB삭제
 function getDbDelete($table,$where)
 {
 	global $DB_CONNECT;
-	db_query("delete from ".$table.($where?' where '.$where:''),$DB_CONNECT);
+	db_query("delete from ".$table.($where?' where '.getSqlFilter($where):''),$DB_CONNECT);
+}
+//SQL필터링 - 다음 패치에 적용예정
+function getSqlFilter($sql)
+{
+	return $sql;
 }
 ?>

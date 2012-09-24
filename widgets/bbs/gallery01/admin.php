@@ -141,10 +141,10 @@ function titleChange(obj)
 }
 function saveCheck(f)
 {
+
 	<?php if(!$option):?>
 	var i;
 	var n = 0;
-
     for (i=0; i<opener.maxTiles; i++)
 	{
         if (opener.moveObject[i].style.display=='block')

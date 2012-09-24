@@ -1,4 +1,26 @@
+<?php
+function isMobileConnect($agent)
+{
+	if($_SESSION['pcmode']=='E') return 'RB-Emulator';
+	$xagent = strtolower($agent);
+	foreach($GLOBALS['d']['magent'] as $val)
+	{
+		$valexp = explode('=',trim($val));
+		if(strpos($xagent,$valexp[0])) return $valexp[1];
+	}
+	return '';
+}
+$d['magent']= file($g['path_var'].'mobile.agent.txt');
+$g['mobile'] = isMobileConnect($_SERVER['HTTP_USER_AGENT']);
+?>
 
+
+<?php if ($g['mobile']):?>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi" />
+<div class="_mobile">
+<?php else:?>
+<div>
+<?php endif?>
 <div id="lang">
 <div class="box">
 <form action="./" method="post">
@@ -18,7 +40,7 @@ Language :
 </div>
 <div id="header">
 
-	<h1>KIMSQ-RB INSTALL</h1>
+	<h1>kimsQ-Rb Install</h1>
 
 </div>
 <div id="container">
@@ -43,6 +65,23 @@ Language :
 	<div id="step1">
 
 		<h2><?php echo $lang['install']['licence']?></h2>
+
+		<?php if ($g['mobile']):?>
+		<div class="langselect">
+		Language : 
+		<select name="sitelang" onchange="location.href='./?sitelang='+this.value;">
+		<?php $sitelang = $sitelang ? $sitelang : $g['sys_lang']?>
+		<?php include_once $g['path_var'].'language/'.$sitelang.'/_install.lang.php'?>
+		<?php $dirs = opendir($g['path_var'].'language/')?>
+		<?php while(false !== ($tpl = readdir($dirs))):?>
+		<?php if($tpl=='.'||$tpl=='..')continue?>
+		<option value="<?php echo $tpl?>"<?php if($sitelang==$tpl):?> selected="selected"<?php endif?> title="<?php echo $tpl?>">ㆍ<?php echo implode('',file($g['path_var'].'language/'.$tpl.'/name.txt'))?></option>
+		<?php endwhile?>
+		<?php closedir($dirs)?>
+		</select>
+		</div>
+		<?php endif?>
+
 		<div class="guide">
 			<?php echo $lang['install']['msg1_1']?><br />
 			<?php echo $lang['install']['msg1_2']?>
@@ -73,27 +112,27 @@ Language :
 		<table>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_host']?></td>
-			<td class="td2"><input type="text" name="dbhost" value="localhost" class="input" /></td>
+			<td class="td2"><input type="text" name="dbhost" value="<?php echo $_SESSION['_live_dbhost']?$_SESSION['_live_dbhost']:'localhost'?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_name']?></td>
-			<td class="td2"><input type="text" name="dbname" value="" class="input" /></td>
+			<td class="td2"><input type="text" name="dbname" value="<?php echo $_SESSION['_live_dbname']?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_user']?></td>
-			<td class="td2"><input type="text" name="dbuser" value="" class="input" /></td>
+			<td class="td2"><input type="text" name="dbuser" value="<?php echo $_SESSION['_live_dbuser']?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_pw']?></td>
-			<td class="td2"><input type="password" name="dbpass" value="" class="input" /></td>
+			<td class="td2"><input type="password" name="dbpass" value="<?php echo $_SESSION['_live_dbpass']?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_port']?></td>
-			<td class="td2"><input type="text" name="dbport" value="3306" class="input" /></td>
+			<td class="td2"><input type="text" name="dbport" value="<?php echo $_SESSION['_live_dbport']?$_SESSION['_live_dbport']:'3306'?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_tbl']?></td>
-			<td class="td2"><input type="text" name="dbhead" value="rb" class="input" /></td>
+			<td class="td2"><input type="text" name="dbhead" value="<?php echo $_SESSION['_live_dbhead']?$_SESSION['_live_dbhead']:'rb'?>" class="input" /></td>
 			</tr>
 			<tr>
 			<td class="td1"><?php echo $lang['install']['db_engine']?></td>
@@ -102,7 +141,7 @@ Language :
 				<option value="MyISAM">MyISAM</option>
 				<option value="InnoDB">InnoDB</option>
 				</select>
-				(<?php echo $lang['install']['db_engines']?>)
+				<span>(<?php echo $lang['install']['db_engines']?>)</span>
 			</td>
 			</tr>
 		</table>
@@ -122,24 +161,24 @@ Language :
 		<div class="stepbody">
 		<table>
 			<tr>
-			<td class="td1"><?php echo $lang['install']['user_name']?></td>
-			<td class="td2"><input type="text" name="name" value="" class="input" /></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['user_name']?></td>
+			<td class="td2 _xd2"><input type="text" name="name" value="<?php echo $_SESSION['_live_name']?>" class="input" /></td>
 			</tr>
 			<tr>
-			<td class="td1"><?php echo $lang['install']['user_id']?></td>
-			<td class="td2"><input type="text" name="id" value="" class="input" /> <?php echo $lang['install']['user_idrule']?></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['user_id']?></td>
+			<td class="td2 _xd2"><input type="text" name="id" value="<?php echo $_SESSION['_live_id']?>" class="input" /> <span><?php echo $lang['install']['user_idrule']?></span></td>
 			</tr>
 			<tr>
-			<td class="td1"><?php echo $lang['install']['user_pw1']?></td>
-			<td class="td2"><input type="password" name="pw0" value="" class="input" /></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['user_pw1']?></td>
+			<td class="td2 _xd2"><input type="password" name="pw0" value="<?php echo $_SESSION['_live_pw']?>" class="input" /></td>
 			</tr>
 			<tr>
-			<td class="td1"><?php echo $lang['install']['user_pw2']?></td>
-			<td class="td2"><input type="password" name="pw1" value="" class="input" /></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['user_pw2']?></td>
+			<td class="td2 _xd2"><input type="password" name="pw1" value="<?php echo $_SESSION['_live_pw']?>" class="input" /></td>
 			</tr>
 			<tr>
-			<td class="td1"><?php echo $lang['install']['user_email']?></td>
-			<td class="td2"><input type="text" name="email" value="" class="input" /></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['user_email']?></td>
+			<td class="td2 _xd2"><input type="text" name="email" value="<?php echo $_SESSION['_live_email']?>" class="input" /></td>
 			</tr>
 		</table>
 		<div class="guide1">
@@ -165,18 +204,21 @@ Language :
 		<table>
 
 			<tr>
-			<td class="td1"><?php echo $lang['install']['site_name']?></td>
-			<td class="td2"><input type="text" name="sitename" value="" class="input" /></td>
+			<td class="td1 _xd1"><?php echo $lang['install']['site_name']?></td>
+			<td class="td2 _xd2"><input type="text" name="sitename" value="<?php echo $_SESSION['_live_sitename']?>" class="input" /></td>
 			</tr>
 
 			<tr>
-			<td class="td1"><?php echo $lang['install']['site_layout']?></td>
-			<td class="td2 shift">
-				<input type="radio" name="layout" value="classic1/main.php" checked="checked" /><?php echo $lang['install']['site_type1']?><br />
-				<input type="radio" name="layout" value="classic2/main.php" /><?php echo $lang['install']['site_type2']?><br />
-				<input type="radio" name="layout" value="classic3/main.php" /><?php echo $lang['install']['site_type3']?><br />
-				<input type="radio" name="layout" value="gallery1/main.php" /><?php echo $lang['install']['site_type4']?><br />
-				<input type="radio" name="layout" value="gallery2/main.php" /><?php echo $lang['install']['site_type5']?><br />
+			<td class="td1 _xd1"><?php echo $lang['install']['site_package']?></td>
+			<td class="td2 shift _xd3">
+				<input type="radio" checked="checked" /><?php echo $lang['install']['site_pack1']?><br />
+				<i><input type="radio" disabled="disabled" /><?php echo $lang['install']['site_pack2']?></i><br />
+				<span><input type="radio" disabled="disabled" /><?php echo $lang['install']['site_pack3']?><br /></span>
+				<span><input type="radio" disabled="disabled" /><?php echo $lang['install']['site_pack4']?><br /></span>
+				<i><input type="radio" disabled="disabled" /><?php echo $lang['install']['site_pack5']?></i><br />
+				<i><input type="radio" disabled="disabled" /><?php echo $lang['install']['site_pack6']?></i><br />
+				<div style="padding-top:15px;line-height:150%;"><?php echo $lang['install']['site_packm']?><br />
+				</div>
 			</td>
 			</tr>
 
@@ -190,7 +232,7 @@ Language :
 	</div>
 
 
-
+	<input type="hidden" name="layout" value="default/main.php" />
 	</form>
 
 
@@ -203,6 +245,7 @@ Language :
 
 </div>
 
+</div>
 
 
 

@@ -329,7 +329,7 @@ function saveCheck(f)
 	}
 	if (!chkFnameValue(f.id.value))
 	{
-		alert('사이트코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+		alert('사이트코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 		f.id.focus();
 		return false;
 	}
@@ -560,7 +560,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<?php endif?>
 
 				<div id="guide_pagecode" class="guide hide">
-				페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_ 조합으로 등록할 수 있습니다.<br />
+				페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 				보기) 페이지호출주소 : <?php echo RW('mod=<span class="b">페이지코드</span>')?><br />
 				보기) 마이페이지호출 : <?php echo RW('mod=<span class="b">mypage</span>')?><br />
 				</div>
@@ -847,7 +847,7 @@ function saveCheck(f)
 
 	if (!chkFnameValue(f.id.value))
 	{
-		alert('페이지코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+		alert('페이지코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 		f.id.focus();
 		return false;
 	}
@@ -1062,7 +1062,7 @@ if ($is_regismode)
 					<input type="text" name="id" value="<?php echo $CINFO['id']?>" maxlength="20" class="input sname1" /> <span>(고유키=<?php echo sprintf('%05d',$CINFO['uid'])?>)</span>
 					<div id="guide_menucode" class="guide hide">
 					이 메뉴를 잘 표현할 수 있는 단어로 입력해 주세요.<br />
-					영문대소문자/숫자/_ 조합으로 등록할 수 있습니다.<br />
+					영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 메뉴호출주소 : <?php echo RW('c=<span class="b">메뉴코드</span>')?><br />
 					같은 사이트내에서 메뉴코드는 중복될 수 없습니다.<br />
 					</div>
@@ -1462,7 +1462,7 @@ function saveCheck(f)
 		}
 		if (!chkFnameValue(f.id.value))
 		{
-			alert('메뉴코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+			alert('메뉴코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 			f.id.focus();
 			return false;
 		}

@@ -119,7 +119,7 @@ if ($uid)
 					<?php endif?>
 	
 					<div id="guide_pagecode" class="guide hide">
-					페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_ 조합으로 등록할 수 있습니다.<br />
+					페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 페이지호출주소 : <?php echo $g['r']?>/?mod=<span class="b">페이지코드</span><br />
 					보기) 마이페이지호출 : <?php echo $g['r']?>/?mod=<span class="b">mypage</span><br />
 					</div>
@@ -402,7 +402,7 @@ function saveCheck(f)
 
 	if (!chkFnameValue(f.id.value))
 	{
-		alert('페이지코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+		alert('페이지코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 		f.id.focus();
 		return false;
 	}

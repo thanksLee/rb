@@ -26,6 +26,8 @@ $orderby= $orderby ? $orderby : 'desc';
 $recnum	= $recnum && $recnum < 200 ? $recnum : 20;
 
 $accountQue = $account ? 'site='.$account.' and ':'';
+//사이트선택적용
+//$accountQue = $account ? 'a.site='.$account.' and ':'';
 $_WHERE = $accountQue.'d_regis > '.$year1.sprintf('%02d',$month1).sprintf('%02d',$day1).'000000 and d_regis < '.$year2.sprintf('%02d',$month2).sprintf('%02d',$day2).'240000';
 if ($auth) $_WHERE .= ' and auth='.$auth;
 if ($sosok) $_WHERE .= ' and sosok='.$sosok;
@@ -47,6 +49,10 @@ if ($addr0)
 	$_WHERE .= $addr0!='NULL'?" and addr0='".$addr0."'":" and addr0=''";
 }
 if ($where && $keyw) $_WHERE .= " and ".$where." like '%".trim($keyw)."%'";
+
+//사이트선택적용
+//$RCD = getDbArray($table['s_mbrdata'].' AS a left join '.$table['s_mbrid'].' AS b on memberuid=uid',$_WHERE,'a.*,b.uid,b.id,b.pw',$sort,$orderby,$recnum,$p);
+//$NUM = getDbRows($table['s_mbrdata'].' AS a left join '.$table['s_mbrid'].' AS b on memberuid=uid',$_WHERE);
 
 $RCD = getDbArray($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE,'*',$sort,$orderby,$recnum,$p);
 $NUM = getDbRows($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE);

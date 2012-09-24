@@ -1,6 +1,9 @@
 <?php
 if(!defined('__KIMS__')) exit;
 
+if ($d['admin']['ssl_type'] == 1)
+if($_SERVER['HTTPS'] != 'on') getLink($g['ssl_root'].'/?'.$_SERVER['QUERY_STRING'],'','','');
+
 $DB_CONNECT = isConnectDb($DB);
 $d['magent']= file($g['path_var'].'mobile.agent.txt');
 $g['mobile']= isMobileConnect($_SERVER['HTTP_USER_AGENT']);
@@ -48,10 +51,8 @@ $g['img_core'] = $g['s'].'/_core/image';
 $g['sys_selectlang']=$_HS['lang'];
 $g['location']	 = '<a href="'.RW(0).'">HOME</a>';
 $g['browtitle']	 = $_HS['title'];
-$g['meta_sbj']	 = $_HS['title'];
-$g['meta_tit']	 = '';
-$g['meta_key']	 = '';
-$g['meta_des']	 = '';
+$g['meta_sbj']   = $_HS['title'];
+$g['meta_key']   = $_HS['title'];
 $g['sys_module'] = 'home';
 $g['sys_action'] = $a && !$c ? true : false;
 $m = $m ? $m : $g['sys_module'];
@@ -62,6 +63,7 @@ if (!$g['sys_action'] && !$system)
 {
 	if ($c)
 	{
+		$c=substr($c,-1)=='/'?str_replace('/','',$c):$c;
 		$_CA = explode('/',$c);
 		$_tmp['count'] = count($_CA);
 		$_tmp['id'] = $_CA[$_tmp['count']-1];
@@ -75,6 +77,7 @@ if (!$g['sys_action'] && !$system)
 			$_tmp['split_id'].= ($_i?'/':'').$_tmp['location']['id'];
 			$_HM['uidpath'] = $_tmp['location']['uid'];
 			$g['location']   .= ' &gt; <a href="'.RW('c='.$_tmp['split_id']).'">'.$_tmp['location']['name'].'</a>';
+			$g['meta_key']   .= ','.$_tmp['location']['name'];
 		}
 		$g['location'] .= ' &gt; <a href="'.RW('c='.$c).'">'.$_HM['name'].'</a>';
 		if(!$_HS['titlefix']) $g['browtitle'] = $_HS['title'].' - '.$_HM['name'];
@@ -121,6 +124,49 @@ if (!$g['sys_action'] && !$system)
 				}
 				if ($_m == $g['sys_module']) $_mod = '';
 				if ($m  != $g['sys_module']) $mod = $_mod;
+			}
+		}
+	}
+
+	if ($d['admin']['ssl_type'] == 2)
+	{
+		if ($_HP['uid'])
+		{
+			if (strpos(',,'.$d['admin']['ssl_page'].',',','.$_HP['id'].','))
+			{
+				if($_SERVER['HTTPS'] != 'on') getLink($g['ssl_root'].'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+			else {
+				if($_SERVER['HTTPS'] == 'on') getLink(str_replace(':'.$d['admin']['ssl_port'],'',str_replace('https://','http://',$g['url_root'])).'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+		}
+		else if ($_HM['uid'])
+		{
+			if (strpos(',,'.$d['admin']['ssl_menu'].',',','.$_HM['id'].','))
+			{
+				if($_SERVER['HTTPS'] != 'on') getLink($g['ssl_root'].'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+			else {
+				if($_SERVER['HTTPS'] == 'on') getLink(str_replace(':'.$d['admin']['ssl_port'],'',str_replace('https://','http://',$g['url_root'])).'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+		}
+		else if ($m=='bbs'&&$bid)
+		{
+			if (strpos(',,'.$d['admin']['ssl_bbs'].',',','.$bid.','))
+			{
+				if($_SERVER['HTTPS'] != 'on') getLink($g['ssl_root'].'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+			else {
+				if($_SERVER['HTTPS'] == 'on') getLink(str_replace(':'.$d['admin']['ssl_port'],'',str_replace('https://','http://',$g['url_root'])).'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+		}
+		else {
+			if (strpos(',,'.$d['admin']['ssl_module'].',',','.$m.','))
+			{
+				if($_SERVER['HTTPS'] != 'on') getLink($g['ssl_root'].'/?'.$_SERVER['QUERY_STRING'],'','','');
+			}
+			else {
+				if($_SERVER['HTTPS'] == 'on') getLink(str_replace(':'.$d['admin']['ssl_port'],'',str_replace('https://','http://',$g['url_root'])).'/?'.$_SERVER['QUERY_STRING'],'','','');
 			}
 		}
 	}

@@ -31,4 +31,5 @@ $table['s_oneline']	= $DB['head'].'_s_oneline';
 $table['s_numinfo']	= $DB['head'].'_s_numinfo';
 $table['s_tag']		= $DB['head'].'_s_tag';
 $table['s_trackback']	= $DB['head'].'_s_trackback';
+$table['s_seo']		= $DB['head'].'_s_seo';
 ?>

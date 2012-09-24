@@ -406,7 +406,7 @@ function saveCheck(f)
 	}
 	if (!chkFnameValue(f.id.value))
 	{
-		alert('사이트코드는 영문대소문자,숫자,_만 사용할 수 있습니다.      ');
+		alert('사이트코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
 		f.id.focus();
 		return false;
 	}

@@ -1,7 +1,7 @@
 
 <div id="configbox">
 
-	<form name="sendForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return sendCheck(this);">
+	<form name="sendForm" action="<?php echo $g['s']?>/" method="post" onsubmit="return sendCheck(this);">
 	<input type="hidden" name="r" value="<?php echo $r?>" />
 	<input type="hidden" name="m" value="<?php echo $module?>" />
 	<input type="hidden" name="a" value="email_check" />
@@ -57,11 +57,19 @@
 	<br />
 
 
-	<form name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+	<form name="procForm" action="<?php echo $g['s']?>/" method="post" onsubmit="return saveCheck(this);">
 	<input type="hidden" name="r" value="<?php echo $r?>" />
 	<input type="hidden" name="m" value="<?php echo $module?>" />
 	<input type="hidden" name="a" value="config" />
 	<input type="hidden" name="version" value="<?php echo $d['admin']['version']?>" />
+
+	<input type="hidden" name="ssl_type" value="<?php echo $d['admin']['ssl_type']?>" />
+	<input type="hidden" name="ssl_port" value="<?php echo $d['admin']['ssl_port']?>" />
+	<input type="hidden" name="ssl_menu" value="<?php echo $d['admin']['ssl_menu']?>" />
+	<input type="hidden" name="ssl_page" value="<?php echo $d['admin']['ssl_page']?>" />
+	<input type="hidden" name="ssl_bbs" value="<?php echo $d['admin']['ssl_bbs']?>" />
+	<input type="hidden" name="ssl_module" value="<?php echo $d['admin']['ssl_module']?>" />
+	<input type="hidden" name="http_port" value="<?php echo $d['admin']['http_port']?>" />
 
 	<div class="title">
 		시스템 테마
@@ -142,6 +150,22 @@
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td class="td1">CSS/JS 캐시</td>
+			<td class="td2">
+				<select name="cache_flag" class="select1">
+				<option value=""<?php if($d['admin']['cache_flag']==''):?> selected="selected"<?php endif?>>ㆍ브라우져 설정을 따름</option>
+				<option value="totime"<?php if($d['admin']['cache_flag']=='totime'):?> selected="selected"<?php endif?>>ㆍ접속시마다 갱신</option>
+				<option value="nhour"<?php if($d['admin']['cache_flag']=='nhour'):?> selected="selected"<?php endif?>>ㆍ한시간 단위로 갱신</option>
+				<option value="today"<?php if($d['admin']['cache_flag']=='today'):?> selected="selected"<?php endif?>>ㆍ하루 단위로 갱신</option>
+				<option value="month"<?php if($d['admin']['cache_flag']=='month'):?> selected="selected"<?php endif?>>ㆍ한달 단위로 갱신</option>
+				<option value="year"<?php if($d['admin']['cache_flag']=='year'):?> selected="selected"<?php endif?>>ㆍ일년 단위로 갱신</option>
+				</select>
+				<div class="guide">
+				CSS 나 자바스크립트 파일을 수정했을 경우에는 일정기간 접속시마다 갱신되도록 설정해 주세요.
+				</div>
+			</td>
+		</tr>
 	</table>
 
 	<div class="submitbox">
@@ -174,6 +198,7 @@ function sendCheck(f)
 	if (confirm('정말로 실행하시겠습니까?         '))
 	{
 		sendFlag = true;
+		getIframeForAction(f);
 		return true;
 	}
 }
@@ -191,6 +216,7 @@ function saveCheck(f)
 		f.thememobile.focus();
 		return false;
 	}
+	getIframeForAction(f);
 	return confirm('정말로 실행하시겠습니까?         ');
 }
 //]]>

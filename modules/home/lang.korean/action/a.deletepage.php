@@ -6,6 +6,7 @@ checkAdmin(0);
 $R = getUidData($table['s_page'],$uid);
 
 getDbDelete($table['s_page'],'uid='.$R['uid']);
+getDbDelete($table['s_seo'],'rel=2 and parent='.$R['uid']);
 
 unlink($g['path_page'].$R['id'].'.php');
 unlink($g['path_page'].$R['id'].'.widget.php');

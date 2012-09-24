@@ -124,7 +124,7 @@ site		INT				DEFAULT '0'		NOT NULL,
 isson		TINYINT			DEFAULT '0'		NOT NULL,
 parent		INT				DEFAULT '0'		NOT NULL,
 depth		TINYINT			DEFAULT '0'		NOT NULL,
-id			VARCHAR(20)		DEFAULT ''		NOT NULL,
+id			VARCHAR(50)		DEFAULT ''		NOT NULL,
 menutype	TINYINT			DEFAULT '0'		NOT NULL,
 mobile		TINYINT			DEFAULT '0'		NOT NULL,
 hidden		TINYINT			DEFAULT '0'		NOT NULL,
@@ -164,7 +164,7 @@ uid			INT				PRIMARY KEY		NOT NULL AUTO_INCREMENT,
 pagetype	TINYINT			DEFAULT '0'		NOT NULL,
 ismain		TINYINT			DEFAULT '0'		NOT NULL,
 mobile		TINYINT			DEFAULT '0'		NOT NULL,
-id			VARCHAR(20)		DEFAULT ''		NOT NULL,
+id			VARCHAR(50)		DEFAULT ''		NOT NULL,
 category	VARCHAR(50)		DEFAULT ''		NOT NULL,
 name		VARCHAR(200)	DEFAULT ''		NOT NULL,
 perm_g		VARCHAR(200)	DEFAULT ''		NOT NULL,
@@ -810,5 +810,27 @@ KEY sm(sm),
 KEY sy(sy)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
 db_query($_tmp, $DB_CONNECT);
 db_query("OPTIMIZE TABLE ".$table['s_mbrsns'],$DB_CONNECT); 
+}
+//SEO테이블
+$_tmp = db_query( "select count(*) from ".$table['s_seo'], $DB_CONNECT );
+if ( !$_tmp ) {
+$_tmp = ("
+
+CREATE TABLE ".$table['s_seo']." (
+uid			INT				PRIMARY KEY		NOT NULL AUTO_INCREMENT,
+rel			TINYINT			DEFAULT '0'		NOT NULL,
+parent		INT				DEFAULT '0'		NOT NULL,
+subject		VARCHAR(200)	DEFAULT ''		NOT NULL,
+title		VARCHAR(200)	DEFAULT ''		NOT NULL,
+keywords	VARCHAR(200)	DEFAULT ''		NOT NULL,
+description	VARCHAR(200)	DEFAULT ''		NOT NULL,
+classification	VARCHAR(200)	DEFAULT ''		NOT NULL,
+replyto		VARCHAR(50)		DEFAULT ''		NOT NULL,
+language	CHAR(2)			DEFAULT ''		NOT NULL,
+build		VARCHAR(14)		DEFAULT ''		NOT NULL,
+KEY rel(rel),
+KEY parent(parent)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
+db_query($_tmp, $DB_CONNECT);
+db_query("OPTIMIZE TABLE ".$table['s_seo'],$DB_CONNECT); 
 }
 ?>

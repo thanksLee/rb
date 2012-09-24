@@ -60,7 +60,7 @@
 		<tr>
 		<td class="td1">제목</td>
 		<td class="td2">
-			<input type="text" name="subject" value="<?php echo htmlspecialchars($R['subject'])?>" class="input subject" />
+			<input type="text" name="subject" value="<?php echo $R['subject']?>" class="input subject" />
 			<span class="check">
 			<?php if($my['admin']):?>
 			<input type="checkbox" name="notice" value="1"<?php if($R['notice']):?> checked="checked"<?php endif?> />공지글

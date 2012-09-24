@@ -12,14 +12,14 @@ function goHref(url)
 function chkIdValue(id)
 {
 	if (id == '') return false;
-	if (!getTypeCheck(id,"abcdefghijklmnopqrstuvwxyz1234567890_")) return false;
+	if (!getTypeCheck(id,"abcdefghijklmnopqrstuvwxyz1234567890_-")) return false;
 	return true;
 }
 //파일명형식체크
 function chkFnameValue(file)
 {
 	if (file == '') return false;
-	if (!getTypeCheck(file,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_")) return false;
+	if (!getTypeCheck(file,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-")) return false;
 	return true;
 }
 //이메일체크
@@ -33,7 +33,7 @@ function chkEmailAddr(email)
 function OpenWindow(url) 
 {
 	setCookie('TmpCode','',1);
-	window.open(url,'','left=0,top=0,width=100px,height=100px,statusbar=no,scrollbars=no,toolbar=no');
+	window.open(url,'','width=100px,height=100px,status=no,scrollbars=no,toolbar=no');
 }
 //이미지보기
 function imgOrignWin(url)
@@ -550,4 +550,44 @@ function hubTabLoad(type,layer,option)
 {
 	var result = getHttprequest(rooturl+'/?r='+raccount+'&system=layer.member1&iframe=Y&type='+type+'&option='+option);
 	getId(layer).innerHTML=getAjaxFilterString(result,'RESULT');
+}
+function iPopup(url,iframe,w,h,scroll,st) 
+{
+	var ow = (parseInt(document.body.clientWidth/2) - parseInt(w/2)) + 'px';
+	var nw = window.open(url+(iframe?'&iframe='+iframe:'')+(st?'&_style_='+escape(st):''),'_iPopup_','left='+ow+'px,top=100px,width='+w+'px,height='+h+'px,status=yes,scrollbars='+scroll+',toolbar=no');
+}
+function copyToClipboard(str) 
+{  
+	if(window.clipboardData)
+	{  
+		window.clipboardData.setData('text', str);  
+		alert('복사되었습니다.     ');
+	}  
+	else window.prompt("Ctrl+C 를 누른다음 Enter를 치시면 복사됩니다.", str); 
+}
+function crLayer(title,msg,flag,w,h,t)
+{
+	scrollTo(0,0);
+	var ow = (parseInt(document.body.clientWidth/2) - parseInt(w/2)) + 'px';
+	var html = '';
+	html += '<div id="_modal_bg_" style="position:absolute;z-index:10000;top:0;left:0;width:100%;height:100%;background:#000000;filter:alpha(opacity=80);opacity:0.8;"></div>';
+	html += '<div id="_modal_on_" style="position:absolute;z-index:10001;top:'+t+';left:'+ow+';width:'+w+'px;'+(h?'height:'+h+'px;':'')+'background:#ffffff;border:#333333 solid 2px;">';
+	html += '	<div style="background:#F4F4F4;font-weight:bold;padding:10px 0 10px 20px;">'+title;
+	if(flag=='wait') html += ' <img src="'+rooturl+'/_core/image/loading/white_small.gif" alt="" style="float:right;position:relative;left:-13px;" />';
+	else html += ' <img src="'+rooturl+'/_core/image/_public/ico_x_01.gif" alt="" onclick="crLayerClose();" style="float:right;position:relative;left:-10px;cursor:pointer;" />';
+	html += '</div>';
+	html += '	<div style="'+(flag=='iframe'?'padding:0;':'padding:20px 20px 20px 20px;line-height:140%;color:#555555;')+'">';
+	html += flag=='iframe'?'<iframe src="'+msg+'" width="100%" frameborder="0" style="border-top:#dfdfdf solid 1px;'+(h?'height:'+(h-35)+'px;':'')+'"></iframe>':msg;
+	if(flag=='close') html += '<div style="border-top:#dfdfdf solid 1px;padding-top:15px;margin-top:15px;"><a href="#." onclick="crLayerClose();" class="btnGray01 noIcon txtCenter" style="width:80px;margin-left:'+(parseInt(w/2)-65)+'px;cursor:pointer;"><i><s> 확인 </s></i></a></div>';
+	html += '	</div>';
+	html += '</div>';
+
+	getId('_overLayer_').innerHTML = html;
+	getId('_overLayer_').className = '';
+	document.body.style.overflow = 'hidden';
+}
+function crLayerClose()
+{
+	getId('_overLayer_').className = 'hide';
+	document.body.style.overflow = 'auto';
 }

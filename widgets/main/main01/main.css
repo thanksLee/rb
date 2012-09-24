@@ -5,7 +5,7 @@
 .widget_main01 .wleft .review01 h6 {border-bottom:#dfdfdf solid 1px;padding:0 0 9px 0;margin:0 0 15px 0;font-weight:bold;font-family:"gothic","dotum";font-size:13px;color:#384799;}
 .widget_main01 .wleft .review01 h6 a {color:#384799;}
 .widget_main01 .wleft .review01 ul {padding:0;margin:0;height:140px;}
-.widget_main01 .wleft .review01 li {list-style-type:none;padding:0 0 10px 0;margin:0;line-height:160%;height:12px;overflow:hidden;}
+.widget_main01 .wleft .review01 li {list-style-type:none;padding:0 0 10px 0;margin:0 0 1px 0;line-height:160%;height:11px;overflow:hidden;}
 .widget_main01 .wleft .review01 li a {color:#111;}
 .widget_main01 .wleft .review01 li a:hover {text-decoration:underline;}
 .widget_main01 .wleft .review01 .photo {float:left;width:115px;height:135px;margin-right:15px;margin-top:5px;}

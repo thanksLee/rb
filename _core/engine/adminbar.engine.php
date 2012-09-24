@@ -17,6 +17,14 @@
 <?php else:?>
 <li><?php echo $lang['top']['edit']?></li>
 <?php endif?>
+<?php if($d['layout']['useadminbar']):?>
+<li class="hand" onclick="LayoutConfigCheck(event);">
+<span class="editpage"><?php echo $lang['top']['config']?></span> 
+<img src="<?php echo $g['img_core']?>/_public/ico_under_01.gif" alt="" style="position:relative;top:-5px;left:3px;" />
+</li>
+<?php endif?>
+
+
 <li>
 <a title="Editor" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y');">E</a>ㆍ<a title="Widget" class="hand b" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.widget&iframe=Y&isWcode=Y');">W</a>ㆍ<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;a=clear_wcache" title="Clear Widget Cache" class="hand b" onclick="return hrefCheck(this,true,'');">C</a>
 </li>
@@ -36,8 +44,23 @@
 </div>
 </div>
 
+<?php if($d['layout']['useadminbar']):?>
+<div id="_configBox_" class="amenu">
+<div class="amenubox adminbox">
+<ol>
+<?php $d['layout']['_a1_'] = explode('|',$d['layout']['useadminbar'])?>
+<?php $d['layout']['_a2_'] = explode(',',$d['layout']['_a1_'][1])?>
+<li class="tx"><?php echo $d['layout']['_a1_'][0]?></li>
+<?php foreach($d['layout']['_a2_'] as $_key):$_val=explode('=',$_key)?>
+<li>ㆍ<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;_themeConfig=<?php echo $_val[0]?>&amp;prelayout=<?php echo $d['layout']['dir']?>/zone"><?php echo $_val[1]?></a></li>
+<?php endforeach?>
+</ol>
+</div>
+</div>
+<?php endif?>
+
 <div id="_amenuBox_" class="amenu">
-<div class="amenubox">
+<div class="amenubox ">
 <ol>
 <li class="tx"><?php echo $lang['top']['shorttitle']?></li>
 <li>ㆍ<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=bbs"><?php echo $lang['top']['shortboard']?></a></li>
@@ -73,12 +96,14 @@ function toolCheck0()
 
 	if(getId('_adminBox_').style.display == 'block')
 	{
+		getId('adminControl').children[0].style.overflow = 'hidden';
 		getId('_adminBox_').style.display = 'none';
 		getId('_arr_icon_').src = rooturl+'/_core/image/_public/ico_under_01.gif';
 		getId('_arr_icon_').style.background = 'transparent';
 	}
 	else
 	{
+		getId('adminControl').children[0].style.overflow = 'visible';
 		getId('_adminBox_').style.display = 'block';
 		getId('_arr_icon_').src = rooturl+'/_core/image/_public/ico_under.gif';
 		getId('_arr_icon_').style.background = '#ffffff';
@@ -97,12 +122,14 @@ function toolCheck1(obj)
 	{
 		obj.src=obj.src.replace('ico_admintool_on.gif','ico_admintool.gif');
 		obj.style.background = 'transparent';
+		getId('adminControl').children[0].style.overflow = 'hidden';
 		getId('_amenuBox_').style.display = 'none';
 	}
 	else
 	{
 		obj.src=obj.src.replace('ico_admintool.gif','ico_admintool_on.gif');
 		obj.style.background = '#ffffff';
+		getId('adminControl').children[0].style.overflow = 'visible';
 		getId('_amenuBox_').style.display = 'block';
 	}
 	if(getId('_adminBox_').style.display == 'block')
@@ -112,6 +139,25 @@ function toolCheck1(obj)
 		getId('_arr_icon_').style.background = 'transparent';
 	}
 }
-document.body.style.backgroundPosition = 'left 30px';
+function LayoutConfigCheck(e)
+{
+	var xy = getEventBoxPos(e);
+	getId('_configBox_').style.left = (xy.x-77) + 'px';
+	if(getId('_configBox_').style.display == 'block')
+	{
+		getId('adminControl').children[0].style.overflow = 'hidden';
+		getId('_configBox_').style.display = 'none';
+	}
+	else
+	{
+		getId('adminControl').children[0].style.overflow = 'visible';
+		getId('_configBox_').style.display = 'block';
+	}
+	setTimeout("LayoutConfigClose();",10000);
+}
+function LayoutConfigClose()
+{
+	getId('_configBox_').style.display = 'none';
+}
 //]]>
 </script>

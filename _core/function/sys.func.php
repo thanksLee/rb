@@ -62,6 +62,7 @@ function getVDate($t)
 	$date['year']	= substr($date['PROC'],0,4);
 	$date['month']	= substr($date['PROC'],0,6);
 	$date['today']  = substr($date['PROC'],0,8);
+	$date['nhour']  = substr($date['PROC'],0,10);
 	$date['tohour'] = substr($date['PROC'],8,6);
 	$date['toweek'] = substr($date['PROC'],14,1);
 	return $date;

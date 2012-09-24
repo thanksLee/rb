@@ -418,7 +418,8 @@ if (!opener)
 }
 else {
 	document.title = '사진첨부';
-	top.resizeTo(750,660);
+	document.body.style.overflow = 'hidden';
+	top.resizeTo(755,(myagent=='ie'?615:645));
 }
 //]]>
 </script>

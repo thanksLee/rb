@@ -84,6 +84,22 @@ else
 			$d['page']['cctime'] = $g['path_page'].'menu/'.$_HM['mcode'].'.txt';
 			$d['page']['source'] = $g['main'];
 		}
+
+		$_SEO = getDbData($table['s_seo'],'rel=1 and parent='.$_HM['uid'],'*');
+		if ($_SEO['uid'])
+		{
+			$g['meta_tit'] = $_SEO['title'];
+			$g['meta_sbj'] = $_SEO['subject'];
+			$g['meta_key'] = $_SEO['keywords'];
+			$g['meta_des'] = $_SEO['description'];
+			$g['meta_cla'] = $_SEO['classification'];
+			$g['meta_rep'] = $_SEO['replyto'];
+			$g['meta_lan'] = $_SEO['language'];
+			$g['meta_bui'] = $_SEO['build'];
+		}
+		else {
+			$g['meta_tit']   = $_HM['name'];
+		}
 	}
 
 	if ($_HP['uid'])
@@ -143,6 +159,23 @@ else
 				$g['location']   .= ' &gt; <a href="'.RW('c='.$_tmp['split_id']).'">'.$_tmp['location']['name'].'</a>';
 			}
 			$g['location'] .= ' &gt; <a href="'.RW('mod='.$_HP['id']).'">'.$_HP['name'].'</a>';
+		}
+
+		$_SEO = getDbData($table['s_seo'],'rel=2 and parent='.$_HP['uid'],'*');
+		if ($_SEO['uid'])
+		{
+			$g['meta_tit'] = $_SEO['title'];
+			$g['meta_sbj'] = $_SEO['subject'];
+			$g['meta_key'] = $_SEO['keywords'];
+			$g['meta_des'] = $_SEO['description'];
+			$g['meta_cla'] = $_SEO['classification'];
+			$g['meta_rep'] = $_SEO['replyto'];
+			$g['meta_lan'] = $_SEO['language'];
+			$g['meta_bui'] = $_SEO['build'];
+		}
+		else {
+			$g['meta_tit']   = $_HP['name'];
+			$g['meta_key']   = $_HP['name'].','.$_HP['name'];
 		}
 	}
 	

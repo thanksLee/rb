@@ -89,7 +89,7 @@ var dragsort = ToolMan.dragsort();
 		</div>
 
 		<div class="notice">
-			<div class="icon" style="background:url('<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>') center center no-repeat;"></div>
+			<div class="icon"><img src="<?php echo getThumbImg($g['path_module'].$R['id'].'/icon')?>" width="60" height="60" alt="" /></div>
 			<div class="ment">
 			<div><?php echo $R['name']?><span>(<?php echo $R['id']?>)</span></div>
 			선택된 모듈에 대한 등록정보입니다.<br />

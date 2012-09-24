@@ -18,7 +18,7 @@ if ($remote == 'Y')
 		if (is_file($folder.$insfolder.'/main.php'))
 		{
 			unlink($saveFile);
-			getLink('','','이미 동일한 아이디('.basename($insfolder).')의 모듈이 존재합니다.','-2');
+			getLink('','','이미 동일한 아이디('.basename($insfolder).')의 모듈이 존재합니다.','');
 		}
 		require $g['path_core'].'opensrc/unzip/ArchiveExtractor.class.php';
 		require $g['path_core'].'function/dir.func.php';
@@ -53,16 +53,23 @@ if ($remote == 'Y')
 		
 		if ($isModule)
 		{
-			getLink('','','이미 동일한 아이디('.$isModule.')의 모듈이 존재합니다.','-2');
+			getLink('','','이미 동일한 아이디('.$isModule.')의 모듈이 존재합니다.','');
 		}
 		if (!$isUpload)
 		{
-			getLink('','','패키지규격에 맞지 않는 파일입니다','-2');		
+			getLink('','','패키지규격에 맞지 않는 파일입니다','');		
 		}
 
-		getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=pack&type=module','parent.','모듈설치 대기리스트에 등록되었습니다.','');
+/*
+		$insFile = $g['dir_module'].'var/install/'.$uid.'.txt';
+		$fp = fopen($insFile,'w');
+		fwrite($fp,$date['totime']);
+		fclose($fp);
+		@chmod($insFile);
+*/
+		getLink('','','모듈설치 대기리스트에 등록되었습니다.','');
 	}
-	getLink('','','','-2');
+	getLink('','','','');
 }
 else {
 

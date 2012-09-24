@@ -25,10 +25,16 @@ if($uid)
 			if($B['imgfoot']) $g['add_footer_img'] = $g['url_module'].'/var/files/'.$B['imgfoot'];
 		}
 		if($R['mbruid']) $g['member'] = getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*');
-		if(!$_HS['titlefix']) $g['browtitle'] = $_HS['title'].' - '.strip_tags($R['subject']);
-		$g['meta_tit']	= $R['subject'];
-		$g['meta_key']	= $R['tag'] ? $R['tag'] : $R['subject'];
-		$g['meta_des']	= getStrCut(str_replace('&nbsp;','',strip_tags($R['content'])),100,'');
+		if(!$_HS['titlefix']) $g['browtitle'] = $_HS['title'].' - '.getStripTags($R['subject']);
+		$g['meta_tit'] = $_HS['name'].' - '.$B['name'];
+		$g['meta_sbj'] = str_replace('"','\'',$R['subject']);
+		$g['meta_key'] = $R['tag'] ? $B['name'].','.$R['tag'] : $B['name'].','.str_replace('"','\'',$R['subject']);
+		$g['meta_des'] = getStrCut(getStripTags($R['content']),150,'');
+		$g['meta_cla'] = $R['category'];
+		$g['meta_rep'] = '';
+		$g['meta_lan'] = 'kr';
+		$g['meta_bui'] = getDateFormat($R['d_regis'],'Y.m.d');
+
 	}
 }
 else {
@@ -41,7 +47,24 @@ else {
 			getLink($g['s'].'/?r='.$r.'&_stop=Y','','존재하지 않는 게시판입니다.','');
 		}
 		include_once $g['dir_module'].'var/var.'.$B['id'].'.php';
-		$g['meta_sbj']	= $B['name'];
+
+		$_SEO = getDbData($table['s_seo'],'rel=3 and parent='.$B['uid'],'*');
+		if ($_SEO['uid'])
+		{
+			$g['meta_tit'] = $_SEO['title'];
+			$g['meta_sbj'] = $_SEO['subject'];
+			$g['meta_key'] = $_SEO['keywords'];
+			$g['meta_des'] = $_SEO['description'];
+			$g['meta_cla'] = $_SEO['classification'];
+			$g['meta_rep'] = $_SEO['replyto'];
+			$g['meta_lan'] = $_SEO['language'];
+			$g['meta_bui'] = $_SEO['build'];
+		}
+		else {
+			$g['meta_tit'] = $_HS['name'].' - '.$B['name'];
+			$g['meta_sbj'] = $B['name'];
+			$g['meta_key'] = $B['name'];
+		}
 		if(!$_HS['titlefix']&&!$_HM['uid']) $g['browtitle'] = $_HS['title'].' - '.strip_tags($B['name']);
 	}
 	else {

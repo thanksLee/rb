@@ -14,6 +14,7 @@ if ($subQue)
 	while($R=db_fetch_array($DAT))
 	{
 		getDbDelete($table['s_menu'],'uid='.$R['uid']);
+		getDbDelete($table['s_seo'],'rel=1 and parent='.$R['uid']);
 
 		$_xfile = $g['path_page'].'menu/'.sprintf('%05d',$R['uid']);
 
