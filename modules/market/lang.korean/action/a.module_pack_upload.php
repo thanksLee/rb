@@ -60,14 +60,7 @@ if ($remote == 'Y')
 			getLink('','','패키지규격에 맞지 않는 파일입니다','');		
 		}
 
-/*
-		$insFile = $g['dir_module'].'var/install/'.$uid.'.txt';
-		$fp = fopen($insFile,'w');
-		fwrite($fp,$date['totime']);
-		fclose($fp);
-		@chmod($insFile);
-*/
-		getLink('','','모듈설치 대기리스트에 등록되었습니다.','');
+		getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=pack&type=module','parent.','모듈설치 대기리스트에 등록되었습니다.','');
 	}
 	getLink('','','','');
 }

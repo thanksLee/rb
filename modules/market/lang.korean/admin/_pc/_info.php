@@ -41,14 +41,14 @@
 		<td class="td1">버젼</td>
 		<td>:</td>
 		<td class="td2">
-			1.0
+			1.2
 		</td>
 	</tr>
 	<tr>
 		<td class="td1">최근업데이트</td>
 		<td>:</td>
 		<td class="td2">
-			2011.01.01
+			2012.11.09
 		</td>
 	</tr>
 	</table>

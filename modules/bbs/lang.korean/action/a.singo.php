@@ -128,6 +128,7 @@ if ($d['bbs']['singo_del'] && $d['bbs']['singo_del_num'] <= $R['singo'])
 		getDbUpdate($table[$m.'day'],'num=num-1',"date='".substr($R['d_regis'],0,8)."' and site=".$R['site'].' and bbs='.$R['bbs']);
 		getDbDelete($table[$m.'idx'],'gid='.$R['gid']);
 		getDbDelete($table[$m.'data'],'uid='.$R['uid']);
+		getDbDelete($table[$m.'xtra'],'parent='.$R['uid']);
 		getDbUpdate($table[$m.'list'],'num_r=num_r-1','uid='.$R['bbs']);
 		if ($cuid) getDbUpdate($table['s_menu'],"num='".getDbCnt($table[$m.'month'],'sum(num)','site='.$s.' and bbs='.$R['bbs'])."'",'uid='.$cuid);
 		getDbDelete($table['s_trackback'],"parent='".$R['bbsid'].$R['uid']."'");
@@ -150,10 +151,18 @@ if ($d['bbs']['singo_del'] && $d['bbs']['singo_del_num'] <= $R['singo'])
 }
 else {
 
-	if (!strstr($_SESSION['module_'.$m.'_singo'],'['.$R['uid'].']'))
+	$UT = getDbData($table[$m.'xtra'],'parent='.$R['uid'],'*');
+
+	if (!strpos('_'.$UT['singo'],'['.$my['uid'].']'))
 	{
 		getDbUpdate($table[$m.'data'],'singo=singo+1','uid='.$R['uid']);
-		$_SESSION['module_'.$m.'_singo'] .= '['.$R['uid'].']';
+		if (!$UT['parent'])
+		{
+			getDbInsert($table[$m.'xtra'],'parent,site,bbs,singo',"'".$R['uid']."','".$s."','".$R['bbs']."','[".$my['uid']."]'");
+		}
+		else {
+			getDbUpdate($table[$m.'xtra'],"singo='[".$my['uid']."]'",'parent='.$R['uid']);
+		}
 		getLink('','','신고처리 되었습니다.','');
 	}
 	else {

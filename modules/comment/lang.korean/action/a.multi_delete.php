@@ -63,6 +63,7 @@ foreach($comment_members as $val)
 	}
 
 	getDbDelete($table['s_comment'],'uid='.$R['uid']);
+	getDbDelete($table['s_xtralog'],"module='".$m."' and parent='".$R['uid']."'");
 	getDbUpdate($table['s_numinfo'],'comment=comment-1',"date='".substr($R['d_regis'],0,8)."' and site=".$R['site']);
 
 

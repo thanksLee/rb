@@ -145,6 +145,10 @@ else if ($mod == 'rss')
 	include_once $g['dir_module'].'lang.'.$_HS['lang'].'/mod/_rss.php';
 	exit;
 }
+else if ($mod == 'down')
+{
+	$g['main'] = $g['dir_module'].'lang.'.$_HS['lang'].'/mod/_downcheck.php';
+}
 
 $_HM['layout'] = $_HM['layout'] ? $_HM['layout'] : $d['bbs']['layout'];
 $d['bbs']['skin'] = $d['bbs']['skin'] ? $d['bbs']['skin'] : $d['bbs']['skin_main'];

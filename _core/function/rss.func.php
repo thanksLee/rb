@@ -4,10 +4,15 @@ function getUrlData($url,$sec)
 	$URL_parsed = parse_url($url);
 	$host = $URL_parsed['host'];
 	$port = $URL_parsed['port'];
+	$path = $URL_parsed['path'];
+	$query= $URL_parsed['query'];
+
 	if (!$host) $host = $_SERVER['HTTP_HOST'];
 	if (!$port) $port = 80;
 
-	$out = "GET ".$url." HTTP/1.0\r\nHost: ".$host."\r\n\r\n";
+    $out = "GET ".$path.'?'.$query." HTTP/1.1\r\n";
+    $out .= "Host: ".$host."\r\n";
+    $out .= "Connection: Close\r\n\r\n";
 
 	$fp = fsockopen($host,$port,$errno,$errstr,$sec);
 

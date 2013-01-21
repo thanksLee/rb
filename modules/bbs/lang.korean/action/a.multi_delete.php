@@ -128,6 +128,7 @@ foreach ($post_members as $val)
 	getDbUpdate($table[$m.'day'],'num=num-1',"date='".substr($R['d_regis'],0,8)."' and site=".$R['site'].' and bbs='.$R['bbs']);
 	getDbDelete($table[$m.'idx'],'gid='.$R['gid']);
 	getDbDelete($table[$m.'data'],'uid='.$R['uid']);
+	getDbDelete($table[$m.'xtra'],'parent='.$R['uid']);
 	getDbUpdate($table[$m.'list'],'num_r=num_r-1','uid='.$R['bbs']);
 	getDbDelete($table['s_trackback'],"parent='".$R['bbsid'].$R['uid']."'");
 

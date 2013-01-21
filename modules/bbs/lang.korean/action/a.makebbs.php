@@ -78,7 +78,7 @@ if ($bid)
 			unlink($vfile.'.footer.php');
 		}
 	}
-
+	$backUrl = $g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=makebbs&iframe=Y&uid='.$R['uid'];	
 }
 else {
 
@@ -130,11 +130,11 @@ else {
 		fclose($fp);
 		@chmod($mfile.'.footer.php',0707);
 	}
-
+	$backUrl = $g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front=makebbs&iframe=Y&uid='.getDbCnt($table[$m.'list'],'max(uid)','');
 }
 
 
-$fdset = array('layout','skin','m_skin','c_skin','c_mskin','c_hidden','c_open','perm_g_list','perm_g_view','perm_g_write','perm_l_list','perm_l_view','perm_l_write','admin','hitcount','recnum','sbjcut','newtime','rss','sosokmenu','point1','point2','display','hidelist','snsconnect');
+$fdset = array('layout','skin','m_skin','c_skin','c_mskin','c_hidden','c_open','perm_g_list','perm_g_view','perm_g_write','perm_g_down','perm_l_list','perm_l_view','perm_l_write','perm_l_down','admin','hitcount','recnum','sbjcut','newtime','rss','sosokmenu','point1','point2','point3','display','hidelist','snsconnect');
 
 $gfile= $g['dir_module'].'var/var.'.$id.'.php';
 $fp = fopen($gfile,'w');
@@ -147,5 +147,5 @@ fwrite($fp, "?>");
 fclose($fp);
 @chmod($gfile,0707);
 
-getLink($backUrl?$backUrl.'&id='.$id:'reload','parent.',($bid?'게시판설정이 변경되었습니다.':'새 게시판이 만들어졌습니다.'),'');
+getLink($backUrl,'',($bid?'':'새 게시판이 만들어졌습니다.'),'');
 ?>

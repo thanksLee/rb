@@ -135,6 +135,7 @@ while($_R=db_fetch_array($RCD))
 getDbDelete($table[$m.'idx'],'bbs='.$R['uid']);
 getDbDelete($table[$m.'data'],'bbs='.$R['uid']);
 getDbDelete($table[$m.'list'],'uid='.$R['uid']);
+getDbDelete($table[$m.'xtra'],'bbs='.$R['uid']);
 getDbDelete($table['s_seo'],'rel=3 and parent='.$R['uid']);
 
 unlink($g['dir_module'].'var/var.'.$R['id'].'.php');

@@ -140,4 +140,23 @@ KEY bbs(bbs)) ENGINE=".$DB['type']." CHARSET=UTF8");
 db_query($_tmp, $DB_CONNECT);
 db_query("OPTIMIZE TABLE ".$table[$module.'day'],$DB_CONNECT); 
 }
+//확장데이터
+$_tmp = db_query( "select count(*) from ".$table[$module.'xtra'], $DB_CONNECT );
+if ( !$_tmp ) {
+$_tmp = ("
+
+CREATE TABLE ".$table[$module.'xtra']." (
+parent		INT				DEFAULT '0'		NOT NULL,
+site		INT				DEFAULT '0'		NOT NULL,
+bbs			INT				DEFAULT '0'		NOT NULL,
+down		TEXT			NOT NULL,
+score1		TEXT			NOT NULL,
+score2		TEXT			NOT NULL,
+singo		TEXT			NOT NULL,
+KEY parent(parent),
+KEY site(site),
+KEY bbs(bbs)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
+db_query($_tmp, $DB_CONNECT);
+db_query("OPTIMIZE TABLE ".$table[$module.'xtra'],$DB_CONNECT); 
+}
 ?>

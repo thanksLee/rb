@@ -19,7 +19,7 @@ else {
 	$filesize = filesize($filepath);
 }
 
-if (!strstr($_SERVER['HTTP_REFERER'],'module=upload') && !$my['admin'])
+if (!strstr($_SERVER['HTTP_REFERER'],'module=upload'))
 {
 	//동기화
 	$cyncArr = getArrayString($R['cync']);
@@ -33,9 +33,42 @@ if (!strstr($_SERVER['HTTP_REFERER'],'module=upload') && !$my['admin'])
 			include_once $g['path_module'].$cyncArr['data'][0].'/var/var.'.$AT['bbsid'].'.php';
 			$B['var'] = $d['bbs'];
 
-			if ($B['var']['perm_l_view'] > $my['level'] || strstr($B['var']['perm_g_view'],'['.$my['sosok'].']'))
+			if (!$my['admin'] && $my['uid'] != $AT['mbruid'])
 			{
-				getLink('','','다운로드 권한이 없습니다.','-1');
+				if ($B['var']['perm_l_down'] > $my['level'] || strstr($B['var']['perm_g_down'],'['.$my['sosok'].']'))
+				{
+					getLink('','','다운로드 권한이 없습니다.','-1');
+				}
+			}
+			if ($B['var']['point3'])
+			{
+				if (!$my['uid']) getLink('','','다운로드 권한이 없습니다.','-1');
+
+				$UT = getDbData($table[$cyncArr['data'][0].'xtra'],'parent='.$AT['uid'],'*');
+				if (!strpos('_'.$UT['down'],'['.$my['uid'].']') && !strpos('_'.$_SESSION['module_'.$cyncArr['data'][0].'_dncheck'],'['.$AT['uid'].']'))
+				{
+					if ($confirm == 'Y' && $my['point'] >= $B['var']['point3'])
+					{
+						if (!$my['admin'] && $my['uid'] != $AT['mbruid'])
+						{
+							getDbInsert($table['s_point'],'my_mbruid,by_mbruid,price,content,d_regis',"'".$my['uid']."','0','-".$B['var']['point3']."','다운로드(".getStrCut($AT['subject'],15,'').")','".$date['totime']."'");
+							getDbUpdate($table['s_mbrdata'],'point=point-'.$B['var']['point3'].',usepoint=usepoint+'.$B['var']['point3'],'memberuid='.$my['uid']);
+							if (!$UT['parent'])
+							{
+								getDbInsert($table[$cyncArr['data'][0].'xtra'],'parent,site,bbs,down',"'".$AT['uid']."','".$s."','".$AT['bbs']."','[".$my['uid']."]'");
+							}
+							else {
+								getDbUpdate($table[$cyncArr['data'][0].'xtra'],"down='".$UT['down']."[".$my['uid']."]'",'parent='.$AT['uid']);
+							}
+						}
+						$_SESSION['module_'.$cyncArr['data'][0].'_dncheck'] = $_SESSION['module_'.$cyncArr['data'][0].'_dncheck'].'['.$AT['uid'].']';
+						getLink('','','결제되었습니다. 다운로드 받으세요.','close');
+					}
+					else {
+						getWindow($g['s'].'/?iframe=Y&r='.$r.'&m='.$cyncArr['data'][0].'&bid='.$AT['bbsid'].'&mod=down&dfile='.$uid.'&uid='.$AT['uid'],'','width=550px,height=350px,status=yes,toolbar=no,scrollbars=no',$_SERVER['HTTP_REFERER'].'#attach','');
+						exit;
+					}
+				}
 			}
 		}
 
@@ -61,6 +94,7 @@ if ($R['url']==$d['upload']['ftp_urlpath'])
 	$FTP_CRESULT = ftp_login($FTP_CONNECT,$d['upload']['ftp_user'],$d['upload']['ftp_pass']); 
 	if (!$FTP_CONNECT) getLink('','','FTP서버 연결에 문제가 발생했습니다.','');
 	if (!$FTP_CRESULT) getLink('','','FTP서버 아이디나 패스워드가 일치하지 않습니다.','');
+	if($d['upload']['ftp_pasv']) ftp_pasv($FTP_CONNECT, true);
 	
 	$filepath = $g['path_tmp'].'session/'.$filetmpname;
 	ftp_get($FTP_CONNECT,$filepath,$d['upload']['ftp_folder'].$R['folder'].'/'.$filetmpname,FTP_BINARY);

@@ -14,7 +14,7 @@
 		<?php $ADMPAGE = getDbArray($table['s_admpage'],'memberuid='.$my['uid'],'*','gid','asc',0,1)?>
 		<?php while($R=db_fetch_array($ADMPAGE)):?>
 		<li class="move">
-			<input type="checkbox" name="bookmark_pages[]" value="<?php echo $R['uid']?>" checked="checked" />
+			<input type="checkbox" name="bookmark_pages[]" value="<?php echo $R['uid']?>" />
 			<span><?php echo $R['name']?></span>
 		</li>
 		<?php endwhile?>
@@ -32,7 +32,7 @@
 
 
 		
-<input type="button" value="제외하기" class="btnblue" onclick="actQue('bookmark_delete');" /> : 체크를 해제한 후 터치해주세요.
+<input type="button" value="제외하기" class="btnblue" onclick="actQue('bookmark_delete');" /> : 체크한 후 터치해주세요.
 
 
 
@@ -52,29 +52,8 @@ function actQue(act)
 
 	if (act == 'bookmark_delete')
 	{
-		for	(i = 0; i < n; i++)
-		{
-			if (l[i].checked == true)
-			{
-				l[i].checked = false;
-			}
-			else {
-				l[i].checked = true;
-			}
-		}
-
 		f.a.value = act;
 		f.submit();
-	}
-}
-window.onload = function()
-{
-    var l = document.getElementsByName('bookmark_pages[]');
-    var n = l.length;
-    var i;
-	for	(i = 0; i < n; i++)
-	{
-		l[i].checked = true;
 	}
 }
 //]]>

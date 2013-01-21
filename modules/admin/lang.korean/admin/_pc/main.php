@@ -298,14 +298,10 @@
 	
 	<?php if(count($d['page']['widget'])):?>
 	<div class="widgetposition">
-	<?php include_once $g['path_core'].'engine/widget.engine.php'?>
+	<?php include $g['path_core'].'engine/widget.engine.php'?>
 	</div>
 	<?php else:?>
-	<div class="none">
-		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" class="notice" />
-		데스크가 비어있습니다. <?php echo $my[$_HS['nametype']]?>님의 전용 관리데스크를 꾸며보세요.
-		<a href="<?php echo $g['adm_href']?>&amp;type=editmode"><img src="<?php echo $g['img_core']?>/_public/btn_edit_small.gif" alt="꾸미기" /></a>
-	</div>
+	<?php include $g['dir_module'].'/lang.'.$_HS['lang'].'/admin/_pc/main.desk.php'?>
 	<?php endif?>
 	<?php endif?>
 

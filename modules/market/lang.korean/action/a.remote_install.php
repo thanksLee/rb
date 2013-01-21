@@ -13,7 +13,8 @@ else {
 
 
 	include $g['dir_module'].'var/var.php';
-	if(!$d['market']['url']) getLink('','','큐마켓URL을 등록해 주세요.','');
+	if(!$d['market']['url']) getLink('','','환경설정 페이지에서 큐마켓URL을 등록해 주세요.','');
+	if(!$d['market']['id']||!$d['market']['pw']) getLink('','','환경설정 페이지에서 킴스큐 회원정보를 등록해 주세요.','');
 
 	include $g['path_core'].'function/rss.func.php';
 	$appData = getUrlData($d['market']['url'].'&a=client.install&uid='.$uid.'&id='.$d['market']['id'].'&pw='.$d['market']['pw'],10);
@@ -21,8 +22,10 @@ else {
 	
 	if ($appArray[3])	getLink('','',$appArray[3],'');
 	if (!$appArray[2])	getLink('','','정상적인 자료가 아닙니다.','');
-	if (!$appArray[0] || !$appArray[1]) getLink('','','원격설치를 지원하지 않는 자료입니다.','');
-
+	if ($appArray[4] != 6)
+	{
+		if (!$appArray[0] || !$appArray[1]) getLink('','','원격설치를 지원하지 않는 자료입니다.','');
+	}
 	$marketUrl = explode('/',$d['market']['url']);
 	$marketData = getUrlData('http://'.$marketUrl[2].'/modules/qmarket/upload/data/'.$appArray[2],10);
 
@@ -40,7 +43,7 @@ else {
 	{
 		$nSubfolder .= $subfolder[$i].'/';
 	}
-
+	if ($appArray[4] == 6) $appfiletype = 'package';
 	$installaction= array
 	(
 		'module'=>array('module_pack_upload','rb_module_app.zip'),
@@ -48,6 +51,7 @@ else {
 		'layout'=>array('pack_upload','rb_layout_app.zip'),
 		'bbstheme'=>array('pack_upload','rb_bbstheme_app.zip'),
 		'switch'=>array('pack_upload','rb_switch_app.zip'),
+		'package'=>array('package_upload','rb_package_app.zip'),
 	);
 
 	if ($installaction[$appfiletype][0]=='') getLink('','','원격설치 형식에 맞지 않는 자료입니다.\\n다운로드 받아서 설치해 주세요.','');

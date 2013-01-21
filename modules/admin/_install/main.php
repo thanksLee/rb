@@ -88,7 +88,7 @@ Language :
 		</div>
 		
 		<div class="stepbody">
-		<textarea class="licence" rows="10" cols="50"><?php readfile('LICENCE')?></textarea>
+		<textarea class="licence" rows="10" cols="50"><?php readfile('LICENSE')?></textarea>
 		
 		<div class="agreebox shift">
 		<input type="checkbox" id="licence_agree" onclick="agreeCheck(this);" /><label for="licence_agree"><?php echo $lang['install']['msg1_3']?></label>

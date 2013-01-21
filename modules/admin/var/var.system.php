@@ -2,7 +2,7 @@
 $d['admin']['themepc'] = "default";
 $d['admin']['thememobile'] = "default";
 $d['admin']['autoclose'] = "1";
-$d['admin']['version'] = "1.2.0";
+$d['admin']['version'] = "1.2.1";
 $d['admin']['hidepannel'] = "";
 $d['admin']['pannellink'] = "";
 $d['admin']['cache_flag'] = "month";

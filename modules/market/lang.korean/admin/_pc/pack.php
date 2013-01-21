@@ -9,7 +9,7 @@ while(false !== ($mdir = readdir($dirs)))
 }
 closedir($dirs);
 
-$type = $type ? $type : 'layout';
+$type = $type ? $type : 'package';
 ?>
 
 
@@ -19,16 +19,150 @@ $type = $type ? $type : 'layout';
 <div id="modulebox">
 	<div class="m_menu">
 	<ul>
-	<li<?php if($type=='layout'):?> class="lside selected"<?php else:?> class="lside"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=layout">레이아웃</a></li>
+	<li<?php if($type=='package'):?> class="lside selected"<?php else:?> class="lside"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=package">패키지</a></li>
+	<li<?php if($type=='layout'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=layout">레이아웃</a></li>
 	<li<?php if($type=='module'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=module">모듈 <?php if(count($g['arr_module_dir'])):?><span class="num">(<?php echo count($g['arr_module_dir'])?>)</span><?php endif?></a></li>
 	<li<?php if($type=='widget'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=widget">위젯</a></li>
 	<li<?php if($type=='switch'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=switch">스위치</a></li>
 	<li<?php if($type=='theme'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=theme">게시판테마</a></li>
-	<li<?php if($type=='etc'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=etc">기타/업데이트</a></li>
+	<li<?php if($type=='etc'):?> class="selected"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;type=etc">기타자료</a></li>
 	</ul>
 	<div class="clear"></div>
 	</div>
 
+
+<!-- 패키지 -->
+<?php if($type == 'package'):?>
+	<div class="m_pack">
+<?php
+$rulefile = './_package/package.rule.php';
+if (is_file($rulefile)):
+include $rulefile;
+$SITES = getDbArray($table['s_site'],'','*','gid','asc',0,$p);
+?>
+
+	<form name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return packageAply(this);">
+	<input type="hidden" name="r" value="<?php echo $r?>" />
+	<input type="hidden" name="m" value="<?php echo $module?>" />
+	<input type="hidden" name="a" value="package_upload" />
+	<input type="hidden" name="act" value="package_aply" />
+
+	<div class="tx">
+	패키지를 적용할 준비가 되었습니다.
+	<?php if(is_file('./_package/readme.txt')):?>
+	<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" /> <span class="u hand" onclick="layerShowHide('guide_package','block','none');">안내문서 보기</span>
+	<div id="guide_package" class="readme hide">
+	<textarea><?php readfile('./_package/readme.txt')?></textarea>
+	</div>
+	<?php endif?>
+	</div>
+
+	<div class="m_ready">
+		
+		<div class="tbox">
+		<table>
+		<tr>
+		<td class="td1">패키지명 : </td>
+		<td class="td2"><?php echo $d['package']['name']?></td>
+		</tr>
+		<tr>
+		<td class="td1">설치/적용요소 : </td>
+		<td class="td2 shift">
+			<ul>
+			<?php $_i=0;$_j=0;foreach($d['package']['elements'] as $key => $val):?>
+			<li>
+				<input type="checkbox" checked="checked" disabled="disabled" /><?php echo $key?>
+				<?php if($val[0]):$_i++;$_INSTALLMD=getDbData($table['s_module'],"id='".$val[0]."'",'*')?>
+				<?php if($_INSTALLMD['id']):?>
+				<span class="u ins">설치완료</span>
+				<?php else:$_j++?>
+				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=package_setting&amp;module=<?php echo $val[0]?>" target="_action_frame_<?php echo $m?>" class="u">모듈설치</a>
+				<?php endif?>
+				<?php endif?>
+			</li>
+			<?php endforeach?>
+			</ul>
+		</td>
+		</tr>
+		<tr>
+		<td class="td1">적용사이트 : </td>
+		<td class="td2">
+			<select name="site">
+			<?php while($S = db_fetch_array($SITES)):?>
+			<option value="<?php echo $S['uid']?>"<?php if($r==$S['id']):?> selected="selected"<?php endif?>>ㆍ<?php echo $S['name']?>(<?php echo $S['id']?>)</option>
+			<?php endwhile?>
+			</select>		
+		</td>
+		</tr>
+		<tr>
+		<td class="td1"></td>
+		<td class="td2 shift"><label><input type="checkbox" name="aply_site" value="1" checked="checked" />사이트 설정값을 패키지 기본설정값으로 적용합니다.</label></td>
+		</tr>
+		<tr>
+		<td class="td1"></td>
+		<td class="td2 shift"><label><input type="checkbox" name="aply_menu" value="1" checked="checked" />패키지에 포함된 메뉴를 생성합니다.(적용사이트의 기존 메뉴는 삭제)</label></td>
+		</tr>
+		<tr>
+		<td class="td1"></td>
+		<td class="td2 shift"><label><input type="checkbox" name="aply_page" value="1" checked="checked" />패키지에 포함된 페이지를 생성합니다.(기존 페이지는 유지)</label></td>
+		</tr>
+		<tr>
+		<td class="td1"></td>
+		<td class="td2 shift"><label><input type="checkbox" name="aply_bbs" value="1" checked="checked" />패키지에 포함된 게시판을 생성합니다.(기존 게시판은 유지)</label></td>
+		</tr>
+		<?php if($_i):?>
+		<tr>
+		<td class="td1"></td>
+		<td class="td2 ic">신규 설치가 필요한 모듈이 있을 경우 먼저 설치해 주세요.</td>
+		</tr>
+		<?php endif?>
+		</table>
+		</div>
+		
+		<br />
+		<br />
+		<input type="button" value="적용취소" class="btngray" onclick="packageCancel();" />
+		<input type="submit" value="패키지 적용하기" class="btnblue" />
+		<input type="hidden" name="notInstallModule" value="<?php echo $_j?>" />
+
+
+	</div>
+
+	</form>
+<?php else:?>
+
+	<form name="procForm" action="<?php echo $g['s']?>/" method="post" enctype="multipart/form-data" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+	<input type="hidden" name="r" value="<?php echo $r?>" />
+	<input type="hidden" name="m" value="<?php echo $module?>" />
+	<input type="hidden" name="a" value="package_upload" />
+	<input type="hidden" name="act" value="package_upload" />
+
+	
+	<div class="msg">
+		패키지파일을 선택하신 후 등록버튼을 클릭해 주세요.<br />
+		패키지는 최상위폴더 이하에 압축폴더 경로에 맞춰서 등록됩니다.<br />
+		동일명칭의 폴더나 파일이 존재할 경우 덧씌워지므로 주의하세요.<br />
+		패키지의 형식은 <span class="b">rb_package_자료코드.zip</span> 이어야 합니다.<br />
+		<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=package_dump" target="_action_frame_<?php echo $m?>" onclick="return confirm('패키지용 샘플파일이 생성됩니다.\n자세한 패키지구성 방법은 매뉴얼을 참조하세요.  \n이 작업은 다소 시간이 걸릴 수 있습니다.\n완료될때까지 기다려주세요.');" class="ub">이 사이트를 패키지로 만들기</a>
+		<?php if(is_file('./_package/dump.xml')):?>
+		<br />
+		<span class="ic">패키지가 생성되었습니다.</span>
+		<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=package_dump&amp;del=Y" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?');" class="u">삭제</a><br />	
+		<?php endif?>
+	</div>
+	
+	<div class="btnbox">
+	<input type="file" name="upfile" class="upfile" />
+	<input type="submit" value="등록하기" class="btnblue" />
+	</div>
+	</form>
+
+<?php endif?>
+
+	</div>
+
+<?php endif?>
+<!-- //패키지 -->
 
 
 <!-- 모듈 -->
@@ -550,6 +684,22 @@ function saveCheck(f)
 	else {
 		return false;
 	}
+}
+function packageCancel()
+{
+	if (confirm('정말로 이 패키지를 적용하지 않겠습니까?\n패키지관련 파일은 파일메니져 또는 FTP로 직접 삭제해야 합니다.'))
+	{
+		frames._action_frame_<?php echo $m?>.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=package_upload&act=package_cancel';		
+	}
+}
+function packageAply(f)
+{
+	if (f.notInstallModule.value != '0')
+	{
+		alert('이 패키지에 필요한 신규모듈이 있습니다.   \n먼저 설치해 주세요.');
+		return false;
+	}
+	return confirm('정말로 적용하시겠습니까?       ');
 }
 function siteLayoutAply(layout,type)
 {

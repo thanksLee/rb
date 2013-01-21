@@ -40,5 +40,11 @@ fwrite($fp, "?>");
 fclose($fp);
 @chmod($_ufile,0707);
 
-getLink($g['s'].'/?r='.$r.'&m=admin&module=admin&front=switch','parent.',$alert,'');
+if ($reload == 'Y')
+{
+	getLink('reload','parent.','','');
+}
+else {
+	getLink($g['s'].'/?r='.$r.'&m=admin&module=admin&front=switch','parent.',$alert,'');
+}
 ?>

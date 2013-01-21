@@ -833,4 +833,21 @@ KEY parent(parent)) ENGINE=".$DB['type']." CHARSET=UTF8");
 db_query($_tmp, $DB_CONNECT);
 db_query("OPTIMIZE TABLE ".$table['s_seo'],$DB_CONNECT); 
 }
+//확장로그
+$_tmp = db_query( "select count(*) from ".$table['s_xtralog'], $DB_CONNECT );
+if ( !$_tmp ) {
+$_tmp = ("
+
+CREATE TABLE ".$table['s_xtralog']." (
+module		VARCHAR(30)		DEFAULT ''		NOT NULL,
+parent		INT				DEFAULT '0'		NOT NULL,
+down		TEXT			NOT NULL,
+score1		TEXT			NOT NULL,
+score2		TEXT			NOT NULL,
+singo		TEXT			NOT NULL,
+KEY module(module),
+KEY parent(parent)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
+db_query($_tmp, $DB_CONNECT);
+db_query("OPTIMIZE TABLE ".$table['s_xtralog'],$DB_CONNECT); 
+}
 ?>

@@ -90,10 +90,19 @@ if ($d['comment']['singo_del'] && $d['comment']['singo_del_num'] <= $R['singo'])
 }
 else {
 
-	if (!strstr($_SESSION['module_'.$m.'_singo'],'['.$R['uid'].']'))
+
+	$UT = getDbData($table['s_xtralog'],"module='".$m."' and parent='".$R['uid']."'",'*');
+
+	if (!strpos('_'.$UT['singo'],'['.$my['uid'].']'))
 	{
 		getDbUpdate($table['s_comment'],'singo=singo+1','uid='.$R['uid']);
-		$_SESSION['module_'.$m.'_singo'] .= '['.$R['uid'].']';
+		if (!$UT['parent'])
+		{
+			getDbInsert($table['s_xtralog'],'module,parent,singo',"'".$m."','".$R['uid']."','[".$my['uid']."]'");
+		}
+		else {
+			getDbUpdate($table['s_xtralog'],"singo='[".$my['uid']."]'","module='".$m."' and parent='".$R['uid']."'");
+		}
 		getLink('','','신고처리 되었습니다.','');
 	}
 	else {

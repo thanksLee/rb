@@ -155,6 +155,7 @@ getDbUpdate($table[$m.'month'],'num=num-1',"date='".substr($R['d_regis'],0,6)."'
 getDbUpdate($table[$m.'day'],'num=num-1',"date='".substr($R['d_regis'],0,8)."' and site=".$R['site'].' and bbs='.$R['bbs']);
 getDbDelete($table[$m.'idx'],'gid='.$R['gid']);
 getDbDelete($table[$m.'data'],'uid='.$R['uid']);
+getDbDelete($table[$m.'xtra'],'parent='.$R['uid']);
 getDbUpdate($table[$m.'list'],'num_r=num_r-1','uid='.$R['bbs']);
 if ($cuid) getDbUpdate($table['s_menu'],"num='".getDbCnt($table[$m.'month'],'sum(num)','site='.$s.' and bbs='.$R['bbs'])."'",'uid='.$cuid);
 getDbDelete($table['s_trackback'],"parent='".$R['bbsid'].$R['uid']."'");
