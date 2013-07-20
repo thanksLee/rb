@@ -11,4 +11,5 @@ if($my['uid']==1)
 $d['amenu']['bookmark'] = '북마크';
 $d['amenu']['seo'] = 'SEO';
 $d['amenu']['ssl'] = 'SSL';
+$d['amenu']['security'] = '보안';
 ?>

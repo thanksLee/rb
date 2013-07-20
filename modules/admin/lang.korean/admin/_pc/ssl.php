@@ -14,6 +14,12 @@
 	<input type="hidden" name="hidepannel" value="<?php echo $d['admin']['hidepannel']?>" />
 	<input type="hidden" name="pannellink" value="<?php echo $d['admin']['pannellink']?>" />
 
+	<input type="hidden" name="secu_iframe" value="<?php echo $d['admin']['secu_iframe']?>" />
+	<input type="hidden" name="secu_script" value="<?php echo $d['admin']['secu_script']?>" />
+	<input type="hidden" name="secu_style" value="<?php echo $d['admin']['secu_style']?>" />
+	<input type="hidden" name="secu_flash" value="<?php echo $d['admin']['secu_flash']?>" />
+	<input type="hidden" name="secu_domain" value="<?php echo $d['admin']['secu_domain']?>" />
+
 
 	<div class="title">
 		SSL 환경설정
