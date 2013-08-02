@@ -12,16 +12,13 @@ KimsQ is web based platform which can drive multiple web applications and web si
 
 ##Getting Started
 
-##Bugs and feature requests
-
-
 ## Bugs and feature requests
 Have a bug or a feature request? [Please open a new issue](https://github.com/kimsq/rb/issues). Before opening any issue, please search for existing issues 
-and take a moment to review the [Issue Guidelines](https://github.com/necolas/issue-guidelines), written by [Nicolas Gallagher](https://github.com/necolas/).
+and take a moment to review the [Issue Guidelines](https://github.com/necolas/issue-guidelines)
 
-- Bug reports
-- Feature requests
-- Pull requests
+- [Bug reports](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#bugs)
+- [Feature requests](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#features)
+- [Pull requests](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#pull-requests)
 
 
 ##Offical site & Community
