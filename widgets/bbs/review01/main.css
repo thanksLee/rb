@@ -1,0 +1,12 @@
+.widget_review01 {padding:0;}
+.widget_review01 h2 {border-bottom:#dfdfdf solid 1px;padding:0 0 7px 0;margin:0 0 25px 0;font-weight:bold;font-family:"gothic","dotum";font-size:12px;}
+.widget_review01 ul {padding:0;margin:0;}
+.widget_review01 li {padding:0 0 10px 0;margin:0 0 25px 0;border-bottom:#dfdfdf dotted 1px;list-style-type:none;}
+.widget_review01 li .thumb {padding:2px;margin-right:10px;border:#efefef solid 1px;background:#f9f9f9;}
+.widget_review01 li p {padding:0;margin-top:-10px;}
+.widget_review01 li p a {font-weight:bold;font-size:12px;font-family:dotum;}
+.widget_review01 li p .comment {font:normal 11px arial;color:#FC6138;}
+.widget_review01 li p .new {font-family:arial;font-size:10px;color:#ff0000;}
+.widget_review01 li p .review {display:block;padding:7px 0 0 0;font-size:12px;font-family:dotum;color:#666;line-height:150%;}
+.widget_review01 .more {position:absolute;top:1px;right:1px;font-size:11px;font-family:arial;color:#c0c0c0;}
+.widget_review01 .more:hover {text-decoration:underline;color:#000000;}

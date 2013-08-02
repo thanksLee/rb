@@ -1,0 +1,74 @@
+
+body {padding:0;margin:0;font-size:12px;font-family:gulim;background:url('./image/img01.jpg') repeat-x left top;}
+input,select,textarea {font-size:12px;font-family:gulim;}
+img,p {border:0;margin:0;padding:0;}
+form {display:inline;margin:0;padding:0;}
+select {font-size:12px;font-family:dotum;}
+label {cursor:pointer;}
+a {text-decoration:none;color:#000;}
+a:hover {color:#666;}
+
+
+#wrap {width:920px;margin:auto;background:url('./image/img04.jpg') no-repeat right top;}
+#header {}
+#header .logo {float:left;padding:60px 0 0 0;}
+#header .logo h1 {margin:0;padding:0;position:relative;left:-5px;width:600px;height:47px;}
+#header .logo h1 a {font-weight:normal;color:#ffffff;font-size:35px;font-family:"malgun gothic","Trebuchet MS",Georgia,"Times New Roman",Times,serif;}
+#header .gnb {float:right;padding:10px 0 0 0;}
+#header .gnb ul {padding:0;margin:0;letter-spacing:-1px;}
+#header .gnb li {list-style-type:none;display:inline;padding:5px 0 5px 10px;font:normal 11px dotum;}
+
+#header .lnb {position:relative;z-index:1;clear:both;height:41px;padding:29px 0 0 0;}
+#header .lnb ul {float:left;width:730px;height:41px;padding:0;margin:0;}
+#header .lnb li {list-style-type:none;float:left;height:41px;padding:0;margin:0;}
+#header .lnb li div {position:absolute;display:none;width:1px;}
+#header .lnb li div dl {margin:41px 0 0 0;padding:0;width:130px;border:#dfdfdf solid 1px;background:#ffffff;}
+#header .lnb li div dt {margin:0;padding:0;}
+#header .lnb li div dd {margin:0;padding:0;}
+#header .lnb li div dt a {padding:6px 0 6px 10px;font-size:12px;font-family:dotum;color:#000;}
+#header .lnb li div dt a:hover {color:#F52F2F;background:#efefef;}
+#header .lnb li div dd a {padding:4px 0 4px 15px;font-size:11px;font-family:dotum;color:#666;}
+#header .lnb li div dd a:hover {color:#F52F2F;background:#f9f9f9;}
+#header .lnb li a {display:block;font:normal 12px "malgun gothic","dotum";color:#ffffff;padding:13px 12px 13px 12px;letter-spacing:-1px;}
+#header .lnb li a img {position:relative;top:-2px;left:2px;}
+#header .lnb li a:hover {color:#FEC200;}
+#header .lnb .selected1 .m1:hover {color:#efefef;}
+#header .lnb .selected1 {background:#FEC200 url(./image/img02.jpg) repeat-x left top;}
+#header .lnb .selected2 a {font-weight:bold;color:#F52F2F;letter-spacing:-1px;}
+#header .lnb .selected3 a {color:#F52F2F;}
+
+#header .lnb .search {float:right;width:190px;text-align:right;padding:9px 0 0 0;}
+#header .lnb .search .input {width:130px;}
+#header .lnb .search .btnblue {width:40px;}
+
+
+#header .location {clear:both;font:normal 11px dotum;color:#999;padding:10px 0 6px 0;}
+#header .location a {color:#999;}
+
+#container {padding:8px 0 0 0;}
+#container .snb {float:left;width:200px;}
+
+#container .snb .post {padding:30px 0 0 0;}
+#container .snb .post .tt {padding:0 0 10px 0;font-weight:bold;font-family:dotum;font-size:12px;color:;}
+#container .snb .post ul {padding:0;margin:0;}
+#container .snb .post li {list-style-type:none;padding:5px 0 5px 0;line-height:140%;border-bottom:#dfdfdf dotted 1px;}
+#container .snb .post li a {font-family:dotum;font-size:12px;color:#444;}
+#container .snb .post li a:hover {text-decoration:underline;}
+#container .snb .post li .comment {font:normal 11px arial;color:#FC6138;}
+#container .snb .post li .trackback {font:normal 11px arial;color:#02ACD6;}
+#container .snb .post li .new {font-family:arial;font-size:10px;color:#ff0000;}
+#container .snb .post .none {height:100px;border:#efefef solid 1px;}
+
+#container .snb .photo {padding:30px 0 0 0;}
+#container .snb .photo .tt {padding:0 0 10px 0;font-weight:bold;font-family:dotum;font-size:12px;color:;}
+#container .snb .photo .pic {float:left;margin:0 7px 7px 0;padding:1px;border:#efefef solid 1px;backgorund:#ffffff;}
+#container .snb .photo .pic img {width:58px;height:46px;}
+#container .snb .photo .nomargin {margin:0 0 7px 0;}
+
+#content {float:left;width:700px;padding:0 0 20px 20px;}
+
+#footer {margin:20px 0 0 0;padding:20px 0 20px 0;border-top:#dfdfdf dashed 1px;text-align:center;}
+#footer div {padding:10px 0 10px 0;}
+#footer div a {font-size:11px;font-family:dotum;color:#444444;letter-spacing:-1px;}
+#footer div .split {font-family:dotum;font-size:9px;color:#c0c0c0;}
+#footer address {font-family:verdana;font-size:9px;font-style:normal;color:#999999;}
