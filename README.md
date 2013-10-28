@@ -26,7 +26,7 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 
 
 ##Author
-[@kimsnova] (https://github.com/kimsnova)
+[@kimsnova] (https://github.com/kimsnova), [@gitaek] (https://github.com/gitaek)
 
 Thanks for assistance and contributions:
 
