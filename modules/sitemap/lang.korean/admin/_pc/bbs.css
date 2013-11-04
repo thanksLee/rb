@@ -1,0 +1,10 @@
+#mainbox {}
+#mainbox p {font-weight:normal;padding:10px 0 0 0;color:#666666;line-height:150%;}
+#mainbox p a {color:#0000ff;text-decoration:underline;}
+
+#mainbox table {margin:30px 0 0 0;}
+#mainbox td {padding:5px 0 5px 0;}
+#mainbox .td1 {vertical-align:top;padding:8px 20px 0 0;}
+#mainbox .td2 {padding-left:40px;color:#999;}
+
+#mainbox .pagebox01 {padding:20px 0 20px 0;}

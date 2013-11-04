@@ -4,6 +4,23 @@ define('__KIMS__',true);
 error_reporting(E_ALL ^ E_NOTICE);
 session_save_path('./_tmp/session');
 session_start();
+$d = array();
+$g = array(
+	'path_root'   => './',
+	'path_core'   => './_core/',
+	'path_var'    => './_var/',
+	'path_tmp'    => './_tmp/',
+	'path_layout' => './layouts/',
+	'path_module' => './modules/',
+	'path_widget' => './widgets/',
+	'path_switch' => './switchs/',
+	'path_page'   => './pages/',
+	'path_file'   => './files/',
+	'sys_lang'    => 'korean'
+);
+
+$g['time_split'] = explode(' ',microtime());
+$g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
 
 if(!get_magic_quotes_gpc())
 {
@@ -27,25 +44,6 @@ else {
 		extract($_POST);
 	}
 }
-
-$d = array();
-$g = array(
-	'path_root'   => './',
-	'path_core'   => './_core/',
-	'path_var'    => './_var/',
-	'path_tmp'    => './_tmp/',
-	'path_layout' => './layouts/',
-	'path_module' => './modules/',
-	'path_widget' => './widgets/',
-	'path_switch' => './switchs/',
-	'path_page'   => './pages/',
-	'path_file'   => './files/',
-	'sys_lang'    => 'korean'
-);
-
-$g['time_split'] = explode(' ',microtime());
-$g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
-
 if (is_file($g['path_var'].'db.info.php'))
 {
 	require $g['path_module'].'admin/var/var.system.php';
@@ -137,7 +135,7 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <div id="_action_layer_"></div>
 <div id="_hidden_layer_"></div>
 <div id="_overLayer_" class="hide"></div>
-<iframe name="_action_frame_<?php echo $m?>" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+<iframe name="_action_frame_<?php echo $m?>" width="0" height="0" frameborder="0" scrolling="no" style="display: none;"></iframe>
 <script type="text/javascript">
 //<![CDATA[
 document.body.onclick = closeMemberLayer;

@@ -5,3 +5,10 @@
 #rewritebox .area textarea {border:0;line-height:150%;font-family:arial;font-size:12px;color:#888;width:98%;height:500px;overflow:auto;}
 
 #rewritebox .submitbox {padding:15px 0 0 0;}
+
+/*권기택 추가 */
+#content .visible-sm .nav-tabs  > li,
+#content .visible-xs .nav-tabs  > li {
+  width: 50%;
+  text-align: center
+}

@@ -1,0 +1,6 @@
+#mainbox {padding:0 0 50px 0;}
+#mainbox p {padding:20px 0 0 0;line-height:170%;color:#666666;}
+#mainbox a {color:#0000ff;text-decoration:underline;}
+#mainbox ul {}
+#mainbox li {padding:3px 0 3px 0;color:#666666;}
+#mainbox .lightbulb {border:#cccccc solid 1px;background:#efefef;padding:10px;margin-top:20px;line-height:170%;}

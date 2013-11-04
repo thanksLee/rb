@@ -4,3 +4,11 @@
 #zipbox .sfont {font-size:11px;font-family:dotum;color:#c0c0c0;padding:5px 0 5px 8px;}
 #zipbox .red {color:#ff0000;font-weight:bold;}
 #zipbox .submitbox {margin:20px 0 20px 0;padding:15px 0 0 15px;border-top:#dfdfdf solid 1px;}
+
+
+/*권기택 추가 */
+#content .visible-sm .nav-tabs  > li,
+#content .visible-xs .nav-tabs  > li {
+  width: 50%;
+  text-align: center
+}

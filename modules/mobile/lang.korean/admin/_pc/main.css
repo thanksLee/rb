@@ -12,3 +12,10 @@
 #mobilebox .td2 textarea {overflow:auto;border:#EFEFEF solid 1px;padding:6px 0 6px 10px;line-height:150%;font-family:arial;font-size:12px;color:#888;width:190px;height:175px;}
 
 #mobilebox .submitbox {margin:20px 0 20px 0;padding:15px 0 0 15px;border-top:#dfdfdf solid 1px;}
+
+/*권기택 추가 */
+#content .visible-sm .nav-tabs  > li,
+#content .visible-xs .nav-tabs  > li {
+  width: 50%;
+  text-align: center
+}

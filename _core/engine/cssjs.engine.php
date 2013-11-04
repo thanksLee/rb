@@ -15,6 +15,60 @@ $g['cssset'] = array
 <?php foreach($g['switch_2'] as $_switch):?>
 <?php include $_switch?> 
 <?php endforeach?>
+
+
+
+
+
+
+<!-- 임시 -->
+<?php if($m=='admin'):?>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Bootstrap -->
+<link href="<?php echo $g['url_module_skin']?>/assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="<?php echo $g['url_module_skin']?>/assets/fonts/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo $g['url_module_skin']?>/assets/fonts/font-kimsq/1.0.0/css/font-kimsq.css" rel="stylesheet">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,800,700,300" rel="stylesheet" type="text/css">
+
+<!--[if IE 7]>
+  <link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/font-awesome/4.0.0/css/font-awesome-ie7.min.css">
+<![endif]-->
+
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/plugins/bootstrap/css/bootstrap-theme.css">
+
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="<?php echo $g['url_module_skin']?>/assets/js/html5shiv.js"></script>
+  <script src="<?php echo $g['url_module_skin']?>/assets/js/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<script src='<?php echo $g['url_module_skin']?>/assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<script src='<?php echo $g['url_module_skin']?>/assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<script src='<?php echo $g['url_module_skin']?>/assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="<script src='<?php echo $g['url_module_skin']?>/assets/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="<?php echo $g['url_module_skin']?>/assets/ico/favicon.ico">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+
+<?php endif?>
+<!-- //임시 -->
+
+
+
+
+
+
+
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['s']?>/_core/css/sys.css<?php echo $g['wcache']?>" />
 <link type="text/css" rel="stylesheet" charset="utf-8" href="<?php echo $g['url_layout']?>/_main.css<?php echo $g['wcache']?>" />
 <?php if($my['admin']):?>

@@ -26,3 +26,8 @@ RewriteRule ^([a-zA-Z0-9_\-]+)/(b)/([a-zA-Z0-9_\-]+)/write/?$ ./index.php?r=$1&m
 RewriteRule ^([a-zA-Z0-9_\-]+)/(b)/([a-zA-Z0-9_\-]+)/([0-9]+)/s([0-9]+)/?$ ./index.php?r=$1&m=bbs&bid=$3&uid=$4&s=$5 [L]
 RewriteRule ^([a-zA-Z0-9_\-]+)/(b)/([a-zA-Z0-9_\-]+)/([0-9]+)/([0-9]+)/?$ ./index.php?r=$1&m=bbs&bid=$3&uid=$4&CMT=$5#CMT [L]
 RewriteRule ^([a-zA-Z0-9_\-]+)/(b)/([a-zA-Z0-9_\-]+)/([0-9]+)/([0-9]+)/s([0-9]+)/?$ ./index.php?r=$1&m=bbs&bid=$3&uid=$4&CMT=$5&s=$6#CMT [L]
+
+#블로그모듈
+RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/?$ ./index.php?r=home&m=$1&blog=$2 [L]
+RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/c/([a-zA-Z0-9_\-]+)/?$ ./index.php?r=home&m=$1&blog=$2&front=list&rwcat=$3 [L]
+RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/([0-9]+)/?$ ./index.php?r=home&m=$1&blog=$2&front=list&uid=$3 [L]
