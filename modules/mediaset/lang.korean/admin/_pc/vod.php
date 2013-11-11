@@ -1,4 +1,5 @@
 <?php
+include $g['path_module'].$module.'/_func.php';
 include $g['path_module'].$module.'/var/var.php';
 $_siteAply = 'site='.$_HS['uid'].' and ';
 $_ealbum1 = '미분류';
@@ -36,7 +37,7 @@ if (!$_cat1_&&!$_cat2_)
 	getDbInsert($table[$module.'category'],'gid,site,mbruid,type,hidden,users,name,r_num,d_regis,d_update',"'1','".$_HS['uid']."','".$my['uid']."','2','0','','$_ealbum2','0','".$date['totime']."',''");
 	getLink('reload','','','');
 }
-$album = $album ? $album : $_cat1_;
+//$album = $album ? $album : $_cat1_;
 
 $sort	= $sort ? $sort : 'gid';
 $orderby= $orderby ? $orderby : 'asc';
@@ -174,7 +175,6 @@ $TPG = getTotalPage($NUM,$recnum);
 			  <ul class="dropdown-menu" role="menu">
 				<li><a href="#." onclick="getModal('_HiddenModal_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=_modal_.vod&album=<?php echo $album?>&type=upload');"><i class="icon-cloud-upload icon-large"></i> 직접 업로드</a></li>
 				<li><a href="#." onclick="getModal('_HiddenModal_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=_modal_.vod&album=<?php echo $album?>&type=urlsave&youtube=Y');"><i class="icon-youtube icon-large"></i> 유튜브 비디오 추가</a></li>
-				<li><a href="#." onclick="getModal('_HiddenModal_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=_modal_.vod&album=<?php echo $album?>&type=urlsave&vimeo=Y');"><i class="icon-facetime-video icon-large"></i> 비메오 비디오 추가</a></li>
 				<?php if($_CT['uid']):?>
 				<li class="divider"></li>
 				<?php if($_CT['uid']==$_cat2_):?>
@@ -195,17 +195,17 @@ $TPG = getTotalPage($NUM,$recnum);
 
 			<div class="btn-group">
 				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('photo_members[]',true);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('vod_members[]',true);">
 					<input type="radio"><i class="fa fa-check-square-o fa-lg"></i>
 				  </label>
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('photo_members[]',false);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('vod_members[]',false);">
 					<input type="radio"><i class="fa fa-minus-square-o fa-lg"></i>
 				  </label>
 				</div>
 			</div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="새로고침" onclick="formSubmit(document.listForm,'sort','<?php echo $sort?>');"><i class="fa fa-refresh fa-lg"></i></button>
-			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('photo_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
+			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('vod_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
 			  <div class="btn-group" data-toggle="tooltip" data-placement="top" title="" data-original-title="이동">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				 <i class="fa fa-folder fa-lg"></i>
@@ -213,36 +213,13 @@ $TPG = getTotalPage($NUM,$recnum);
 				</button>
 				<ul class="dropdown-menu">
 				  <?php $_i=0;foreach($_CT_ALL as $_C):if($_i>=15)continue?>
-				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
+				  <li><a href="#." onclick="elementsMove('vod_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
 				  <?php $_i++;endforeach?>
 				  <li class="divider"></li>
-				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
+				  <li><a href="#." onclick="elementsMove('vod_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
 				</ul>
 			  </div>
-			  <!--
-			  <div class="btn-group" data-toggle="tooltip" data-placement="top" title="" data-original-title="태그">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				  <i class="fa fa-tags fa-lg"></i>
-				  <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 킴스큐</a></li>
-				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 학습자료</a></li>
-				</ul>
-			  </div>
-			  -->
 			</div>
-			
-			<!--
-			<div class="btn-group" data-toggle="buttons">
-			  <label class="btn btn-default active" data-toggle="tooltip" data-placement="top" title="" data-original-title="셈네일보기">
-				<input type="radio" name="options" id="option1"> <i class="fa fa-th-large fa-lg"></i>
-			  </label>
-			  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="목록보기">
-				<input type="radio" name="options" id="option2"> <i class="fa fa-th-list fa-lg"></i>
-			  </label>
-			</div>
-			-->
 
 			<div class="btn-group">
 				<label data-toggle="tooltip" data-placement="top" title="" data-original-title="필터바 열기/닫기" onclick="formSubmit(document.listForm,'filterbar','<?php echo $filterbar?'':1?>');">
@@ -369,76 +346,39 @@ $TPG = getTotalPage($NUM,$recnum);
 		<div id="set">
 			<?php if($NUM):?>
 			<div class="row">
-				<?php $_M=getUidData($table['s_mbrdata'],$_CT['mbruid'])?>
-				<?php while($_R=db_fetch_array($RCD)):?>
+				<?php $_TMP_RCD=array()?>
+				<?php $_i=0;while($_R=db_fetch_array($RCD)):$_TMP_RCD[]=$_R?>
 				<div class="col-sm-6 col-md-6 col-lg-3">
-					<div class="thumbnail<?php if($_i==0):?> active<?php endif?>">
-						<img src="<?php echo $g['s']?>/modules/<?php echo $modules?>/files/vod/<?php echo $_M['id']?>/thumb1_<?php echo $_R['name']?>"  alt="<?php echo $_R['alt']?>" class="img-responsive">
-						<div class="btn-group">
-
-							<button class="btn btn-default btn-xs" data-original-title="수정" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="location.href='<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=<?php echo $_R['uid']?>';">
-                            <i class="fa fa-edit fa-lg"></i>
-                            </button>
-
-							<?php if($album!=$_cat2_):?>
-							<button class="btn btn-default btn-xs" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
-							<i class="fa fa-trash-o fa-lg"></i>
-							</button>
-							<?php endif?>
-
-							 <a href="<?php echo $g['s']?>/modules/<?php echo $modules?>/files/vod/<?php echo $_M['id']?>/<?php echo $_R['name']?>" class="btn btn-default btn-xs" data-original-title="크게보기" data-placement="top" data-toggle="tooltip" title="" ><i class="fa fa-resize-full fa-lg"></i></a>
-							
-							<button class="btn btn-default btn-xs<?php if(!$_R['alt']&&!$_R['caption']&&!$_R['description']):?> disabled<?php endif?>" data-original-title="<?php echo $_R['alt']?>" data-placement="bottom" data-toggle="popover" title="" type="button" data-content="<?php echo $_R['caption']?> <?php echo $_R['description']?>" data-container="body" >
-							<i class="fa fa-info-circle fa-lg"></i>
-							</button>
-
-							<button class="btn btn-default btn-xs" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('http://kimsq.me/rb/home/p/user-media-photo-pag');">
-							<i class="fa fa-external-link fa-lg"></i>
-							</button>
-						</div>
-						<label class="checkbox-inline">
-							<input type="checkbox" name="photo_members[]" value="<?php echo $_R['uid']?>">
-						</label>
-					</div>
-				</div>
-				<?php endwhile?>
-
-
-
-				<div class="col-sm-6 col-md-6 col-lg-3">
-					<div class="thumbnail active">
+					<div class="thumbnail">
 						<div class="inwrap" >
-							<iframe allowfullscreen="" class="video-iframe" id="video-0" src="javascript:'';"></iframe>
-							<img alt="" class="bgimg img-responsive" src="https://img.youtube.com/vi/orfMJJEd0wk/0.jpg">
+							<iframe allowfullscreen="" class="video-iframe" id="video-<?php echo $_i?>" src="javascript:'';"></iframe>
+							<img alt="" class="bgimg img-responsive" src="<?php echo getVodThumb($_R['link'],0)?>">
 						</div>
 						<label class="checkbox">
-							<input type="checkbox" value="1" checked="checked">
+							<input type="checkbox" name="vod_members[]" value="<?php echo $_R['uid']?>">
 						</label>
 						<div class="caption">
 							<div class="btn-group btn-group-justified">
-								<a class="btn btn-default" data-original-title="재생" data-placement="bottom" data-toggle="tooltip" title=""  onclick="playVideo('video-0','orfMJJEd0wk')">
+								<a class="btn btn-default" data-original-title="재생" data-placement="bottom" data-toggle="tooltip" title=""  onclick="playVideo('video-<?php echo $_i?>','<?php echo getVodCode($_R['link'])?>')">
 								<i class="fa fa-play fa-lg"></i>
 								</a>
-								<a class="btn btn-default" data-original-title="수정" data-placement="bottom" data-toggle="tooltip" title="" href="<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=1<?php echo $_R['uid']?>">
+								<a class="btn btn-default" data-original-title="수정" data-placement="bottom" data-toggle="tooltip" title="" href="<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=<?php echo $_R['uid']?>">
 								<i class="fa fa-pencil-square-o fa-lg"></i>
 								</a>
-								<a class="btn btn-default" data-original-title="휴지통" data-placement="bottom" data-toggle="tooltip" title="" >
+								<a class="btn btn-default<?php if($album==$_cat2_):?> disabled<?php endif?>" data-original-title="휴지통" data-placement="bottom" data-toggle="tooltip" title="" onclick="elementsTrash('vod_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
 								<i class="fa fa-trash-o fa-lg"></i>
 								</a>
-								<a class="btn btn-default" data-original-title="동영상의 Alt TEXT 들어감" data-placement="bottom" data-toggle="popover" title=""  data-content="동영상 관련 Caption & Description이 들어 갑니다.  "  data-container="body" >
+								<a class="btn btn-default<?php if(!$_R['alt']&&!$_R['caption']&&!$_R['description']):?> disabled<?php endif?>" data-original-title="<?php echo $_R['alt']?>" data-placement="bottom" data-toggle="popover" title=""  data-content="<?php echo $_R['caption']?> <?php echo $_R['description']?>"  data-container="body" >
 								<i class="fa fa-exclamation-circle fa-lg"></i>
 								</a>
-								<a href="/rb/home/p/user-media-video-pag" target="_blank" class="btn btn-default" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="">
+								<a href="<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&vod=<?php echo $_R['uid']?>" target="_blank" class="btn btn-default" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="">
 								<i class="fa fa-external-link fa-lg"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
-
-
+				<?php $_i++;endwhile?>
 			</div>
 			<?php else:?>
 			<div class="well text-center text-muted">
@@ -451,17 +391,17 @@ $TPG = getTotalPage($NUM,$recnum);
 		<div class="btn-toolbar well well-sm<?php if(!$NUM):?> hide<?php endif?>">
 			<div class="btn-group">
 				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('photo_members[]',true);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('vod_members[]',true);">
 					<input type="radio"><i class="fa fa-check-square-o fa-lg"></i>
 				  </label>
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('photo_members[]',false);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('vod_members[]',false);">
 					<input type="radio"><i class="fa fa-minus-square-o fa-lg"></i>
 				  </label>
 				</div>
 			</div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="새로고침" onclick="formSubmit(document.listForm,'sort','<?php echo $sort?>');"><i class="fa fa-refresh fa-lg"></i></button>
-			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('photo_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
+			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('vod_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
 			  <div class="btn-group dropup" data-toggle="tooltip" data-placement="top" title="" data-original-title="이동">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				 <i class="fa fa-folder fa-lg"></i>
@@ -469,36 +409,13 @@ $TPG = getTotalPage($NUM,$recnum);
 				</button>
 				<ul class="dropdown-menu">
 				  <?php $_i=0;foreach($_CT_ALL as $_C):if($_i>=15)continue?>
-				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
+				  <li><a href="#." onclick="elementsMove('vod_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
 				  <?php $_i++;endforeach?>
 				  <li class="divider"></li>
-				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
+				  <li><a href="#." onclick="elementsMove('vod_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
 				</ul>
 			  </div>
-			  <!--
-			  <div class="btn-group" data-toggle="tooltip" data-placement="top" title="" data-original-title="태그">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				  <i class="fa fa-tags fa-lg"></i>
-				  <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 킴스큐</a></li>
-				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 학습자료</a></li>
-				</ul>
-			  </div>
-			  -->
 			</div>
-			
-			<!--
-			<div class="btn-group" data-toggle="buttons">
-			  <label class="btn btn-default active" data-toggle="tooltip" data-placement="top" title="" data-original-title="셈네일보기">
-				<input type="radio" name="options" id="option1"> <i class="fa fa-th-large fa-lg"></i>
-			  </label>
-			  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="목록보기">
-				<input type="radio" name="options" id="option2"> <i class="fa fa-th-list fa-lg"></i>
-			  </label>
-			</div>
-			-->
 
 			<div class="btn-group">
 				<label data-toggle="tooltip" data-placement="top" title="" data-original-title="필터바 열기/닫기" onclick="formSubmit(document.listForm,'filterbar','<?php echo $filterbar?'':1?>');">
@@ -603,7 +520,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	  <h4 class="modal-title">
 		<i class="fa fa-folder-open fa-lg"></i>
-		<?php echo $_CT['uid']?$_CT['name']:'전체사진'?> <span class="text-muted">(<?php echo number_format($NUM)?>)</span></h4>
+		<?php echo $_CT['uid']?$_CT['name']:'전체비디오'?> <span class="text-muted">(<?php echo number_format($NUM)?>)</span></h4>
 	</div>
 	<div class="modal-body">
 
@@ -638,74 +555,41 @@ $TPG = getTotalPage($NUM,$recnum);
 		</div>
 
 
-
 		<div id="set">
 			<?php if($NUM):?>
 			<div class="row">
-				<?php $_M=getUidData($table['s_mbrdata'],$_CT['mbruid'])?>
-				<?php while($_R=db_fetch_array($RCD)):?>
-				<div class="col-sm-6 col-md-6 col-lg-3">
-					<div class="thumbnail">
-						<img src="<?php echo $g['s']?>/modules/<?php echo $modules?>/files/vod/<?php echo $_M['id']?>/thumb2_<?php echo $_R['name']?>"  alt="<?php echo $_R['alt']?>" class="img-responsive">
-						<div class="btn-group">
-
-							<button class="btn btn-default" data-original-title="수정" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="location.href='<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=<?php echo $_R['uid']?>';">
-                            <i class="fa fa-edit fa-lg"></i>
-                            </button>
-
-							<?php if($album!=$_cat2_):?>
-							<button class="btn btn-default" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('_photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
-							<i class="fa fa-trash-o fa-lg"></i>
-							</button>
-							<?php endif?>
-
-							 <a href="<?php echo $g['s']?>/modules/<?php echo $modules?>/files/vod/<?php echo $_M['id']?>/<?php echo $_R['name']?>" class="btn btn-default" data-original-title="크게보기" data-placement="top" data-toggle="tooltip" title="" ><i class="fa fa-resize-full fa-lg"></i></a>
-							
-							<button class="btn btn-default<?php if(!$_R['alt']&&!$_R['caption']&&!$_R['description']):?> disabled<?php endif?>" data-original-title="<?php echo $_R['alt']?>" data-placement="bottom" data-toggle="popover" title="" type="button" data-content="<?php echo $_R['caption']?> <?php echo $_R['description']?>" data-container="body" >
-							<i class="fa fa-info-circle fa-lg"></i>
-							</button>
-
-							<button class="btn btn-default" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('http://kimsq.me/rb/home/p/user-media-photo-pag');">
-							<i class="fa fa-external-link fa-lg"></i>
-							</button>
-						</div>
-						<label class="checkbox-inline">
-							<input type="checkbox" name="_photo_members[]" value="<?php echo $_R['uid']?>">
-						</label>
-					</div>
-				</div>
-				<?php endwhile?>
-
+				<?php $_i=0;foreach($_TMP_RCD as $_R):?>
 				<div class="col-sm-6 col-md-6 col-lg-3">
 					<div class="thumbnail active">
 						<div class="inwrap" >
-							<iframe allowfullscreen="" class="video-iframe" id="video-0" src="javascript:'';"></iframe>
-							<img alt="" class="bgimg img-responsive" src="https://img.youtube.com/vi/orfMJJEd0wk/0.jpg">
+							<iframe allowfullscreen="" class="video-iframe" id="_video-<?php $_i?>" src="javascript:'';"></iframe>
+							<img alt="" class="bgimg img-responsive" src="<?php echo getVodThumb($_R['link'],0)?>">
 						</div>
 						<label class="checkbox">
-							<input type="checkbox" value="1" checked="checked">
+							<input type="checkbox" name="_vod_members[]" value="<?php echo $_R['uid']?>">
 						</label>
 						<div class="caption">
 							<div class="btn-group btn-group-justified">
-								<a class="btn btn-default" title="" onclick="playVideo('video-0','orfMJJEd0wk')">
+								<a class="btn btn-default" title="" onclick="playVideo('_video-<?php echo $_i?>','<?php echo getVodCode($_R['link'])?>')">
 								<i class="fa fa-play fa-lg"></i>
 								</a>
-								<a class="btn btn-default" title="" href="<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=1">
+								<a class="btn btn-default" title="" href="<?php echo $g['adm_href']?>&amp;album=<?php echo $album?>&amp;uid=<?php echo $_R['uid']?>">
 								<i class="fa fa-pencil-square-o fa-lg"></i>
 								</a>
-								<a class="btn btn-default" title="" >
+								<a class="btn btn-default<?php if($album==$_cat2_):?> disabled<?php endif?>" title="" onclick="elementsTrash('_vod_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
 								<i class="fa fa-trash-o fa-lg"></i>
 								</a>
-								<a class="btn btn-default">
+								<a class="btn btn-default<?php if(!$_R['alt']&&!$_R['caption']&&!$_R['description']):?> disabled<?php endif?>" data-original-title="<?php echo $_R['alt']?>" data-placement="bottom" data-toggle="popover" title=""  data-content="<?php echo $_R['caption']?> <?php echo $_R['description']?>"  data-container="body">
 								<i class="fa fa-exclamation-circle fa-lg"></i>
 								</a>
-								<a href="http://break.kimsq.net/rb/home/p/user-media-video-pag" target="_blank" class="btn btn-default" title="">
+								<a href="<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&vod=<?php echo $_R['uid']?>" target="_blank" class="btn btn-default" title="">
 								<i class="fa fa-external-link fa-lg"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				<?php $_i++;endforeach?>
 
 			</div>
 			<?php else:?>
@@ -719,17 +603,17 @@ $TPG = getTotalPage($NUM,$recnum);
 		<div class="btn-toolbar well well-sm<?php if(!$NUM):?> hide<?php endif?>">
 			<div class="btn-group">
 				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('_photo_members[]',true);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="전체선택" onclick="elementsCheck('_vod_members[]',true);">
 					<input type="radio"><i class="fa fa-check-square-o fa-lg"></i>
 				  </label>
-				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('_photo_members[]',false);">
+				  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="선택해제" onclick="elementsCheck('_vod_members[]',false);">
 					<input type="radio"><i class="fa fa-minus-square-o fa-lg"></i>
 				  </label>
 				</div>
 			</div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="새로고침" onclick="formSubmit(document.modalForm,'sort','<?php echo $sort?>');"><i class="fa fa-refresh fa-lg"></i></button>
-			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('_photo_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
+			  <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="영구삭제" onclick="elementsDelete('_vod_members[]',0);"><i class="fa fa-times fa-lg"></i></button>
 			  <div class="btn-group dropup" data-toggle="tooltip" data-placement="top" title="" data-original-title="이동">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				 <i class="fa fa-folder fa-lg"></i>
@@ -737,10 +621,10 @@ $TPG = getTotalPage($NUM,$recnum);
 				</button>
 				<ul class="dropdown-menu">
 				  <?php $_i=0;foreach($_CT_ALL as $_C):if($_i>=15)continue?>
-				  <li><a href="#." onclick="elementsMove('_photo_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
+				  <li><a href="#." onclick="elementsMove('_vod_members[]','<?php echo $_C['uid']?>');"><i class="fa fa-folder"></i> <?php echo $_C['name']?></a></li>
 				  <?php $_i++;endforeach?>
 				  <li class="divider"></li>
-				  <li><a href="#." onclick="elementsMove('_photo_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
+				  <li><a href="#." onclick="elementsMove('_vod_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
 				</ul>
 			  </div>
 		</div>
@@ -825,7 +709,7 @@ function elementsDelete(members,flag)
 	}
 	if (s == '')
 	{
-		alert('선택된 사진이 없습니다.');
+		alert('선택된 비디오가 없습니다.');
 		return false;
 	}
 	if (confirm('정말로 영구히 삭제하시겠습니까?    '))
@@ -853,7 +737,7 @@ function elementsMove(members,flag)
 	}
 	if (s == '')
 	{
-		alert('선택된 사진이 없습니다.');
+		alert('선택된 비디오가 없습니다.');
 		return false;
 	}
 
@@ -940,18 +824,17 @@ $(".container").fitVids();
 <?php 
 else:
 $_R=getUidData($table[$module.'data'],$uid);
+$_M=getDbData($table['s_mbrdata'],'memberuid='.$_R['mbruid'],'*');
 $_CWHERE = $_siteAply.'mbruid='.$my['uid'].' and type=2';
 $_CT_RCD = getDbArray($table[$module.'category'],$_CWHERE,'*','gid','asc',0,1);
 $_CT_ARR = array();
 while($_CT = db_fetch_array($_CT_RCD))
 {
-	if($_CT['name']==$_ealbum1) continue;
-	if($_CT['name']==$_ealbum2) continue;
+	if($_CT['name']==$_ealbum1) { $_CT1=$_CT; continue;}
+	if($_CT['name']==$_ealbum2) { $_CT2=$_CT; continue;}
 	$_CT_ARR[] = $_CT;
 }
 ?>
-
-
 
 
 
@@ -967,40 +850,28 @@ while($_CT = db_fetch_array($_CT_RCD))
 <div class="row">
 	<div class="col-lg-8">
 
-<!--
-
-		<form name="listForm" class="form-block" action="<?php echo $g['s']?>/" method="get">
-		<input type="hidden" name="r" value="<?php echo $r?>" />
-		<input type="hidden" name="m" value="<?php echo $m?>" />
-		<input type="hidden" name="module" value="<?php echo $module?>" />
-		<input type="hidden" name="front" value="<?php echo $front?>" />
-		<input type="hidden" name="album" value="<?php echo $album?>" />
-		<input type="hidden" name="p1" value="<?php echo $p1?>" />
-		<input type="hidden" name="setsearch" value="<?php echo $setsearch?>" />
-		<input type="hidden" name="sort" value="<?php echo $sort?>" />
-		<input type="hidden" name="orderby" value="<?php echo $orderby?>" />
-		<input type="hidden" name="filterbar" value="<?php echo $filterbar?>" />
-		<input type="hidden" name="searchbar" value="<?php echo $searchbar?>" />
-		<input type="hidden" name="p" value="" />
--->
-
 		<div class="page-header clearfix">
 			<h4 class="pull-left"><i class="fa fa-pencil fa-lg"></i> 
 			비디오 수정하기 </h4>
 			<span class="pull-right action"><button type="button" class="btn btn-default" onclick="goBack()"><i class="icon-angle-left"></i> 이전</button></span>
 		</div>
 
-		<form class="form-horizontal" role="form">
+		<form name="modifyForm" class="form-horizontal" role="form" action="<?php echo $g['s']?>/" method="post" enctype="multipart/form-data" onsubmit="return modifyCheck(this);">
+		<input type="hidden" name="r" value="<?php echo $r?>" />
+		<input type="hidden" name="m" value="<?php echo $module?>" />
+		<input type="hidden" name="a" value="modify_vod" />
+		<input type="hidden" name="uid" value="<?php echo $_R['uid']?>" />
+
 		  <div class="form-group">
 			<label for="inputEmail1" class="col-lg-2 control-label">제목</label>
 			<div class="col-lg-10">
-			  <input type="text" name="name" class="form-control" id="inputEmail1" placeholder="Caption" value="킴스큐 워크샵">
+			  <input type="text" name="name" class="form-control" id="inputName" value="<?php echo str_replace('.'.$_R['ext'],'',$_R['name'])?>">
 			</div>
 		  </div>
 
 		  <div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
-				<iframe width="640" height="360" src="//www.youtube.com/embed/orfMJJEd0wk" frameborder="0" allowfullscreen></iframe>
+				<?php echo $_R['link']?>
 			</div>
 		  </div>
 
@@ -1008,7 +879,7 @@ while($_CT = db_fetch_array($_CT_RCD))
 			<label for="inputEmail1" class="col-lg-2 control-label">삽입코드</label>
 			<div class="col-lg-10">
 				<div class="well">
-				<textarea name="link" class="form-control" rows="2">&lt;iframe width="640" height="360" src="//www.youtube.com/embed/orfMJJEd0wk" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</textarea>
+				<textarea name="link" class="form-control" rows="2"><?php echo htmlspecialchars($_R['link'])?></textarea>
 				</div>
 			</div>
 		  </div>
@@ -1020,17 +891,17 @@ while($_CT = db_fetch_array($_CT_RCD))
 				<div class="well">
 					<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-youtube-square fa-lg"></i> <i class="fa fa-vimeo-square fa-lg"></i> 출처</span>
-					<input class="form-control" type="text" value="http://youtu.be/orfMJJEd0wk">
+					<input class="form-control" type="text" value="<?php echo getVodUrl($_R['link'])?>">
 					<span class="input-group-btn">
-					<a href="http://youtu.be/orfMJJEd0wk" target="_blank" class="btn btn-default"> <i class="fa fa-external-link fa-lg"></i> </a>
+					<a href="<?php echo getVodUrl($_R['link'])?>" target="_blank" class="btn btn-default"> <i class="fa fa-external-link fa-lg"></i> </a>
 					</span>
 					</div>
 
 					<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-file-text fa-lg"></i> 페이지</span>
-					<input class="form-control" type="text" value="http://kimsq.me/rb/home/p/user-media-video-pag">
+					<input class="form-control" type="text" value="<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&photo=<?php echo $_R['uid']?>">
 					<span class="input-group-btn">
-					<a href="http://kimsq.me/rb/home/p/user-media-video-pag" target="_blank" class="btn btn-default"> <i class="fa fa-external-link fa-lg"></i> </a>
+					<a href="<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&photo=<?php echo $_R['uid']?>" target="_blank" class="btn btn-default"> <i class="fa fa-external-link fa-lg"></i> </a>
 					</span>
 					</div>			    	
 				</div>
@@ -1038,18 +909,29 @@ while($_CT = db_fetch_array($_CT_RCD))
 			</div>
 		  </div>
 		  <div class="form-group">
-			<label for="inputEmail1" class="col-lg-2 control-label">Tag</label>
+			<label for="inputCaption" class="col-lg-2 control-label">Caption</label>
 			<div class="col-lg-10">
-			   <input type="text" name="tags" id="tags" value="awesome,nice" class="form-control" />
+			  <input type="text" name="caption" class="form-control" id="inputCaption" value="<?php echo $_R['caption']?>">
 			</div>
 		  </div>
 		  <div class="form-group">
-			<label for="inputPassword1" class="col-lg-2 control-label">Description</label>
+			<label for="inputTags" class="col-lg-2 control-label">Tag</label>
 			<div class="col-lg-10">
-			 <textarea name="description" class="form-control" rows="6"></textarea>
+			  <input type="text" name="tags" class="form-control" id="inputTags" value="<?php echo $_R['tags']?>" />
 			</div>
 		  </div>
-		</form>
+		  <div class="form-group">
+			<label for="inputAlt" class="col-lg-2 control-label">Alternative Text</label>
+			<div class="col-lg-10">
+			  <input type="text" name="alt" class="form-control" id="inputAlt" value="<?php echo $_R['alt']?>">
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label for="inputDescription" class="col-lg-2 control-label">Description</label>
+			<div class="col-lg-10">
+			  <textarea name="description" class="form-control" id="inputDescription" rows="6"><?php echo $_R['description']?></textarea>
+			</div>
+		  </div>
 	</div>
 	<div class="col-lg-4">
 <div class="panel panel-default">
@@ -1060,36 +942,32 @@ while($_CT = db_fetch_array($_CT_RCD))
 	<li class="list-group-item form-horizontal">
 		<div class="form-group">
 			<label class="col-lg-3 control-label">등록자</label>
-			<div class="col-lg-9"><p class="form-control-static">벽돌공장</p</div>
+			<div class="col-lg-9"><p class="form-control-static"><?php echo $_M['name']?></p</div>
 			</div>
 		</li>
 		<li class="list-group-item form-horizontal">
 			<div class="form-group">
 				<label class="col-lg-3 control-label">업데이트</label>
-				<div class="col-lg-9"><p class="form-control-static">Oct 19, 2013 @
+				<div class="col-lg-9"><p class="form-control-static"><?php echo getDateFormat($_R['d_update']?$_R['d_update']:$_R['d_regis'],'Y.m.d H:i')?>
 					2:05</p</div>
 				</div>
 			</li>
 			<li class="list-group-item form-horizontal">
 				<div class="form-group">
 					<label class="col-lg-3 control-label">출처</label>
-					<div class="col-lg-9"><p class="form-control-static">Youtube</p</div>
+					<div class="col-lg-9"><p class="form-control-static">Youtube</p></div>
 					</div>
 				</li>
-				<li class="list-group-item form-horizontal">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">재생시간</label>
-						<div class="col-lg-9"><p class="form-control-static">1:30</p</div>
-						</div>
-					</li>
 					<li class="list-group-item form-horizontal">
 						<div class="form-group">
 							<label class="col-lg-3 control-label">소속셋트</label>
 							<div class="col-lg-9">
 								<select name="category" class="form-control">
+									<option value="<?php echo $_CT1['uid']?>"<?php if($_R['category']==$_CT1['uid']):?> selected<?php endif?>><?php echo $_CT1['name']?> (<?php echo $_CT1['r_num']?>)</option>
 									<?php foreach($_CT_ARR as $_C):?>
-									<option value="<?php echo $_C['uid']?>"><?php echo $_C['name']?></option>
+									<option value="<?php echo $_C['uid']?>"<?php if($_R['category']==$_C['uid']):?> selected<?php endif?>><?php echo $_C['name']?> (<?php echo $_C['r_num']?>)</option>
 									<?php endforeach?>
+									<option value="<?php echo $_CT2['uid']?>"<?php if($_R['category']==$_CT2['uid']):?> selected<?php endif?>><?php echo $_CT2['name']?> (<?php echo $_CT2['r_num']?>)</option>
 								</select>
 							</div>
 						</div>
@@ -1099,9 +977,9 @@ while($_CT = db_fetch_array($_CT_RCD))
 							<label class="col-lg-3 control-label">접근권한</label>
 							<div class="col-lg-9">
 								<select name="hidden" class="form-control">
-								<option value="0"<?php if($hidden=='0'):?> selected<?php endif?>>전체공개</option>
-								<option value="1"<?php if($hidden=='1'):?> selected<?php endif?>>지명공개</option>
-								<option value="2"<?php if($hidden=='2'):?> selected<?php endif?>>비공개</option>
+								<option value="0"<?php if($_R['hidden']=='0'):?> selected<?php endif?>>전체공개</option>
+								<option value="1"<?php if($_R['hidden']=='1'):?> selected<?php endif?>>지명공개</option>
+								<option value="2"<?php if($_R['hidden']=='2'):?> selected<?php endif?>>비공개</option>
 								</select>
 								<span class="help-block">미디어 최종 페이지의 접근권한</span>
 							</div>
@@ -1112,11 +990,11 @@ while($_CT = db_fetch_array($_CT_RCD))
 							<label class="col-lg-3 control-label">검색엔진</label>
 							<div class="col-lg-9">
 								<label class="radio-inline">
-									<input name="searchopen" id="" type="radio" value="1">
+									<input name="searchopen" type="radio" value="1"<?php if($_R['searchopen']):?> checked<?php endif?>>
 									공개함 
 								</label>
 								<label class="radio-inline">
-									<input name="searchopen" id="" type="radio" value="0">
+									<input name="searchopen" type="radio" value="0"<?php if(!$_R['searchopen']):?> checked<?php endif?>>
 									숨김 
 								</label>
 							</div>
@@ -1127,13 +1005,13 @@ while($_CT = db_fetch_array($_CT_RCD))
 							<label class="col-lg-3 control-label">License</label>
 							<div class="col-lg-9">
 								<select name="license" class="form-control">
-									<option value="1">None (All rights reserved)</option>
-									<option value="2">저작자표시-비영리-동일조건변경허락 Creative Commons</option>
-									<option value="3">저작자표시-비영리 Creative Commons</option>
-									<option value="4">저작자표시-비영리-변경금지 Creative Commons</option>
-									<option value="5">저작자표시 Creative Commons</option>
-									<option value="6">저작자표시-동일조건변경허락 Creative Commons</option>
-									<option value="7">저작자표시-변경금지 Creative Commons</option>
+									<option value="0"<?php if($_R['license']==0):?> selected<?php endif?>>None (All rights reserved)</option>
+									<option value="1"<?php if($_R['license']==1):?> selected<?php endif?>>저작자표시-비영리-동일조건변경허락 Creative Commons</option>
+									<option value="2"<?php if($_R['license']==2):?> selected<?php endif?>>저작자표시-비영리 Creative Commons</option>
+									<option value="3"<?php if($_R['license']==3):?> selected<?php endif?>>저작자표시-비영리-변경금지 Creative Commons</option>
+									<option value="4"<?php if($_R['license']==4):?> selected<?php endif?>>저작자표시 Creative Commons</option>
+									<option value="5"<?php if($_R['license']==5):?> selected<?php endif?>>저작자표시-동일조건변경허락 Creative Commons</option>
+									<option value="6"<?php if($_R['license']==6):?> selected<?php endif?>>저작자표시-변경금지 Creative Commons</option>
 								</select>
 							</div>
 						</div>
@@ -1143,15 +1021,15 @@ while($_CT = db_fetch_array($_CT_RCD))
 							<label class="col-lg-3 control-label">기타설정</label>
 							<div class="col-lg-9">
 								<label class="checkbox-inline">
-									<input name="use_cment" id="inlineCheckbox1" type="checkbox" value="1">
+									<input name="use_cment" type="checkbox" value="1"<?php if($_R['use_cment']):?> checked<?php endif?>>
 									댓글허용 
 								</label>
 								<label class="checkbox-inline">
-									<input name="use_cross" id="inlineCheckbox2" type="checkbox" value="1">
+									<input name="use_cross" type="checkbox" value="1"<?php if($_R['use_cross']):?> checked<?php endif?>>
 									공유허용 
 								</label>
 								<label class="checkbox-inline">
-									<input name="use_ad" id="inlineCheckbox2" type="checkbox" value="1">
+									<input name="use_ad" type="checkbox" value="1"<?php if($_R['use_as']):?> checked<?php endif?>>
 									광고노출 
 								</label>
 							</div>
@@ -1159,12 +1037,12 @@ while($_CT = db_fetch_array($_CT_RCD))
 					</li>
 				</ul>
 				<div class="panel-footer hidden-xs">
-					<button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-check fa-lg"></i> 정보 업데이트</button>
-					<button class="btn btn-default btn-lg" type="button"><i class="fa fa-trash-o fa-lg"></i> 삭제하기</button>
+					<input class="btn btn-primary btn-lg" type="submit" value="정보 업데이트">
+					<button class="btn btn-default btn-lg" type="button" onclick="deleteFile('<?php echo $_R['uid']?>');"><i class="fa fa-trash-o fa-lg"></i> 삭제하기</button>
 				</div>
 				<div class="panel-footer visible-xs">
-					<button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-check fa-lg"></i> 정보 업데이트</button>
-					<button class="btn btn-default btn-lg btn-block" type="button"><i class="fa fa-trash-o fa-lg"></i> 삭제하기</button>
+					<input class="btn btn-primary btn-lg btn-block" type="submit" value="정보 업데이트">
+					<button class="btn btn-default btn-lg btn-block" type="button" onclick="deleteFile('<?php echo $_R['uid']?>');"><i class="fa fa-trash-o fa-lg"></i> 삭제하기</button>
 				</div>
 			</div>
 		</form>
@@ -1188,3 +1066,88 @@ function goBack()
 </script>
 
 <?php endif?>
+
+
+
+
+<script type="text/javascript">
+function modifyCheck(f)
+{
+	if (f.name.value == '')
+	{
+		alert('파일명을 입력해 주세요.   ');
+		f.name.focus();
+		return false;
+	}
+	if (f.link.value == '')
+	{
+		alert('동영상 삽입코드를 입력해 주세요.   ');
+		f.link.focus();
+		return false;
+	}
+	getIframeForAction(f);
+	return true;
+}
+function modifyCheck1(f)
+{
+	if (getId('_HiddenSideBar_').innerHTML == '')
+	{
+		return false;
+	}
+	if (f.name.value == '')
+	{
+		alert('파일명을 입력해 주세요.   ');
+		f.name.focus();
+		return false;
+	}
+	getIframeForAction(f);
+	f.submit();
+}
+function upCheck(f)
+{
+	if (f.file.value == '')
+	{
+		alert('파일을 첨부해 주세요.   ');
+		return false;
+	}
+	getIframeForAction(f);
+	return true;
+}
+function upCheck1(f)
+{
+	if (f.link.value == '')
+	{
+		alert('동영상 삽입 소스코드를 입력해 주세요.   ');
+		f.link.focus();
+		return false;
+	}
+	getIframeForAction(f);
+	return true;
+}
+
+function deleteFile(uid)
+{
+	if (confirm('정말로 삭제하시겠습니까?   '))
+	{
+		getIframeForAction('');
+		frames.__iframe_for_action__.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=multi_delete&type=vod&_data_=['+uid+']&back=vod&album=<?php echo $album?>';
+	}
+}
+function deleteFile1(uid,type,album)
+{
+	if (confirm('정말로 삭제하시겠습니까?   '))
+	{
+		getIframeForAction('');
+		frames.__iframe_for_action__.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=multi_delete&type='+type+'&_data_=['+uid+']&back='+type+'&layer=Y&album='+album;
+	}
+}
+function getVodPreview()
+{
+	if (getId('_vod_embed_code_').value.indexOf('<iframe') == -1)
+	{
+		alert('유투브 iframe 소스를 입력해주세요.   ');
+		return false;
+	}
+	getId('_vod_play_layer_').innerHTML = getId('_vod_embed_code_').value.replace('640','100%').replace('360','100%');
+}
+</script>

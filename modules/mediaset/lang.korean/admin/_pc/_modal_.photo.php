@@ -11,7 +11,7 @@
 <div class="modal fade media-modal in" id="media-uploader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:block;">
 
     <div class="media-modal-content modal-dialog">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="getId('media-uploader').style.display='none';getId('_fadein_').style.display='none';">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="getId('media-uploader').style.display='none';getId('_fadein_').style.display='none';location.reload();">&times;</button>
         <div class="media-frame">
             <div class="media-frame-menu hidden-xs">
                 <h1 class="text-center">
@@ -72,7 +72,7 @@
 					
 					<div class="tab-pane<?php if($type=='urlsave'):?> active<?php endif?>" id="urlsave">
 					
-					<form name="cform" action="<?php echo $g['s']?>/" method="post" onsubmit="return upCheck(this);" />
+					<form name="cform" action="<?php echo $g['s']?>/" method="post" onsubmit="return upCheck1(this);" />
 					<input type="hidden" name="r" value="<?php echo $r?>" />
 					<input type="hidden" name="m" value="<?php echo $module?>" />
 					<input type="hidden" name="a" value="photo_link" />
@@ -87,7 +87,7 @@
                           </div>
                           <hr>
                           <div class="row">
-                            <div class="col-sm-4 col-md-4 col-lg-4"><img class="img-thumbnail img-responsive" id="_previewSrc" src="http://kimsq.me/rb/pages/image/people/full/04.jpg"></div>
+                            <div class="col-sm-4 col-md-4 col-lg-4"><img class="img-thumbnail img-responsive" id="_previewSrc" src="<?php echo $g['img_core']?>/blank.gif"></div>
                             <div class="col-sm-8 col-md-8 col-lg-8">
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Caption</label>
@@ -133,7 +133,7 @@ $_RCD = getDbArray($table[$module.'data'],$_WHERE,'*',$sort,$orderby,$recnum,$p)
 //$_TPG = getTotalPage($NUM,$recnum);
 ?>
 							<?php while($_R=db_fetch_array($_RCD)):?>
-							<a title="<?php echo $_R['name']?>" class="thumbnail" onclick="getModal('_HiddenSideBar_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=_modal_.photo_data&uid=<?php echo $_R['uid']?>');"><img src="<?php echo $_R['url']?>/<?php if($_R['size']):?>thumb1_<?php endif?><?php echo $_R['name']?>" width="75" height="75" class="img-responsive"><button class="btn btn-default btn-xs" title="삭제" type="button"><i class="fa fa-times"></i></button></a>
+							<a title="<?php echo $_R['name']?>" class="thumbnail" onclick="getModal('_HiddenSideBar_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=_modal_.photo_data&uid=<?php echo $_R['uid']?>');"><img src="<?php echo $_R['url']?>/<?php if($_R['size']):?>thumb1_<?php endif?><?php echo $_R['name']?>" width="75" height="75" class="img-responsive"><button class="btn btn-default btn-xs" title="삭제" type="button" onclick="deleteFile1('<?php echo $_R['uid']?>','photo','<?php echo $album?>');"><i class="fa fa-times"></i></button></a>
 							<?php endwhile?>
 
    
