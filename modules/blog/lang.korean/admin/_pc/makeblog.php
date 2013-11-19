@@ -39,7 +39,7 @@ if ($uid)
 			<?php endfor?>
 			</select>
 
-			<a href="<?php echo $g['adm_href']?>&amp;iframe=<?php echo $iframe?>" title="블로그추가"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" /></a>
+			<a href="<?php echo $g['adm_href']?>&amp;iframe=<?php echo $iframe?>" title="서비스추가"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" /></a>
 			<img src="<?php echo $g['img_core']?>/_public/btn_save.gif" title="순서저장" alt="save" class="hand" onclick="document.blogform.submit();" />
 
 		</div>
@@ -56,7 +56,7 @@ if ($uid)
 			</ul>
 		</div>
 		<?php else:?>
-		<div class="none">등록된 블로그가 없습니다.</div>
+		<div class="none">등록된 서비스가 없습니다.</div>
 		<?php endif?>
 
 		</form>
@@ -75,35 +75,35 @@ if ($uid)
 		<div class="title">
 
 			<div class="xleft">
-				블로그 등록정보
+				서비스 등록정보
 			</div>
 			<div class="xright">
-				<a href="<?php echo $g['adm_href']?>&amp;iframe=<?php echo $iframe?>">새블로그 만들기</a>
+				<a href="<?php echo $g['adm_href']?>&amp;iframe=<?php echo $iframe?>">새서비스 만들기</a>
 			</div>
 		</div>
 
 		<div class="notice">
-			블로그의 순서를 변경하려면 게시판을 드래그 후 [save]버튼을 클릭해 주세요.<br />
-			블로그를 메뉴나 페이지에 연결하면 연결메뉴/연결페이지의 설정값은 무시됩니다.
+			서비스의 순서를 변경하려면 서비스를 드래그 후 [save]버튼을 클릭해 주세요.<br />
+			서비스를 메뉴나 페이지에 연결하면 연결메뉴/연결페이지의 설정값은 무시됩니다.
 		</div>
 
 		<table>
 			<tr>
 				<td class="td1">
-					블로그제목					
+					서비스제목					
 					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_bbsidname','block','none');" />
 				</td>
 				<td class="td2">
 					<input type="text" name="name" value="<?php echo $R['name']?>" class="input sname" />
 					<?php if($R['id']):?>
-					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;blog=<?php echo $R['id']?>" target="_blank">블로그보기</a></span>
+					<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;blog=<?php echo $R['id']?>" target="_blank">서비스보기</a></span>
 					<input type="hidden" name="id" value="<?php echo $R['id']?>" />
 					<?php else:?>
 					아이디 <input type="text" name="id" value="" class="input sname2" />
 					<?php endif?>
 
 					<div id="guide_bbsidname" class="guide hide">
-					<span class="b">블로그제목</span> : 한글,영문등 자유롭게 등록할 수 있습니다.<br />
+					<span class="b">서비스제목</span> : 한글,영문등 자유롭게 등록할 수 있습니다.<br />
 					<span class="b">아이디</span> : 영문 대소문자+숫자+_ 조합으로 만듭니다.<br />
 					</div>
 
@@ -119,11 +119,11 @@ if ($uid)
 			</tr>
 			<tr>
 				<td class="td1">
-					블로그형식
+					서비스형식
 				</td>
 				<td class="td2">
-					<input type="radio" name="blogtype" value="1"<?php if(!$R['blogtype']||$R['blogtype']==1):?> checked="checked"<?php endif?> />개인블로그
-					<input type="radio" name="blogtype" value="2"<?php if($R['blogtype']==2):?> checked="checked"<?php endif?> />팀블로그
+					<input type="radio" name="blogtype" value="1"<?php if(!$R['blogtype']||$R['blogtype']==1):?> checked="checked"<?php endif?> />개인서비스
+					<input type="radio" name="blogtype" value="2"<?php if($R['blogtype']==2):?> checked="checked"<?php endif?> />팀서비스
 				</td>
 			</tr>
 			<tr>
@@ -134,7 +134,7 @@ if ($uid)
 				<td class="td2">
 					<input type="text" name="members" value="<?php echo $R['members']?>" class="input sname1" />
 					<div id="guide_category" class="guide hide">
-					이 블로그에 팀원을 추가하려면 회원아이디를 콤마(,)로 구분해서 등록해 주세요.<br />
+					이 서비스에 팀원을 추가하려면 회원아이디를 콤마(,)로 구분해서 등록해 주세요.<br />
 					추가된 팀원은 포스트 공동작성/삭제권한이 부여됩니다.<br />
 					</div>
 				</td>
@@ -157,14 +157,14 @@ if ($uid)
 					<?php endwhile?>
 					<?php closedir($dirs)?>
 					</select>
-					<label style="color:#ff0000;"><input type="checkbox" name="iframe" value="Y"<?php if(!$R['uid']||$d['blog']['iframe']=='Y'):?> checked="checked"<?php endif?> />블로그 전용 레이아웃 사용</label>
+					<label style="color:#ff0000;"><input type="checkbox" name="iframe" value="Y"<?php if(!$R['uid']||$d['blog']['iframe']=='Y'):?> checked="checked"<?php endif?> />전용 레이아웃 사용</label>
 				</td>
 			</tr>
 			<tr>
-				<td class="td1">블로그테마</td>
+				<td class="td1">서비스테마</td>
 				<td class="td2">
 					<select name="theme_pc" class="select1">
-					<option value="">&nbsp;+ 블로그 대표테마</option>
+					<option value="">&nbsp;+ 서비스 대표테마</option>
 					<option value="">--------------------------------</option>
 					<?php $tdir = $g['path_module'].$module.'/theme/_pc/'?>
 					<?php $dirs = opendir($tdir)?>
@@ -262,7 +262,7 @@ if ($uid)
 
 
 		<div class="submitbox">
-			<input type="submit" class="btnblue" value="<?php echo $R['uid']?'블로그속성 변경':'새블로그 만들기'?>" />
+			<input type="submit" class="btnblue" value="<?php echo $R['uid']?'서비스속성 변경':'새서비스 만들기'?>" />
 			<div class="clear"></div>
 		</div>
 
@@ -293,7 +293,7 @@ function saveCheck(f)
 {
 	if (f.name.value == '')
 	{
-		alert('블로그 제목을 입력해 주세요.     ');
+		alert('서비스 제목을 입력해 주세요.     ');
 		f.name.focus();
 		return false;
 	}
@@ -301,13 +301,13 @@ function saveCheck(f)
 	{
 		if (f.id.value == '')
 		{
-			alert('블로그 아이디를 입력해 주세요.      ');
+			alert('서비스 아이디를 입력해 주세요.      ');
 			f.id.focus();
 			return false;
 		}
 		if (!chkFnameValue(f.id.value))
 		{
-			alert('블로그 아이디는 영문 대소문자/숫자/_ 만 사용가능합니다.      ');
+			alert('서비스 아이디는 영문 대소문자/숫자/_ 만 사용가능합니다.      ');
 			f.id.value = '';
 			f.id.focus();
 			return false;

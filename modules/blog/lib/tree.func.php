@@ -25,12 +25,12 @@ function getMenuShowBlog($blog,$table,$j,$parent,$depth,$uid,$CXA,$hidden)
 
 		if ($C['isson'])
 		{
-			echo "['".$icon1.$name.$icon2.$numprintx."','".($GLOBALS['_rewrite']?$C['id']:$C['uid'])."',";
+			echo "['".$icon1.$name.$icon2.$numprintx."','".($GLOBALS['g']['blog_home_rw']?$C['id']:$C['uid'])."',";
 			getMenuShowBlog($blog,$table,$j,$C['uid'],$C['depth'],$uid,$CXA,$hidden);
 			echo "],\n";
 		}
 		else {
-			echo "['".$icon1.$name.$icon2.$icon3.$numprintx."','".($GLOBALS['_rewrite']?$C['id']:$C['uid'])."',''],\n";
+			echo "['".$icon1.$name.$icon2.$icon3.$numprintx."','".($GLOBALS['g']['blog_home_rw']?$C['id']:$C['uid'])."',''],\n";
 		}
 	}
 }

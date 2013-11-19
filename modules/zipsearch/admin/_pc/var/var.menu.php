@@ -1,4 +1,4 @@
 <?php
-$d['amenu']['main'] = '업데이트';
-$d['amenu']['_info'] = '정보';
+$d['amenu']['_info'] = '모듈정보';
+$d['amenu']['main'] = '우편번호DB 업데이트';
 ?>

@@ -57,15 +57,15 @@ $TPG = getTotalPage($NUM,$recnum);
 <link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/css/dropzone.css" />
 
 <!-- chosen -->
-<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/css/chosen.css" />
+<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/css/chosen.min.css" />
 
 <!-- uniform -->
-<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/uniform/uniform.default.css" /> 
+<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/plugins/uniform/uniform.default.css" /> 
 
 <!-- photoswipe -->
-<link href="<?php echo $g['url_module_skin']?>/assets/photoswipe/photoswipe.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo $g['url_module_skin']?>/assets/photoswipe/lib/klass.min.js"></script>
-<script type="text/javascript" src="<?php echo $g['url_module_skin']?>/assets/photoswipe/code.photoswipe-3.0.5.min.js"></script>
+<link href="<?php echo $g['url_module_skin']?>/assets/plugins/photoswipe/photoswipe.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo $g['url_module_skin']?>/assets/plugins/photoswipe/lib/klass.min.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_module_skin']?>/assets/plugins/photoswipe/code.photoswipe-3.0.5.min.js"></script>
 
 <div id="_HiddenModal_"></div>
 

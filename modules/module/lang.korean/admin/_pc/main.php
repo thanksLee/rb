@@ -1,90 +1,58 @@
+<?php
+$sort	= $sort ? $sort : 'gid';
+$orderby= $orderby ? $orderby : 'asc';
+$recnum	= $recnum && $recnum < 91 ? $recnum : 30;
+
+$RCD = getDbArray($table['s_module'],'','*',$sort,$orderby,$recnum,$p);
+$NUM = getDbRows($table['s_module'],'');
+$TPG = getTotalPage($NUM,$recnum);
+
+if (!$id)
+{
+	$id = 'site';
+}
+$R = getDbData($table['s_module'],"id='".$id."'",'*');
+?>
 
 <div class="row">
 	<div class="col-md-4 col-lg-3" id="tab-content-list">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="icon">
-					<i class="glyphicon glyphicon-globe"></i>
+					<i class="fa fa-list fa-2x"></i>
 				</div>
-				<h4 class="dropdown">
+				<h4 class="panel-title">
 					모듈 정보
 				</h4>
 			</div>
-			<div class="list-group visible-xs visible-sm">
-				<a class="list-group-item" data-toggle="modal" href="#module-info">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>사이트
-					<span class="text-muted">(site)</span></a>
-				<a class="list-group-item active" data-toggle="modal" href="#module-info">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>모듈
-					<span class="text-muted">(module)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">레이아웃
-					<span class="text-muted">(layout)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">마켓
-					<span class="text-muted">(market)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">시스템
-					<span class="text-muted">(admin)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">회원관리
-					<span class="text-muted">(member)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">게시판
-					<span class="text-muted">(bbs)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-					</span>댓글<span class="text-muted">(comment)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>도메인
-					<span class="text-muted">(domain)</span></a>
-			</div>
 			<div class="list-group hidden-xs hidden-sm">
-				<a class="list-group-item" href="#">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>사이트
-					<span class="text-muted">(site)</span></a>
-				<a class="list-group-item active" href="#">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>모듈
-					<span class="text-muted">(module)</span></a>
-				<a class="list-group-item" data-toggle="modal" href="#module-info">레이아웃
-					<span class="text-muted">(layout)</span></a>
-				<a class="list-group-item" href="#">마켓
-					<span class="text-muted">(market)</span></a>
-				<a class="list-group-item" href="#">시스템
-					<span class="text-muted">(admin)</span></a>
-				<a class="list-group-item" href="#">회원관리
-					<span class="text-muted">(member)</span></a>
-				<a class="list-group-item" href="#">게시판
-					<span class="text-muted">(bbs)</span></a>
-				<a class="list-group-item" href="#">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-					</span>댓글<span class="text-muted">(comment)</span></a>
-				<a class="list-group-item" href="#">
-					<span class="badge">
-						<span class="glyphicon glyphicon-eye-close"></span>
-						<span class="glyphicon glyphicon-phone"></span>
-					</span>도메인
-					<span class="text-muted">(domain)</span></a>
+				<?php $_TMP_RCD=array()?>
+				<?php while($BR = db_fetch_array($RCD)):?>
+				<a class="list-group-item<?php if($BR['id']==$id):?> active<?php endif?>" href="<?php echo $g['adm_href']?>&amp;recnum=<?php echo $recnum?>&amp;p=<?php echo $p?>&amp;id=<?php echo $BR['id']?>">
+					<?php if($BR['hidden']):?><span class="badge">
+						<i class="fa fa-eye-slash fa-lg"></i>
+					</span><?php endif?><?php echo $BR['name']?>
+					<span class="text-muted">(<?php echo $BR['id']?>)</span>
+				</a>
+				<?php $_TMP_RCD[]=$BR;endwhile?>
+			</div>
+			<div class="list-group visible-xs visible-sm">
+				<?php foreach($_TMP_RCD as $BR):?>
+				<a class="list-group-item<?php if($BR['id']==$id):?> active<?php endif?>" data-toggle="modal" href="#module-info">
+					<?php if($BR['hidden']):?><span class="badge">
+						<i class="fa fa-eye-slash fa-lg"></i>
+					</span><?php endif?><?php echo $BR['name']?>
+					<span class="text-muted">(<?php echo $BR['id']?>)</span>
+				</a>
+				<?php endforeach?>
 			</div>
 			<div class="panel-footer text-center">
 				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">&raquo;</a></li>
+					<li><a href="<?php echo $g['adm_href']?>&amp;recnum=<?php echo $recnum?>&amp;p=1">&laquo;</a></li>
+					<?php for($i = 1; $i <= $TPG; $i++):?>
+					<li><a href="<?php echo $g['adm_href']?>&amp;recnum=<?php echo $recnum?>&amp;p=<?php echo $i?>"><?php echo $i?></a></li>
+					<?php endfor?>
+					<li><a href="<?php echo $g['adm_href']?>&amp;recnum=<?php echo $recnum?>&amp;p=<?php echo $TPG?>">&raquo;</a></li>
 				</ul>
 			</div>
 		</div>
@@ -94,50 +62,64 @@
 
 		<div class="page-header">
 			<h4>
-			<i class="kf-module fa-lg"></i>&nbsp; 모듈 등록정보
+			<i class="fa fa-cog fa-lg"></i>&nbsp; 모듈 등록정보
 			</h4>
 		</div>
 
 		<div class="row">
-			<div class="col-md-2 col-sm-2">
+			<div class="col-md-2 col-sm-2 text-center">
 				<span class="fa-stack fa-3x">
 					<i class="fa fa-square fa-stack-2x"></i>
-					<i class="kf-home fa-stack-1x kf-inverse"></i>
+					<i class="kf <?php echo $R['icon']?$R['icon']:'kf-'.$R['id']?> fa-stack-1x kf-inverse" id="_moduleIcon_"></i>
 				</span>
 			</div>
 			<div class="col-md-10 col-sm-10">
-				<h4 class="media-heading">사이트
-					<span class="text-muted">(home)</span></h4>
+				<h4 class="media-heading"><strong><?php echo $R['name']?></strong>
+					<span class="text-muted">(<?php echo $R['id']?>)</span></h4>
 				<p class="text-muted">선택된 모듈에 대한 등록정보입니다. 시스템 기본모듈은 삭제할 수
 					없습니다.</p>
 
 				<!-- Split button -->
 				<div class="btn-group">
-				  <button type="button" class="btn btn-default">관리</button>
+				  <button type="button" class="btn btn-default"><i class="fa fa-code fa-lg"></i> <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=filemanager&amp;front=main&amp;pwd=<?php echo urlencode('./modules/'.$R['id'].'/')?>">파일관리</a></button>
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				    <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" role="menu">
-				    <li><a href="#">실행</a></li>
+				  	<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&amp;module=<?php echo $R['id']?>">모듈 관리자페이지</a></li>
+				    <li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $R['id']?>" target="_blank">모듈 사용자페이지</a></li>
 				    <li class="divider"></li>
-				    <li><a href="#">삭제</a></li>
+					<?php if(!$R['system']):?>
+				    <li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=module_delete&amp;moduleid=<?php echo $R['id']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('관련파일/DB데이터가 모두 삭제됩니다.\n정말로 삭제하시겠습니까?     ')">모듈삭제</a></li>
+					<?php else:?>
+				    <li class="disabled"><a>모듈삭제</a></li>
+					<?php endif?>
 				  </ul>
 				</div>
+
+				<button class="btn btn-primary" type="button" onclick="document.procForm1.submit();"><i class="fa fa-check fa-lg"></i> 속성변경</button>
 
 			</div>
 		</div>
 		<hr>
-		<form class="form-horizontal" role="form">
+
+		<form class="form-horizontal" role="form" name="procForm1" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" enctype="multipart/form-data" onsubmit="return saveCheck(this);">
+		<input type="hidden" name="r" value="<?php echo $r?>" />
+		<input type="hidden" name="m" value="<?php echo $module?>" />
+		<input type="hidden" name="moduleid" value="<?php echo $R['id']?>" />
+		<input type="hidden" name="a" value="moduleinfo_update" />
+		<input type="hidden" name="iconaction" value="" />
+
 			<div class="form-group">
 				<label class="col-md-2 control-label">모듈 아이디</label>
 				<div class="col-md-10">
-					<p class="form-control-static">home</p>
+					<p class="form-control-static"><?php echo $R['id']?></p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">모듈이름</label>
 				<div class="col-md-10">
-					<input class="form-control col-md-6" placeholder="" type="text" value="홈페이지">
+					<input class="form-control col-md-6" placeholder="" type="text" name="name" value="<?php echo $R['name']?>">
 				</div>
 			</div>
 			<!-- 모듈 아이콘  -->
@@ -145,28 +127,31 @@
 				<label class="col-md-2 control-label">모듈아이콘</label>
 				<div class="col-md-10">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default active">
+						<a href="#icon-gallery" data-toggle="tab" class="btn btn-default active">
 							<input id="option1" name="options" type="radio">
-							<span class="glyphicon glyphicon-check"></span>&nbsp;선택
-						</label>
-						<label class="btn btn-default">
-							<input id="option2" name="options" type="radio">
-							<span class="glyphicon glyphicon-upload"></span>&nbsp;업로드
-						</label>
+							<i class="fa fa-check-square-o"></i>&nbsp;아이콘 갤러리에서 선택
+						</a>					
+						<a href="#icon-self" data-toggle="tab"  class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							<i class="fa fa-font"></i>&nbsp;전용 아이콘 폰트 지정
+						</a>
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<button class="btn btn-default btn-block" type="button">아이콘 갤러리
+			<div class="form-group tab-content" style="padding:0">
+				<div class="col-md-offset-2 col-md-10 tab-pane active" id="icon-gallery">
+					<button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#modal-icon-gallery"><i class="fa fa-flag fa-lg"></i> 아이콘 갤러리
 					</button>
 					<p class="help-block">아이콘 갤러리에서 선택해 주세요.</p>
 				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<input id="exampleInputFile" type="file">
-					<p class="help-block">gif/jpg/png 파일가능 - 60*60픽셀 사이즈로 자동조정됩니다</p>
+				<div class="col-md-offset-2 col-md-10 tab-pane" id="icon-self">
+					<label class="sr-only" for="">폰트 지정</label>
+					<input type="text" class="form-control" id="" placeholder="스타일 속성을 입력해 주세요" name="icon" value="<?php echo $R['icon']?>">
+					<ul class="help-block list-unstyled">
+						<li>전용 아이콘 폰트를 사용하려면 모듈내부에 아이폰 폰트 파일을 내장 하고 있어야 합니다.</li>
+						<li>아이콘 폰트 제작 방법은 <a href="http://docs.kimsq.com/kr/" target="_blank">도움말</a>을 참고해 주세요</li>
+						<li>입력된 코드는 <code>&lt;i class=""&gt;</code>에 속성으로 반영 됩니다.</li>
+					</ul>
 				</div>
 			</div>
 			<!-- /모듈 아이콘  -->
@@ -174,59 +159,57 @@
 				<label class="col-md-2 control-label">모듈감추기</label>
 				<div class="col-md-10">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default active">
-							<input id="option1" name="options" type="radio">
+						<label class="btn btn-default<?php if($R['hidden']):?> active<?php endif?>">
+							<input id="option1" type="radio" name="hidden" value="1"<?php if($R['hidden']):?> checked<?php endif?>>
 							<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
 						</label>
-						<label class="btn btn-default">
-							<input id="option2" name="options" type="radio">
-							<span class="glyphicon glyphicon-eye-close"></span>&nbsp;감춤
+						<label class="btn btn-default<?php if(!$R['hidden']):?> active<?php endif?>">
+							<input id="option2" type="radio" name="hidden" value="0"<?php if(!$R['hidden']):?> checked<?php endif?>>
+							<i class="fa fa-eye-slash fa-lg"></i>&nbsp;감춤
 						</label>
 					</div>
 					<span class="help-block">모듈 리스트에서 출력하거나 감춤</span>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">모바일관리</label>
-				<div class="col-md-10">
-					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default active">
-							<input id="option1" name="options" type="radio">
-							<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
-						</label>
-						<label class="btn btn-default">
-							<input id="option2" name="options" type="radio">
-							<span class="glyphicon glyphicon-eye-close"></span>&nbsp;감춤
-						</label>
-					</div>
-					<span class="help-block">모바일전용 관리자페이지에 출력하거나 감춤</span>
-				</div>
-			</div>
+
 			<div class="form-group">
 				<label class="col-md-2 control-label">테이블생성</label>
 				<div class="col-md-10">
-					<p class="form-control-static">이 모듈은 DB테이블을 생성하지 않습니다.</p>
+					<p class="form-control-static">
+					<?php if($R['tblnum']):?>
+					DB테이블 <?php echo $R['tblnum']?>개가 생성되었습니다.
+					<?php else:?>
+					이 모듈은 DB테이블을 생성하지 않습니다.
+					<?php endif?>					
+					</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">모듈등록일</label>
 				<div class="col-md-10">
-					<p class="form-control-static">2013/03/08</p>
+					<p class="form-control-static"><?php echo getDateFormat($R['d_regis'],'Y/m/d')?></p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">포함언어팩</label>
 				<div class="col-md-10">
-					<p class="form-control-static">한국어(korean)</p>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<button class="btn btn-primary btn-block btn-lg" type="button">메뉴 속성
-						변경</button>
+					<p class="form-control-static">
+					<?php $i=0?>
+					<?php $dirs = opendir($g['path_module'].$R['id'].'/')?>
+					<?php while(false !== ($tpl = readdir($dirs))):?>
+					<?php if(substr($tpl,0,5)!='lang.')continue?>
+					<?php $reallang = str_replace('lang.','',$tpl)?>
+					<span class="b"><?php echo getFolderName($g['path_var'].'language/'.$reallang)?></span>(<?php echo $reallang?>)<br />
+					<?php $i++; endwhile?>
+					<?php closedir($dirs)?>
+					<?php if(!$i):?>
+					<span class="b">언어팩이 없는 모듈입니다</span>
+					<?php endif?>
+					</p>
 				</div>
 			</div>
 		</form>
+
 
 	</div>
 </div>
@@ -239,7 +222,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title"><i class="kf-module fa-lg"></i>&nbsp; 모듈 등록정보</h4>
+          <h4 class="modal-title"><i class="fa fa-cog fa-lg"></i>&nbsp; 모듈 등록정보</h4>
         </div>
         <div class="modal-body">
 
@@ -247,12 +230,12 @@
 				<div class="col-md-2 col-sm-2">
 					<span class="fa-stack fa-3x">
 						<i class="fa fa-square fa-stack-2x"></i>
-						<i class="kf-home fa-stack-1x kf-inverse"></i>
+						<i class="kf <?php echo $R['icon']?$R['icon']:'kf-'.$R['id']?> fa-stack-1x kf-inverse"></i>
 					</span>
 				</div>
 				<div class="col-md-10 col-sm-10">
-					<h4 class="media-heading">사이트
-						<span class="text-muted">(home)</span></h4>
+					<h4 class="media-heading"><?php echo $R['name']?>
+						<span class="text-muted">(<?php echo $R['id']?>)</span></h4>
 					<p class="text-muted">선택된 모듈에 대한 등록정보입니다. 시스템 기본모듈은 삭제할 수
 						없습니다.</p>
 
@@ -263,116 +246,172 @@
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#">실행</a></li>
-					    <li class="divider"></li>
-					    <li><a href="#">삭제</a></li>
+						<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&amp;module=<?php echo $R['id']?>">모듈 관리자페이지</a></li>
+						<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $R['id']?>" target="_blank">모듈 사용자페이지</a></li>
+						<li class="divider"></li>
+						<?php if(!$R['system']):?>
+						<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=module_delete&amp;moduleid=<?php echo $R['id']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('관련파일/DB데이터가 모두 삭제됩니다.\n정말로 삭제하시겠습니까?     ')">모듈삭제</a></li>
+						<?php else:?>
+						<li class="disabled"><a>모듈삭제</a></li>
+						<?php endif?>
 					  </ul>
 					</div>
 
 				</div>
 			</div>
 			<hr>
-			<form class="form-horizontal" role="form">
-				<div class="form-group">
-					<label class="col-md-2 control-label">모듈 아이디</label>
-					<div class="col-md-10">
-						<p class="form-control-static">home</p>
+			<form class="form-horizontal" role="form" name="procForm2" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" enctype="multipart/form-data" onsubmit="return saveCheck(this);">
+			<input type="hidden" name="r" value="<?php echo $r?>" />
+			<input type="hidden" name="m" value="<?php echo $module?>" />
+			<input type="hidden" name="moduleid" value="<?php echo $R['id']?>" />
+			<input type="hidden" name="a" value="moduleinfo_update" />
+			<input type="hidden" name="iconaction" value="" />
+			<div class="form-group">
+				<label class="col-md-2 control-label">모듈 아이디</label>
+				<div class="col-md-10">
+					<p class="form-control-static"><?php echo $R['id']?></p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">모듈이름</label>
+				<div class="col-md-10">
+					<input class="form-control col-md-6" placeholder="" type="text" name="name" value="<?php echo $R['name']?>">
+				</div>
+			</div>
+			<!-- 모듈 아이콘  -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">모듈아이콘</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<a href="#icon-gallery-xs" data-toggle="tab" class="btn btn-default active">
+							<input id="option1" name="options" type="radio">
+							<i class="fa fa-check-square-o"></i>&nbsp;갤러리
+						</a>					
+						<a href="#icon-self-xs" data-toggle="tab"  class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							<i class="fa fa-font"></i>&nbsp;전용 폰트
+						</a>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">모듈이름</label>
-					<div class="col-md-10">
-						<input class="form-control col-md-6" placeholder="" type="text" value="홈페이지">
-					</div>
+			</div>
+			<div class="form-group tab-content" style="padding:0">
+				<div class="col-md-offset-2 col-md-10 tab-pane active" id="icon-gallery-xs">
+					<button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#modal-icon-gallery"><i class="fa fa-flag fa-lg"></i> 아이콘 갤러리
+					</button>
+					<p class="help-block">아이콘 갤러리에서 선택해 주세요.</p>
 				</div>
-				<!-- 모듈 아이콘  -->
-				<div class="form-group">
-					<label class="col-md-2 control-label">모듈아이콘</label>
-					<div class="col-md-10">
-						<div class="btn-group btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default active">
-								<input id="option1" name="options" type="radio">
-								<span class="glyphicon glyphicon-check"></span>&nbsp;선택
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">
-								<span class="glyphicon glyphicon-upload"></span>&nbsp;업로드
-							</label>
-						</div>
-					</div>
+				<div class="col-md-offset-2 col-md-10 tab-pane" id="icon-self-xs">
+					<label class="sr-only" for="">폰트 지정</label>
+					<input type="text" class="form-control" id="" placeholder="스타일 속성을 입력해 주세요" name="icon" value="<?php echo $R['icon']?>">
+					<ul class="help-block list-unstyled">
+						<li>전용 아이콘 폰트를 사용하려면 모듈내부에 아이폰 폰트 파일을 내장 하고 있어야 합니다.</li>
+						<li>아이콘 폰트 제작 방법은 <a href="http://docs.kimsq.com/kr/" target="_blank">도움말</a>을 참고해 주세요</li>
+						<li>입력된 코드는 <code>&lt;i class=""&gt;</code>에 속성으로 반영 됩니다.</li>
+					</ul>
 				</div>
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-10">
-						<button class="btn btn-default btn-block" type="button">아이콘 갤러리
-						</button>
-						<p class="help-block">아이콘 갤러리에서 선택해 주세요.</p>
+			</div>
+			<!-- /모듈 아이콘  -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">모듈감추기</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default<?php if($R['hidden']):?> active<?php endif?>">
+							<input id="option1" type="radio" name="hidden" value="1"<?php if($R['hidden']):?> checked<?php endif?>>
+							<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
+						</label>
+						<label class="btn btn-default<?php if(!$R['hidden']):?> active<?php endif?>">
+							<input id="option2" type="radio" name="hidden" value="0"<?php if(!$R['hidden']):?> checked<?php endif?>>
+							<i class="fa fa-eye-slash fa-lg"></i>&nbsp;감춤
+						</label>
 					</div>
+					<span class="help-block">모듈 리스트에서 출력하거나 감춤</span>
 				</div>
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-10">
-						<input id="exampleInputFile" type="file">
-						<p class="help-block">gif/jpg/png 파일가능 - 60*60픽셀 사이즈로 자동조정됩니다</p>
-					</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">테이블생성</label>
+				<div class="col-md-10">
+					<p class="form-control-static">
+					<?php if($R['tblnum']):?>
+					DB테이블 <?php echo $R['tblnum']?>개가 생성되었습니다.
+					<?php else:?>
+					이 모듈은 DB테이블을 생성하지 않습니다.
+					<?php endif?>						
+					</p>
 				</div>
-				<!-- /모듈 아이콘  -->
-				<div class="form-group">
-					<label class="col-md-2 control-label">모듈감추기</label>
-					<div class="col-md-10">
-						<div class="btn-group btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default active">
-								<input id="option1" name="options" type="radio">
-								<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">
-								<span class="glyphicon glyphicon-eye-close"></span>&nbsp;감춤
-							</label>
-						</div>
-						<span class="help-block">모듈 리스트에서 출력하거나 감춤</span>
-					</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">모듈등록일</label>
+				<div class="col-md-10">
+					<p class="form-control-static"><?php echo getDateFormat($R['d_regis'],'Y/m/d')?></p>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">모바일관리</label>
-					<div class="col-md-10">
-						<div class="btn-group btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default active">
-								<input id="option1" name="options" type="radio">
-								<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">
-								<span class="glyphicon glyphicon-eye-close"></span>&nbsp;감춤
-							</label>
-						</div>
-						<span class="help-block">모바일전용 관리자페이지에 출력하거나 감춤</span>
-					</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">포함언어팩</label>
+				<div class="col-md-10">
+				<p class="form-control-static">
+				<?php $i=0?>
+				<?php $dirs = opendir($g['path_module'].$R['id'].'/')?>
+				<?php while(false !== ($tpl = readdir($dirs))):?>
+				<?php if(substr($tpl,0,5)!='lang.')continue?>
+				<?php $reallang = str_replace('lang.','',$tpl)?>
+				<span class="b"><?php echo getFolderName($g['path_var'].'language/'.$reallang)?></span>(<?php echo $reallang?>)<br />
+				<?php $i++; endwhile?>
+				<?php closedir($dirs)?>
+				<?php if(!$i):?>
+				<span class="b">언어팩이 없는 모듈입니다</span>
+				<?php endif?>
+				</p>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">테이블생성</label>
-					<div class="col-md-10">
-						<p class="form-control-static">이 모듈은 DB테이블을 생성하지 않습니다.</p>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">모듈등록일</label>
-					<div class="col-md-10">
-						<p class="form-control-static">2013/03/08</p>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">포함언어팩</label>
-					<div class="col-md-10">
-						<p class="form-control-static">한국어(korean)</p>
-					</div>
-				</div>
-			</form>
-
+			</div>
 
         </div>
         <div class="modal-footer">
-		<button class="btn btn-primary btn-block btn-lg" type="button">속성 변경</button>
+		<button class="btn btn-primary btn-block btn-lg" type="submit"><i class="fa fa-check fa-lg"></i> 속성 변경</button>
 		<button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">닫기</button>
         </div>
+	  </form>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+function iconDrop(val)
+{
+	var f = document.procForm1;
+	f.icon.value = val;
+	getId('_moduleIcon_').className = val + ' kf fa-stack-1x kf-inverse';
+	iconDropAply();
+}
+function iconDropAply()
+{
+	var f = document.procForm1;
+	f.iconaction.value = '1';
+	f.submit();
+}
+function saveCheck(f)
+{
+	if (f.name.value == '')
+	{
+		alert('모듈이름을 입력해 주세요.     ');
+		f.name.focus();
+		return false;
+	}
+	return confirm('정말로 실행하시겠습니까?         ');
+}
+function showCheck(id,hidden)
+{
+	frames._action_frame_<?php echo $m?>.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=moduleshow_update&moduleid=' + id + '&hidden=' + hidden;
+}
+function mobileCheck(id,mobile)
+{
+	frames._action_frame_<?php echo $m?>.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=modulemobile_update&moduleid=' + id + '&mobile=' + mobile;
+}
+//]]>
+</script>
+
+
+
+

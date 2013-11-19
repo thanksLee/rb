@@ -17,14 +17,14 @@ if($front=='write') $checkbox = true;
 			<a class="lk" onclick="catShow();"><img src="<?php echo $g['img_core']?>/_public/ico_under_01.gif" class="ico" alt="" /> 카테고리</a>
 			<div id="__catbox__" class="catbox">
 				<div class="catwrap">
-					<div class="treetop"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;front=list">블로그</a></div>
+					<div class="treetop"><a href="<?php if($g['blog_home_rw']):?><?php echo $g['blog_home_rw']?>/c/0<?php else:?><?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;front=list<?php endif?>">블로그</a></div>
 					<div class="joinimg"></div>
 					<div class="tree">
 					<?php if($ISCAT):?>
 					<script type="text/javascript">
 					//<![CDATA[
 					var TreeImg = "<?php echo $g['img_core']?>/tree/default_none";
-					var ulink = "<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;cat=";
+					var ulink = "<?php if($g['blog_home_rw']):?><?php echo $g['blog_home_rw']?>/c/<?php else:?><?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;cat=<?php endif?>";
 					//]]>
 					</script>
 					<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>

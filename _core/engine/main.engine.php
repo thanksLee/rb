@@ -53,7 +53,7 @@ $g['location']	 = '<a href="'.RW(0).'">HOME</a>';
 $g['browtitle']	 = $_HS['title'];
 $g['meta_sbj']   = $_HS['title'];
 $g['meta_key']   = $_HS['title'];
-$g['sys_module'] = 'home';
+$g['sys_module'] = 'site';
 $g['sys_action'] = $a && !$c ? true : false;
 $m = $m && !strstr($m,'.') ? $m : $g['sys_module'];
 $_m = $m;

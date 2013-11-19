@@ -32,5 +32,4 @@ $d['blog']['c_orderby2'] = "asc";
 $d['blog']['c_onelinedel'] = "";
 $d['blog']['c_give_point'] = "0";
 $d['blog']['c_give_opoint'] = "0";
-$d['blog']['rewrite'] = "";
 ?>

@@ -46,7 +46,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<?php endfor?>
 		</select>
 		<select name="where">
-		<option value="name"<?php if($where=='name'):?> selected="selected"<?php endif?>>블로그명</option>
+		<option value="name"<?php if($where=='name'):?> selected="selected"<?php endif?>>서비스명</option>
 		<option value="id"<?php if($where=='id'):?> selected="selected"<?php endif?>>아이디</option>
 		</select>
 
@@ -55,7 +55,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<input type="submit" value="검색" class="btnblue" />
 		<input type="button" value="리셋" class="btngray" onclick="location.href='<?php echo $g['adm_href']?>';" />
 
-		<a href="#." class="add" onclick="crLayer('블로그 추가','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y','iframe',800,650,'5%');" class="btn btn-primary"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" />새 블로그 만들기</a>
+		<a href="#." class="add" onclick="crLayer('서비스 추가','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y','iframe',800,650,'5%');" class="btn btn-primary"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" />새 서비스 만들기</a>
 		</div>
 
 		</form>
@@ -66,8 +66,8 @@ $TPG = getTotalPage($NUM,$recnum);
 
 		<div class="article">
 			<a href="#." onclick="typeChange('blogtype','');"<?php if($blogtype==''):?> class="on"<?php endif?>>전체<i>(<?php echo getDbRows($table[$module.'list'],'')?>)</i></a>
-			<a href="#." onclick="typeChange('blogtype','1');"<?php if($blogtype=='1'):?> class="on"<?php endif?>>개인블로그<i>(<?php echo getDbRows($table[$module.'list'],'blogtype=1')?>)</i></a>
-			<a href="#." onclick="typeChange('blogtype','2');"<?php if($blogtype=='2'):?> class="on"<?php endif?>>팀블로그<i>(<?php echo getDbRows($table[$module.'list'],'blogtype=2')?>)</i></a>
+			<a href="#." onclick="typeChange('blogtype','1');"<?php if($blogtype=='1'):?> class="on"<?php endif?>>개인서비스<i>(<?php echo getDbRows($table[$module.'list'],'blogtype=1')?>)</i></a>
+			<a href="#." onclick="typeChange('blogtype','2');"<?php if($blogtype=='2'):?> class="on"<?php endif?>>팀서비스<i>(<?php echo getDbRows($table[$module.'list'],'blogtype=2')?>)</i></a>
 		</div>
 		
 		<div class="category">
@@ -106,7 +106,7 @@ $TPG = getTotalPage($NUM,$recnum);
 		<th scope="col">번호</th>
 		<th scope="col">형식</th>
 		<th scope="col">아이디</th>
-		<th scope="col">블로그명</th>
+		<th scope="col">서비스명</th>
 		<th scope="col">포스트</th>
 		<th scope="col">댓글</th>
 		<th scope="col">의견</th>
@@ -140,15 +140,15 @@ $TPG = getTotalPage($NUM,$recnum);
 		<td class="lst"><?php if($R['d_last']<$date['totime']):?><?php echo $L[1]<3?$L[0].$lang['sys']['time'][$L[1]].'전':getDateFormat($R['d_last'],'Y.m.d')?><?php if(getNew($R['d_last'],24)):?> <u>new</u><?php endif?><?php endif?></td>
 		<td class="mng">
 			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=admin/deleteblog&amp;uid=<?php echo $R['uid']?>" onclick="return hrefCheck(this,true,'삭제하시면 모든 포스트가 지워지며 복구할 수 없습니다.\n정말로 삭제하시겠습니까?');" class="del">삭제</a>
-			<a href="#." onclick="crLayer('블로그 설정','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y&amp;uid=<?php echo $R['uid']?>','iframe',800,650,'5%');">설정</a>
-			<a href="#." onclick="crLayer('블로그 카테고리','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makecategory&amp;iframe=Y&amp;uid=<?php echo $R['uid']?>','iframe',800,650,'5%');">분류</a>	
+			<a href="#." onclick="crLayer('서비스 설정','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y&amp;uid=<?php echo $R['uid']?>','iframe',800,650,'5%');">설정</a>
+			<a href="#." onclick="crLayer('서비스 카테고리','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makecategory&amp;iframe=Y&amp;uid=<?php echo $R['uid']?>','iframe',800,650,'5%');">분류</a>	
 		</td>
 		<td></td>
 		</tr>
 		<?php endwhile?>
 		<?php if(!$NUM):?>
 		<tr>
-		<td colspan="13" class="none">블로그가 없습니다.</td>
+		<td colspan="13" class="none">서비스가 없습니다.</td>
 		<td class="none"></td>
 		</tr> 
 		<?php endif?>

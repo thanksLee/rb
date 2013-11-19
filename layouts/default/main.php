@@ -1,27 +1,25 @@
-<?php include  $g['path_layout'].$d['layout']['dir'].'/_cross/top.php'?>
-<div id="content">
-	<div class="wrap">
-
-	<?php if($d['layout']['_is_ownmain']) include $g['path_layout'].$d['layout']['dir'].'/_cross/_main.php'?>
-	<?php if($d['layout']['_is_content']):?>
-		<?php if($d['layout']['dsp_side']=='left'&&!$system):?>
-		<div class="aside">
-		<?php include $g['path_layout'].$d['layout']['dir'].'/_cross/side.php'?>	
-		</div>
-		<?php endif?>
-		<div id="rcontent" class="center<?php if($d['layout']['dsp_side']&&!$system):?> m_side<?php endif?>">
-		<?php include __KIMS_CONTENT__?>
-		</div>
-		<?php if($d['layout']['dsp_side']=='right'&&!$system):?>
-		<div class="bside">
-		<?php include $g['path_layout'].$d['layout']['dir'].'/_cross/side.php'?>	
-		</div>
-		<?php endif?>
-		<?php if($d['layout']['dsp_side']):?><div class="clear"></div><?php endif?>
-	<?php endif?>
-	<?php if(!$d['layout']['begin']) include $g['path_layout'].$d['layout']['dir'].'/_cross/_begin.php'?>
+<?php if($g['disp_adm_bar']):?>
+<style type="text/css">
+.navbar-fixed-top {top:29px;}
+</style>
+<?php endif?>
 
 
-	</div>
+<?php include $g['path_layout'].$d['layout']['dir'].'/_cross/header.php' ?>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Hello, kimsQ!</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><a class="btn btn-primary btn-lg">Learn more »</a></p>
+  </div>
 </div>
-<?php include  $g['path_layout'].$d['layout']['dir'].'/_cross/bottom.php'?>
+
+<div class="container marketing">
+    <?php include __KIMS_CONTENT__ ?>
+    <hr>
+    <footer>
+      <?php include $g['path_layout'].$d['layout']['dir'].'/_cross/footer.php' ?>
+    </footer>
+</div>
+

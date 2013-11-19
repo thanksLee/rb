@@ -1,10 +1,212 @@
-body {font-size:12px;font-family:gulim;}
-input,select,textarea {font-size:12px;font-family:gulim;}
-select {font-size:12px;font-family:dotum;}
-label {cursor:pointer;}
-a {text-decoration:none;color:#000;}
-a:hover {color:#666;}
-.wrap {width:960px;margin:auto;}
-#header {}
-#content {padding:20px 0 0 0;min-height:500px;}
-#footer {}
+/*================================================= */
+/* Rb Core patch - sys.css common
+================================================== */
+
+form {
+    display: block;
+}
+p {
+    margin: 0 0 10px;
+}
+
+/*================================================= */
+/* Custom Style
+================================================== */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+#content p {
+    color: #666;
+}
+.navbar-brand {
+    padding: 12px 15px 5px;
+}
+
+/*================================================= */
+/* navbar
+================================================== */
+
+.navbar-header h1 {
+    margin: 0px 15px 0px 0px;
+    padding: 2px 0px 0px;
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+}
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+.navbar-header h1 a:visted {
+    color: #fff;
+    font-size: 25px;
+    text-decoration: none;
+}
+.guest .navbar-brand {
+    color: #333;
+}
+.guest a:hover {
+    color: #666;
+}
+
+/*================================================= */
+/* Page-title
+================================================== */
+
+.page-title {
+    background: #f5f5f5;
+    margin: 0px 0px 20px;
+    padding: 20px 0px;
+}
+.page-title h1 {
+    float: left;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    line-height: 28px;
+    margin: 0px;
+}
+.page-title h1 span {
+    color: #999;
+    font-size: 20px;
+}
+.page-title .action {
+    float: right;
+    margin: 0px;
+}
+.page-title .action a {
+    color: #333;
+}
+.page-title button {
+    color: #333;
+}
+.page-title .page-lead {
+    color: #999;
+    font-size: 14px;
+    margin: 0px 0px 0px 10px;
+}
+
+/*================================================= */
+/* kimsQ font
+================================================== */
+
+@font-face {
+    font-family: 'kimsq';
+    src:url('assets/fonts/kimsq.eot');
+    src:url('assets/assets/fonts/kimsq.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/kimsq.woff') format('woff'),
+        url('assets/fonts/kimsq.ttf') format('truetype'),
+        url('assets/fonts/kimsq.svg#kimsq') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+    font-family: 'kimsq';
+    content: attr(data-icon);
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo-kimsq-03, .icon-logo-kimsq-02, .icon-logo-kimsq-01, .icon-logo-kimsq-04 {
+    font-family: 'kimsq';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.icon-logo-kimsq-03:before {
+    content: "\31";
+}
+.icon-logo-kimsq-02:before {
+    content: "\32";
+}
+.icon-logo-kimsq-01:before {
+    content: "\33";
+}
+.icon-logo-kimsq-04:before {
+    content: "\34";
+}
+    
+
+/*================================================= */
+/* Footer
+================================================== */
+
+.bs-footer {
+    border-top: 1px solid #e5e5e5;
+    color: #777;
+    margin-top: 100px;
+    padding-bottom: 30px;
+    padding-top: 40px;
+    text-align: center;
+}
+.footer-links {
+    margin: 10px 0px;
+    padding-left: 0px;
+}
+.footer-links li {
+    display: inline;
+    padding: 0px 2px;
+}
+.footer-links li:first-child {
+    padding-left: 0px;
+}
+@media (min-width:768px) {
+    .bs-footer {
+        text-align: left;
+    }
+    .bs-footer p {
+        margin-bottom: 0px;
+    }
+}
+
+/*================================================= */
+/* Off Canvas
+================================================== */
+
+@media screen and (max-width: 768px) {
+
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+}
+

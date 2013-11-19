@@ -36,11 +36,11 @@ if ($is_regismode)
 			<option value="<?php echo $S['uid']?>"<?php if($uid==$S['uid']):?> selected="selected"<?php endif?>>ㆍ<?php echo $S['name']?></option>
 			<?php endwhile?>
 			<?php if(!db_num_rows($BLOGS)):?>
-			<option value="">등록된 블로그가 없습니다.</option>
+			<option value="">등록된 서비스가 없습니다.</option>
 			<?php endif?>
 			</select>
 			
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="블로그추가" title="블로그추가" /></a>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="서비스추가" title="서비스추가" /></a>
 
 		</div>
 		<?php if($ISCAT):?>

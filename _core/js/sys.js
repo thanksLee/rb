@@ -577,7 +577,7 @@ function crLayer(title,msg,flag,w,h,t)
 	else html += ' <img src="'+rooturl+'/_core/image/_public/ico_x_01.gif" alt="" onclick="crLayerClose();" style="float:right;position:relative;left:-10px;cursor:pointer;" />';
 	html += '</div>';
 	html += '	<div style="'+(flag=='iframe'?'padding:0;':'padding:20px 20px 20px 20px;line-height:140%;color:#555555;')+'">';
-	html += flag=='iframe'?'<iframe src="'+msg+'" width="100%" frameborder="0" style="border-top:#dfdfdf solid 1px;'+(h?'height:'+(h-35)+'px;':'')+'"></iframe>':msg;
+	html += flag=='iframe'?'<iframe id="_modal_iframe_" src="'+msg+'" width="100%" frameborder="0" style="border-top:#dfdfdf solid 1px;'+(h?'height:'+(h-35)+'px;':'')+'"></iframe>':msg;
 	if(flag=='close') html += '<div style="border-top:#dfdfdf solid 1px;padding-top:15px;margin-top:15px;"><a href="#." onclick="crLayerClose();" class="btnGray01 noIcon txtCenter" style="width:80px;margin-left:'+(parseInt(w/2)-65)+'px;cursor:pointer;"><i><s> 확인 </s></i></a></div>';
 	html += '	</div>';
 	html += '</div>';
@@ -590,4 +590,14 @@ function crLayerClose()
 {
 	getId('_overLayer_').className = 'hide';
 	document.body.style.overflow = 'auto';
+}
+var mynoti = 0;
+function notiCheck()
+{
+    var l = document.getElementsByName('_notification_[]');
+	var i;
+	for (i = 0; i < l.length; i++)
+	{
+		l[i].innerHTML = mynoti;
+	}
 }

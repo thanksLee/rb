@@ -1,6 +1,4 @@
 <?php
-$_fontset=array('kf-home','kf-layout','kf-module','kf-market','kf-admin','kf-member','kf-bbs','kf-contents','kf-comment','kf-upload','kf-popup','','kf-dbmanager','kf-device','kf-domain','kf-analysis','kf-search','kf-widget','kf-tag','','kf-editor','','','','','kf-dashboard');
-
 $_MODULES = array();
 $_MODULES_ALL = getDbArray($table['s_module'],'','*','gid','asc',0,1);
 while($_R = db_fetch_array($_MODULES_ALL))
@@ -18,22 +16,7 @@ while($_R = db_fetch_array($_SITES_ALL))
 }
 ?>
 
-<!-- BEGIN GLOBAL PLUGINS -->   
-<!--[if lt IE 9]>
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/respond.min.js"></script>
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/excanvas.min.js"></script> 
-<![endif]-->   
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>   
-<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
-<!-- END GLOBAL PLUGINS -->
-
-<a href="#content" class="sr-only">Skip to content</a>
 <?php include $g['dir_module_skin'].'_inc/navbar-top.php'?>
-
 <div class="container">
     <div class="row">
         <div class="col-md-1 col-lg-2 hidden-xs hidden-sm" id="sidebar">
