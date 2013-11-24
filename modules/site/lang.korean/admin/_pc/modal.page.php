@@ -12,101 +12,40 @@ if ($uid)
 }
 ?>
 
+[RESULT:
+<form name="procForm2" class="form-horizontal" role="form" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+<input type="hidden" name="r" value="<?php echo $r?>" />
+<input type="hidden" name="m" value="<?php echo $module?>" />
+<input type="hidden" name="a" value="regispage" />
+<input type="hidden" name="uid" value="<?php echo $R['uid']?>" />
+<input type="hidden" name="orign_id" value="<?php echo $R['id']?>" />
+<input type="hidden" name="perm_g" value="<?php echo $R['perm_g']?>" />
+<input type="hidden" name="type" value="1" />
 
-<div class="row">
-	<div class="col-md-4 col-lg-3" id="tab-content-list">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="icon">
-					<i class="fa fa-file-text-o fa-2x"></i>
-				</div>
-				<h4 class="dropdown panel-title">
-					<a class=" dropdown-toggle" data-toggle="dropdown" href="#">
-						<?php echo $cat?$cat:'전체페이지'?>&nbsp;<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li role="presentation" class="dropdown-header">페이지 분류</li>
-						<li<?php if(!$cat):?> class="active"<?php endif?>><a href="<?php echo $g['adm_href']?>">전체페이지</a></li>
-						<?php $_cats=array()?>
-						<?php $CATS=db_query("select *,count(*) as cnt from ".$table['s_page']." group by category",$DB_CONNECT)?>
-						<?php while($C=db_fetch_array($CATS)):$_cats[]=$C['category']?>
-						<li<?php if($C['category']==$cat):?> class="active"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($C['category'])?>"><?php echo $C['category']?> <small>(<?php echo $C['cnt']?>)</small></a></li>
-						<?php endwhile?>
-					</ul>
-				</h4>
-			</div>
-			<div class="list-group">
-				
-				<?php $_pagetypeset=array('','fa-link','fa-puzzle-piece','fa-pencil')?>
-				<?php while($PR = db_fetch_array($PAGES)):?>
-				<a class="list-group-item hidden-xs<?php if($uid==$PR['uid']):?> active<?php endif?>" href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=<?php echo $p?>&amp;uid=<?php echo $PR['uid']?>#cat">
-					<span class="badge">
-						<i class="fa <?php echo $_pagetypeset[$PR['pagetype']]?> fa-lg"></i>
-					</span>
-					<?php echo $PR['name']?>
-					<small>(<?php echo $PR['id']?>)</small>
-				</a>
-
-				<a class="list-group-item visible-xs<?php if($uid==$PR['uid']):?> active<?php endif?>" data-toggle="modal" href="#page-modal" onclick="getAjaxData('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=modal.page&cat=<?php echo urlencode($cat)?>&p=<?php echo $p?>&uid=<?php echo $PR['uid']?>','page-modal');">
-					<span class="badge">
-						<i class="fa <?php echo $_pagetypeset[$PR['pagetype']]?> fa-lg"></i>
-					</span>
-					<?php echo $PR['name']?>
-					<small>(<?php echo $PR['id']?>)</small>
-				</a>
-				<?php endwhile?>
-
-			</div>
-			<div class="panel-footer text-center">
-				<ul class="pagination">
-					<li><a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=1">&laquo;</a></li>
-					<?php for($i = 1; $i <= $TPG; $i++):?>
-					<li><a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=<?php echo $i?>"><?php echo $i?></a></li>
-					<?php endfor?>
-					<li><a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=<?php echo $TPG?>">&raquo;</a></li>
-				</ul>
-			</div>
-		</div>
+<div class="modal-dialog">
+  <div class="modal-content">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	  <h4 class="modal-title"><i class="fa fa-cog fa-lg"></i> &nbsp;페이지 등록정보</h4>
 	</div>
-	
-	<a name="cat"></a>
-	<div class="col-md-8 col-lg-9 hidden-xs hidden-sm" id="tab-content-view">
-		<div class="page-header">
-			<h4>
-				<?php if($R['uid']):?>
-				<i class="fa fa-cog fa-lg"></i> &nbsp;페이지 등록정보
-				<span class="text-muted">( <?php echo $R['name']?> )</span>
-				<?php else:?>
-				<i class="fa fa-cog fa-lg"></i> &nbsp;새 페이지 만들기
-				<?php endif?>
-			</h4>
-		</div>
-
-
-
-		<form name="procForm1" class="form-horizontal" role="form" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
-		<input type="hidden" name="r" value="<?php echo $r?>" />
-		<input type="hidden" name="m" value="<?php echo $module?>" />
-		<input type="hidden" name="a" value="regispage" />
-		<input type="hidden" name="uid" value="<?php echo $R['uid']?>" />
-		<input type="hidden" name="orign_id" value="<?php echo $R['id']?>" />
-		<input type="hidden" name="perm_g" value="<?php echo $R['perm_g']?>" />
-		<input type="hidden" name="type" value="1" />
+	<div class="modal-body">
 
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">명칭</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">명칭</label>
+				<div class="col-md-10">
 					<input class="form-control col-md-6" placeholder="" type="text" name="name" value="<?php echo $R['name']?>">
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-9">
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox1" name="ismain" value="1"<?php if($R['ismain']):?> checked="checked"<?php endif?>> <span class="glyphicon glyphicon-home"></span>	시작 페이지 
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox2" name="mobile" value="1"<?php if($R['mobile']):?> checked="checked"<?php endif?>> <span class="glyphicon glyphicon-phone"></span> 모바일 전용 
-					</label>
+				<div class="col-md-offset-2 col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input type="checkbox" id="inlineCheckbox1" name="ismain" value="1"<?php if($R['ismain']):?> checked="checked"<?php endif?>> <span class="glyphicon glyphicon-home"></span>	시작 페이지 
+						</label>
+						<label class="btn btn-default">
+							<input type="checkbox" id="inlineCheckbox2" name="mobile" value="1"<?php if($R['mobile']):?> checked="checked"<?php endif?>> <span class="glyphicon glyphicon-phone"></span> 모바일 전용 
+						</label>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -145,13 +84,12 @@ if ($uid)
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu pull-right">
-								<?php foreach($_cats as $_val):?>
-								<li><a href="#." onclick="document.procForm1.category.value=this.innerHTML;"><?php echo $_val?></a></li>
-								<?php endforeach?>
-								<?php if(count($_cats)):?>
-								<li class="divider"></li>
-								<?php endif?>
-								<li><a href="#." onclick="document.procForm1.category.value='';document.procForm1.category.focus();">직접입력</a></li>
+
+								<?php $CATS=db_query("select *,count(*) as cnt from ".$table['s_page']." group by category",$DB_CONNECT)?>
+								<?php while($C=db_fetch_array($CATS)):?>
+								<li><a href="#." onclick="document.procForm2.category.value=this.innerHTML;"><?php echo $C['category']?></a></li>
+								<?php endwhile?>
+								<li><a href="#." onclick="document.procForm2.category.value='';document.procForm2.category.focus();">직접입력</a></li>
 							</ul>
 						</div><!-- /btn-group -->
 					</div>
@@ -162,15 +100,15 @@ if ($uid)
 				<label class="col-md-2 col-lg-2 control-label">전시내용</label>
 				<div class="col-md-10 col-lg-9">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<a href="#codeBox" class="btn btn-default<?php if(!$R['uid']||$R['pagetype']==3):?> active<?php endif?>" data-toggle="tab">
+						<a href="#codeBox1" class="btn btn-default<?php if(!$R['uid']||$R['pagetype']==3):?> active<?php endif?>" data-toggle="tab">
 							<input id="option1" name="pagetype" type="radio" value="3"<?php if(!$R['uid']||$R['pagetype']==3):?> checked<?php endif?>>
 							직접꾸미기 
 						</a>
-						<a href="#widgetBox" class="btn btn-default<?php if($R['pagetype']==2):?> active<?php endif?>" data-toggle="tab">
+						<a href="#widgetBox1" class="btn btn-default<?php if($R['pagetype']==2):?> active<?php endif?>" data-toggle="tab">
 							<input id="option2" name="pagetype" type="radio" value="2"<?php if($R['pagetype']==2):?> checked<?php endif?>>
 							위젯전시 
 						</a>
-						<a href="#jointBox" class="btn btn-default<?php if($R['pagetype']==1):?> active<?php endif?>" data-toggle="tab">
+						<a href="#jointBox1" class="btn btn-default<?php if($R['pagetype']==1):?> active<?php endif?>" data-toggle="tab">
 							<input id="option3" name="pagetype" type="radio" value="1"<?php if($R['pagetype']==1):?> checked<?php endif?>>
 							모듈연결 
 						</a>
@@ -178,7 +116,7 @@ if ($uid)
 				</div>
 			</div>
 			<div class="form-group tab-content">
-				<div class="tab-pane active form-group" id="codeBox">
+				<div class="tab-pane active form-group" id="codeBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<?php if($R['uid']):?>
 						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=source" class="btn btn-default btn-block" type="button"><i class="fa fa-pencil fa-lg"></i> 직접편집</a>
@@ -187,7 +125,7 @@ if ($uid)
 						<?php endif?>
 					</div>
 				</div>
-				<div class="tab-pane form-group" id="widgetBox">
+				<div class="tab-pane form-group" id="widgetBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<?php if($R['uid']):?>
 						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=widget" class="btn btn-default btn-block" type="button"><i class="fa fa-puzzle-piece fa-lg"></i> 위젯으로 꾸미기</a>				
@@ -196,7 +134,7 @@ if ($uid)
 						<?php endif?>
 					</div>
 				</div>
-				<div class="tab-pane form-group" id="jointBox">
+				<div class="tab-pane form-group" id="jointBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<div class="input-group">
 							<input type="text" name="joint" id="jointf" value="<?php echo $R['joint']?>" class="form-control" />
@@ -310,78 +248,12 @@ if ($uid)
 				</div>
 			</div>
 			<?php endif?>
-			<div class="form-group">
-				<div class="col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-9">
-					<button class="btn btn-primary btn-block btn-lg visible-lg" type="submit" onclick="this.form.type.value=1;"><i class="fa fa-check fa-lg"></i> <?php if($R['uid']):?>속성변경<?php else:?>신규페이지 등록<?php endif?></button>
-					<button class="btn btn-primary btn-block btn-lg hidden-lg" type="submit" onclick="this.form.type.value=2;"><i class="fa fa-check fa-lg"></i> <?php if($R['uid']):?>속성변경<?php else:?>신규페이지 등록<?php endif?></button>
-				</div>
-			</div>
-		</form>
+
 	</div>
-</div>
-
-
-<div class="modal fade" id="page-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-</div>
-
-
-<script type="text/javascript">
-//<![CDATA[
-function saveCheck(f)
-{
-    var l1 = f._perm_g;
-    var n1 = l1.length;
-    var i;
-	var s1 = '';
-
-	for	(i = 0; i < n1; i++)
-	{
-		if (l1[i].selected == true && l1[i].value != '')
-		{
-			s1 += '['+l1[i].value+']';
-		}
-	}
-
-	f.perm_g.value = s1;
-
-	if (f.name.value == '')
-	{
-		alert('페이지명 입력해 주세요.      ');
-		f.name.focus();
-		return false;
-	}
-	if (f.id.value == '')
-	{
-		alert('페이지코드를 입력해 주세요.      ');
-		f.id.focus();
-		return false;
-	}
-
-	if (!chkFnameValue(f.id.value))
-	{
-		alert('페이지코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
-		f.id.focus();
-		return false;
-	}
-	if (f.category.value == '')
-	{
-		alert('페이지분류를 입력해 주세요.      ');
-		f.category.focus();
-		return false;
-	}
-	if (f.pagetype.value == '1')
-	{
-		if (f.joint.value == '')
-		{
-			alert('모듈을 연결해 주세요.      ');
-			f.joint.focus();
-			return false;
-		}
-	}
-	return confirm('정말로 실행하시겠습니까?         ');
-}
-<?php if($type == 'makepage'):?>
-document.procForm1.name.focus();
-<?php endif?>
-//]]>
-</script>
+	<div class="modal-footer">
+	  <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-check fa-lg"></i> 속성변경</button>
+	  <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">닫기</button>
+	</div>
+</div><!-- /.modal-dialog -->
+</form>
+:RESULT]

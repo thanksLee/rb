@@ -16,6 +16,9 @@ $codfoot = trim($codfoot);
 $addinfo = trim($addinfo);
 $id = trim($id);
 
+$account = $_HS['uid'];
+
+
 if (!$redirect&&(strstr($joint,'&c=')||strstr($joint,'?c=')))
 {
 	getLink('','','연결주소에 사용할 수 없는 파라미터가 있습니다.','');

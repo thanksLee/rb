@@ -1,16 +1,7 @@
 <?php
-$account = $account ? $account : $s;
-if ($s != $account)
-{
-	$_TMPSITE=getUidData($table['s_site'],$account);
-}
-else {
-	$_TMPSITE['id'] = $r;
-}
-
 $SITES = getDbArray($table['s_site'],'','*','gid','asc',0,$p);
 include_once $g['path_core'].'function/menu.func.php';
-$ISCAT = getDbRows($table['s_menu'],'site='.$account);
+$ISCAT = getDbRows($table['s_menu'],'site='.$_HS['uid']);
 
 if($cat)
 {
@@ -60,9 +51,9 @@ if ($is_regismode)
 <div class="row">
 <div class="col-md-4 col-lg-3" id="tab-content-list">
   <div class="site-selector" style="margin-bottom:10px">
-		<select class="form-control" onchange="goHref('<?php echo $g['adm_href']?>&amp;account='+this.value);">
+		<select class="form-control" onchange="goHref('<?php echo $g['s']?>/?m=<?php echo $m?>&module=<?php echo $module?>&front=<?php echo $front?>&r='+this.value);">
 		<?php while($S = db_fetch_array($SITES)):?>
-		<option value="<?php echo $S['uid']?>"<?php if($account==$S['uid']):?> selected="selected"<?php endif?>><?php echo $S['name']?> (<?php echo $S['id']?>)</option>
+		<option value="<?php echo $S['id']?>"<?php if($r==$S['id']):?> selected="selected"<?php endif?>><?php echo $S['name']?> (<?php echo $S['id']?>)</option>
 		<?php endwhile?>
 		<?php if(!db_num_rows($SITES)):?>
 		<option value="">등록된 사이트가 없습니다.</option>
@@ -103,7 +94,7 @@ if ($is_regismode)
 			//<![CDATA[
 			var dragsort = ToolMan.dragsort();
 			var TreeImg = "<?php echo $g['img_core']?>/tree/default_none";
-			var ulink = "<?php echo $g['adm_href']?>&amp;account=<?php echo $account?>&amp;cat=";
+			var ulink = "<?php echo $g['adm_href']?>&amp;cat=";
 			//]]>
 			</script>
 			<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>
@@ -128,9 +119,9 @@ if ($is_regismode)
 					<i class="fa fa-download fa-lg"></i> 구조 내려받기 
 				</button>
 				<ul class="dropdown-menu pull-right" role="menu">
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $_TMPSITE['id']?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=xml" target="_blank">XML로 생성/받기</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $_TMPSITE['id']?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=xls" target="_action_frame_<?php echo $m?>">엑셀로 받기</a></li>
-					<li><a href="<?php echo $g['s']?>/?r=<?php echo $_TMPSITE['id']?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=txt" target="_action_frame_<?php echo $m?>">텍스트파일로 받기</a></li>
+					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=xml" target="_blank">XML로 생성/받기</a></li>
+					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=xls" target="_action_frame_<?php echo $m?>">엑셀로 받기</a></li>
+					<li><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=dumpmenu&amp;type=txt" target="_action_frame_<?php echo $m?>">텍스트파일로 받기</a></li>
 				</ul>
 			</div>
 		</div>
@@ -179,7 +170,7 @@ if ($is_regismode)
   <hr>
 </div>
 <a name="cat"></a>
-<div class="col-md-8 col-lg-9" id="tab-content-view">
+<div class="col-md-8 col-lg-9 hidden-xs hidden-sm" id="tab-content-view">
   <div class="page-header">
 	<h4><i class="fa fa-cog fa-lg"></i>
 	<?php if($is_regismode):?>
@@ -192,11 +183,10 @@ if ($is_regismode)
 
 
 
-	<form class="form-horizontal" role="form" name="procForm1" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" enctype="multipart/form-data" onsubmit="return saveCheck(this);">
+	<form  name="procForm1" class="form-horizontal" role="form" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" enctype="multipart/form-data" onsubmit="return saveCheck(this);">
 	<input type="hidden" name="r" value="<?php echo $r?>" />
 	<input type="hidden" name="m" value="<?php echo $module?>" />
 	<input type="hidden" name="a" value="regismenu" />
-	<input type="hidden" name="account" value="<?php echo $account?>" />
 	<input type="hidden" name="cat" value="<?php echo $CINFO['uid']?>" />
 	<input type="hidden" name="vtype" value="<?php echo $vtype?>" />
 	<input type="hidden" name="depth" value="<?php echo intval($CINFO['depth'])?>" />
@@ -211,7 +201,7 @@ if ($is_regismode)
 	  <div class="col-md-10">
 		<p class="form-control-static">
 		<?php for ($i = 0; $i < $ctnum; $i++): ?>
-		<a href="<?php echo $g['adm_href']?>&amp;account=<?php echo $account?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
+		<a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
 		<?php if($i < $ctnum-1):?> &gt; <?php endif?> 
 		<?php $catcode .= $ctarr[$i]['id'].'/';endfor?>
 		</p>
@@ -222,7 +212,7 @@ if ($is_regismode)
 	  <div class="col-md-10">
 		<p class="form-control-static">
 		<?php for ($i = 0; $i < $ctnum-1; $i++): ?>
-		<a href="<?php echo $g['adm_href']?>&amp;account=<?php echo $account?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
+		<a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo $ctarr[$i]['uid']?>"><?php echo $ctarr[$i]['name']?></a>
 		<?php if($i < $ctnum-2):?> &gt; <?php endif?> 
 		<?php $delparent=$ctarr[$i]['uid'];$catcode .= $ctarr[$i]['id'].'/';endfor?>
 		<?php if(!$delparent):?>최상위메뉴<?php endif?>
@@ -240,10 +230,10 @@ if ($is_regismode)
 		  <span class="input-group-btn">
 			
 			<?php if($is_fcategory):?>
-			<a href="<?php echo $g['adm_href']?>&amp;account=<?php echo $account?>&amp;cat=<?php echo $cat?>&amp;vtype=sub"><button class="btn btn-default" type="button" data-toggle="tooltip" data-placement="top" data-original-title="서브메뉴 만들기">
+			<a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo $cat?>&amp;vtype=sub"><button class="btn btn-default" type="button" data-toggle="tooltip" data-placement="top" data-original-title="서브메뉴 만들기">
 			  <i class="fa fa-share fa-rotate-90 fa-lg"></i>
 			</button></a>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $moudle?>&amp;a=deletemenu&amp;account=<?php echo $account?>&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')"><button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" data-original-title="메뉴삭제">
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $moudle?>&amp;a=deletemenu&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')"><button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" data-original-title="메뉴삭제">
 			  <i class="fa fa-trash-o fa-lg"></i>
 			</button></a>
 			<?php else:?>
@@ -265,6 +255,7 @@ if ($is_regismode)
 		</span>
 	  </div>
 	</div>
+	<?php if($CINFO['uid']&&!$vtype):?>
 	<div class="form-group">
 	  <label class="col-md-2 control-label">메뉴코드</label>
 	  <div class="col-md-10 col-lg-9">
@@ -288,6 +279,7 @@ if ($is_regismode)
 		</span>
 	  </div>
 	</div>
+	<?php endif?>
 	<div class="form-group">
 		<label class="col-md-2 col-lg-2 control-label">전시내용</label>
 		<div class="col-md-10 col-lg-9">
@@ -495,8 +487,10 @@ if ($is_regismode)
 
 
 
-
-
+<!-- Modal-메뉴 -->
+<div class="modal fade" id="menu-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<!-- //Modal-메뉴 -->
 
 
 <script type="text/javascript">
@@ -563,7 +557,7 @@ function saveCheck(f)
 
 	f.perm_g.value = s1;
 
-	if (f.account.value == '')
+	if (f.r.value == '')
 	{
 		alert('사이트가 등록되지 않았습니다.      ');
 		return false;

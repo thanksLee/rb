@@ -131,7 +131,7 @@ function tmT()
 		tme[i]='<img src="'+this.tm4.tm2[tmf.tmV()?'icon_e':'icon_l']+'" align="absmiddle" />';tmf=tmf.tmN;
 	}
 
-	return '<div>'+
+	return '<div class="hidden-xs">'+
 			(this.tm7?tme.join('')+
 			(this.tmK.length?'<a href="javascript:trees['+this.tm4.tmC+'].tmB('+this.tmC+')"><img src="'+this.tmP(true)+'" name="j_img'+this.tm4.tmC+'_'+this.tmC+
 			'" alt="" /></a>':'<img src="'+this.tmP(true)+'" alt="" />'):'')+
@@ -139,11 +139,20 @@ function tmT()
 			'<a title="CODE:'+this.tm3[1]+'" href="'+ulink+this.tm3[1]+'#cat" target="'+this.tm4.tm2['target']+
 			'" id="i_txt'+this.tm4.tmC+'_'+this.tmC+'">'+
 			(this.tm3[0]?this.tm3[0].replace(/&lt;/g,'<').replace(/&gt;/g,'>'):'')+
-			'</a></div>'+
+			'</a>'+
+			'</div>'+
+
+			'<div class="visible-xs">'+
+			(this.tm7?tme.join('')+
+			(this.tmK.length?'<a href="javascript:trees['+this.tm4.tmC+'].tmB('+this.tmC+')"><img src="'+this.tmP(true)+'" name="j_img'+this.tm4.tmC+'_'+this.tmC+
+			'" alt="" /></a>':'<img src="'+this.tmP(true)+'" alt="" />'):'')+
+			'<img src="'+this.tmP()+'" name="i_img'+this.tm4.tmC+'_'+this.tmC+'" alt="" />'+
+			'<a data-toggle="modal" data-target="#menu-modal" title="CODE:'+this.tm3[1]+'" href="#menu-modal" id="i_txt'+this.tm4.tmC+'_'+this.tmC+'" onclick="getAjaxData(\''+ulink.replace('front=menu','front=modal.menu')+this.tm3[1]+'\',\'menu-modal\');">'+
+			(this.tm3[0]?this.tm3[0].replace(/&lt;/g,'<').replace(/&gt;/g,'>'):'')+
+			'</a>'+
+			'</div>'+
 			(this.tmK.length?'<div id="i_div'+this.tm4.tmC+'_'+this.tmC+'"></div>':'');
 }
-
-
 function tmQ(tmg)
 {
 	return this.tm4.tm2['icon_'+((this.tm7?0:32)+(this.tmK.length?16:0)+(this.tmK.length&&this.tmF?8:0)+(!tmg&&this.tm4.tm6==this?4:0)+(tmg?2:0)+(tmg&&this.tmV()?1:0))];
