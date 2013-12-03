@@ -2,10 +2,10 @@
 include $g['path_core'].'function/rss.func.php';
 include $g['path_module'].'market/var/var.php';
 $_serverinfo = explode('/',$d['market']['url']);
-$_updatelist = getUrlData('http://'.$_serverinfo[2].'/__update/market/'.$module.'/update.txt',10);
+$_updatelist = getUrlData('http://'.$_serverinfo[2].'/__update/market/modules/'.$module.'/update.txt',10);
 $_updatelist = explode("\n",$_updatelist);
 $_updatelength = count($_updatelist)-1;
-$recnum	=  15;
+$recnum	=  5;
 $TPG = getTotalPage($_updatelength,$recnum);
 ?>
 
@@ -26,70 +26,42 @@ $TPG = getTotalPage($_updatelength,$recnum);
 				</tr>
 			</thead>
 			<tbody>
-			<!--
+
 				<?php $_ishistory=false?>
 				<?php for($i = $_updatelength-(($p-1)*$recnum)-1; $i > $_updatelength-($p*$recnum)-1; $i--):?>
 				<?php $_update=trim($_updatelist[$i]);if(!$_update)continue?>
 				<?php $var1=explode(',',$_update)?>
 				<?php $var2=explode(',',$_updatelist[$i-1])?>
 				<?php $_updatefile=$g['path_module'].$module.'/update/'.$var1[1].'.txt'?>
+				<?php if(is_file($_updatefile)):?>
+				<?php $_supdate=explode(',',implode('',file($_updatefile)))?>
+
+				<tr class="active">
+					<td><?php echo $var1[0]?></td>
+					<td><i class="fa fa-file-text-o fa-lg"></i> <a href="http://<?php echo $_serverinfo[2]?>/market/<?php echo $var1[2]?>" target="_blank" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 내역 보기"><?php echo $var1[0]?>_<?php echo $var1[1]?></a></td>
+					<td><?php echo getDateFormat($_supdate[0],'Y.m.d')?></td>
+					<td><span class="label label-default"><i class="fa fa-circle-o"></i> 완료됨<?php if($_supdate[1]):?>(수동)<?php else:?>(원격)<?php endif?></span></td>
+					<td>
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;a=update_extension&amp;extension_path=./modules/<?php echo $module?>/&amp;type=delete&amp;ufile=<?php echo $var1[1]?>" title="업데이트기록 제거" onclick="return hrefCheck(this,true,'정말로 업데이트 기록을 제거하시겠습니까?');" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 기록 제거"><i class="fa fa-times"></i> 기록제거</a>
+					</td>
+				</tr>
+
+				<?php else:?>
+
 				<tr>
 					<td><?php echo $var1[0]?></td>
 					<td><i class="fa fa-file-text-o fa-lg"></i> <a href="http://<?php echo $_serverinfo[2]?>/market/<?php echo $var1[2]?>" target="_blank" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 내역 보기"><?php echo $var1[0]?>_<?php echo $var1[1]?></a></td>
-					<td>
-						<?php if(is_file($_updatefile)):?>
-						<?php $_supdate=explode(',',implode('',file($_updatefile)))?>
-						<span class="udate1_1"><?php echo getDateFormat($_supdate[0],'Y.m.d')?></span>
-						<?php else:$_supdate=array()?>
-						<span class="udate1_2">업데이트 전</span>
-						<?php endif?>
-					</td>
-					<?php if(!is_file($_updatefile)&&(is_file($_updatefile)||!trim($var2[1]))):?>
-					<td><span class="label label-default">미적용</span></td>
-					<td>
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=update&amp;type=auto&amp;ufile=<?php echo $var1[1]?>" class="btnGray01 plusBlue hand" onclick="return hrefCheck(this,true,'정말로 업데이트 하시겠습니까?');"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="원격 업데이트 실행"><i class="fa fa-sign-in fa"></i> 원격</button></a>
-						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=update&amp;type=manual&amp;ufile=<?php echo $var1[1]?>" class="u" title="수동 업데이트 처리" onclick="return hrefCheck(this,true,'정말로 수동으로 업데이트 처리하시겠습니까?\n수동 업데이트 처리시 원격업데이트는 건너뜁니다.');"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="수동으로 업데이트 완료처리"><i class="fa fa-pencil"></i> 수동</button></a>
-					</td>
-					<?php else:?>
-					<?php if(is_file($_updatefile)):?>
-					<td><span class="label label-default"><i class="fa fa-circle-o"></i> 완료됨</span></td>
-					<td><?php if($_supdate[1]):?>수동<?php endif?></td>
-					<td>
-						<?php if(!$_ishistory):?><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=update&amp;type=delete&amp;ufile=<?php echo $var1[1]?>" title="업데이트기록 제거" onclick="return hrefCheck(this,true,'정말로 업데이트 기록을 제거하시겠습니까?');"><button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 기록 제거"><i class="fa fa-times"></i> 기록제거</button></a><?php endif?>
-					</td>
-					<?php $_ishistory=true?>
-					<?php else:?>
-
-					<?php endif?>
-					<?php endif?>
+					<td></td>
 					<td><span class="label label-default">미적용</span></td>
 					<td>
 						<div class="btn-group btn-group-sm">
-							<button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="원격 업데이트 실행"><i class="fa fa-sign-in fa"></i> 원격</button>
-							<button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="수동으로 업데이트 완료처리"><i class="fa fa-pencil"></i> 수동</button>
+							<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;a=update_extension&amp;extension_path=./modules/<?php echo $module?>/&amp;type=auto&amp;ufile=<?php echo $var1[1]?>" onclick="return hrefCheck(this,true,'정말로 업데이트 하시겠습니까?');" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="원격 업데이트 실행"><i class="fa fa-sign-in fa"></i> 원격</a>
+							<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;a=update_extension&amp;extension_path=./modules/<?php echo $module?>/&amp;type=manual&amp;ufile=<?php echo $var1[1]?>" title="수동 업데이트 처리" onclick="return hrefCheck(this,true,'정말로 수동으로 업데이트 처리하시겠습니까?\n수동 업데이트 처리시 원격업데이트는 건너뜁니다.');" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="수동으로 업데이트 완료처리"><i class="fa fa-pencil"></i> 수동</a>
 						</div>
 					</td>
 				</tr>
-					-->
-				<tr class="active">
-					<td>1.1.0</td>
-					<td><i class="fa fa-file-text-o fa-lg"></i> <a href="http://www.kimsq.com" target="_blank" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 내역 보기">1.1.0_20111221</a></td>
-					<td>2012.03.30</td>
-					<td><span class="label label-default"><i class="fa fa-circle-o"></i> 완료됨</span></td>
-					<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 기록 제거"><i class="fa fa-times"></i> 기록제거</button>
-					</td>
-				</tr>
-				<tr class="active">
-					<td>0.0.5</td>
-					<td><i class="fa fa-file-text-o fa-lg"></i> <a href="http://www.kimsq.com" target="_blank" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 내역 보기">1.1.0_20111221</a></td>
-					<td>2012.03.30</td>
-					<td><span class="label label-default"><i class="fa fa-circle-o"></i> 완료됨</span></td>
-					<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="업데이트 기록 제거"><i class="fa fa-times"></i> 기록제거</button>
-					</td>
 
-				</tr>
+				<?php endif?>
 				<?php endfor?>
 				<?php if(!$_updatelength):?>
 				<tr>
@@ -99,6 +71,18 @@ $TPG = getTotalPage($_updatelength,$recnum);
 			</tbody>
 		</table>
 	</div>
+
+	<?php if($TPG>1):?>
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="<?php echo $g['adm_href']?>&amp;p=1">&laquo;</a></li>
+			<?php for($i = 1; $i <= $TPG; $i++):?>
+			<li<?php if($p==$i):?> class="active"<?php endif?>><a href="<?php echo $g['adm_href']?>&amp;p=<?php echo $i?>"><?php echo $i?></a></li>
+			<?php endfor?>
+			<li><a href="<?php echo $g['adm_href']?>&amp;p=<?php echo $TPG?>">&raquo;</a></li>
+		</ul>
+	</div>
+	<?php endif?>
 
 	<p class="text-muted">
 		<i class="fa fa-question-circle fa-2x pull-left fa-border"></i>
@@ -172,7 +156,7 @@ $TPG = getTotalPage($_updatelength,$recnum);
 			<div class="form-group">
 				<label class="col-lg-3 control-label">버젼:</label>
 				<div class="col-lg-9">                                                
-					<p class="form-control-static">1.0</p>
+					<p class="form-control-static">1.0.0</p>
 				</div>
 			</div>
 		</div>

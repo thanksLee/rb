@@ -3,7 +3,7 @@ $d['admin']['themepc'] = "default";
 $d['admin']['thememobile'] = "default";
 $d['admin']['autoclose'] = "1";
 $d['admin']['version'] = "2.0.0";
-$d['admin']['hidepannel'] = "";
+$d['admin']['hidepannel'] = "1";
 $d['admin']['pannellink'] = "";
 $d['admin']['cache_flag'] = "month";
 $d['admin']['http_port'] = "80";
@@ -30,4 +30,6 @@ $d['admin']['jm_type'] = "local";
 $d['admin']['jm_local'] = "1.3.2";
 $d['admin']['jm_min'] = ".min";
 $d['admin']['jm_cdn'] = "<link rel=\"stylesheet\" href=\"http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css\" /><br><script src=\"http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js\"></script>";
+$d['admin']['sidebar'] = "lightgray";
+$d['admin']['activecolor'] = "blue";
 ?>

@@ -5,4 +5,5 @@ $d['amenu']['post'] = '포스트 관리';
 $d['amenu']['comment'] = '댓글 관리';
 $d['amenu']['upload'] = '첨부파일 관리';
 $d['amenu']['mig'] = '마이그레이션';
+$d['amenu']['_info'] = '정보';
 ?>
