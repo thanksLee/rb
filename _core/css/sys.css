@@ -12,6 +12,7 @@ form {display:inline;margin:0;padding:0;}
 .shift {position:relative;left:-2px;}
 .hand {cursor:pointer;}
 .hide {display:none;}
+.hideq {display:none;}
 .sysMsgBox {padding:30px;font-size:15px;font-family:"malgun gothic",dotum;color:#ff0000;font-weight:bold;border:#dfdfdf solid 5px;background:#f9f9f9;text-align:center;}
 .sysMsgBox img {position:relative;top:2px;left:-2px;}
 .filter {filter:alpha(opacity=20);opacity:0.2;}

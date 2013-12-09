@@ -116,7 +116,7 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<?php if($g['mobile']&&$_SESSION['pcmode']!='Y'&&$_HS['m_layout']):?>
+<?php if(($g['mobile']&&$_SESSION['pcmode']!='Y'&&$_HS['m_layout'])||$m=='admin'):?>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi" />
 <meta name="apple-mobile-web-app-capable" content="no" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />

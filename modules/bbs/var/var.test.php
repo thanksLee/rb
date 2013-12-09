@@ -1,6 +1,6 @@
 <?php
 $d['bbs']['layout'] = "";
-$d['bbs']['skin'] = "";
+$d['bbs']['skin'] = "_pc/blog01";
 $d['bbs']['m_skin'] = "";
 $d['bbs']['c_skin'] = "";
 $d['bbs']['c_mskin'] = "";

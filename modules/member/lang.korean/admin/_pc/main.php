@@ -54,9 +54,15 @@ if ($where && $keyw) $_WHERE .= " and ".$where." like '%".trim($keyw)."%'";
 //$RCD = getDbArray($table['s_mbrdata'].' AS a left join '.$table['s_mbrid'].' AS b on memberuid=uid',$_WHERE,'a.*,b.uid,b.id,b.pw',$sort,$orderby,$recnum,$p);
 //$NUM = getDbRows($table['s_mbrdata'].' AS a left join '.$table['s_mbrid'].' AS b on memberuid=uid',$_WHERE);
 
-$RCD = getDbArray($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE,'*',$sort,$orderby,$recnum,$p);
-$NUM = getDbRows($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE);
-
+if (!$account)
+{
+	$RCD = getDbArray($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE,'*',$sort,$orderby,$recnum,$p);
+	$NUM = getDbRows($table['s_mbrdata'].' left join '.$table['s_mbrid'].' on memberuid=uid',$_WHERE);
+}
+else {
+	$RCD = getDbArray($table['s_mbrdata'],$_WHERE,'*',$sort,$orderby,$recnum,$p);
+	$NUM = getDbRows($table['s_mbrdata'],$_WHERE);
+}
 //$RCD = getDbArray($table['s_mbrdata'],$_WHERE,'*',$sort,$orderby,$recnum,$p);
 //$NUM = getDbRows($table['s_mbrdata'],$_WHERE);
 $TPG = getTotalPage($NUM,$recnum);
@@ -239,9 +245,9 @@ $xmin1	= substr($date['totime'],10,2);
 		<option value="90"<?php if($recnum==90):?> selected="selected"<?php endif?>>90명</option>
 		</select>
 		<select name="where">
-		<option value="id"<?php if($where=='id'):?> selected="selected"<?php endif?>>아이디</option>
 		<option value="name"<?php if($where=='name'):?> selected="selected"<?php endif?>>이름</option>
 		<option value="nic"<?php if($where=='nic'):?> selected="selected"<?php endif?>>닉네임</option>
+		<?php if(!$account):?><option value="id"<?php if($where=='id'):?> selected="selected"<?php endif?>>아이디</option><?php endif?>
 		</select>
 
 		<input type="text" name="keyw" value="<?php echo stripslashes($keyw)?>" class="input" />
@@ -397,7 +403,7 @@ $xmin1	= substr($date['totime'],10,2);
 		<input type="checkbox" name="all" id="all_check" /><label for="all_check">현재 해당되는 모든회원(<?php echo number_format($NUM)?>명) 선택</label>
 		</div>
 		
-		<div id="span_member_tool" class="xt1 hide">
+		<div id="span_member_tool" class="xt1" style="display:none;">
 
 		<select name="auth" class="select">
 		<option value="">회원인증</option>
@@ -438,7 +444,7 @@ $xmin1	= substr($date['totime'],10,2);
 
 		</div>
 
-		<div id="span_member_give" class="xt1 hide">
+		<div id="span_member_give" class="xt1" style="display:none;">
 
 		<select name="pointType">
 		<option value="point">포인트</option>
@@ -455,7 +461,7 @@ $xmin1	= substr($date['totime'],10,2);
 
 		</div>
 
-		<div id="span_member_paper" class="xt1 hide">
+		<div id="span_member_paper" class="xt1" style="display:none;">
 
 		<textarea name="memo" rows="8" cols="60" class="textarea"></textarea><br />
 
@@ -480,7 +486,7 @@ $xmin1	= substr($date['totime'],10,2);
 
 		</div>
 
-		<div id="span_member_email" class="xt1 hide">
+		<div id="span_member_email" class="xt1" style="display:none;">
 
 		불러오기 : 
 
@@ -525,7 +531,7 @@ $xmin1	= substr($date['totime'],10,2);
 		<input type="button" class="btnblue" value="보내기" onclick="actQue('send_email');" />
 		</div>
 
-		<div id="span_member_dump" class="xt1 hide">
+		<div id="span_member_dump" class="xt1" style="display:none;">
 		<input type="button" class="btnblue" value="이메일" onclick="actQue('dump_email');" />
 		<input type="button" class="btnblue" value="연락처" onclick="actQue('dump_tel');" />
 		<input type="button" class="btnblue" value="DM주소" onclick="actQue('dump_address');" />

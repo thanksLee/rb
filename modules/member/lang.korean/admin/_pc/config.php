@@ -199,7 +199,7 @@
 
 
 		</div>
-		<div id="tarea2" class="hide">
+		<div id="tarea2" class="hideq">
 		
 
 
@@ -307,7 +307,7 @@
 
 
 		</div>
-		<div id="tarea3" class="hide">
+		<div id="tarea3" class="hideq">
 			
 			<div class="addf">
 
@@ -351,7 +351,7 @@
 			<td><input type="button" value="삭제" class="btngray" onclick="delField(this.form,'<?php echo $_val[0]?>');" /></td>
 			<td><input type="text" name="add_name_<?php echo $_val[0]?>" size="13" value="<?php echo $_val[1]?>" class="input" /></td>
 			<td>
-				<input type="checkbox" name="addFieldMembers[]" value="<?php echo $_val[0]?>" checked="checked" class="hide" />
+				<input type="checkbox" name="addFieldMembers[]" value="<?php echo $_val[0]?>" checked="checked" class="hideq" />
 				<select name="add_type_<?php echo $_val[0]?>">
 				<option value="text"<?php if($_val[2]=='text'):?> selected="selected"<?php endif?>>TEXT</option>
 				<option value="password"<?php if($_val[2]=='password'):?> selected="selected"<?php endif?>>PASSWORD</option>
@@ -444,7 +444,7 @@
 			</div>
 
 		</div>
-		<div id="tarea4" class="hide">
+		<div id="tarea4" class="hideq">
 			
 
 
@@ -483,7 +483,7 @@
 			</table>
 		
 		</div>
-		<div id="tarea5" class="hide">
+		<div id="tarea5" class="hideq">
 		
 		</div>
 	</div>
@@ -528,10 +528,10 @@
 	</div>
 	<div class="agreebox">
 		<div id="bagree1"><textarea name="agree1"><?php readfile($g['path_module'].$module.'/var/agree1.txt')?></textarea></div>
-		<div id="bagree2" class="hide"><textarea name="agree2"><?php readfile($g['path_module'].$module.'/var/agree2.txt')?></textarea></div>
-		<div id="bagree3" class="hide"><textarea name="agree3"><?php readfile($g['path_module'].$module.'/var/agree3.txt')?></textarea></div>
-		<div id="bagree4" class="hide"><textarea name="agree4"><?php readfile($g['path_module'].$module.'/var/agree4.txt')?></textarea></div>
-		<div id="bagree5" class="hide"><textarea name="agree5"><?php readfile($g['path_module'].$module.'/var/agree5.txt')?></textarea></div>
+		<div id="bagree2" class="hideq"><textarea name="agree2"><?php readfile($g['path_module'].$module.'/var/agree2.txt')?></textarea></div>
+		<div id="bagree3" class="hideq"><textarea name="agree3"><?php readfile($g['path_module'].$module.'/var/agree3.txt')?></textarea></div>
+		<div id="bagree4" class="hideq"><textarea name="agree4"><?php readfile($g['path_module'].$module.'/var/agree4.txt')?></textarea></div>
+		<div id="bagree5" class="hideq"><textarea name="agree5"><?php readfile($g['path_module'].$module.'/var/agree5.txt')?></textarea></div>
 	</div>
 
 	<div class="submitbox">

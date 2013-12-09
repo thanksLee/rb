@@ -166,7 +166,7 @@ $TPG = getTotalPage($NUM,$recnum);
 	<td><?php echo $NUM-((($p-1)*$recnum)+$_rec++)?></td>
 	<td class="sbj">
 		<?php if($R['mobile']):?><img src="<?php echo $g['img_core']?>/_public/ico_mobile.gif" class="imgpos" alt="모바일" title="모바일(<?php echo $R['mobile']?>)로 등록된 글입니다" /><?php endif?>
-		<a href="<?php echo getCyncUrl($_R['cync'].',CMT:'.$_R['uid'].',s:'.$_R['site'])?>#CMT" target="_blank" title="<?php echo getStrCut(str_replace('&nbsp;',' ',strip_tags($_R['content'])),200,'...')?>" onmouseover="qTilePop(this);" onmouseout="qTilePopKill(this);"><?php echo getStrCut(str_replace('&nbsp;',' ',strip_tags($_R['content'])),50,'...')?></a>
+		<a href="<?php echo getCyncUrl($_R['cync'].',CMT:'.$_R['uid'].',s:'.$_R['site'])?>#CMT" target="_blank" title="<?php echo getStrCut(str_replace('&nbsp;',' ',strip_tags($R['content'])),200,'...')?>" onmouseover="qTilePop(this);" onmouseout="qTilePopKill(this);"><?php echo getStrCut(str_replace('&nbsp;',' ',strip_tags($R['content'])),50,'...')?></a>
 		<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 		<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
 	</td>

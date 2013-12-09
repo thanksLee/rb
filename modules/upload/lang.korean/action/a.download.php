@@ -20,8 +20,7 @@ else {
 }
 
 if (!strstr($_SERVER['HTTP_REFERER'],'module=upload'))
-{
-	//동기화
+{	//동기화
 	$cyncArr = getArrayString($R['cync']);
 	$fdexp = explode(',',$cyncArr['data'][2]);
 

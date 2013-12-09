@@ -150,7 +150,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $CINFO['id']?>" class="input sname1" />
-					<div id="guide_menucode" class="guide hide">
+					<div id="guide_menucode" class="guide hideq">
 					이 문서를 잘 표현할 수 있는 단어로 입력해 주세요.<br />
 					영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					고유주소는 중복될 수 없습니다.<br />
@@ -167,7 +167,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="title" value="<?php echo $RINFO['title']?>" class="input sname2" />
-					<div id="guide_title" class="guide hide">
+					<div id="guide_title" class="guide hideq">
 					문서의 타이틀을 등록합니다.
 					</div>
 				</td>
@@ -179,7 +179,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="subject" value="<?php echo $RINFO['subject']?>" class="input sname2" />
-					<div id="guide_subject" class="guide hide">
+					<div id="guide_subject" class="guide hideq">
 					문서의 주제를 등록합니다.
 					</div>
 				</td>
@@ -191,7 +191,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<textarea name="keywords" rows="2" cols="45"><?php echo $RINFO['keywords']?></textarea>
-					<div id="guide_keywords" class="guide hide">
+					<div id="guide_keywords" class="guide hideq">
 						이 문서의 핵심 키워드를 콤마로 구분하여 지정합니다.<br />
 						키워드의 갯수는 20개미만을 권장합니다.<br />
 						키워드는 엔터없이 입력해 주세요.<br />
@@ -206,7 +206,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<textarea name="description" rows="2" cols="45"><?php echo $RINFO['description']?></textarea>
-					<div id="guide_description" class="guide hide">
+					<div id="guide_description" class="guide hideq">
 						검색 결과에 표시되는 문자를 지정합니다.<br />
 						이 문서를 키워드 위주로 가급적 150자 이내로 설명해 주세요.<br />
 						설명글은 엔터없이 입력해 주세요.<br />
@@ -221,7 +221,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="classification" value="<?php echo $RINFO['classification']?>" class="input sname1" />
-					<div id="guide_classification" class="guide hide">
+					<div id="guide_classification" class="guide hideq">
 						이 문서의 분류,카테고리라 할 수 있으며 핵심적인 키워드 1개를 기입합니다.<br />
 						보기) 킴스큐
 					</div>
@@ -234,7 +234,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="replyto" value="<?php echo $RINFO['replyto']?$RINFO['replyto']:$my['email']?>" class="input sname1" />
-					<div id="guide_replyto" class="guide hide">
+					<div id="guide_replyto" class="guide hideq">
 					문서에 관한 문의처 이메일 주소를 등록합니다.
 					</div>
 				</td>
@@ -246,7 +246,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="language" value="<?php echo $RINFO['language']?$RINFO['language']:'kr'?>" size="10" class="input" />
-					<div id="guide_language" class="guide hide">
+					<div id="guide_language" class="guide hideq">
 					제작된 언어를 등록합니다.<br />
 					- 한글 "kr"<br />
 					- 영어 "en"<br />
@@ -261,7 +261,7 @@ if ($rel==3&&$sbbs)
 				</td>
 				<td class="td2">
 					<input type="text" name="build" value="<?php echo $RINFO['build']?$RINFO['build']:date('Y.m.d')?>" size="10" class="input" />
-					<div id="guide_build" class="guide hide">
+					<div id="guide_build" class="guide hideq">
 					제작 년월일을 등록합니다. 보기)2012.09.24
 					</div>
 				</td>

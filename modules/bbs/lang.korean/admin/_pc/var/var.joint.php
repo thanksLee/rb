@@ -8,9 +8,9 @@ $TPG = getTotalPage($NUM,$recnum);
 $tdir = $g['path_module'].$smodule.'/theme/';
 ?>
 
-
+[RESULT:
 <div id="mjointbox">
-
+<!--
 	<div class="title">
 		<form name="bbsSform" action="<?php echo $g['s']?>/">
 		<input type="hidden" name="system" value="<?php echo $system?>" />
@@ -36,7 +36,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 		</form>
 
 	</div>
-
+-->
 	<?php if($newboard):?>
 
 	<form name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
@@ -198,7 +198,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 		<td class="aply">
 			<input type="button" value="C" title="게시판관리" class="btngray" onclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=admin&module=<?php echo $smodule?>&front=main');" />
 			<input type="button" value="T" title="테마설정" class="btngray" onclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=admin&module=<?php echo $smodule?>&front=skin&theme=<?php echo $d['bbs']['skin_total']?>');" />		
-			<input type="button" value="연결" class="btnblue" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>');" />
+			<input type="button" data-dismiss="modal" value="연결" class="btnblue" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>');" />
 		</td>
 		</tr>
 		<?php while($R = db_fetch_array($PAGES)):?>
@@ -227,7 +227,7 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 		<td class="aply">
 			<input type="button" value="C" title="게시판설정" class="btngray" onclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=admin&module=<?php echo $smodule?>&front=main&uid=<?php echo $R['uid']?>');" />
 			<input type="button" value="T" title="테마설정" class="btngray" onclick="window.open('<?php echo $g['s']?>/?r=<?php echo $r?>&m=admin&module=<?php echo $smodule?>&front=skin&theme=<?php echo $d['bbs']['skin']?$d['bbs']['skin']:$d['bbs']['skin_main']?>');" />
-			<input type="button" value="연결" class="btnblue" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>&bid=<?php echo $R['id']?>'+(getId('cat<?php echo $R['id']?>').value?'&cat='+getId('cat<?php echo $R['id']?>').value:''));" />
+			<input type="button" data-dismiss="modal" value="연결" class="btnblue" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>&bid=<?php echo $R['id']?>'+(getId('cat<?php echo $R['id']?>').value?'&cat='+getId('cat<?php echo $R['id']?>').value:''));" />
 		</td>
 		</tr>
 		<?php endwhile?>
@@ -284,6 +284,11 @@ $tdir = $g['path_module'].$smodule.'/theme/';
 #mjointbox .submitbox a {font-size:11px;font-family:dotum;text-decoration:underline;color:#c0c0c0;padding:0 0 0 10px;}
 
 </style>
+
+
+
+:RESULT]
+
 
 <script type="text/javascript">
 //<![CDATA[

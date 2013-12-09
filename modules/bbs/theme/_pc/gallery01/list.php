@@ -65,7 +65,7 @@
 		<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
 		<?php if($R['comment']):?><span class="comment">[<?php echo $R['comment']?><?php if($R['oneline']):?>+<?php echo $R['oneline']?><?php endif?>]</span><?php endif?>
 		<?php if($R['trackback']):?><span class="trackback">[<?php echo $R['trackback']?>]</span><?php endif?>
-		<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
+		<?php if(getNew($R['d_regis'],$d['bbs']['newtime'])):?><span class="new">new</span><?php endif?>
 	</td>
 	<td class="name"><span class="hand" onclick="getMemberLayer('<?php echo $R['mbruid']?>',event);"><?php echo $R[$_HS['nametype']]?></span></td>
 	<td class="hit b"><?php echo $R['hit']?></td>
@@ -93,7 +93,7 @@
 				<a href="<?php echo $g['bbs_view'].$R['uid']?>"><?php if($R['category']):?><span class="cat">[<?php echo $R['category']?>]</span><?php endif?><?php echo getStrCut($R['subject'],$d['bbs']['sbjcut'],'')?></a>
 				<?php if($R['hidden']):?><img src="<?php echo $g['img_core']?>/_public/ico_hidden.gif" class="imgpos" alt="비밀글" title="비밀글" /><?php endif?>
 				<?php if($R['comment']):?><span class="comment">[<?php echo $R['comment']?><?php if($R['oneline']):?>+<?php echo $R['oneline']?><?php endif?>]</span><?php endif?>
-				<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
+				<?php if(getNew($R['d_regis'],$d['bbs']['newtime'])):?><span class="new">new</span><?php endif?>
 			</div>
 		</div>
 
