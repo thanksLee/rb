@@ -12,7 +12,19 @@ KimsQ is web based platform which can drive multiple web applications and web si
 
 ##Getting Started
 
-## Bugs and feature requests
+<strong>How to install KimsQ Rb 2</strong>
+
+1. Download the <a href="https://github.com/kimsQ/rb2-installer/releases/download/v1.0/rb2-installer.zip">rb2-installer.zip</a> below this page.
+2. Unpack the file.
+3. Upload rb folder using FTP client.(You can change the folder name you want)
+4. Change the permission number of rb folder to 707 (You may see a alert if you go to next step whitout changing)
+5. Browse URL.(http://your-domain/rb)
+   -> If you alreay have installed KimsQ in root path on your server, Browse this way (http://your-domain/rb/index.php)
+   -> If you have got unexpected result, Try to install directly using <a href="https://github.com/kimsQ/rb/releases">rb-2.X.zip</a>.
+6. Please have next step through the installer.
+7. Remove the '_install' folder after you finish installing. (optional)
+
+## Contribution Guide
 Have a bug or a feature request? [Please open a new issue](https://github.com/kimsq/rb/issues). Before opening any issue, please search for existing issues 
 and take a moment to review the [Issue Guidelines](https://github.com/necolas/issue-guidelines)
 
@@ -36,6 +48,7 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 
 Thanks for assistance and contributions:
 
+##Maintainers
 
 
 ##Copyright and license
