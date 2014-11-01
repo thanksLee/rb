@@ -23,7 +23,13 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 
 ##Offical site & Community
 - [kimsQ.com](http://kimsq.com)
+- [kimsQ.co.kr(Korean)](http://kimsq.co.kr)
 
+##Documentaion
+- [docs.kimsQ.com](http://docs.kimsq.com)
+
+##Q&A
+- [For help using kimsQ Rb2, ask on StackOverflow using the tag kimsQ-rb-2.](http://stackoverflow.com/questions/tagged/kimsq-rb-2)
 
 ##Author
 [@kimsnova] (https://github.com/kimsnova), [@gitaeks] (https://github.com/gitaeks)
