@@ -17,7 +17,7 @@ $lang['site']['a0014'] = '도움말';
 $lang['site']['a0015'] = '<code>&lt;meta name=&quot;title&quot; content=&quot;&quot;&gt;</code> 내부에 삽입됩니다.';
 $lang['site']['a0016'] = '<code>&lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;</code> 내부에 삽입됩니다.';
 $lang['site']['a0017'] = '검색 결과에 표시되는 문자를 지정합니다.<br>설명글은 엔터없이 입력해 주세요.';
-$lang['site']['a0018'] = '보기)웹 프레임워크의 혁신 - 킴스큐 Rb 에 대한 다운로드,팁 공유등을 제공합니다. <a href=&quot;http://moz.com/learn/seo/meta-description&quot; target=&quot;_blank&quot;>참고</a>';
+$lang['site']['a0018'] = '보기)웹 프레임워크의 혁신 - 킴스큐 Rb 에 대한 다운로드,팁 공유등을 제공합니다. <a href=http://moz.com/learn/seo/meta-description&quot; target=&quot;_blank&quot;>참고</a>';
 $lang['site']['a0019'] = '150-160자 내에서 작성해 주세요.';
 $lang['site']['a0020'] = '콤마(,)로 구분하여 입력해 주세요.';
 $lang['site']['a0021'] = '<code>&lt;meta name=&quot;keywords&quot; content=&quot;&quot;&gt;</code> 내부에 삽입됩니다.';
