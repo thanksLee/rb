@@ -25,7 +25,7 @@ $lang['xlayout']['s3013'] = '로그아웃';
 $lang['xlayout']['s4001'] = '개인정보취급방침';
 $lang['xlayout']['s4002'] = '이용약관';
 $lang['xlayout']['s4003'] = '위로';
-$lang['xlayout']['s4004'] = '모바일버젼';
+$lang['xlayout']['s4004'] = '모바일버전';
 
 //_pages/main.php
 $lang['xlayout']['s5001'] = 'Alt 등록요함';
