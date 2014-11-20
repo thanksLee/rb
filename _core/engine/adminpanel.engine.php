@@ -20,6 +20,9 @@ $d['layout']['dom'] = array();
 $_nowlayuotdir = dirname($_SESSION['setLayoutKind']?$_HS['m_layout']:$_HS['layout']);
 
 $g['themelang1'] = $g['path_layout'].$_nowlayuotdir.'/_var/_var.config.php';
+$config_lang = $g['path_layout'].$_nowlayuotdir.'/_languages/_var.config.'.$d['admin']['syslang'].'.php';
+if(is_file($config_lang)) $g['themelang2'] = $g['path_layout'].$_nowlayuotdir.'/_languages/_var.config.'.$d['admin']['syslang'].'.php';
+else $g['themelang2'] ='';
 $g['themelang2'] = $g['path_layout'].$_nowlayuotdir.'/_languages/_var.config.'.$d['admin']['syslang'].'.php';
 $g['layvarfile'] = $g['path_layout'].$_nowlayuotdir.'/_var/_var.php';
 
