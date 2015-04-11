@@ -515,6 +515,10 @@ function _LANG($kind,$module)
 {
 	return $GLOBALS['lang'][$module][$kind];
 }
+function _LANG_($kind,$module,$defaultstr)
+{
+	return $GLOBALS['lang'][$module][$kind] ? $GLOBALS['lang'][$module][$kind] : $defaultstr;
+}
 //언언셋인클루드(@ 2.0.0)
 function getLangFile($path,$lang,$file)
 {
