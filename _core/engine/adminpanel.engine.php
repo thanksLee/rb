@@ -453,7 +453,7 @@ var is_admin= '<?php echo $my['admin']?>';
 										<?php endif?>
 										
 										<?php if($_v[1]=='input'):?>
-										<input type="text" class="form-control" name="layout_<?php echo $_key?>_<?php echo $_v[0]?>" value="<?php echo $d['layout'][$_key.'_'.$_v[0]]?>">
+										<input type="text" class="form-control" name="layout_<?php echo $_key?>_<?php echo $_v[0]?>" value="<?php echo stripslashes($d['layout'][$_key.'_'.$_v[0]])?>">
 										<?php endif?>
 
 										<?php if($_v[1]=='color'):?>
@@ -506,7 +506,7 @@ var is_admin= '<?php echo $my['admin']?>';
 										<?php endif?>
 										
 										<?php if($_v[1]=='textarea'):?>
-										<textarea type="text" rows="<?php echo $_v[3]?>" class="form-control" name="layout_<?php echo $_key?>_<?php echo $_v[0]?>"><?php echo $d['layout'][$_key.'_'.$_v[0]]?></textarea>
+										<textarea type="text" rows="<?php echo $_v[3]?>" class="form-control" name="layout_<?php echo $_key?>_<?php echo $_v[0]?>"><?php echo stripslashes($d['layout'][$_key.'_'.$_v[0]])?></textarea>
 										<?php endif?>
 
 										<?php if($_v[1]=='select'):?>
