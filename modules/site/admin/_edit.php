@@ -314,24 +314,6 @@ getId('rb-more-tab-<?php echo $_mtype=='page'?'3':'2'?>').className = 'active';
 </script>
 <?php endif?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php if($type == 'widget'):?>
 <?php $d['page']['widget'] = array()?>
 <?php if(is_file($g['path_page'].$_filekind.'.widget.php')) include $g['path_page'].$_filekind.'.widget.php'?>
@@ -576,7 +558,7 @@ function makeWorkspace()
 	{
 		widgetvar=blockarray[i].split(',');
         workspace=workspace+'<div id=popup'+i+' style="'+
-        ' z-Index:'+i+';display:none;position:absolute;left:0px;top:0px;filter:alpha(opacity=70);opacity:0.7;background:#ffffff url(\'<?php echo $g['s']?>/modules/site/lang.korean/pages/images/btn_resize.gif\') bottom right no-repeat;border:#C5D7EF solid 1px;"'+
+        ' z-Index:'+i+';display:none;position:absolute;left:0px;top:0px;filter:alpha(opacity=70);opacity:0.7;background:#ffffff url(\'<?php echo $g['s']?>/modules/site/pages/images/btn_resize.gif\') bottom right no-repeat;border:#C5D7EF solid 1px;"'+
         ' onSelectStart="return false;"'+
         ' onmousedown="MovableItem=this;poplayer(this);"'+
         ' onMouseover="isHot=true;"'+
@@ -584,14 +566,14 @@ function makeWorkspace()
         ' onMouseout="isHot=false;">'+
 
 		' <div style="height:30px;border-bottom:#C5D7EF;background:#D4E6FC;color:#224499;font-weight:bold;padding:5px 10px 0 10px;">'+
-		' <div><img src="<?php echo $g['s']?>/modules/site/lang.korean/pages/images/btn_move.gif" style="position:relative;top:-2px;" title="<?php echo _LANG('a4021','site')?>" data-tooltip="tooltip"> <span id="wtitle'+i+'" style="position:relative;top:-1px;">'+blocktitle[i]+'</span></div>'+
+		' <div><img src="<?php echo $g['s']?>/modules/site/pages/images/btn_move.gif" style="position:relative;top:-2px;" title="<?php echo _LANG('a4021','site')?>" data-tooltip="tooltip"> <span id="wtitle'+i+'" style="position:relative;top:-1px;">'+blocktitle[i]+'</span></div>'+
 		' <div style="text-align:right;position:relative;top:-20px;">'+
-		' <img src="<?php echo $g['s']?>/modules/site/lang.korean/pages/images/btn_conf.gif" alt="" title="<?php echo _LANG('a4022','site')?>" onmousedown="getWidget('+i+');" style="cursor:pointer;" data-tooltip="tooltip" class="rb-modal-widgetcall-modify"  data-toggle="modal" data-target="#modal_window">'+
-		' <img src="<?php echo $g['s']?>/modules/site/lang.korean/pages/images/btn_del.gif" alt="" title="<?php echo _LANG('a4023','site')?>" onclick="delWidget('+i+');" style="cursor:pointer;"data-tooltip="tooltip">'+
+		' <img src="<?php echo $g['s']?>/modules/site/pages/images/btn_conf.gif" alt="" title="<?php echo _LANG('a4022','site')?>" onmousedown="getWidget('+i+');" style="cursor:pointer;" data-tooltip="tooltip" class="rb-modal-widgetcall-modify"  data-toggle="modal" data-target="#modal_window">'+
+		' <img src="<?php echo $g['s']?>/modules/site/pages/images/btn_del.gif" alt="" title="<?php echo _LANG('a4023','site')?>" onclick="delWidget('+i+');" style="cursor:pointer;"data-tooltip="tooltip">'+
 		' </div>'+
 		' <div style="clear:both;"></div>'+
 		' </div>'+
-		' <div id="whtl'+i+'" style="font-size:12px;font-family:arial;color:#555;padding:7px 0 0 10px;width:100%;height:100%;background:url(\'<?php echo $g['s']?>/modules/site/lang.korean/pages/images/widget/thumb_small.gif\') center center no-repeat;"></div>'+
+		' <div id="whtl'+i+'" style="font-size:12px;font-family:arial;color:#555;padding:7px 0 0 10px;width:100%;height:100%;background:url(\'<?php echo $g['s']?>/modules/site/pages/images/thumb_small.gif\') center center no-repeat;"></div>'+
 		'</div>';
     }
     getId('workSpace').innerHTML = workspace;
