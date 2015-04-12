@@ -253,7 +253,7 @@ $TPG = getTotalPage($NUM,$recnum);
 					</td>
 					<td class="rb-left">
 						<i class="fa fa-file-image-o fa-fw" data-tooltip="tooltip" title="<?php echo $file_ext?>"></i>
-						<a href="<?php echo getMediaLink($R,1)?>" target="_blank" data-trigger="hover" data-popover="popover" data-content="<?php echo $R['caption']?strip_tags($R['caption']):_LANG('a2050','mediaset')?>" title="<?php echo $R['name']?>"><?php echo $R['name']?></a>
+					   <a href="<?php echo getMediaLink($R,1)?>" target="_blank"><?php echo $R['name']?></a>
 					</td>
 					<?php if($R['mbruid']):?>
 					<?php $M=getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'memberuid,name,nic')?>
