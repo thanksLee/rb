@@ -7,5 +7,5 @@ $d['moduleinfo']['market'] = 'http://www.kimsq.co.kr/market';		// 마켓
 $d['moduleinfo']['github'] = 'https://github.com/kimsQ/rb';			// 저장소
 $d['moduleinfo']['issue'] = 'https://github.com/kimsQ/rb/issues';	// 이슈접수
 $d['moduleinfo']['website'] = 'http://www.kimsq.co.kr/';			// 웹사이트
-$d['moduleinfo']['help'] = 'http://docs.kimsq.com/rb2/docs/c/Users/modules/system'; // 도움말
+$d['moduleinfo']['help'] = 'http://docs.kimsq.com/rb2/docs/c/Users/modules/dashboard'; // 도움말
 ?>
