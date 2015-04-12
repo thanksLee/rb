@@ -41,9 +41,6 @@
 <!-- custom css -->
 <link href="<?php echo $g['url_layout']?>/_css/custom.css" rel="stylesheet">
 
-<!-- local css -->
-<link href="<?php echo $g['url_layout'].'/'.str_replace('.php','.css',basename($d['layout']['php']))?>" rel="stylesheet">
-
 <!-- 사이트 헤드 코드 -->
 <?php echo $_HS['headercode']?>
 
