@@ -3,7 +3,8 @@ if(!defined('__KIMS__')) exit;
 
 checkAdmin(0);
 
-$_tmpdfile = $g['path_layout'].$layout.'/_var/_var.php';
+$g['layoutVarForSite'] = $g['path_layout'].$layout.'/_var/_var.'.$r.'.php';
+$_tmpdfile = $g['layoutVarForSite'] ? $g['layoutVarForSite'] : $g['path_layout'].$layout.'/_var/_var.php';
 include $themelang2 ? $themelang2 : $themelang1;
 include $_tmpdfile;
 
@@ -27,7 +28,7 @@ foreach($d['layout']['dom'] as $_key => $_val)
 		}
 		else if ($_v[1] == 'textarea')
 		{
-			fwrite($fp, "\$d['layout']['".$_key.'_'.$_v[0]."'] = \"".trim(${'layout_'.$_key.'_'.$_v[0]})."\";\n");
+			fwrite($fp, "\$d['layout']['".$_key.'_'.$_v[0]."'] = \"".htmlspecialchars(str_replace('$','',trim(${'layout_'.$_key.'_'.$_v[0]})))."\";\n");
 		}
 		else if ($_v[1] == 'file')
 		{
@@ -38,7 +39,7 @@ foreach($d['layout']['dom'] as $_key => $_val)
 				$realname	= $_FILES['layout_'.$_key.'_'.$_v[0]]['name'];
 				$fileExt	= strtolower(getExt($realname));
 				$fileExt	= $fileExt == 'jpeg' ? 'jpg' : $fileExt;
-				$fileName	= 'logo.'.$fileExt;
+				$fileName	= $r.'_'.$_key.'_'.$_v[0].'.'.$fileExt;
 				$saveFile	= $g['path_layout'].$layout.'/_var/'.$fileName;
 				if (!strstr('[gif][jpg][png][swf]',$fileExt))
 				{
@@ -59,7 +60,7 @@ foreach($d['layout']['dom'] as $_key => $_val)
 			fwrite($fp, "\$d['layout']['".$_key.'_'.$_v[0]."'] = \"".$fileName."\";\n");
 		}
 		else {
-			fwrite($fp, "\$d['layout']['".$_key.'_'.$_v[0]."'] = \"".trim(${'layout_'.$_key.'_'.$_v[0]})."\";\n");
+			fwrite($fp, "\$d['layout']['".$_key.'_'.$_v[0]."'] = \"".htmlspecialchars(str_replace('$','',trim(${'layout_'.$_key.'_'.$_v[0]})))."\";\n");
 		}
 	}
 }
