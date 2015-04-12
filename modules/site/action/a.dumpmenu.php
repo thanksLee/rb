@@ -229,7 +229,7 @@ else if($type == 'package_page')
 	$PAGES = getDbArray($table['s_page'],'site='.$s,'*','d_update','desc',0,1);
 	while($R = db_fetch_array($PAGES))
 	{
-		echo "\tarray('name'=>'".$R['name']."','id'=>'".$R['id']."','pagetype'=>'".$R['pagetype']."','ismain'=>'".$R['ismain']."','mobile'=>'".$R['mobile']."','category'=>'".$R['category']."','layout'=>'".$R['layout']."','joint'=>'".$R['joint']."'),\r\n";
+		echo "\tarray('name'=>'".$R['name']."','id'=>'".$R['id']."','pagetype'=>'".$R['pagetype']."','ismain'=>'".$R['ismain']."','mobile'=>'".$R['mobile']."','category'=>'".$R['category']."','layout'=>'".$R['layout']."','joint'=>'".$R['joint']."','linkedmenu'=>'".$R['linkedmenu']."'),\r\n";
 	}
 	echo ");\r\n";
 	echo "?>\r\n";
