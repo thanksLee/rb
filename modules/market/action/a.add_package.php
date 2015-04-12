@@ -142,11 +142,11 @@ if ($package_step == 2)
 	if ($ACT_CP)
 	{
 		include $g['path_tmp'].'app/'.$package_folder.'/_settings/var.page.php';
-		$QKEY = "site,pagetype,ismain,mobile,id,category,name,perm_g,perm_l,layout,joint,hit,linkedmenu,d_regis,d_update,mediaset";
+		$QKEY = "site,pagetype,ismain,mobile,id,category,name,perm_g,perm_l,layout,joint,hit,linkedmenu,d_regis,d_update,mediaset,member,extra";
 		foreach($d['package']['pages'] as $R)
 		{
 			if (is_file($g['path_page'].$S['id'].'-pages/'.$R['id'].'.php')) continue;
-			$QVAL = "'".$S['uid']."','".$R['pagetype']."','".$R['ismain']."','".$R['mobile']."','".$R['id']."','".$R['category']."','".$R['name']."','','0','".$R['layout']."','".$R['joint']."','0','','".$date['totime']."','".$date['totime']."',''";
+			$QVAL = "'".$S['uid']."','".$R['pagetype']."','".$R['ismain']."','".$R['mobile']."','".$R['id']."','".$R['category']."','".$R['name']."','','0','".$R['layout']."','".$R['joint']."','0','".$R['linkedmenu']."','".$date['totime']."','".$date['totime']."','','1',''";
 			getDbInsert($table['s_page'],$QKEY,$QVAL);
 			$lastpage = getDbCnt($table['s_page'],'max(uid)','');
 			getDbInsert($table['s_seo'],'rel,parent,title,keywords,description,classification,image_src',"'2','$lastpage','','','','ALL',''");
