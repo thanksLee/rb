@@ -9,7 +9,7 @@ $front  = $front  ? $front  : 'main';
 $MD = getDbData($table['s_module'],"id='".$module."'",'*');
 
 if (!$MD['id']) getLink($g['s'].'/?r='.$r.'&m=admin&module=admin','',_LANG('ex001','admin'),'');
-if ($MD['id']!='admin'&&strpos('_'.$my['adm_view'],'['.$MD['id'].']')) getLink($g['s'].'/?r='.$r.'&m=admin&module=admin','',_LANG('ex002','admin'),'');
+if ($my['uid']!=1&&strpos('_'.$my['adm_view'],'['.$MD['id'].']')) getLink($g['s'].'/?r='.$r.'&m=site','',_LANG('ex002','admin'),'');
 
 $d['module']['skin']	= $d['admin']['themepc'];
 $g['dir_module_skin']	= $g['dir_module'].'theme/'.$d['module']['skin'].'/';
