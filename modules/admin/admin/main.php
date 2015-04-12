@@ -222,19 +222,20 @@
 						<small class="text-muted"><?php echo _LANG('a1032','admin')?></small>
 					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label class="col-md-2 control-label"><?php echo _LANG('a1003','admin')?></label>
-				<div class="col-md-9">
-					<div class="input-group">
-					<input type="email" name="sysmail" value="<?php echo $d['admin']['sysmail']?$d['admin']['sysmail']:$my['email']?>" class="form-control">
-					<span class="input-group-btn">
-					<button class="btn btn-default" type="button" id="sendmailbtn" onclick="sendCheck(this.id);"><?php if($d['admin']['email']):?><i class="fa fa-info-circle fa-lg fa-fw"></i><?php echo _LANG('a1004','admin')?><?php else:?><?php echo _LANG('a1005','admin')?><?php endif?></button>
-					</span>
+				<div class="form-group">
+					<label class="col-md-2 control-label"><?php echo _LANG('a1003','admin')?></label>
+					<div class="col-md-9">
+						<div class="input-group">
+						<input type="email" name="sysmail" value="<?php echo $d['admin']['sysmail']?$d['admin']['sysmail']:$my['email']?>" class="form-control">
+						<span class="input-group-btn">
+						<button class="btn btn-default" type="button" id="sendmailbtn" onclick="sendCheck(this.id);"><?php if($d['admin']['email']):?><i class="fa fa-info-circle fa-lg fa-fw"></i><?php echo _LANG('a1004','admin')?><?php else:?><?php echo _LANG('a1005','admin')?><?php endif?></button>
+						</span>
+						</div>
+						<p class="form-control-static"><small class="text-muted"><?php echo _LANG('a1006','admin')?></small></p>
 					</div>
-					<p class="form-control-static"><small class="text-muted"><?php echo _LANG('a1006','admin')?></small></p>
 				</div>
+
 			</div>
 
 			<div id="mail-smtp" class="tab-pane clearfix<?php if($d['admin']['smtp_use']=='1'):?> active<?php endif?>">
@@ -288,7 +289,6 @@
 					<p class="form-control-static"><small class="text-muted"><?php echo _LANG('a1039','admin')?></small></p>
 					</div>
 				</div>
-
 	    	</div>
     	</div>
  
