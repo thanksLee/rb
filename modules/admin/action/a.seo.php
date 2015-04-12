@@ -78,6 +78,12 @@ if ($act == 'sitemap_make')
 	fwrite($fp,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 	fwrite($fp,"<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\" xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\">\n\n");
 	fwrite($fp,getMenuUrlCode($s,$table['s_menu'],0,0,0,''));
+	$RCD = getDbArray($table['s_upload'],'type=2 or type=5 and hidden=0','*','gid','asc',0,1);
+	fwrite($fp,"\n\n");
+	while($R=db_fetch_array($RCD))
+	{
+		fwrite($fp,"<url><loc>".$R['url'].$R['folder'].'/'.$R['tmpname']."</loc></url>\n");
+	}
 	fwrite($fp,"\n");
 	fwrite($fp,"</urlset>\n");
 	fclose($fp);
