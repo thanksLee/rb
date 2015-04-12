@@ -53,7 +53,7 @@ if ($act == 'sitemap_make')
 			
 			$string .= "<url><loc>".getRWurl('c='.$_code)."</loc></url>\n";
 			
-			if ($C['isson'])
+			if ($C['is_child'])
 			{
 				getMenuUrlCode($site,$table,$C['uid'],$C['depth'],$uid,$code1);
 			}
