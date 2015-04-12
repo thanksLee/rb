@@ -20,11 +20,6 @@
 <!-- bootstrap css -->
 <?php getImport('bootstrap','css/bootstrap.min',false,'css')?>
 
-<?php if($d['layout']['theme_kind']!='disabled'):?>
-<!-- bootstrap theme -->
-<?php getImport('bootstrap','css/themes/'.$d['layout']['theme_kind'].'/bootstrap',false,'css')?>
-<?php endif?>
-
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
