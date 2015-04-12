@@ -7,6 +7,11 @@ $tmpname	= $_FILES['upfile']['tmp_name'];
 $realname	= $_FILES['upfile']['name'];
 $nameinfo	= explode('_',str_replace('.zip','',$realname));
 $plFolder	= $nameinfo[2];
+for($_i = 3; $_i < count($nameinfo); $_i++)
+{
+	$plFolder .= '_';
+	$plFolder .= $nameinfo[$_i];
+}
 $fileExt	= strtolower(getExt($realname));
 $extPath	= $g['path_tmp'].'app';
 $extPath1	= $extPath.'/';
