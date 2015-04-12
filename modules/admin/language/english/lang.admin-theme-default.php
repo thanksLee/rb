@@ -3,6 +3,7 @@
 $lang['admin']['tl001'] = 'The password is not valid.'; //패스워드가 일치하지 않습니다.
 $lang['admin']['tl002'] = 'Will you remember your login information?'; //로그인 정보를 저장하시겠습니까?
 $lang['admin']['tl003'] = 'If you remember your login information,you do not need to enter your ID and PASSWORD next time. However do not check this on public pc.'; //로그인 정보를 저장할 경우 다음접속시 정보를 입력하지 않으셔도 됩니다.<br>그러나, 개인PC가 아닐 경우 타인이 로그인할 수 있습니다.<br>PC를 여러사람이 사용하는 공공장소에서는 체크하지 마세요.
+$lang['admin']['tl004'] = 'Will you get a temporary password?';//'임시 패스워드를 가입하신 이메일로 받으시겠습니까?';
 
 // front.php
 $lang['admin']['tf001'] = 'Edit dashboard'; //대시보드 꾸미기

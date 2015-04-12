@@ -55,4 +55,10 @@ $lang['admin']['ac001'] = 'Removed update this record.'; //업데이트 기록�
 $lang['admin']['ac002'] = 'The manual update process.'; //수동 업데이트 처리되었습니다.
 $lang['admin']['ac003'] = 'Does not exist, the file is updated.'; //업데이트 파일이 존재하지 않습니다.
 $lang['admin']['ac004'] = 'The update is complete.'; //업데이트가 완료되었습니다.
+
+// a.tmppw.php
+$lang['admin']['ad000'] = 'A temporary password you have requested.'; //'임시 패스워드입니다.';
+$lang['admin']['ad001'] = 'Change your password after a temporaray code'; //'임시 패스워드로 로그인 하신 후 반드시 패스워드를 변경해 주세요.';
+$lang['admin']['ad002'] = 'An email have sented.'; //'이메일이 전송되었습니다.';
+$lang['admin']['ad003'] = 'An email have not sented.'; //'이메일이 전송되지 못했습니다.';
 ?>

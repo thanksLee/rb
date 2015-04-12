@@ -24,6 +24,8 @@
 						<label>
 							<input class="rb-confirm" type="checkbox" name="idpwsave" value="checked" <?php if($_COOKIE['svshop']):?> checked<?php endif?>>Remember me
 						</label>
+						&nbsp;&nbsp;
+						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;a=tmppw" onclick="return hrefCheck(this,true,'<?php echo _LANG('tl004','admin')?>');">Forgot password?</a>
 					</div>
 				</form>
 			</div>
