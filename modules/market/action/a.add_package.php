@@ -274,9 +274,9 @@ if ($package_step == 2)
 		@chmod($_ufile,0707);
 	}
 
-	if (is_file($g['path_tmp'].'app/'.$package_folder.'/_settings/execute.php'))
+	if (is_file($g['path_tmp'].'app/'.$package_folder.'/_settings/run.php'))
 	{
-		include $g['path_tmp'].'app/'.$package_folder.'/_settings/execute.php';
+		include $g['path_tmp'].'app/'.$package_folder.'/_settings/run.php';
 	}
 
 	DirDelete($g['path_tmp'].'app/'.$package_folder.'/_settings');
