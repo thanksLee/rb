@@ -92,13 +92,13 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 			<tbody>
 				<?php $pageTypeIcon=array('','fa-link','fa-puzzle-piece','fa-pencil')?>
 				<?php while($PR = db_fetch_array($PAGES)):?>
-				<tr<?php if($uid==$PR['uid']):?> class="active1"<?php endif?>>
+				<tr<?php if($uid==$PR['uid']):?> class="active1"<?php endif?> data-tooltip="tooltip" title="[<?php echo $PR['category']?>] <?php echo $PR['name']?>">
 					<td onclick="goHref('<?php echo $g['adm_href']?>&amp;uid=<?php echo $PR['uid']?>&amp;recnum=<?php echo $recnum?>&amp;p=<?php echo $p?>&amp;cat=<?php echo urlencode($cat)?>&amp;keyw=<?php echo urlencode($keyw)?>#site-page-info');">
 						<a href="#.">
-							<span class="badge" data-tooltip="tooltip" title="<?php echo $pageType[$PR['pagetype']]?>">
+							<span class="badge">
 								<i class="fa <?php echo $pageTypeIcon[$PR['pagetype']]?> fa-lg"></i>
 							</span>
-							<?php echo $PR['name']?>
+							<?php echo getStrCut($PR['name'],14,'..')?>
 						</a>
 						<small><i><?php echo $PR['id']?></i></small>
 					</td>
@@ -268,7 +268,6 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 				</div>
 				<div class="form-group<?php if($R['pagetype']!=1):?> hidden<?php endif?>" id="editBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
-						<?php if($R['pagetype']==1):?>
 						<fieldset>
 							<div class="input-group">
 								<input type="text" name="joint" id="jointf" value="<?php echo $R['joint']?>" class="form-control">
@@ -278,17 +277,6 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 								</span>
 							</div>
 						</fieldset>
-						<?php else:?>
-						<fieldset disabled>
-							<div class="input-group">
-								<input type="text" name="joint" id="jointf" value="<?php echo $R['joint']?>" placeholder="<?php echo _LANG('a3022','site')?>" class="form-control">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" title="<?php echo _LANG('a0060','site')?>"><i class="fa fa-link fa-lg"></i></button>
-									<button class="btn btn-default" type="button" title="<?php echo _LANG('a0061','site')?>">Go!</button>
-								</span>
-							</div>
-						</fieldset>
-						<?php endif?>
 						<span class="help-block text-muted">
 							<ul class="list-unstyled">
 								<li><?php echo _LANG('a3023','site')?></li>
@@ -330,7 +318,7 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 							<div class="form-group rb-outside">
 								<label class="col-md-2 control-label"><?php echo _LANG('a0010','site')?></label>
 								<div class="col-md-10 col-lg-9">
-									<textarea name="description" class="form-control rb-description" rows="5" placeholder="<?php echo _LANG('a0019','site')?>" maxlength="160"><?php echo $_SEO['description']?></textarea>
+									<textarea name="description" class="form-control rb-description_" rows="5" placeholder="<?php echo _LANG('a0019','site')?>"><?php echo $_SEO['description']?></textarea>
 									<div class="help-text"><small class="text-muted"><a href="#guide_description" data-toggle="collapse" ><i class="fa fa-question-circle fa-fw"></i><?php echo _LANG('a0014','site')?></a></small></div>
 									<div class="collapse" id="guide_description">
 										<small class="help-block">
@@ -416,7 +404,7 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 										<div class="col-sm-6" id="rb-layout-select">
 											<select class="form-control" name="layout_1" required onchange="getSubLayout(this,'rb-layout-select2','layout_1_sub','');">
 												<?php $_layoutHexp=explode('/',$_HS['layout'])?>
-												<option value="0"><?php echo _LANG('a0028','site')?>(<?php echo getFolderName($g['path_layout'].$_layoutHexp[0])?>)</option>
+												<option value="0"><?php echo _LANG('a0028','site')?>(<?php echo $_layoutHexp[0]?>)</option>
 												<?php $_layoutExp1=explode('/',$R['layout'])?>
 												<?php $dirs = opendir($g['path_layout'])?>
 												<?php while(false !== ($tpl = readdir($dirs))):?>
@@ -556,6 +544,12 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 									<li><?php echo _LANG('a0042','site')?></li>
 									<li><?php echo _LANG('a0043','site')?></li>
 									</ul>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 col-lg-2 control-label"><?php echo _LANG('a3043','site')?></label>
+								<div class="col-md-10 col-lg-9">
+									<textarea name="extra" class="form-control" rows="3"><?php echo htmlspecialchars($R['extra'])?></textarea>
 								</div>
 							</div>
 							<?php if($R['uid']):?>
@@ -745,12 +739,17 @@ function getSearchFocus()
 }
 function docType(n,str)
 {
-	getId('rb-document-type').innerHTML = str;
-	$('#editBox1').addClass('hidden');
-	$('#editBox2').addClass('hidden');
-	$('#editBox3').addClass('hidden');
-	$('#editBox'+n).removeClass('hidden');
-	document.procForm.pagetype.value = n;
+	if (confirm('<?php echo _LANG('a0074','site')?>'))
+	{
+		getId('rb-document-type').innerHTML = str;
+		$('#editBox1').addClass('hidden');
+		$('#editBox2').addClass('hidden');
+		$('#editBox3').addClass('hidden');
+		$('#editBox'+n).removeClass('hidden');
+		getIframeForAction(document.procForm);	
+		document.procForm.pagetype.value = n;
+		document.procForm.submit();
+	}
 }
 <?php if($d['admin']['dblclick']):?>
 document.ondblclick = function(event)
