@@ -179,13 +179,17 @@ linkedmenu	VARCHAR(100)	DEFAULT ''		NOT NULL,
 d_regis		VARCHAR(14)		DEFAULT ''		NOT NULL,
 d_update	VARCHAR(14)		DEFAULT ''		NOT NULL,
 mediaset	TEXT			DEFAULT ''		NOT NULL,
+member		INT				DEFAULT '0'		NOT NULL,
+extra		TEXT			DEFAULT ''		NOT NULL,
 KEY site(site),
 KEY ismain(ismain),
 KEY mobile(mobile),
 KEY id(id),
 KEY category(category),
 KEY linkedmenu(linkedmenu),
-KEY d_update(d_update)) ENGINE=".$DB['type']." CHARSET=UTF8");                            
+KEY d_regis(d_regis),
+KEY d_update(d_update),
+KEY member(member)) ENGINE=".$DB['type']." CHARSET=UTF8"); 
 db_query($_tmp, $DB_CONNECT);
 db_query("OPTIMIZE TABLE ".$table['s_page'],$DB_CONNECT); 
 }
