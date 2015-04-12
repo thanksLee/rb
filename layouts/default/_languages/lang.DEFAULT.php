@@ -1,7 +1,7 @@
 <?php
 //common
 $lang['xlayout']['lang']  = 'ko';
-$lang['xlayout']['s1001'] = '관리자모드 - 사이트 - 메뉴 - [%s] 등록정보 - 고급설정 - 코드확장 - 부가필드에 출력할 내용을 입력해 주세요.';
+$lang['xlayout']['s1001'] = '관리자모드 - 사이트 - 메뉴 등록정보의 부가필드에 출력할 내용을 입력해 주세요.';
 
 //_tree_layuot.php
 $lang['xlayout']['s2001'] = '카테고리 <small>Categories</small>';
@@ -25,7 +25,7 @@ $lang['xlayout']['s3013'] = '로그아웃';
 $lang['xlayout']['s4001'] = '개인정보취급방침';
 $lang['xlayout']['s4002'] = '이용약관';
 $lang['xlayout']['s4003'] = '위로';
-$lang['xlayout']['s4004'] = '모바일버전';
+$lang['xlayout']['s4004'] = '모바일버젼';
 
 //_pages/main.php
 $lang['xlayout']['s5001'] = 'Alt 등록요함';
