@@ -814,7 +814,7 @@ $('.selectpicker').selectpicker();
 
 
 <style>
-<?php $_isIE = strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')||strpos($_SERVER['HTTP_USER_AGENT'],'rv:1')?true:false?>
+<?php $_gapAdj = strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')||strpos($_SERVER['HTTP_USER_AGENT'],'Firefox')||strpos($_SERVER['HTTP_USER_AGENT'],'rv:1')?true:false?>
 #rb-body {background:#fff;}
 
 #photobox {position:absolute;display:block;top:0;left:0;bottom:0;right:<?php echo $_sideOpen?290:0?>px;overflow:hidden;}
@@ -835,19 +835,19 @@ $('.selectpicker').selectpicker();
 
 #infobox {position:absolute;display:block;width:290px;top:15px;right:0;bottom:0;overflow:hidden;}
 #infobox .infobox-body {display:block;width:100%;height:100%;border-left:#dfdfdf solid 1px;overflow:hidden;}
-#infobox .infobox-body .pic-info {position:absolute;display:block;width:100%;top:42px;bottom:<?php echo $_isIE?'95px':'55px'?>;overflow-x:hidden;overflow-y:auto;}
+#infobox .infobox-body .pic-info {position:absolute;display:block;width:100%;top:42px;bottom:<?php echo $_gapAdj?'95px':'55px'?>;overflow-x:hidden;overflow-y:auto;}
 #infobox .infobox-body .pic-info img {padding:15px 15px 0 15px;}
-#infobox .infobox-body .pic-submit {position:absolute;display:block;width:100%;bottom:<?php echo $_isIE?'40px':'0'?>;border-top:#dfdfdf solid 1px;padding:10px 15px 10px 15px;}
+#infobox .infobox-body .pic-submit {position:absolute;display:block;width:100%;bottom:<?php echo $_gapAdj?'40px':'0'?>;border-top:#dfdfdf solid 1px;padding:10px 15px 10px 15px;}
 
-#infobox .infobox-body .pic-info1 {position:absolute;display:block;width:100%;top:42px;bottom:<?php echo $_isIE?'132px':'92px'?>;overflow-x:hidden;overflow-y:auto;}
-#infobox .infobox-body .pic-submit1 {position:absolute;display:block;width:100%;bottom:<?php echo $_isIE?'40px':'0'?>;border-top:#dfdfdf solid 1px;padding:10px 15px 10px 15px;}
+#infobox .infobox-body .pic-info1 {position:absolute;display:block;width:100%;top:42px;bottom:<?php echo $_gapAdj?'132px':'92px'?>;overflow-x:hidden;overflow-y:auto;}
+#infobox .infobox-body .pic-submit1 {position:absolute;display:block;width:100%;bottom:<?php echo $_gapAdj?'40px':'0'?>;border-top:#dfdfdf solid 1px;padding:10px 15px 10px 15px;}
 
 #infobox .text-center .btn {width:100%;}
 
 #infobox .layoutbox-body {display:block;width:100%;height:100%;border-left:#dfdfdf solid 1px;overflow:hidden;}
 #infobox .layoutbox-body .selectbox {position:absolute;display:block;width:100%;left:0;right:0;padding:10px 15px 0 15px;}
-#infobox .layoutbox-body .iframebox {position:absolute;display:block;width:100%;top:95px;bottom:<?php echo $_isIE?'105px':'55px'?>;padding:0 0 0 15px;overflow:hidden;border-top:#dfdfdf solid 1px;}
-#infobox .layoutbox-body .optionbox {position:absolute;display:block;width:100%;padding:1px 15px 10px 15px;bottom:<?php echo $_isIE?'40px':'0'?>;border-top:#dfdfdf solid 1px;}
+#infobox .layoutbox-body .iframebox {position:absolute;display:block;width:100%;top:95px;bottom:<?php echo $_gapAdj?'105px':'55px'?>;padding:0 0 0 15px;overflow:hidden;border-top:#dfdfdf solid 1px;}
+#infobox .layoutbox-body .optionbox {position:absolute;display:block;width:100%;padding:1px 15px 10px 15px;bottom:<?php echo $_gapAdj?'40px':'0'?>;border-top:#dfdfdf solid 1px;}
 #infobox .layoutbox-body .optionbox .text-center {border-top:0; padding-top:10px;padding-bottom:0;}
 
 #progressBar {display:none;margin-right:15px;}
