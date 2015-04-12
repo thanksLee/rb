@@ -22,6 +22,7 @@ $d['layout']['dom'] = array(
 		'',
 		array(
 			array('title','input','Site Title',''),
+			array('file','file','Image Title',''),
 			array('fixed','select','Fix Header','Yes=true,No=false'),
 			array('trans','select','Inverse Navbar','Yes=true,No=false'),
 			array('search','select','Display Search-form','Yes=true,No=false'),

@@ -22,6 +22,7 @@ $d['layout']['dom'] = array(
 		'',
 		array(
 			array('title','input','사이트 제목',''),
+			array('file','file','이미지 로고',''),
 			array('fixed','select','헤더 고정하기','예=true,아니오=false'),
 			array('trans','select','헤더 Navbar-Inverse','예=true,아니오=false'),
 			array('search','select','검색폼 출력','예=true,아니오=false'),
