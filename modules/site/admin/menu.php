@@ -287,7 +287,6 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 			</div>
 			<div class="form-group<?php if($CINFO['menutype']!=1):?> hidden<?php endif?>" id="editBox1">
 				<div class="col-md-offset-2 col-md-10 col-lg-9">
-					<?php if($CINFO['menutype']==1):?>
 					<fieldset>
 						<div class="input-group">
 							<input type="text" name="joint" id="jointf" value="<?php echo $CINFO['joint']?>" class="form-control">
@@ -297,17 +296,6 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 							</span>
 						</div>
 					</fieldset>
-					<?php else:?>
-					<fieldset disabled>
-						<div class="input-group">
-							<input type="text" name="joint" id="jointf" value="<?php echo $CINFO['joint']?>" placeholder="<?php echo _LANG('a2022','site')?>" class="form-control">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button" title="<?php echo _LANG('a0060','site')?>"><i class="fa fa-link fa-lg"></i></button>
-								<button class="btn btn-default" type="button" title="<?php echo _LANG('a0061','site')?>">Go!</button>
-							</span>
-						</div>
-					</fieldset>
-					<?php endif?>
 					<div class="help-block">
 						<div class="checkbox">
 							<label>
@@ -390,7 +378,7 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 						<div class="form-group rb-outside">
 							<label class="col-md-2 control-label"><?php echo _LANG('a0010','site')?></label>
 							<div class="col-md-10 col-lg-9">
-								<textarea name="description" class="form-control rb-description" rows="5" placeholder="<?php echo _LANG('a0019','site')?>" maxlength="160"><?php echo $_SEO['description']?></textarea>
+								<textarea name="description" class="form-control rb-description_" rows="5" placeholder="<?php echo _LANG('a0019','site')?>"><?php echo $_SEO['description']?></textarea>
 								<div class="help-text"><small class="text-muted"><a href="#guide_description" data-toggle="collapse" ><i class="fa fa-question-circle fa-fw"></i><?php echo _LANG('a0014','site')?></a></small></div>
 								<div class="collapse" id="guide_description">
 									<small class="help-block">
@@ -473,7 +461,7 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 									<div class="col-sm-6" id="rb-layout-select">
 										<select class="form-control" name="layout_1" required onchange="getSubLayout(this,'rb-layout-select2','layout_1_sub','');">
 											<?php $_layoutHexp=explode('/',$_HS['layout'])?>
-											<option value="0"><?php echo _LANG('a0028','site')?>(<?php echo getFolderName($g['path_layout'].$_layoutHexp[0])?>)</option>
+											<option value="0"><?php echo _LANG('a0028','site')?>(<?php echo $_layoutHexp[0]?>)</option>
 											<?php $_layoutExp1=explode('/',$CINFO['layout'])?>
 											<?php $dirs = opendir($g['path_layout'])?>
 											<?php while(false !== ($tpl = readdir($dirs))):?>
@@ -501,8 +489,8 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 							<label class="col-md-2 control-label"><?php echo _LANG('a2034','site')?></label>
 							<div class="col-md-10 col-lg-9">
 								<div class="btn-group btn-group-justified" data-toggle="buttons">
-									<label class="btn btn-default<?php if($CINFO['mobile']):?> active<?php endif?>">
-										<input type="checkbox" name="mobile" value="1"<?php if($CINFO['mobile']):?> checked<?php endif?>>
+									<label class="btn btn-default<?php if($CINFO['mobile']||!$CINFO['uid']):?> active<?php endif?>">
+										<input type="checkbox" name="mobile" value="1"<?php if($CINFO['mobile']||!$CINFO['uid']):?> checked<?php endif?>>
 										<span class="glyphicon glyphicon-phone"></span>
 										<?php echo _LANG('a2035','site')?> 
 									</label>
@@ -708,9 +696,7 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label">
-														<?php echo _LANG('a2050','site')?>
-													</label>
+													<label class="col-md-3 control-label"><?php echo _LANG('a2050','site')?></label>
 													<div class="col-md-9 col-lg-9">
 														<p>
 															<textarea name="codfoot" id="codfootArea" class="form-control" rows="5"><?php if(is_file($g['path_page'].$r.'-menus/'.$CINFO['id'].'.footer.php')) echo htmlspecialchars(implode('',file($g['path_page'].$r.'-menus/'.$CINFO['id'].'.footer.php')))?></textarea>
@@ -928,12 +914,17 @@ function boxDeco(layer1,layer2)
 }
 function docType(n,str)
 {
-	getId('rb-document-type').innerHTML = str;
-	$('#editBox1').addClass('hidden');
-	$('#editBox2').addClass('hidden');
-	$('#editBox3').addClass('hidden');
-	$('#editBox'+n).removeClass('hidden');
-	document.procForm.menutype.value = n;
+	if (confirm('<?php echo _LANG('a0074','site')?>'))
+	{
+		getId('rb-document-type').innerHTML = str;
+		$('#editBox1').addClass('hidden');
+		$('#editBox2').addClass('hidden');
+		$('#editBox3').addClass('hidden');
+		$('#editBox'+n).removeClass('hidden');
+		getIframeForAction(document.procForm);	
+		document.procForm.menutype.value = n;
+		document.procForm.submit();
+	}
 }
 <?php if($d['admin']['dblclick']):?>
 document.ondblclick = function(event)
