@@ -49,7 +49,7 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 Thanks for assistance and contributions:
 
 ##Maintainers
-
+[@kieregh] (https://github.com/kieregh)
 
 ##Copyright and license
 Copyright 2013 Redblock, Inc.
