@@ -21,7 +21,7 @@ foreach ($mbrmembers as $val)
 			getDbDelete($table['s_simbol'],'mbruid='.$M1['memberuid']);
 			getDbDelete($table['s_friend'],'my_mbruid='.$M1['memberuid'].' or by_mbruid='.$M1['memberuid']);
 			getDbUpdate($table['s_mbrlevel'],'num=num-1','uid='.$M1['level']);
-			getDbUpdate($table['s_mbrgroup'],'num=num-1','uid='.$M1['sosok']);
+			getDbUpdate($table['s_mbrgroup'],'num=num-1','uid='.$M1['mygroup']);
 			getDbDelete($table['s_mbrsns'],'memberuid='.$M1['memberuid']);
 
 			if (is_file($g['path_var'].'avatar/'.$M1['photo']))
