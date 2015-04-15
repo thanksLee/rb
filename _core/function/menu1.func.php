@@ -11,7 +11,6 @@ function getMenuShowSelect($site,$table,$j,$parent,$depth,$uid,$hidden,$id)
 		$nId = ($id?$id.'/':'').$C[$_isUid.'id'];
 		$j++;
 		echo '<option class="selectcat'.$C['depth'].'" value="'.$nId.'"'.($nId==$cat?' selected':'').'>';
-		if(!$depth) echo 'ㆍ';
 		for($i=1;$i<$C['depth'];$i++) echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 		if ($C['depth'] > 1) echo 'ㄴ';
 		echo $C['name'].($C['num']?' ('.$C['num'].')':'').'</option>';

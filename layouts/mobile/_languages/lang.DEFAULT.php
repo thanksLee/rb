@@ -1,7 +1,7 @@
 <?php
 //common
 $lang['xlayout']['lang']  = 'ko';
-$lang['xlayout']['s1001'] = '관리자모드 - 사이트 - 메뉴 - [%s] 등록정보 - 고급설정 - 코드확장 - 부가필드에 출력할 내용을 입력해 주세요.';
+$lang['xlayout']['s1001'] = '관리자모드 - 사이트 - 메뉴 등록정보의 부가필드에 출력할 내용을 입력해 주세요.';
 
 //_includes/drawer-menu.php
 $lang['xlayout']['s2001'] = '프로필관리';

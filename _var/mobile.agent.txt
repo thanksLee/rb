@@ -1,7 +1,7 @@
 Device name,Maker,Screen size,Device type
 Galaxy Note 2/3/4,SAMSUNG,360*640,phone
 Galaxy Note 1,SAMSUNG,400*640,phone
-Galaxy S 3/4/5,SAMSUNG,360*640,phone
+Galaxy S 3/4/5/6,SAMSUNG,360*640,phone
 Galaxy S 1/2,SAMSUNG,320*533,phone
 iPhone 6+,Apple,414*736,phone
 iPhone 6,Apple,375*667,phone

@@ -153,7 +153,17 @@ function filterNum(str)
 //페이징처리
 function getPageLink(lnum,p,tpage,img)
 {
-	if (img != '')
+	if (img == 'mobile')
+	{
+		var g_q = '<div class="'+lnum+'panel-footer"><span class="'+lnum+'paging"><span class="'+lnum+'count"><span class="'+lnum+'hidden">Current page</span><span class="'+lnum+'current">'+p+'</span><span class="'+lnum+'bar">/</span><span class="'+lnum+'hidden">Total page</span> '+tpage+'</span>';
+		if(p==1||tpage<2) g_q  += '<a class="btn btn-link '+lnum+'prev '+lnum+'disabled" title="Prev"><i class="fa fa-angle-left"></i></a>';
+		else g_q  += '<a href="'+getPageGo(p-1,'')+'" class="btn btn-link '+lnum+'prev" title="Prev"><i class="fa fa-angle-left"></i></a>';
+		if(p<tpage) g_q  += '<a href="'+getPageGo(p+1,'')+'" class="btn btn-link '+lnum+'next" title="Next"><i class="fa fa-angle-right"></i></a>';
+		else g_q  += '<a class="btn btn-link '+lnum+'next '+lnum+'disabled" title="Next"><i class="fa fa-angle-right"></i></a>';
+		g_q  += '</span></div>';
+		document.write(g_q);
+	}
+	else if (img != '' && img != 'mobile')
 	{
 		var g_hi = img.split('|');
 		var imgpath = g_hi[0];

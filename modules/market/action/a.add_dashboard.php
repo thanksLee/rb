@@ -40,6 +40,15 @@ else {
 	getLink('','',_LANG('a7002','market'),'');
 }
 
-if ($reload == 'Y') getLink('reload',"parent.parent.",_LANG('a7003','market'),'');
-else getLink('',"parent.parent.$('#modal_window').modal('hide');",_LANG('a7003','market'),'');
+?>
+<script>
+var pt = parent.parent.parent ? parent.parent.parent : parent.parent;
+var ex = pt.location.href.split('&_admpnl_');
+var gx = ex[0] + '&_admpnl_=' + escape(pt.frames._ADMPNL_.location.href);
+pt.location.href = gx;
+</script>
+<?php
+exit;
+//if ($reload == 'Y') getLink('reload',"parent.parent.",_LANG('a7003','market'),'');
+//else getLink('',"parent.parent.$('#modal_window').modal('hide');",_LANG('a7003','market'),'');
 ?>

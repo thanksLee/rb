@@ -1,5 +1,5 @@
 <?php
-$d['admin']['version'] = "2.0.0";
+$d['admin']['version'] = "2.1.0";
 $d['admin']['themepc'] = "default";
 $d['admin']['pannellink'] = "default.css";
 $d['admin']['cache_flag'] = "";

@@ -20,11 +20,6 @@
 <!-- bootstrap css -->
 <?php getImport('bootstrap','css/bootstrap.min',false,'css')?>
 
-<?php if($d['layout']['theme_kind']!='disabled'):?>
-<!-- bootstrap theme -->
-<?php getImport('bootstrap','css/themes/'.$d['layout']['theme_kind'].'/bootstrap',false,'css')?>
-<?php endif?>
-
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -45,9 +40,6 @@
 
 <!-- custom css -->
 <link href="<?php echo $g['url_layout']?>/_css/custom.css" rel="stylesheet">
-
-<!-- local css -->
-<link href="<?php echo $g['url_layout'].'/'.str_replace('.php','.css',basename($d['layout']['php']))?>" rel="stylesheet">
 
 <!-- 사이트 헤드 코드 -->
 <?php echo $_HS['headercode']?>

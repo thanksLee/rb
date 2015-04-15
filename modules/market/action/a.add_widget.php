@@ -45,6 +45,15 @@ else {
 	getLink('','',_LANG('a4002','market'),'');
 }
 
-if ($reload == 'Y') getLink('reload',"parent.parent.",_LANG('a4003','market'),'');
-else getLink('',"parent.parent.$('#modal_window').modal('hide');",_LANG('a4003','market'),'');
+?>
+<script>
+var pt = parent.parent.parent ? parent.parent.parent : parent.parent;
+var ex = pt.location.href.split('&_admpnl_');
+var gx = ex[0] + '&_admpnl_=' + escape(pt.frames._ADMPNL_.location.href);
+pt.location.href = gx;
+</script>
+<?php
+exit;
+//if ($reload == 'Y') getLink('reload',"parent.parent.",sprintf(_LANG('a6003','market'),$plFolder.' - v.'.$plVersion),'');
+//else getLink('',"parent.parent.$('#modal_window').modal('hide');",sprintf(_LANG('a6003','market'),$plFolder.' - v.'.$plVersion),'');
 ?>

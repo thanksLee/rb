@@ -9,19 +9,6 @@ if(!defined('__KIMS__')) exit;
 $d['layout']['show'] = true; // 관리패널에 레이아웃 관리탭을 보여주기
 $d['layout']['date'] = false;  // 데이트픽커 사용
 
-//***********************************************************************************
-// 테마검색
-//***********************************************************************************
-
-$_tmp['themestr']  = 'None=disabled';
-$_tmp['themepath'] = $g['path_plugin'].'bootstrap/'.$d['ov']['bootstrap'].'/css/themes';
-$_tmp['themehnd']  = opendir($_tmp['themepath']); 
-while(false !== ($_tmp['themedir'] = readdir($_tmp['themehnd']))) 
-{ 
-	if(strstr($_tmp['themedir'],'.')) continue;
-	$_tmp['themestr'] .= ','.$_tmp['themedir'].'='.$_tmp['themedir'];
-} 
-closedir($_tmp['themehnd']);
 
 //***********************************************************************************
 // 설정배열
@@ -29,21 +16,13 @@ closedir($_tmp['themehnd']);
 
 $d['layout']['dom'] = array(
 
-	/* 테마 */
-	'theme' => array(
-		'Themes',
-		'Please choose theme for this site. The appearance of site can be changed from theme changing.',
-		array(
-			array('kind','select','Select Theme',$_tmp['themestr']),
-		),
-	),
-
 	/* 헤더 */
 	'header' => array(
 		'Header',
 		'',
 		array(
 			array('title','input','Site Title',''),
+			array('file','file','Image Title',''),
 			array('fixed','select','Fix Header','Yes=true,No=false'),
 			array('trans','select','Inverse Navbar','Yes=true,No=false'),
 			array('search','select','Display Search-form','Yes=true,No=false'),

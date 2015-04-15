@@ -9,19 +9,6 @@ if(!defined('__KIMS__')) exit;
 $d['layout']['show'] = true; // 관리패널에 레이아웃 관리탭을 보여주기
 $d['layout']['date'] = false;  // 데이트픽커 사용
 
-//***********************************************************************************
-// 테마검색
-//***********************************************************************************
-
-$_tmp['themestr']  = '사용안함=disabled';
-$_tmp['themepath'] = $g['path_plugin'].'bootstrap/'.$d['ov']['bootstrap'].'/css/themes';
-$_tmp['themehnd']  = opendir($_tmp['themepath']); 
-while(false !== ($_tmp['themedir'] = readdir($_tmp['themehnd']))) 
-{ 
-	if(strstr($_tmp['themedir'],'.')) continue;
-	$_tmp['themestr'] .= ','.$_tmp['themedir'].'='.$_tmp['themedir'];
-} 
-closedir($_tmp['themehnd']);
 
 //***********************************************************************************
 // 설정배열
@@ -29,21 +16,13 @@ closedir($_tmp['themehnd']);
 
 $d['layout']['dom'] = array(
 
-	/* 테마 */
-	'theme' => array(
-		'테마',
-		'현재 사이트에 적용중인 레이아웃의 테마를 설정합니다. 테마를 변경하면 전체적인 분위기를 한번에 바꿀 수 있습니다.',
-		array(
-			array('kind','select','테마 지정하기',$_tmp['themestr']),
-		),
-	),
-
 	/* 헤더 */
 	'header' => array(
 		'헤더',
 		'',
 		array(
 			array('title','input','사이트 제목',''),
+			array('file','file','이미지 로고',''),
 			array('fixed','select','헤더 고정하기','예=true,아니오=false'),
 			array('trans','select','헤더 Navbar-Inverse','예=true,아니오=false'),
 			array('search','select','검색폼 출력','예=true,아니오=false'),

@@ -20,12 +20,12 @@ else {
 if (!$M['uid'] || $M1['auth'] == 4) getLink('','',_LANG('a4002','site'),$history);
 if ($M1['auth'] == 2) getLink('','',_LANG('a4003','site'),$history);
 if ($M1['auth'] == 3) getLink('','',_LANG('a4004','site'),$history);
-if ($M['pw'] != getCrypt($pw,$M1['d_regis']) && $M1['tmpcode'] != getCrypt($pw,$M1['d_regis'])) getLink('','',_LANG('a4005','site'),$history);
+if ($M['pw'] != getCrypt($pw,$M1['d_regis']) && $M1['tmpcode'] != $pw) getLink('','',_LANG('a4005','site'),$history);
 
 if ($usertype == 'admin')
 if (!$M1['admin']) getLink('','',_LANG('a4006','site'),$history);
 
-getDbUpdate($table['s_mbrdata'],"num_login=num_login+1,now_log=1,last_log='".$date['totime']."'",'memberuid='.$M['uid']);
+getDbUpdate($table['s_mbrdata'],"tmpcode='',num_login=num_login+1,now_log=1,last_log='".$date['totime']."'",'memberuid='.$M['uid']);
 getDbUpdate($table['s_referer'],'mbruid='.$M['uid'],"d_regis like '".$date['today']."%' and site=".$s." and mbruid=0 and ip='".$_SERVER['REMOTE_ADDR']."'");
 
 if ($idpwsave == 'checked') setcookie('svshop', $id.'|'.$pw, time()+60*60*24*30, '/');

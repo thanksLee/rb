@@ -2,7 +2,7 @@
 function LIB_getPageLink($lnum,$p,$tpage,$img)
 {
 	$_N = $GLOBALS['g']['pagelink'].'&amp;';
-	if ($img)
+	if ($img&&strpos($img,'.'))
 	{
 		$g_p1 = '<img src="'.$img.'/p1.gif" alt="Previous page('.$lnum.')" alt="">';
 		$g_p2 = '<img src="'.$img.'/p2.gif" alt="Previous page('.$lnum.')" alt="">';
@@ -20,6 +20,16 @@ function LIB_getPageLink($lnum,$p,$tpage,$img)
 		if($tpage < $lnum || $tpage < $jn) { $g_q .= $g_n1; }
 		else{$np = $jn; $g_q .= '<a href="'.$_N.'p='.$np.'">'.$g_n2.'</a>'; }
 		$g_q  .= $tpage > $p ? '<a href="'.$_N.'p='.$tpage.'"><img src="'.$img.'/lp.gif" alt="Last page"></a>' : '<img src="'.$img.'/lp1.gif" alt="Last page">';
+		return $img;
+	}	
+	else if ($img=='mobile')
+	{
+		$g_q  = '<div class="'.$lnum.'panel-footer"><span class="'.$lnum.'paging"><span class="'.$lnum.'count"><span class="'.$lnum.'hidden">Current page</span><span class="'.$lnum.'current">'.$p.'</span><span class="'.$lnum.'bar">/</span><span class="'.$lnum.'hidden">Total page</span> '.$tpage.'</span>';
+		if($p==1||$tpage<2) $g_q  .= '<a class="btn btn-link '.$lnum.'prev '.$lnum.'disabled" title="Prev"><i class="fa fa-angle-left"></i></a>';
+		else $g_q  .= '<a href="'.$_N.'p='.($p-1).'" class="btn btn-link '.$lnum.'prev" title="Prev"><i class="fa fa-angle-left"></i></a>';
+		if($p<$tpage) $g_q  .= '<a href="'.$_N.'p='.($p+1).'" class="btn btn-link '.$lnum.'next" title="Next"><i class="fa fa-angle-right"></i></a>';
+		else $g_q  .= '<a class="btn btn-link '.$lnum.'next '.$lnum.'disabled" title="Next"><i class="fa fa-angle-right"></i></a>';
+		$g_q  .= '</span></div>';
 		return $g_q;
 	}
 	else {
