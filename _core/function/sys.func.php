@@ -377,7 +377,10 @@ function getTreeMenu($conf,$code,$depth,$parent,$tmpcode)
 	while($C=db_fetch_array($CD))
 	{
 		$rcode= $tmpcode?$tmpcode.'/'.$C[$ctype]:$C[$ctype];
-		$topen= $rcode==substr($code,0,strlen($rcode))?true:false;
+		$t_arr = explode('/', $code);
+		$t1_arr = explode('/', $rcode);
+		$topen= in_array($t1_arr[count($t1_arr)-1], $t_arr)?true:false;
+
 		$tree.= '<li>';
 		if ($C['is_child'])
 		{
@@ -394,7 +397,7 @@ function getTreeMenu($conf,$code,$depth,$parent,$tmpcode)
 			if($conf['dispNum']&&$C['num']) $tree.= ' <small>('.$C['num'].')</small>';
 			if(!$conf['hideIcon'])
 			{
-				if($C['mobile']) $tree.= '<i class="glyphicon glyphicon-phone" title="'._LANG('fs005','admin').'" data-tooltip="tooltip"></i>&nbsp;';
+				//if($C['mobile']) $tree.= '<i class="glyphicon glyphicon-phone" title="'._LANG('fs005','admin').'" data-tooltip="tooltip"></i>&nbsp;';
 				if($C['target']) $tree.= '<i class="glyphicon glyphicon-new-window" title="'._LANG('fs004','admin').'" data-tooltip="tooltip"></i>&nbsp;';
 				if($C['reject']) $tree.= '<i class="glyphicon glyphicon-ban-circle" title="'._LANG('fs003','admin').'" data-tooltip="tooltip"></i>';
 			}
@@ -417,7 +420,7 @@ function getTreeMenu($conf,$code,$depth,$parent,$tmpcode)
 			if($conf['dispNum']&&$C['num']) $tree.= ' <small>('.$C['num'].')</small>';
 			if(!$conf['hideIcon'])
 			{
-				if($C['mobile']) $tree.= '<i class="glyphicon glyphicon-phone" title="'._LANG('fs005','admin').'" data-tooltip="tooltip"></i>&nbsp;';
+				//if($C['mobile']) $tree.= '<i class="glyphicon glyphicon-phone" title="'._LANG('fs005','admin').'" data-tooltip="tooltip"></i>&nbsp;';
 				if($C['target']) $tree.= '<i class="glyphicon glyphicon-new-window" title="'._LANG('fs004','admin').'" data-tooltip="tooltip"></i>&nbsp;';
 				if($C['reject']) $tree.= '<i class="glyphicon glyphicon-ban-circle" title="'._LANG('fs003','admin').'" data-tooltip="tooltip"></i>';
 			}
@@ -501,6 +504,9 @@ function getCrypt($str,$salt)
 	if ($ver1[0] > 5 || ($ver1[0] > 4 && $ver1[1] > 4))
 	if(function_exists('password_hash')) return password_hash($str,PASSWORD_BCRYPT,array('cost'=>10,'salt'=>$salt)).'$1';
 	if ($ver1[0] > 4 || ($ver1[0] > 3 && $ver1[1] > 1) || ($ver1[0] > 3 && $ver1[1] > 0 && $ver1[2] > 1))
+	if ($ver1[0] > 5 || ($ver1[0] > 4 && $ver1[1] > 4))	
+	if(function_exists('password_hash')) return password_hash($str,PASSWORD_BCRYPT,array('cost'=>10,'salt'=>$salt)).'$1';
+	if ($ver1[0] > 4 || ($ver1[0] > 3 && $ver1[1] > 1) || ($ver1[0] > 3 && $ver1[1] > 0 && $ver1[2] > 1))	
 	{
 		if (in_array('sha512',hash_algos())) return hash('sha512',$str.$salt).'$2';
 		else if (in_array('sha256',hash_algos())) return hash('sha256',$str.$salt).'$3';
@@ -511,6 +517,10 @@ function getCrypt($str,$salt)
 function _LANG($kind,$module)
 {
 	return $GLOBALS['lang'][$module][$kind];
+}
+function _LANG_($kind,$module,$defaultstr)
+{
+	return $GLOBALS['lang'][$module][$kind] ? $GLOBALS['lang'][$module][$kind] : $defaultstr;
 }
 //언언셋인클루드(@ 2.0.0)
 function getLangFile($path,$lang,$file)
