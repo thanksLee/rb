@@ -13,6 +13,13 @@ KimsQ is web based platform which can drive multiple web applications and web si
 - Unlimited extension
 - Multi Screen implementations
 
+##Server Requirements
+- PHP version 5.2.x 
+- MYSQL version 3.23.x or greater (recommend MYSQL >= 5.x) 
+- GD Library
+- ICONV
+
+
 ##Getting Started
 
 <strong>How to install KimsQ Rb 2</strong>     [youtube video](https://www.youtube.com/watch?v=poGIF_9txwA&index=1&list=PLdBu7CaUz_Xx8bnZxEpiYfTAlA3s8x4GK)
