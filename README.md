@@ -48,6 +48,15 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 ##Author
 [@kimsnova] (https://github.com/kimsnova), [@gitaeks] (https://github.com/gitaeks)
 
+Thanks for assistance and contributions:
+
+##Maintainers
+[@kieregh] (https://github.com/kieregh)
+
+##DEMO 
+[Admin Mode] (http://demo2.kimsq.co.kr/admin)
+
+
 ##Screenshots
 ![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-dashboard.png)
 
@@ -57,11 +66,6 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 
 ![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site-menu.png)
 
-
-Thanks for assistance and contributions:
-
-##Maintainers
-[@kieregh] (https://github.com/kieregh)
 
 ##Copyright and license
 Copyright 2013 Redblock, Inc.
