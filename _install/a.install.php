@@ -51,7 +51,7 @@ DirMake($g['path_tmp'].'session');
 DirMake($g['path_tmp'].'widget');
 DirMake($g['path_var'].'menu');
 DirMake($g['path_var'].'peak');
-//DirMake($g['path_var'].'update');
+DirMake($g['path_var'].'update');
 DirMake($g['path_var'].'xml');
 DirMake($g['path_layout'].'default/_images');
 DirMake($g['path_switch'].'top');
@@ -204,7 +204,7 @@ addr0,addr1,addr2,job,marr1,marr2,sms,mailing,smail,point,usepoint,money,cash,nu
 values
 ('1','1','1','1','1','0','".$my['admin']."','',
 '".$email."','".$name."','".$nick."','','','','".$sex."','".$birth1."','".$birth2."','".$birthtype."','','".$cellphone."','',
-'','','','','0','0','1','1','0','0','0','0','0','1','"._LANG('a09','install')."','','1','".$date['totime']."','".$date['today']."','0','".$date['totime']."','','','','0','')";
+'','','','','0','0','1','1','0','0','0','0','0','1','"._LANG('a09','install')."','".$pw1."','1','".$date['totime']."','".$date['today']."','0','".$date['totime']."','','','','0','')";
 db_query($QUE,$DB_CONNECT);
 
 $groupset = array('A','B','C','D','E','F','G','H');
