@@ -1,4 +1,5 @@
-#kimsQ Rb
+![kimsq Rb logo](http://kimsq.github.io/rb/images/logo-kimsqrb.png)
+
 KimsQ is the tool to build web site easily and quickly.
 Integrated generation management of PC/mobile web site is available as well as unlimited expansion through module type structure.
 KimsQ is web based platform which can drive multiple web applications and web site.
