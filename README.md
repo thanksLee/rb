@@ -3,6 +3,8 @@ KimsQ is the tool to build web site easily and quickly.
 Integrated generation management of PC/mobile web site is available as well as unlimited expansion through module type structure.
 KimsQ is web based platform which can drive multiple web applications and web site.
 
+![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site-emulator.png)
+
 ##Features
 - Automated website building technology
 - Powerful content managing system
@@ -45,6 +47,16 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 
 ##Author
 [@kimsnova] (https://github.com/kimsnova), [@gitaeks] (https://github.com/gitaeks)
+
+##Screenshots
+![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-dashboard.png)
+
+![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site.png)
+
+![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site-menu-en.png)
+
+![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site-menu.png)
+
 
 Thanks for assistance and contributions:
 
