@@ -14,7 +14,7 @@ KimsQ is web based platform which can drive multiple web applications and web si
 
 ##Getting Started
 
-<strong>How to install KimsQ Rb 2</strong>
+<strong>How to install KimsQ Rb 2</strong>     [youtube video](https://www.youtube.com/watch?v=poGIF_9txwA&index=1&list=PLdBu7CaUz_Xx8bnZxEpiYfTAlA3s8x4GK)
 
 1. Download the <a href="https://github.com/kimsQ/rb/releases/download/v2.1.0-20150416/rb2-installer.zip">rb2-installer.zip</a> below this page.
 2. Unpack the file.
