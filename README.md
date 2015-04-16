@@ -16,7 +16,7 @@ KimsQ is web based platform which can drive multiple web applications and web si
 
 <strong>How to install KimsQ Rb 2</strong>
 
-1. Download the <a href="https://github.com/kimsQ/rb2-installer/releases/download/v1.0/rb2-installer.zip">rb2-installer.zip</a> below this page.
+1. Download the <a href="https://github.com/kimsQ/rb/releases/download/v2.1.0-20150416/rb2-installer.zip">rb2-installer.zip</a> below this page.
 2. Unpack the file.
 3. Upload rb folder using FTP client.(You can change the folder name you want)
 4. Change the permission number of rb folder to 707 (You may see a alert if you go to next step whitout changing)
