@@ -1,7 +1,7 @@
 <?php $package_step = $package_step ? $package_step : 1?>
 <div id="modal-package-install">
 	<div class="modal-body">
-		<ul>
+		<ul class="rb-breadcrumb">
 			<li<?php if($package_step==1):?> class="active"<?php endif?>><span class="badge">Step 1</span> <span><?php echo _LANG('a4001','market')?></span></li>
 			<li<?php if($package_step==2):?> class="active"<?php endif?>><span class="badge">Step 2</span> <span><?php echo _LANG('a4002','market')?></span></li>
 			<li<?php if($package_step==3):?> class="active"<?php endif?>><span class="badge">Step 3</span> <span><?php echo _LANG('a4003','market')?></span></li>
@@ -36,10 +36,10 @@
 									</div>
 								</div>
 							</div>
-							<ul>
-							<li><?php echo _LANG('a4006','market')?></li>
-							<li><?php echo _LANG('a4007','market')?></li>
-							<li><?php echo _LANG('a4008','market')?></li>
+							<ul class="text-muted">
+								<li><?php echo _LANG('a4006','market')?></li>
+								<li><?php echo _LANG('a4007','market')?></li>
+								<li><?php echo _LANG('a4008','market')?></li>
 							</ul>
 						</div>
 					</div>
@@ -408,25 +408,23 @@ document.body.onresize = document.body.onload = function()
 
 
 /* 김성호 */
-#modal-package-install ul {
+#modal-package-install .rb-breadcrumb {
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
 	background: #f5f5f5;
 	padding: 10px 0 10px 30px;
-	height: 40px;
-}
-#modal-package-install ul {
+	min-height: 40px;
 	color: #999;
 }
-#modal-package-install ul .active {
+#modal-package-install .rb-breadcrumb .active {
 	font-weight:bold;
 	color: #428BCA;
 }
-#modal-package-install ul .active .badge {
+#modal-package-install .rb-breadcrumb .active .badge {
 	background: #428BCA;
 }
-#modal-package-install ul li {
+#modal-package-install .rb-breadcrumb li {
 	float: left;
 	margin-right: 15px;
 }
