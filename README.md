@@ -64,6 +64,9 @@ Thanks for assistance and contributions:
 ##DEMO 
 [Admin Mode] (http://demo2.kimsq.co.kr/admin)
 
+##Contact 
+* Email :  [contact@kimsq.com] (mailto:contact@kimsq.com)
+* Facebook : [https://www.facebook.com/kimsQ.Platform] (https://www.facebook.com/kimsQ.Platform)
 
 ##Screenshots
 ![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-dashboard.png)
