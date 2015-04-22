@@ -6,6 +6,10 @@ KimsQ is web based platform which can drive multiple web applications and web si
 
 ![rb2-site-menu-en](http://kimsq.github.io/rb/images/rb2-site-emulator.png)
 
+##DEMO 
+[Admin Mode] (http://demo2.kimsq.co.kr/admin)
+
+
 ##Features
 - Automated website building technology
 - Powerful content managing system
@@ -60,9 +64,6 @@ Thanks for assistance and contributions:
 
 ##Maintainers
 [@kieregh] (https://github.com/kieregh)
-
-##DEMO 
-[Admin Mode] (http://demo2.kimsq.co.kr/admin)
 
 ##Contact 
 * Email :  [contact@kimsq.com] (mailto:contact@kimsq.com)
