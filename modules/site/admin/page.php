@@ -23,7 +23,7 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 
 
 <div class="row">
-	<div class="col-md-5 col-lg-4">
+	<div class="col-sm-5 col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading rb-icon">
 				<div class="icon">
@@ -122,7 +122,7 @@ $pageType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 		</div>
 	</div>
 
-	<div id="tab-content-view" class="col-md-7 col-lg-8">
+	<div id="tab-content-view" class="col-sm-7 col-md-8">
 		<?php if($g['device']):?><a name="site-page-info"></a><?php endif?>
 		<form name="procForm" class="form-horizontal rb-form" role="form" action="<?php echo $g['s']?>/" method="post" onsubmit="return saveCheck(this);">
 		<input type="hidden" name="r" value="<?php echo $r?>">

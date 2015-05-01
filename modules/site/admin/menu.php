@@ -35,7 +35,7 @@ if ($is_regismode)
 $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','site'));
 ?>
 <div id="catebody" class="row">
-	<div id="category" class="col-sm-5 col-md-4 col-lg-4">
+	<div id="category" class="col-sm-5 col-md-4">
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-default">
 				<div class="panel-heading rb-icon">
@@ -136,7 +136,7 @@ $menuType = array('',_LANG('a0001','site'),_LANG('a0002','site'),_LANG('a0003','
 			</div>
 		</div>
 	</div>
-	<div id="catinfo" class="col-sm-7 col-md-8 col-lg-8">
+	<div id="catinfo" class="col-sm-7 col-md-8">
 		<form class="form-horizontal rb-form" name="procForm" action="<?php echo $g['s']?>/" method="post" enctype="multipart/form-data" onsubmit="return saveCheck(this);">
 		<input type="hidden" name="r" value="<?php echo $r?>">
 		<input type="hidden" name="m" value="<?php echo $module?>">
