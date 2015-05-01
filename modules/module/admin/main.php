@@ -14,7 +14,7 @@ $R = getDbData($table['s_module'],"id='".$id."'",'*');
 ?>
 
 <div class="row">
-	<div class="col-md-5 col-lg-4" id="tab-content-list">
+	<div class="col-sm-5 col-md-4" id="tab-content-list">
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-default">
 				<div class="panel-heading rb-icon">
@@ -132,7 +132,7 @@ $R = getDbData($table['s_module'],"id='".$id."'",'*');
 
 	<?php if(!$R['id']) $R=getDbData($table['s_module'],"id='site'",'*')?>
 	<?php if($g['device']):?><a name="page-info"></a><?php endif?>
-	<div class="col-md-7 col-lg-8" id="tab-content-view">
+	<div class="col-sm-7 col-md-8" id="tab-content-view">
 		<div class="page-header">
 			<h4><?php echo _LANG('a1002','module')?></h4>
 		</div>
