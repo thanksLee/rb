@@ -45,6 +45,7 @@ and take a moment to review the [Issue Guidelines](https://github.com/necolas/is
 - [Bug reports](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#bugs)
 - [Feature requests](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#features)
 - [Pull requests](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md#pull-requests)
+- [킴스큐 오픈소스 프로젝트 운영 지침](https://github.com/kimsQ/rb/wiki)
 
 
 ##Offical site & Community
