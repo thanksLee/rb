@@ -13,6 +13,7 @@ $d['ov']['font-awesome'] = '4.1.0';
 $d['ov']['font-kimsq'] = '1.0.0';
 $d['ov']['jquery'] = '1.11.2';
 $d['ov']['jquery-timeago'] = '1.4.1';
+$d['ov']['jquery-ui'] = '1.11.2';
 $d['ov']['lazy-load-xt'] = '1.0.5';
 $d['ov']['lightbox'] = '3.1.5';
 $d['ov']['morris'] = '0.5.1';
