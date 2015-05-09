@@ -1,4 +1,4 @@
-<?php include getLangFile($g['path_module'].'site/language/',$d['admin']['syslang'],'/lang.system.php')?>
+<?php include getLangFile($g['path_module'].'site/language/',$d['admin']['syslang'],'/lang.system.php') ?>
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#kf" data-toggle="tab">kimsQ</a></li>
 	<li><a href="#glyphicon" data-toggle="tab">Glyphicons</a></li>
@@ -247,30 +247,123 @@
 	<div class="tab-pane" id="awesome">
 		<h5 class="text-primary">Brand Icons <small></small></h5>
 		<ul class="icon-list awesome">
+			<li title="adn"><span class="fa fa-adn" onclick="iconDrop(this.className);"></span></li>
 			<li title="android"><span class="fa fa-android" onclick="iconDrop(this.className);"></span></li>
+			<li title="angellist"><span class="fa fa-angellist" onclick="iconDrop(this.className);"></span></li>
 			<li title="apple"><span class="fa fa-apple" onclick="iconDrop(this.className);"></span></li>
-			<li title="google-plus"><span class="fa fa-google-plus" onclick="iconDrop(this.className);"></span></li>
-			<li title="twitter"><span class="fa fa-twitter" onclick="iconDrop(this.className);"></span></li>
-			<li title="facebook"><span class="fa fa-facebook" onclick="iconDrop(this.className);"></span></li>
-			<li title="html5"><span class="fa fa-html5" onclick="iconDrop(this.className);"></span></li>
+			<li title="behance"><span class="fa fa-behance" onclick="iconDrop(this.className);"></span></li>
+			<li title="behance-square"><span class="fa fa-behance-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="bitbucket"><span class="fa fa-bitbucket" onclick="iconDrop(this.className);"></span></li>
+			<li title="bitbucket-square"><span class="fa fa-bitbucket-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="btc"><span class="fa fa-bitcoin" onclick="iconDrop(this.className);"></span></li>
+			<li title="btc"><span class="fa fa-btc" onclick="iconDrop(this.className);"></span></li>
+			<li title="buysellads"><span class="fa fa-buysellads" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-amex"><span class="fa fa-cc-amex" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-discover"><span class="fa fa-cc-discover" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-mastercard"><span class="fa fa-cc-mastercard" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-paypal"><span class="fa fa-cc-paypal" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-paypal"><span class="fa fa-cc-stripe" onclick="iconDrop(this.className);"></span></li>
+			<li title="cc-visa"><span class="fa fa-cc-visa" onclick="iconDrop(this.className);"></span></li>
+			<li title="codepen"><span class="fa fa-codepen" onclick="iconDrop(this.className);"></span></li>
+			<li title="connectdevelop"><span class="fa fa-connectdevelop" onclick="iconDrop(this.className);"></span></li>
 			<li title="css3"><span class="fa fa-css3" onclick="iconDrop(this.className);"></span></li>
+			<li title="dashcube"><span class="fa fa-dashcube" onclick="iconDrop(this.className);"></span></li>
+			<li title="delicious"><span class="fa fa-delicious" onclick="iconDrop(this.className);"></span></li>
+			<li title="deviantart"><span class="fa fa-deviantart" onclick="iconDrop(this.className);"></span></li>
+			<li title="digg"><span class="fa fa-digg" onclick="iconDrop(this.className);"></span></li>
+			<li title="dribbble"><span class="fa fa-dribbble" onclick="iconDrop(this.className);"></span></li>
 			<li title="dropbox"><span class="fa fa-dropbox" onclick="iconDrop(this.className);"></span></li>
+			<li title="drupal"><span class="fa fa-drupal" onclick="iconDrop(this.className);"></span></li>
+			<li title="empire"><span class="fa fa-empire" onclick="iconDrop(this.className);"></span></li>
+			<li title="facebook"><span class="fa fa-facebook" onclick="iconDrop(this.className);"></span></li>
+			<li title="facebook"><span class="fa fa-facebook-f" onclick="iconDrop(this.className);"></span></li>
+			<li title="facebook-official"><span class="fa fa-facebook-official" onclick="iconDrop(this.className);"></span></li>
+			<li title="facebook-square"><span class="fa fa-facebook-square" onclick="iconDrop(this.className);"></span></li>
 			<li title="flickr"><span class="fa fa-flickr" onclick="iconDrop(this.className);"></span></li>
+			<li title="forumbee"><span class="fa fa-forumbee" onclick="iconDrop(this.className);"></span></li>
+			<li title="foursquare"><span class="fa fa-foursquare" onclick="iconDrop(this.className);"></span></li>
+			<li title="empire"><span class="fa fa-ge" onclick="iconDrop(this.className);"></span></li>
+			<li title="git"><span class="fa fa-git" onclick="iconDrop(this.className);"></span></li>
+			<li title="git-square"><span class="fa fa-git-square" onclick="iconDrop(this.className);"></span></li>
 			<li title="github"><span class="fa fa-github" onclick="iconDrop(this.className);"></span></li>
 			<li title="github-alt"><span class="fa fa-github-alt" onclick="iconDrop(this.className);"></span></li>
+			<li title="github-square"><span class="fa fa-github-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="gratipay"><span class="fa fa-gittip" onclick="iconDrop(this.className);"></span></li>
+			<li title="google"><span class="fa fa-google" onclick="iconDrop(this.className);"></span></li>
+			<li title="google-plus"><span class="fa fa-google-plus" onclick="iconDrop(this.className);"></span></li>
+			<li title="google-plus-square"><span class="fa fa-google-plus-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="google-wallet"><span class="fa fa-google-wallet" onclick="iconDrop(this.className);"></span></li>
+			<li title="gratipay"><span class="fa fa-gratipay" onclick="iconDrop(this.className);"></span></li>
+			<li title="hacker-news"><span class="fa fa-hacker-news" onclick="iconDrop(this.className);"></span></li>
+			<li title="html5"><span class="fa fa-html5" onclick="iconDrop(this.className);"></span></li>
 			<li title="instagram"><span class="fa fa-instagram" onclick="iconDrop(this.className);"></span></li>
+			<li title="ioxhost"><span class="fa fa-ioxhost" onclick="iconDrop(this.className);"></span></li>
+			<li title="joomla"><span class="fa fa-joomla" onclick="iconDrop(this.className);"></span></li>
+			<li title="jsfiddle"><span class="fa fa-jsfiddle" onclick="iconDrop(this.className);"></span></li>
+			<li title="lastfm"><span class="fa fa-lastfm" onclick="iconDrop(this.className);"></span></li>
+			<li title="lastfm-square"><span class="fa fa-lastfm-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="leanpub"><span class="fa fa-leanpub" onclick="iconDrop(this.className);"></span></li>
 			<li title="linkedin"><span class="fa fa-linkedin" onclick="iconDrop(this.className);"></span></li>
+			<li title="linkedin-square"><span class="fa fa-linkedin-square"></span></a></li>
 			<li title="linux"><span class="fa fa-linux" onclick="iconDrop(this.className);"></span></li>
-			<li title="pinterest"><span class="fa fa-pinterest" onclick="iconDrop(this.className);"></span></li>
-			<li title="skype"><span class="fa fa-skype" onclick="iconDrop(this.className);"></span></li>
-			<li title="vimeo"><span class="fa fa-vimeo-square" onclick="iconDrop(this.className);"></span></li>
-			<li title="windows"><span class="fa fa-windows" onclick="iconDrop(this.className);"></span></li>
-			<li title="youtube"><span class="fa fa-youtube" onclick="iconDrop(this.className);"></span></li>
-			<li title="dribbble"><span class="fa fa-dribbble" onclick="iconDrop(this.className);"></span></li>
-			<li title="foursquare"><span class="fa fa-foursquare" onclick="iconDrop(this.className);"></span></li>
-			<li title="tumblr"><span class="fa fa-tumblr" onclick="iconDrop(this.className);"></span></li>
-			<li title="pagelines"><span class="fa fa-pagelines" onclick="iconDrop(this.className);"></span></li>
 			<li title="maxcdn"><span class="fa fa-maxcdn" onclick="iconDrop(this.className);"></span></li>
+			<li title="meanpath"><span class="fa fa-meanpath" onclick="iconDrop(this.className);"></span></li>
+			<li title="medium"><span class="fa fa-medium" onclick="iconDrop(this.className);"></span></li>
+			<li title="openid"><span class="fa fa-openid" onclick="iconDrop(this.className);"></span></li>
+			<li title="pagelines"><span class="fa fa-pagelines" onclick="iconDrop(this.className);"></span></li>
+			<li title="paypal"><span class="fa fa-paypal" onclick="iconDrop(this.className);"></span></li>
+			<li title="pied-piper"><span class="fa fa-pied-piper" onclick="iconDrop(this.className);"></span></li>
+			<li title="pied-piper-alt"><span class="fa fa-pied-piper-alt" onclick="iconDrop(this.className);"></span></li>
+			<li title="pinterest"><span class="fa fa-pinterest" onclick="iconDrop(this.className);"></span></li>
+			<li title="pinterest-p"><span class="fa fa-pinterest-p" onclick="iconDrop(this.className);"></span></li>
+			<li title="pinterest-square"><span class="fa fa-pinterest-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="qq"><span class="fa fa-qq" onclick="iconDrop(this.className);"></span></li>
+			<li title="rebel"><span class="fa fa-ra" onclick="iconDrop(this.className);"></span></li>
+			<li title="rebel"><span class="fa fa-rebel" onclick="iconDrop(this.className);"></span></li>
+			<li title="reddit"><span class="fa fa-reddit" onclick="iconDrop(this.className);"></span></li>
+			<li title="reddit-square"><span class="fa fa-reddit-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="renren"><span class="fa fa-renren" onclick="iconDrop(this.className);"></span></li>
+			<li title="sellsy"><span class="fa fa-sellsy" onclick="iconDrop(this.className);"></span></li>
+			<li title="share-alt"><span class="fa fa-share-alt" onclick="iconDrop(this.className);"></span></li>
+			<li title="share-alt-square"><span class="fa fa-share-alt-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="shirtsinbulk"><span class="fa fa-shirtsinbulk" onclick="iconDrop(this.className);"></span></li>
+			<li title="simplybuilt"><span class="fa fa-simplybuilt" onclick="iconDrop(this.className);"></span></li>
+			<li title="skyatlas"><span class="fa fa-skyatlas" onclick="iconDrop(this.className);"></span></li>
+			<li title="skype"><span class="fa fa-skype" onclick="iconDrop(this.className);"></span></li>
+			<li title="slack"><span class="fa fa-slack" onclick="iconDrop(this.className);"></span></li>
+			<li title="slideshare"><span class="fa fa-slideshare" onclick="iconDrop(this.className);"></span></li>
+			<li title="soundcloud"><span class="fa fa-soundcloud" onclick="iconDrop(this.className);"></span></li>
+			<li title="spotify"><span class="fa fa-spotify" onclick="iconDrop(this.className);"></span></li>
+			<li title="stack-exchange"><span class="fa fa-stack-exchange" onclick="iconDrop(this.className);"></span></li>
+			<li title="stack-overflow"><span class="fa fa-stack-overflow" onclick="iconDrop(this.className);"></span></li>
+			<li title="steam"><span class="fa fa-steam" onclick="iconDrop(this.className);"></span></li>
+			<li title="steam-square"><span class="fa fa-steam-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="stumbleupon"><span class="fa fa-stumbleupon" onclick="iconDrop(this.className);"></span></li>
+			<li title="stumbleupon-circle"><span class="fa fa-stumbleupon-circle" onclick="iconDrop(this.className);"></span></li>
+			<li title="tencent-weibo"><span class="fa fa-tencent-weibo" onclick="iconDrop(this.className);"></span></li>
+			<li title="trello"><span class="fa fa-trello" onclick="iconDrop(this.className);"></span></li>
+			<li title="tumblr"><span class="fa fa-tumblr" onclick="iconDrop(this.className);"></span></li>
+			<li title="tumblr-square"><span class="fa fa-tumblr-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="twitch"><span class="fa fa-twitch" onclick="iconDrop(this.className);"></span></li>
+			<li title="twitter"><span class="fa fa-twitter" onclick="iconDrop(this.className);"></span></li>
+			<li title="twitter-square"><span class="fa fa-twitter-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="viacoin"><span class="fa fa-viacoin" onclick="iconDrop(this.className);"></span></li>
+			<li title="vimeo-square"><span class="fa fa-vimeo-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="vine"><span class="fa fa-vine" onclick="iconDrop(this.className);"></span></li>
+			<li title="vk"><span class="fa fa-vk" onclick="iconDrop(this.className);"></span></li>
+			<li title="weixin"><span class="fa fa-wechat" onclick="iconDrop(this.className);"></span></li>
+			<li title="weibo"><span class="fa fa-weibo" onclick="iconDrop(this.className);"></span></li>
+			<li title="weixin"><span class="fa fa-weixin" onclick="iconDrop(this.className);"></span></li>
+			<li title="whatsapp"><span class="fa fa-whatsapp" onclick="iconDrop(this.className);"></span></li>
+			<li title="windows"><span class="fa fa-windows" onclick="iconDrop(this.className);"></span></li>
+			<li title="wordpress"><span class="fa fa-wordpress" onclick="iconDrop(this.className);"></span></li>
+			<li title="xing"><span class="fa fa-xing" onclick="iconDrop(this.className);"></span></li>
+			<li title="xing-square"><span class="fa fa-xing-square" onclick="iconDrop(this.className);"></span></li>
+			<li title="yahoo"><span class="fa fa-yahoo" onclick="iconDrop(this.className);"></span></li>
+			<li title="yelp"><span class="fa fa-yelp" onclick="iconDrop(this.className);"></span></li>
+			<li title="youtube"><span class="fa fa-youtube" onclick="iconDrop(this.className);"></span></li>
+			<li title="youtube-play"><span class="fa fa-youtube-play" onclick="iconDrop(this.className);"></span></li>
+			<li title="youtube-square"><span class="fa fa-youtube-square" onclick="iconDrop(this.className);"></span></li>
 		</ul>
 		<h5 class="text-primary">Web Application Icons <small><?php echo _LANG('s4001','site')?></small></h5>
 		<ul class="icon-list awesome">
@@ -382,4 +475,3 @@ modalSetting();
     background-color: rgba(86,61,124,.1);
 }
 </style>
-
