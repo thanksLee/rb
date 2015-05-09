@@ -30,7 +30,7 @@ $lang['admin']['a1023'] = 'Enabled'; //사용함
 $lang['admin']['a1024'] = 'Disabled'; //사용안함
 $lang['admin']['a1025'] = 'You can switch the display using the context menu on the screen, double-click on the relevant page of the menus, pages, modules.'; //메뉴,페이지,모듈등의 페이지에서 화면 더블클릭시 관련 콘텍스트 메뉴를 이용해 화면을 전환할 수 있습니다.
 $lang['admin']['a1026'] = 'Wysiwyg editor'; //위지위그 에디터
-$lang['admin']['a1027'] = 'To change, you can be added to the plugin folder (%s). <br Class="hidden-xs"> the editor wysiwyg editor, please change after selection and then add the plug-in version.'; //위지위그 에디터는 플러그인 폴더(%s)에 추가될 수 있습니다.<br class="hidden-xs">에디터를 변경하시려면 플러그인에 추가 후 버젼선택 후에 변경해 주세요.
+$lang['admin']['a1027'] = 'To change, you can be added to the plugin folder (%s). <br Class="hidden-xs"> the editor wysiwyg editor, please change after selection and then add the plug-in version.'; //위지위그 에디터는 플러그인 폴더(%s)에 추가될 수 있습니다.<br class="hidden-xs">에디터를 변경하시려면 플러그인에 추가 후 버전선택 후에 변경해 주세요.
 $lang['admin']['a1028'] = 'System Language'; //시스템 언어
 $lang['admin']['a1029'] = 'KimsQ to control the entire language, you can specify the language used in <br class="hidden-xs"> individual sites or module by using this setting.'; //이 설정을 이용해서 킴스큐 전체의 언어를 제어합니다.<br class="hidden-xs">개별 사이트나 모듈에서도 사용할 언어를 지정할 수 있습니다.
 $lang['admin']['a1030'] = 'E-mail'; //이메일
@@ -207,11 +207,11 @@ $lang['admin']['a7004'] = 'Date'; //등록일
 $lang['admin']['a7005'] = 'Version'; //적용버전
 $lang['admin']['a7006'] = 'H:i m.d.Y'; //Y.m.d H:i //date format
 $lang['admin']['a7007'] = 'Delete ALL'; //전체삭제
-$lang['admin']['a7008'] = 'Delete Version'; //버젼삭제
+$lang['admin']['a7008'] = 'Delete Version'; //버전삭제
 $lang['admin']['a7009'] = 'Add plugin'; //플러그인 추가
-$lang['admin']['a7010'] = 'Modify Version'; //버젼변경
+$lang['admin']['a7010'] = 'Modify Version'; //버전변경
 $lang['admin']['a7011'] = 'The plug-in KimsQ various external cue provided by open source is being used.'; //킴스큐에서는 오픈소스로 제공되는 다양한 외부 플러그인들이 사용되고 있습니다.
-$lang['admin']['a7012'] = 'The current can be set dynamically optimized version and the latest version of the plug-in being used.'; //현재 사용되고 있는 플러그인들의 최신버젼이나 최적화된 버젼을 동적으로 설정할 수 있습니다.
+$lang['admin']['a7012'] = 'The current can be set dynamically optimized version and the latest version of the plug-in being used.'; //현재 사용되고 있는 플러그인들의 최신버전이나 최적화된 버전을 동적으로 설정할 수 있습니다.
 $lang['admin']['a7013'] = 'Insert the code examples'; //삽입코드 예시
 $lang['admin']['a7014'] = 'Please select the plugin you want to delete.'; //삭제할 플러그인을 선택해 주세요.
 $lang['admin']['a7015'] = 'If you remove the plug are you sure you want to delete using the site, you may encounter errors?'; //사용중인 플러그인을 삭제하면 사이트에 오류가 발생할 수 있습니다.\n그래도 삭제하시겠습니까?
