@@ -409,22 +409,22 @@ function showCompo()
 			tags += "<div style=\"position:relative;z-index:10;top:-1px;left:-1px;height:25px;border:#dfdfdf solid 1px;background:#F6F6F6;padding:5px 0 0 5px;\">";
 
 
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_layout.gif" title="레이아웃" alt="" class="hand" onclick="EditBox(\'layout\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_table.gif" title="테이블" alt="" class="hand" onclick="EditBox(\'table\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_lineheight.gif" title="행간" alt="" class="hand" onclick="EditBox(\'lineheight\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_box.gif" title="박스" alt="" class="hand" onclick="EditBox(\'box\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_char.gif" title="특수문자" alt="" class="hand" onclick="EditBox(\'char\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_link.gif" title="링크" alt="" class="hand" onclick="EditBox(\'link\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_split.gif" alt="" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_layout.gif" title="레이아웃" alt="" class="hand" onclick="EditBox(\'layout\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_table.gif" title="테이블" alt="" class="hand" onclick="EditBox(\'table\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_lineheight.gif" title="행간" alt="" class="hand" onclick="EditBox(\'lineheight\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_box.gif" title="박스" alt="" class="hand" onclick="EditBox(\'box\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_char.gif" title="특수문자" alt="" class="hand" onclick="EditBox(\'char\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_link.gif" title="링크" alt="" class="hand" onclick="EditBox(\'link\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_split.gif" alt="" /> ';
 
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_icon.gif" title="아이콘" alt="" class="hand" onclick="EditBox(\'icon\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_image.gif" title="이미지" alt="" class="hand" onclick="EditBox(\'image\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_flash.gif" title="플래쉬" alt="" class="hand" onclick="EditBox(\'flash\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_movie.gif" title="동영상" alt="" class="hand" onclick="EditBox(\'movie\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_html.gif" title="붙여넣기" alt="" class="hand" onclick="EditBox(\'html\');" /> ';
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_split.gif" alt="" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_icon.gif" title="아이콘" alt="" class="hand" onclick="EditBox(\'icon\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_images.gif" title="이미지" alt="" class="hand" onclick="EditBox(\'images\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_flash.gif" title="플래쉬" alt="" class="hand" onclick="EditBox(\'flash\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_movie.gif" title="동영상" alt="" class="hand" onclick="EditBox(\'movie\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_html.gif" title="붙여넣기" alt="" class="hand" onclick="EditBox(\'html\');" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_split.gif" alt="" /> ';
 
-			tags += '<img src="'+rooturl+'/modules/editor/image/s_api.gif" title="확장API 콤포넌트" /> ';
+			tags += '<img src="'+rooturl+'/modules/editor/images/s_api.gif" title="확장API 콤포넌트" /> ';
 			tags += '<select style="width:195px;position:relative;top:-6px;">';
 			tags += '<option value="" style="color:#999999;">&nbsp;+ 더 확장된 편집도구들..</option>';
 			tags += '<option value="" style="color:#999999;">-----------------------------------</option>';
@@ -460,8 +460,14 @@ function EditDrop(result)
 			EditSelc.pasteHTML(result);
 		}
 		else {
-			EditForm.document.execCommand("inserthtml",false,result);
-			frames.editAreaIframe.focus();
+			EditForm.focus();
+			var frame = document.getElementById("editAreaIframe");
+			var frameWindow = frame.contentWindow.document; 
+			var get = frameWindow.getSelection().getRangeAt(0); 
+			get.deleteContents(); 
+			get.insertNode(get.createContextualFragment(result));
+			//EditForm.document.execCommand("inserthtml",false,result);
+			//frames.editAreaIframe.focus();
 		}
 	}
 }

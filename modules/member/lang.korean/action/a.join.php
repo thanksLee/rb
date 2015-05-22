@@ -3,12 +3,13 @@ if(!defined('__KIMS__')) exit;
 
 include_once $g['dir_module'].'var/var.join.php';
 
-$id			= trim($id);
-$name		= trim($name);
+$id			= trim($_POST['id']);
+$name		= trim($_POST['name']);
 $nic		= trim($nic);
 $nic		= $nic ? $nic : $name;
 $email		= trim($email);
 
+if (!$id || !$name) getLink('', '', '정상적인 접속이 아닙니다.', '');
 if (!$check_id || ($d['member']['form_nic'] && !$check_nic) || !$check_email)
 {
 	getLink('','','정상적인 접근이 아닙니다.','');

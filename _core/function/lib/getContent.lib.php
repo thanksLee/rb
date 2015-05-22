@@ -46,6 +46,12 @@ function LIB_getContents($str,$html)
 			$mat = '<div class="sysMsgBox"><img src="'.$GLOBALS['g']['img_core'].'/_public/ico_notice.gif" alt="" />'.$GLOBALS['lang']['sys']['sysmsg'].'</div>';
 			$str = preg_replace("#(\<(embed|object)[^\>]*)\>(\<\/(embed|object)\>)?#i",$mat,$str);
 		}
+
+		$_atkParam = array(';a=','&a=','?a=','m=admin','system=');
+		foreach($_atkParam as $_prm)
+		{
+			$str = str_replace($_prm,'',$str);
+		}
 	}
 	else {
 		$str = str_replace('<','&lt;',$str);

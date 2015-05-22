@@ -7,10 +7,9 @@ foreach ($_filterSet as $_ft)
 	${$_ft} = strip_tags(${$_ft});
 }
 
-if ($_SERVER['HTTP_REFERER'] && strpos($_SERVER['HTTP_REFERER'],'m=bbs'))
+if (strpos(',join,',$a))
 {
-	if ($m != 'bbs') exit;
-	
+	if (!$_SERVER['HTTP_REFERER'] || !strpos($_SERVER['HTTP_REFERER'],$_SERVER['HTTP_HOST'])) exit;
 }
 
 $g['act_module0'] = $g['dir_module'].$a.'.php';

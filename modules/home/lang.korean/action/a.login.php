@@ -2,7 +2,9 @@
 if(!defined('__KIMS__')) exit;
 
 $history = $__target ? '-1' : '';
-$id = trim($id);
+$id	= trim($_POST['id']);
+$pw	= trim($_POST['pw']);
+
 if (!$id || !$pw)
 {
 	getLink('','','아이디와 패스워드를 입력해 주세요.',$history);
