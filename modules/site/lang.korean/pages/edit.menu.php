@@ -74,7 +74,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 				</td>
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $_HM['id']?>" maxlength="20" class="input sname" /> <span>(고유키=<?php echo sprintf('%05d',$_HM['uid'])?>)</span>
-					<div id="guide_menucode" class="guide hideq">
+					<div id="guide_menucode" class="guide hide">
 					메뉴 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 메뉴호출주소 : ./?c=<span class="b">메뉴코드</span><br />
 					이 메뉴를 잘 표현할 수 있는 단어로 입력해 주세요.<br />
@@ -94,7 +94,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 					<option value="1"<?php if($_HM['menutype']==1):?> selected="selected"<?php endif?>>ㆍ모듈콘텐츠</option>
 					</select>
 
-					<div id="jointBox" class="guide<?php if($_HM['menutype']!=1):?> hideq<?php endif?>">
+					<div id="jointBox" class="guide<?php if($_HM['menutype']!=1):?> hide<?php endif?>">
 						<input type="text" name="joint" id="jointf" value="<?php echo $_HM['joint']?>" class="input sname" />
 						<input type="button" class="btngray" value="모듈연결" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.joint&iframe=Y&dropfield=jointf');" />
 						<?php if($_HM['joint']):?>
@@ -110,13 +110,13 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 							접근권한은 연결된 모듈의 권한설정을 따릅니다.
 						</div>
 					</div>
-					<div id="widgetBox" class="guide<?php if($_HM['menutype']!=2):?> hideq<?php endif?>">
+					<div id="widgetBox" class="guide<?php if($_HM['menutype']!=2):?> hide<?php endif?>">
 						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=widget');" />
 					</div>
-					<div id="codeBox" class="guide<?php if($_HM['menutype']&&$_HM['menutype']!=3):?> hideq<?php endif?>">
+					<div id="codeBox" class="guide<?php if($_HM['menutype']&&$_HM['menutype']!=3):?> hide<?php endif?>">
 						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_menu=<?php echo $_HM['uid']?>&type=source');" />
 					</div>
-					<div id="guide_contenttype" class="guide hideq">
+					<div id="guide_contenttype" class="guide hide">
 					<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
 					<span class="b">위젯콘텐츠 : </span>위젯을 이용하여 메뉴를 꾸밀 수 있습니다.<br />
 					<span class="b">모듈콘텐츠 : </span>모듈 콘텐츠를 출력할 수 있습니다.<br />
@@ -556,7 +556,7 @@ window.onload = function()
 		<textarea name="source" id="MENU_sourceArea" style="height:500px;"><?php echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.php')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_mobile"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_mobile"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php')):?> class="hide"<?php endif?>>
 		<div class="subtt">
 			모바일모드 HTML
 			<img src="<?php echo $g['img_core']?>/_public/btn_html.gif" alt="편집기" title="편집기" class="hand" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y&droparea=MENU_sourceArea_mobile');" />
@@ -567,12 +567,12 @@ window.onload = function()
 		<textarea name="mobile" id="MENU_sourceArea_mobile" style="height:200px;"><?php if(is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php')) echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.mobile.php')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_css"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.css')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_css"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.css')):?> class="hide"<?php endif?>>
 		<div class="subtt">CSS</div>
 		<textarea name="css" style="height:200px;"><?php if(is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.css')) echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.css')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_js"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.js')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_js"<?php if(!is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.js')):?> class="hide"<?php endif?>>
 		<div class="subtt">자바스크립트</div>
 		<textarea name="js" style="height:200px;"><?php if(is_file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.js')) echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$_HM['uid']).'.js')))?></textarea>
 		</div>
@@ -703,9 +703,9 @@ function displayChange()
 	}
 	return false;
 }
-function __layerShowHide(layer,show,hideq)
+function __layerShowHide(layer,show,hide)
 {
-	layerShowHide(layer,show,hideq)
+	layerShowHide(layer,show,hide)
 	__resetPageSize();
 }
 function __resetPageSize()

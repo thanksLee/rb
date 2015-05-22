@@ -5,8 +5,6 @@ checkAdmin(0);
 
 $_ufile = $g['path_var'].'update/'.$ufile.'.txt';
 
-getLink('reload','parent.','2.0 버젼 업데이트로 인해 원격업데이트는 임시로 제한되었습니다.','');
-
 if ($type == 'delete')
 {
 	unlink($_ufile);

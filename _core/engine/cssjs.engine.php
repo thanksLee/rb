@@ -12,7 +12,6 @@ $g['cssset'] = array
 	$g['dir_module_admin']=>$g['url_module_admin'],
 );
 ?>
-<?php if($iframe!='Y'):?>
 <?php if($d['layout']['use_bootstrap']||$d['layout']['use_jquerymobile']):?>
 <?php if($d['admin']['jq_type']=='local'):?>
 <script src="<?php echo $g['s']?>/_core/opensrc/jquery/<?php echo $d['admin']['jq_local']?>/jquery-<?php echo $d['admin']['jq_local']?><?php echo $d['admin']['jq_min']?>.js"></script> 
@@ -41,7 +40,6 @@ $g['cssset'] = array
 <script src="<?php echo $g['s']?>/_core/opensrc/bootstrap/<?php echo $d['admin']['bs_local']?>/js/bootstrap<?php echo $d['admin']['bs_min']?>.js"></script> 
 <?php else:?>
 <?php echo str_replace('<br>',"\n",stripslashes($d['admin']['bs_cdn']))?> 
-<?php endif?>
 <?php endif?>
 <?php endif?>
 

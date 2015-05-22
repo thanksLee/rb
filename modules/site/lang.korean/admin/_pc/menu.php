@@ -100,7 +100,7 @@ if ($is_regismode)
 			<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>
 			<script type="text/javascript">
 			//<![CDATA[
-			var TREE_ITEMS = [['', null, <?php getMenuShow($s,$table['s_menu'],0,0,0,$cat,$CXA,0)?>]];
+			var TREE_ITEMS = [['', null, <?php getMenuShow($account,$table['s_menu'],0,0,0,$cat,$CXA,0)?>]];
 			new tree(TREE_ITEMS, tree_tpl);
 			<?php echo $MenuOpen?>
 			//]]>
@@ -176,7 +176,7 @@ if ($is_regismode)
 	<?php if($is_regismode):?>
 		<?php if($vtype == 'sub'):?>서브메뉴 만들기<?php else:?>최상위메뉴 만들기<?php endif?>
 	<?php else:?>
-		메뉴 등록정보
+		메뉴 등록정보 <span class="text-muted">( 회사소개 )</span>
 	<?php endif?>
 	</h4>
   </div>
@@ -193,7 +193,6 @@ if ($is_regismode)
 	<input type="hidden" name="parent" value="<?php echo intval($CINFO['uid'])?>" />
 	<input type="hidden" name="perm_g" value="<?php echo $CINFO['perm_g']?>" />
 	<input type="hidden" name="type" value="1" />
-	<input type="hidden" name="menutype" value="<?php echo $R['menutype']?$R['menutype']:3?>" />
 
 
 	<div class="form-group">
@@ -231,12 +230,12 @@ if ($is_regismode)
 		  <span class="input-group-btn">
 			
 			<?php if($is_fcategory):?>
-			<a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo $cat?>&amp;vtype=sub" class="btn btn-default" data-toggle="tooltip" data-placement="top" data-original-title="서브메뉴 만들기">
+			<a href="<?php echo $g['adm_href']?>&amp;cat=<?php echo $cat?>&amp;vtype=sub"><button class="btn btn-default" type="button" data-toggle="tooltip" data-placement="top" data-original-title="서브메뉴 만들기">
 			  <i class="fa fa-share fa-rotate-90 fa-lg"></i>
-			</a>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $moudle?>&amp;a=deletemenu&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="메뉴삭제">
+			</button></a>
+			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $moudle?>&amp;a=deletemenu&amp;cat=<?php echo $cat?>&amp;parent=<?php echo $delparent?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')"><button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" data-original-title="메뉴삭제">
 			  <i class="fa fa-trash-o fa-lg"></i>
-			</a>
+			</button></a>
 			<?php else:?>
 			<button class="btn btn-default disabled" type="button" data-toggle="tooltip" data-placement="top" data-original-title="서브메뉴 만들기">
 			  <i class="fa fa-share fa-rotate-90 fa-lg"></i>
@@ -285,23 +284,23 @@ if ($is_regismode)
 		<label class="col-md-2 col-lg-2 control-label">전시내용</label>
 		<div class="col-md-10 col-lg-9">
 			<div class="btn-group btn-group-justified" data-toggle="buttons">
-				<a href="#codeBox" class="btn btn-default<?php if(!$CINFO['uid']||$CINFO['menutype']==3):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm1.menutype.value='2';">
-					<input id="option1" name="_menutype" type="radio" value="3"<?php if(!$CINFO['uid']||$CINFO['menutype']==3):?> checked<?php endif?>>
+				<a href="#codeBox" class="btn btn-default<?php if(!$CINFO['uid']||$CINFO['menutype']==3):?> active<?php endif?>" data-toggle="tab">
+					<input id="option1" name="menutype" type="radio" value="3"<?php if(!$CINFO['uid']||$CINFO['menutype']==3):?> checked<?php endif?>>
 					직접꾸미기 
 				</a>
-				<a href="#widgetBox" class="btn btn-default<?php if($CINFO['menutype']==2):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm1.menutype.value='2';">
-					<input id="option2" name="_menutype" type="radio" value="2"<?php if($CINFO['menutype']==2):?> checked<?php endif?>>
+				<a href="#widgetBox" class="btn btn-default<?php if($CINFO['menutype']==2):?> active<?php endif?>" data-toggle="tab">
+					<input id="option2" name="menutype" type="radio" value="2"<?php if($CINFO['menutype']==2):?> checked<?php endif?>>
 					위젯전시 
 				</a>
-				<a href="#jointBox" class="btn btn-default<?php if($CINFO['menutype']==1):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm1.menutype.value='1';">
-					<input id="option3" name="_menutype" type="radio" value="1"<?php if($CINFO['menutype']==1):?> checked<?php endif?>>
+				<a href="#jointBox" class="btn btn-default<?php if($CINFO['menutype']==1):?> active<?php endif?>" data-toggle="tab">
+					<input id="option3" name="menutype" type="radio" value="1"<?php if($CINFO['menutype']==1):?> checked<?php endif?>>
 					모듈연결 
 				</a>
 			</div>
 		</div>
 	</div>
 	<div class="form-group tab-content">
-		<div class="tab-pane form-group<?php if(!$CINFO['uid']||$CINFO['menutype']==3):?> active<?php endif?>" id="codeBox">
+		<div class="tab-pane active form-group" id="codeBox">
 			<div class="col-md-offset-2 col-md-10 col-lg-9">
 				<?php if($CINFO['uid']):?>
 				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=source" class="btn btn-default btn-block" type="button"><i class="fa fa-pencil fa-lg"></i> 직접편집</a>
@@ -310,7 +309,7 @@ if ($is_regismode)
 				<?php endif?>
 			</div>
 		</div>
-		<div class="tab-pane form-group<?php if($CINFO['menutype']==2):?> active<?php endif?>" id="widgetBox">
+		<div class="tab-pane form-group" id="widgetBox">
 			<div class="col-md-offset-2 col-md-10 col-lg-9">
 				<?php if($CINFO['uid']):?>
 				<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=widget" class="btn btn-default btn-block" type="button"><i class="fa fa-puzzle-piece fa-lg"></i> 위젯으로 꾸미기</a>				
@@ -319,7 +318,7 @@ if ($is_regismode)
 				<?php endif?>
 			</div>
 		</div>
-		<div class="tab-pane form-group<?php if($CINFO['menutype']==1):?> active<?php endif?>" id="jointBox">
+		<div class="tab-pane form-group" id="jointBox">
 			<div class="col-md-offset-2 col-md-10 col-lg-9">
 				<div class="input-group">
 					<input type="text" name="joint" id="jointf" value="<?php echo $CINFO['joint']?>" class="form-control" />
@@ -327,9 +326,11 @@ if ($is_regismode)
 						<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-module-joint">
 							<i class="fa fa-link fa-lg"></i> 모듈연결
 						</button>
-						<button class="btn btn-default" type="button" onclick="getId('jointf').value!=''?window.open(getId('jointf').value):alert('모듈연결 주소를 등록해 주세요.');">
+						<?php if($CINFO['joint']):?>
+						<button class="btn btn-default" type="button" onclick="window.open('<?php echo $CINFO['joint']?>');">
 							<i class="fa fa-external-link fa-lg"></i> 미리보기
 						</button>
+						<?php endif?>
 					</span>
 				</div>
 				<span class="help-block">
@@ -396,7 +397,6 @@ if ($is_regismode)
 	  <label class="col-md-2 control-label">레이아웃</label>
 	  <div class="col-md-10 col-lg-9">
 		<select class="col-md-12 form-control" name="layout" tabindex="-1">
-		<option value="">사이트 대표레이아웃</option>
 		<?php $dirs = opendir($g['path_layout'])?>
 		<?php while(false !== ($tpl = readdir($dirs))):?>
 		<?php if($tpl=='.' || $tpl == '..' || $tpl == '_blank' || is_file($g['path_layout'].$tpl))continue?>
@@ -404,7 +404,7 @@ if ($is_regismode)
 		<optgroup label="<?php echo getFolderName($g['path_layout'].$tpl)?>">
 		<?php while(false !== ($tpl1 = readdir($dirs1))):?>
 		<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
-		<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($CINFO['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?><?php if($CINFO['layout']==$tpl.'/'.$tpl1):?> (<?php echo getFolderName($g['path_layout'].$tpl)?>)<?php endif?></option>
+		<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($CINFO['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?></option>
 		<?php endwhile?>
 		<?php closedir($dirs1)?>
 		</optgroup>
@@ -695,7 +695,6 @@ function saveCheck(f)
 			return false;
 		}
 	}
-
 	return confirm('정말로 실행하시겠습니까?         ');
 }
 function slideshowOpen()

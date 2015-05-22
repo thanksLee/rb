@@ -231,14 +231,14 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 
 		<br />
 
-		<div id="guide_title" class="guide hideq">
+		<div id="guide_title" class="guide hide">
 		<div class="b">사이트제목 :</div>
 		사이트제목에 입력된 메세지는 브라우져의 타이틀에 출력됩니다.<br />
 		[고정]에 체크하면 입력된 타이틀이 모든페이지에 고정되며 체크해제시 페이지별로 타이틀이 출력됩니다.<br />
 		이 입력값은 일부 레이아웃의 사이트제목으로 사용됩니다.<br />
 		</div>
 
-		<div id="guide_language" class="guide hideq">
+		<div id="guide_language" class="guide hide">
 		<div class="b">사이트언어 :</div>
 		지정된 언어팩이 포함되어 있지 않은 모듈이 사용될 경우에는 <span class="b"><?php echo getFolderName($g['path_var'].'language/'.$g['sys_lang'])?></span>로 적용됩니다.<br />
 		<?php if($_HS['lang']!=$g['sys_selectlang']):?>
@@ -248,7 +248,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 		<?php endif?>
 		</div>
 
-		<div id="guide_sitecode" class="guide hideq">
+		<div id="guide_sitecode" class="guide hide">
 		<div class="b">사이트코드 :</div>
 		사이트별로 계정아이디를 등록합니다.(영문대/소문자+숫자+_ 조합으로 등록할 수 있습니다)<br />
 		[사용]에 체크하면 사이트별로 계정값을 부여할 수 있으며 하나의 도메인으로 복수의 사이트에 접속할 수 있습니다.<br />
@@ -257,14 +257,14 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&amp;iframe='.$iframe.'&amp;system='.$syste
 		영문사이트 서비스 연결예제) kimsq.com/rb/kr/ , kimsq.com/rb/en/<br />
 		</div>
 
-		<div id="guide_mobile" class="guide hideq">
+		<div id="guide_mobile" class="guide hide">
 		<div class="b">모바일접속 :</div>
 		모바일기기로 접속시 출력할 사이트 레이아웃(UI)을 지정합니다.<br />
 		지정된 모바일 레이아웃은 모든메뉴,모든페이지에 대해서 일괄적용됩니다.<br />
 		모바일기기에 대해 정의하거나 모바일 전용사이트 등으로 이동시키려면 <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=mobile" target="_blank" class="u">모바일설정</a>을 이용하세요.<br />
 		</div>
 
-		<div id="guide_rewrite" class="guide hideq">
+		<div id="guide_rewrite" class="guide hide">
 		<div class="b">짤은주소사용 :</div>
 		긴 주소줄을 간단하게 줄일 수 있습니다.(서버에서 rewrite_mod 를 허용해야합니다)<br />
 		보기) ./?c=menu&uid=1000 -> /c/menu/1000<br />
@@ -529,7 +529,7 @@ $TPG = getTotalPage($NUM,$recnum);
 			</td>
 			<td class="td2">
 				<input type="text" name="name" value="<?php echo $R['name']?>" class="input sname" />
-				<div id="guide_startpage" class="guide hideq">
+				<div id="guide_startpage" class="guide hide">
 				페이지의 명칭을 입력합니다.<br />
 				보기)메인화면,로그인,회원가입,마이페이지,통합검색,이용약관,고객센터<br />
 				시작페이지에 체크할 경우 사이트속성에서 시작페이지로 지정할 수 있습니다.<br />
@@ -559,7 +559,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<span class="btn01"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $g['sys_module']?>&amp;a=deletepage&amp;uid=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')">페이지삭제</a></span>
 				<?php endif?>
 
-				<div id="guide_pagecode" class="guide hideq">
+				<div id="guide_pagecode" class="guide hide">
 				페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 				보기) 페이지호출주소 : <?php echo RW('mod=<span class="b">페이지코드</span>')?><br />
 				보기) 마이페이지호출 : <?php echo RW('mod=<span class="b">mypage</span>')?><br />
@@ -585,7 +585,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<option value="">ㆍ직접입력</option>
 				</select>
 
-				<div id="guide_pagecat" class="guide hideq">
+				<div id="guide_pagecat" class="guide hide">
 				페이지 분류는 직접 입력하거나 이미 등록된 분류를 선택할 수 있습니다.<br />
 				분류를 직접입력하면 분류선택기에 자동으로 추가됩니다.
 				</div>
@@ -604,7 +604,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<option value="1"<?php if($R['pagetype']==1):?> selected="selected"<?php endif?>>ㆍ모듈콘텐츠</option>
 				</select>
 
-				<div id="jointBox" class="guide<?php if($R['pagetype']!=1):?> hideq<?php endif?>">
+				<div id="jointBox" class="guide<?php if($R['pagetype']!=1):?> hide<?php endif?>">
 					<input type="text" name="joint" id="jointf" value="<?php echo $R['joint']?>" class="input sname" />
 					<input type="button" class="btngray" value="모듈연결" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.joint&iframe=Y&dropfield=jointf&cmodule=[<?php echo $g['sys_module']?>]');" />
 					<?php if($R['joint']):?>
@@ -616,14 +616,14 @@ $TPG = getTotalPage($NUM,$recnum);
 					접근권한은 연결된 모듈의 권한설정을 따릅니다.
 					</div>
 				</div>
-				<div id="widgetBox" class="guide<?php if($R['pagetype']!=2):?> hideq<?php endif?>">
+				<div id="widgetBox" class="guide<?php if($R['pagetype']!=2):?> hide<?php endif?>">
 					<?php if($R['uid']):?>
 					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.page&_page=<?php echo $R['uid']?>&type=widget');" />
 					<?php else:?>
 					페이지 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 					<?php endif?>
 				</div>
-				<div id="codeBox" class="guide<?php if($R['pagetype']&&$R['pagetype']!=3):?> hideq<?php endif?>">
+				<div id="codeBox" class="guide<?php if($R['pagetype']&&$R['pagetype']!=3):?> hide<?php endif?>">
 					<?php if($R['uid']):?>
 					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.page&_page=<?php echo $R['uid']?>&type=source');" />
 					<?php else:?>
@@ -631,7 +631,7 @@ $TPG = getTotalPage($NUM,$recnum);
 					<?php endif?>
 				</div>
 
-				<div id="guide_contenttype" class="guide hideq">
+				<div id="guide_contenttype" class="guide hide">
 				<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
 				<span class="b">위젯콘텐츠 : </span>위젯을 이용하여 메뉴를 꾸밀 수 있습니다.<br />
 				<span class="b">모듈콘텐츠 : </span>모듈 콘텐츠를 출력할 수 있습니다.<br />
@@ -672,7 +672,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<?php $cat=$R['sosokmenu']?>
 				<?php getMenuShowSelect($s,$table['s_menu'],0,0,0,0,0,'')?>
 				</select>
-				<div id="guide_sosokmenu" class="guide hideq">
+				<div id="guide_sosokmenu" class="guide hide">
 				이 페이지의 소속메뉴가 종종 필요할 수 있습니다.<br />
 				특정메뉴의 서브페이지로 사용되기를 원할경우 지정해 주세요.<br />
 				</div>
@@ -704,7 +704,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<option value="<?php echo $_S['uid']?>"<?php if(strstr($R['perm_g'],'['.$_S['uid'].']')):?> selected="selected"<?php endif?>>ㆍ<?php echo $_S['name']?>(<?php echo number_format($_S['num'])?>)</option>
 				<?php endwhile?>
 				</select>
-				<div id="guide_permg" class="guide hideq">
+				<div id="guide_permg" class="guide hide">
 				선택된 그룹에 속한 회원들은 이 메뉴에 대한 접근이 차단됩니다.<br />
 				복수의 그룹을 선택하려면 드래그또는 Ctrl키를 누른다음 클릭해 주세요.
 				</div>
@@ -726,7 +726,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				<?php endfor?>
 				</select>
 
-				<div id="guide_cache" class="guide hideq">
+				<div id="guide_cache" class="guide hide">
 				DB접속이 많거나 위젯을 많이 사용하는 페이지일 경우 캐시를 적용하면<br />
 				서버부하를 줄 일 수 있으며 속도를 높일 수 있습니다.<br />
 				다만 반드시 실시간 처리를 요하는 페이지일 경우 적용하지 마세요.
@@ -744,7 +744,7 @@ $TPG = getTotalPage($NUM,$recnum);
 				물리주소 : <span class="hand" onclick="window.open(this.innerHTML);" title="접속하기"><?php echo $g['s']?>/index.php?r=<?php echo $r?>&amp;mod=<?php echo $R['id']?></span><br />
 				현재주소 : <span class="link hand" onclick="window.open(this.innerHTML);" title="접속하기"><?php echo RW('mod='.$R['id'])?></span>
 				</div>
-				<div id="guide_addr" class="guide hideq">
+				<div id="guide_addr" class="guide hide">
 				<span class="b">물리주소 :</span> 이 페이지의 물리적인 실제 주소입니다.<br />
 				<span class="b">현재주소 :</span> 주소줄이기/사이트코드 사용옵션 결과주소입니다.
 				</div>
@@ -1060,7 +1060,7 @@ if ($is_regismode)
 				</td>
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $CINFO['id']?>" maxlength="20" class="input sname1" /> <span>(고유키=<?php echo sprintf('%05d',$CINFO['uid'])?>)</span>
-					<div id="guide_menucode" class="guide hideq">
+					<div id="guide_menucode" class="guide hide">
 					이 메뉴를 잘 표현할 수 있는 단어로 입력해 주세요.<br />
 					영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 메뉴호출주소 : <?php echo RW('c=<span class="b">메뉴코드</span>')?><br />
@@ -1081,7 +1081,7 @@ if ($is_regismode)
 					<option value="1"<?php if($CINFO['menutype']==1):?> selected="selected"<?php endif?>>ㆍ모듈콘텐츠</option>
 					</select>
 
-					<div id="jointBox" class="guide<?php if($CINFO['menutype']!=1):?> hideq<?php endif?>">
+					<div id="jointBox" class="guide<?php if($CINFO['menutype']!=1):?> hide<?php endif?>">
 						<input type="text" name="joint" id="jointf" value="<?php echo $CINFO['joint']?>" class="input sname1" />
 						<input type="button" class="btngray" value="모듈연결" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.joint&iframe=Y&dropfield=jointf');" />
 						<?php if($CINFO['joint']):?>
@@ -1097,14 +1097,14 @@ if ($is_regismode)
 						접근권한은 연결된 모듈의 권한설정을 따릅니다.
 						</div>
 					</div>
-					<div id="widgetBox" class="guide<?php if($CINFO['menutype']!=2):?> hideq<?php endif?>">
+					<div id="widgetBox" class="guide<?php if($CINFO['menutype']!=2):?> hide<?php endif?>">
 						<?php if($CINFO['uid']):?>
 						<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=widget');" />
 						<?php else:?>
 						메뉴 등록 후 사용자페이지에서 직접 편집할 수 있습니다.<br />
 						<?php endif?>
 					</div>
-					<div id="codeBox" class="guide<?php if($CINFO['menutype']&&$CINFO['menutype']!=3):?> hideq<?php endif?>">
+					<div id="codeBox" class="guide<?php if($CINFO['menutype']&&$CINFO['menutype']!=3):?> hide<?php endif?>">
 						<?php if($CINFO['uid']):?>
 						<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=edit.menu&_menu=<?php echo $CINFO['uid']?>&type=source');" />
 						<?php else:?>
@@ -1112,7 +1112,7 @@ if ($is_regismode)
 						<?php endif?>
 					</div>
 
-					<div id="guide_contenttype" class="guide hideq">
+					<div id="guide_contenttype" class="guide hide">
 					<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
 					<span class="b">위젯콘텐츠 : </span>위젯을 이용하여 메뉴를 꾸밀 수 있습니다.<br />
 					<span class="b">모듈콘텐츠 : </span>모듈 콘텐츠를 출력할 수 있습니다.<br />
@@ -1131,7 +1131,7 @@ if ($is_regismode)
 					<input type="checkbox" name="hidden" id="cat_hidden" value="1"<?php if($CINFO['hidden']):?> checked="checked"<?php endif?> /><label for="cat_hidden">메뉴숨김</label>
 					<input type="checkbox" name="reject" id="cat_reject" value="1"<?php if($CINFO['reject']):?> checked="checked"<?php endif?> /><label for="cat_reject">메뉴차단</label>
 
-					<div id="guide_mpro" class="guide hideq">
+					<div id="guide_mpro" class="guide hide">
 					<span class="b">모바일메뉴출력 : </span>모바일 레이아웃 사용시 이 메뉴를 출력합니다.<br />
 					<span class="b">새창열기 : </span>이 메뉴를 클릭시 새창으로 엽니다.<br />
 					<span class="b">메뉴숨김 : </span>메뉴를 출력하지 않습니다.(링크접근가능)<br />
@@ -1185,7 +1185,7 @@ if ($is_regismode)
 					<option value="<?php echo $_S['uid']?>"<?php if(strstr($CINFO['perm_g'],'['.$_S['uid'].']')):?> selected="selected"<?php endif?>>ㆍ<?php echo $_S['name']?>(<?php echo number_format($_S['num'])?>)</option>
 					<?php endwhile?>
 					</select>
-					<div id="guide_permg" class="guide hideq">
+					<div id="guide_permg" class="guide hide">
 					선택된 그룹에 속한 회원들은 이 메뉴에 대한 접근이 차단됩니다.<br />
 					복수의 그룹을 선택하려면 드래그또는 Ctrl키를 누른다음 클릭해 주세요.
 					</div>
@@ -1207,7 +1207,7 @@ if ($is_regismode)
 					<?php endfor?>
 					</select>
 
-					<div id="guide_cache" class="guide hideq">
+					<div id="guide_cache" class="guide hide">
 					DB접속이 많거나 위젯을 많이 사용하는 메뉴일 경우 캐시를 적용하면<br />
 					서버부하를 줄 일 수 있으며 속도를 높일 수 있습니다.<br />
 					다만 반드시 실시간 처리를 요하는 메뉴일 경우 적용하지 마세요.
@@ -1225,7 +1225,7 @@ if ($is_regismode)
 					물리주소 : <span class="hand" onclick="window.open(this.innerHTML);" title="접속하기"><?php echo $g['s']?>/index.php?r=<?php echo $r?>&amp;c=<?php echo $vtype?substr($catcode,0,strlen($catcode)-1):$catcode.$CINFO['id']?></span><br />
 					현재주소 : <span class="link hand" onclick="window.open(this.innerHTML);" title="접속하기"><?php echo RW($CINFO['uid']?'c='.($vtype?substr($catcode,0,strlen($catcode)-1):$catcode.$CINFO['id']):0)?></span>
 					</div>
-					<div id="guide_addr" class="guide hideq">
+					<div id="guide_addr" class="guide hide">
 					<span class="b">물리주소 :</span> 이 메뉴의 물리적인 실제 주소입니다.<br />
 					<span class="b">현재주소 :</span> 주소줄이기/사이트코드 사용옵션 결과주소입니다.
 					</span>
@@ -1246,7 +1246,7 @@ if ($is_regismode)
 		</table>
 
 		<?php if($CINFO['uid']):?>
-		<div id="menu_header" class="hideq">
+		<div id="menu_header" class="hide">
 		<table>
 			<tr>
 				<td class="td1">헤더파일</td>
@@ -1282,7 +1282,7 @@ if ($is_regismode)
 		</table>
 		</div>
 
-		<div id="menu_footer" class="hideq">
+		<div id="menu_footer" class="hide">
 		<table>
 			<tr>
 				<td class="td1">풋터파일</td>
@@ -1318,7 +1318,7 @@ if ($is_regismode)
 		</table>
 		</div>
 
-		<div id="menu_addinfo" class="hideq">
+		<div id="menu_addinfo" class="hide">
 		<table>
 			<tr>
 				<td class="td1">
@@ -1327,7 +1327,7 @@ if ($is_regismode)
 				</td>
 				<td class="td2">
 					<textarea name="addinfo" class="add"><?php echo htmlspecialchars($CINFO['addinfo'])?></textarea>
-					<div id="guide_addinfo" class="guide hideq">
+					<div id="guide_addinfo" class="guide hide">
 					이 메뉴에 대해서 추가적인 정보가 필요할 경우 사용합니다.<br />
 					필드명은 <span class="b">[addinfo]</span> 입니다. 
 					</div>
@@ -1413,7 +1413,7 @@ function displaySelect(obj)
 	}
 	__resetPageSize();
 }
-function codShowHide(layer,show,hideq,img)
+function codShowHide(layer,show,hide,img)
 {
 	if(getId(layer).style.display != show)
 	{
@@ -1423,9 +1423,9 @@ function codShowHide(layer,show,hideq,img)
 	}
 	else
 	{
-		getId(layer).style.display = hideq;
+		getId(layer).style.display = hide;
 		img.src = img.src.replace('ico_over','ico_under');
-		setCookie('ck_'+layer,hideq,1);
+		setCookie('ck_'+layer,hide,1);
 	}
 	__resetPageSize();
 }
@@ -1524,9 +1524,9 @@ document.procForm.name.focus();
 
 <script type="text/javascript">
 //<![CDATA[
-function __layerShowHide(layer,show,hideq)
+function __layerShowHide(layer,show,hide)
 {
-	layerShowHide(layer,show,hideq)
+	layerShowHide(layer,show,hide)
 	__resetPageSize();
 }
 function __resetPageSize()

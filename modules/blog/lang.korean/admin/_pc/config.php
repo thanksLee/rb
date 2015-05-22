@@ -30,7 +30,7 @@
 				<?php endwhile?>
 				<?php closedir($dirs)?>
 				</select>
-				<div id="guide_skin" class="guide hideq">
+				<div id="guide_skin" class="guide hide">
 				지정된 대표테마는 서비스 개별 설정시 별도의 테마를 지정하지 않으면 자동으로 적용됩니다.<br />
 				가장 많이 사용하는 테마를 지정해 주세요.
 				</div>
@@ -260,7 +260,7 @@ RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/([0-9]+)/?$ ./index.php?r=<?php echo $r?>&
 	</div>
 
 
-	<div id="guide_fserver" class="notice hideq">
+	<div id="guide_fserver" class="notice hide">
 		파일서버를 별도로 분리하여 운영하고자 할 경우 사용합니다.<br />
 		이 모듈을 통해 업로드되는 모든 첨부파일들은 지정된 파일서버로 전송됩니다.<br />
 		전용서버가 아니면 파일업로드 및 삭제/갱신시에 오히려 더 느려질 수 있습니다.<br />

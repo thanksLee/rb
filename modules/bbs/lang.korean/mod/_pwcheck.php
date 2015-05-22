@@ -3,7 +3,7 @@
 
 	<div class="msg">
 		<h3><img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" /> 비밀번호 확인</h3>
-		<div>게시물 등록시에 입력했던 비밀번호를 입력하시거나 회원이실 경우 <a href="#." class="u" onclick="windowLogin();">로그인</a>해 주세요.</div>
+		<div>게시물 등록시에 입력했던 비밀번호를 입력해 주세요.</div>
 	</div>
 
 	<form name="checkForm" method="post" action="<?php echo $g['s']?>/" target="_action_frame_<?php echo $m?>" onsubmit="return permCheck(this);">
@@ -64,11 +64,6 @@ function permCheck(f)
 		return false;
 	}
 	checkFlag = true;
-}
-function windowLogin()
-{
-	var uexp = location.href.split('#');
-	OpenWindow(rooturl + '/?r='+raccount+'&system=popup.login&iframe=Y&referer=' + escape(uexp[0]));
 }
 window.onload = function(){document.checkForm.pw.focus();}
 //]]>

@@ -37,7 +37,6 @@ else {
 	}
 
 	if(!$mod) $mod = 'front';
-	$g['mobile'] = '';
 
 	$module = $module ? $module : 'admin';
 	$front  = $front  ? $front  : 'main';

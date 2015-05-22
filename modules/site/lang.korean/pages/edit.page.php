@@ -89,7 +89,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 				</td>
 				<td class="td2">
 					<input type="text" name="name" value="<?php echo $nameset[$_make]?>" class="input sname" />
-					<div id="guide_startpage" class="guide hideq">
+					<div id="guide_startpage" class="guide hide">
 					페이지의 명칭을 입력합니다.<br />
 					보기)메인화면,로그인,회원가입,마이페이지,통합검색,이용약관,고객센터<br />
 					시작페이지에 체크할 경우 사이트속성에서 시작페이지로 지정할 수 있습니다.<br />
@@ -114,7 +114,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 				<td class="td2">
 					<input type="text" name="id" value="<?php echo $_make?>" maxlength="20" class="input sname" />
 	
-					<div id="guide_pagecode" class="guide hideq">
+					<div id="guide_pagecode" class="guide hide">
 					페이지 호출시에 사용되는 코드이며 영문대소문자/숫자/_/- 조합으로 등록할 수 있습니다.<br />
 					보기) 페이지호출주소 : <?php echo $g['r']?>/?mod=<span class="b">페이지코드</span><br />
 					보기) 마이페이지호출 : <?php echo $g['r']?>/?mod=<span class="b">mypage</span><br />
@@ -140,7 +140,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 					<option value="">ㆍ직접입력</option>
 					</select>
 
-					<div id="guide_pagecat" class="guide hideq">
+					<div id="guide_pagecat" class="guide hide">
 					페이지 분류는 직접 입력하거나 이미 등록된 분류를 선택할 수 있습니다.<br />
 					분류를 직접입력하면 분류선택기에 자동으로 추가됩니다.
 					</div>
@@ -159,7 +159,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 					<option value="1">ㆍ모듈콘텐츠</option>
 					</select>
 
-					<div id="jointBox" class="guide hideq">
+					<div id="jointBox" class="guide hide">
 						<input type="text" name="joint" id="jointf" value="" class="input sname" />
 						<input type="button" class="btngray" value="모듈연결" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.joint&iframe=Y&dropfield=jointf&cmodule=[<?php echo $g['sys_module']?>]');" />
 						<div class="guide">
@@ -168,7 +168,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 							접근권한은 연결된 모듈의 권한설정을 따릅니다.
 						</div>
 					</div>
-					<div id="widgetBox" class="guide hideq">
+					<div id="widgetBox" class="guide hide">
 						위젯을 이용해서 페이지를 꾸밀 수 있습니다.
 					</div>
 					<div id="codeBox" class="guide">
@@ -176,7 +176,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 					</div>
 
 
-					<div id="guide_contenttype" class="guide hideq">
+					<div id="guide_contenttype" class="guide hide">
 					<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
 					<span class="b">위젯콘텐츠 : </span>위젯을 이용하여 메뉴를 꾸밀 수 있습니다.<br />
 					<span class="b">모듈콘텐츠 : </span>모듈 콘텐츠를 출력할 수 있습니다.<br />
@@ -236,7 +236,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 				<td class="td2">
 					<input type="text" name="name" value="<?php echo $_HP['name']?>" class="input sname" />
 	
-					<div id="guide_startpage" class="guide hideq">
+					<div id="guide_startpage" class="guide hide">
 					페이지의 명칭을 입력합니다.<br />
 					보기)메인화면,로그인,회원가입,마이페이지,통합검색,이용약관,고객센터<br />
 					시작페이지에 체크할 경우 사이트속성에서 시작페이지로 지정할 수 있습니다.<br />
@@ -272,7 +272,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 					<option value="">ㆍ직접입력</option>
 					</select>
 
-					<div id="guide_pagecat" class="guide hideq">
+					<div id="guide_pagecat" class="guide hide">
 					페이지 분류는 직접 입력하거나 이미 등록된 분류를 선택할 수 있습니다.<br />
 					분류를 직접입력하면 분류선택기에 자동으로 추가됩니다.
 					</div>
@@ -291,7 +291,7 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 					<option value="1"<?php if($_HP['pagetype']==1):?> selected="selected"<?php endif?>>ㆍ모듈콘텐츠</option>
 					</select>
 
-					<div id="jointBox" class="guide<?php if($_HP['pagetype']!=1):?> hideq<?php endif?>">
+					<div id="jointBox" class="guide<?php if($_HP['pagetype']!=1):?> hide<?php endif?>">
 						<input type="text" name="joint" id="jointf" value="<?php echo $_HP['joint']?>" class="input sname" />
 						<input type="button" class="btngray" value="모듈연결" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=popup.joint&iframe=Y&dropfield=jointf&cmodule=[<?php echo $g['sys_module']?>]');" />
 						<?php if($_HP['joint']):?>
@@ -303,18 +303,18 @@ $g['url_reset'] = $g['s'].'/?r='.$r.'&iframe='.$iframe.'&system='.$system.($_HP[
 							접근권한은 연결된 모듈의 권한설정을 따릅니다.
 						</div>
 					</div>
-					<div id="widgetBox" class="guide<?php if($_HP['pagetype']!=2):?> hideq<?php endif?>">
+					<div id="widgetBox" class="guide<?php if($_HP['pagetype']!=2):?> hide<?php endif?>">
 					<?php if($_HP['uid']):?>
 					<input type="button" class="btngray w" value="위젯으로 꾸미기" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=widget');" />
 					<?php endif?>
 					</div>
-					<div id="codeBox" class="guide<?php if($_HP['pagetype']&&$_HP['pagetype']!=3):?> hideq<?php endif?>">
+					<div id="codeBox" class="guide<?php if($_HP['pagetype']&&$_HP['pagetype']!=3):?> hide<?php endif?>">
 					<?php if($_HP['uid']):?>
 					<input type="button" class="btngray w" value="소스코드 직접편집" onclick="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&iframe=<?php echo $iframe?>&system=<?php echo $system?>&_page=<?php echo $_HP['uid']?>&type=source');" />
 					<?php endif?>
 					</div>
 
-					<div id="guide_contenttype" class="guide hideq">
+					<div id="guide_contenttype" class="guide hide">
 					<span class="b">직접꾸미기 : </span>소스코드를 직접 편집할 수 있습니다.<br />
 					<span class="b">위젯콘텐츠 : </span>위젯을 이용하여 메뉴를 꾸밀 수 있습니다.<br />
 					<span class="b">모듈콘텐츠 : </span>모듈 콘텐츠를 출력할 수 있습니다.<br />
@@ -746,7 +746,7 @@ window.onload = function()
 		<textarea name="source" id="PAGE_sourceArea" style="height:500px;"><?php echo htmlspecialchars(implode('',file($g['path_page'].$_HP['id'].'.php')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_mobile"<?php if(!is_file($g['path_page'].$_HP['id'].'.mobile.php')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_mobile"<?php if(!is_file($g['path_page'].$_HP['id'].'.mobile.php')):?> class="hide"<?php endif?>>
 		<div class="subtt">
 			모바일모드 HTML
 			<img src="<?php echo $g['img_core']?>/_public/btn_html.gif" alt="편집기" title="편집기" class="hand" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y&droparea=PAGE_sourceArea_mobile');" />
@@ -757,12 +757,12 @@ window.onload = function()
 		<textarea name="mobile" id="PAGE_sourceArea_mobile" style="height:200px;"><?php if(is_file($g['path_page'].$_HP['id'].'.mobile.php')) echo htmlspecialchars(implode('',file($g['path_page'].$_HP['id'].'.mobile.php')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_css"<?php if(!is_file($g['path_page'].$_HP['id'].'.css')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_css"<?php if(!is_file($g['path_page'].$_HP['id'].'.css')):?> class="hide"<?php endif?>>
 		<div class="subtt">CSS</div>
 		<textarea name="css" style="height:200px;"><?php if(is_file($g['path_page'].$_HP['id'].'.css')) echo htmlspecialchars(implode('',file($g['path_page'].$_HP['id'].'.css')))?></textarea>
 		</div>
 
-		<div id="sourceArea_ck_js"<?php if(!is_file($g['path_page'].$_HP['id'].'.js')):?> class="hideq"<?php endif?>>
+		<div id="sourceArea_ck_js"<?php if(!is_file($g['path_page'].$_HP['id'].'.js')):?> class="hide"<?php endif?>>
 		<div class="subtt">자바스크립트</div>
 		<textarea name="js" style="height:200px;"><?php if(is_file($g['path_page'].$_HP['id'].'.js')) echo htmlspecialchars(implode('',file($g['path_page'].$_HP['id'].'.js')))?></textarea>
 		</div>	
@@ -900,9 +900,9 @@ function displayChange()
 	}
 	return false;
 }
-function __layerShowHide(layer,show,hideq)
+function __layerShowHide(layer,show,hide)
 {
-	layerShowHide(layer,show,hideq)
+	layerShowHide(layer,show,hide)
 	__resetPageSize();
 }
 function __resetPageSize()

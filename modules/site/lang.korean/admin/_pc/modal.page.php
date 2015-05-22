@@ -20,8 +20,7 @@ if ($uid)
 <input type="hidden" name="uid" value="<?php echo $R['uid']?>" />
 <input type="hidden" name="orign_id" value="<?php echo $R['id']?>" />
 <input type="hidden" name="perm_g" value="<?php echo $R['perm_g']?>" />
-<input type="hidden" name="type" value="2" />
-<input type="hidden" name="pagetype" value="<?php echo $R['pagetype']?$R['pagetype']:3?>" />
+<input type="hidden" name="type" value="1" />
 
 <div class="modal-dialog">
   <div class="modal-content">
@@ -56,9 +55,9 @@ if ($uid)
 						<input class="form-control" type="text" name="id" value="<?php echo $R['id']?$R['id']:$_mod?>" maxlength="20">
 						<span class="input-group-btn">
 							<?php if($R['id']):?>
-							<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=deletepage&amp;uid=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="페이지삭제">
+							<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=deletepage&amp;uid=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('정말로 삭제하시겠습니까?     ')"><button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" data-original-title="페이지삭제">
 								<i class="fa fa-trash-o fa-lg"></i>
-							</a>
+							</button></a>
 							<?php else:?>
 							<button class="btn btn-danger disabled" type="button" data-toggle="tooltip" data-placement="top" data-original-title="페이지삭제">
 								<i class="fa fa-trash-o fa-lg"></i>
@@ -101,23 +100,23 @@ if ($uid)
 				<label class="col-md-2 col-lg-2 control-label">전시내용</label>
 				<div class="col-md-10 col-lg-9">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<a href="#codeBox1" class="btn btn-default<?php if(!$R['uid']||$R['pagetype']==3):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm2.pagetype.value='3';">
-							<input id="option1" name="_pagetype" type="radio" value="3"<?php if(!$R['uid']||$R['pagetype']==3):?> checked<?php endif?>>
+						<a href="#codeBox1" class="btn btn-default<?php if(!$R['uid']||$R['pagetype']==3):?> active<?php endif?>" data-toggle="tab">
+							<input id="option1" name="pagetype" type="radio" value="3"<?php if(!$R['uid']||$R['pagetype']==3):?> checked<?php endif?>>
 							직접꾸미기 
 						</a>
-						<a href="#widgetBox1" class="btn btn-default<?php if($R['pagetype']==2):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm2.pagetype.value='2';">
-							<input id="option2" name="_pagetype" type="radio" value="2"<?php if($R['pagetype']==2):?> checked<?php endif?>>
+						<a href="#widgetBox1" class="btn btn-default<?php if($R['pagetype']==2):?> active<?php endif?>" data-toggle="tab">
+							<input id="option2" name="pagetype" type="radio" value="2"<?php if($R['pagetype']==2):?> checked<?php endif?>>
 							위젯전시 
 						</a>
-						<a href="#jointBox1" class="btn btn-default<?php if($R['pagetype']==1):?> active<?php endif?>" data-toggle="tab" onclick="document.procForm2.pagetype.value='1';">
-							<input id="option3" name="_pagetype" type="radio" value="1"<?php if($R['pagetype']==1):?> checked<?php endif?>>
+						<a href="#jointBox1" class="btn btn-default<?php if($R['pagetype']==1):?> active<?php endif?>" data-toggle="tab">
+							<input id="option3" name="pagetype" type="radio" value="1"<?php if($R['pagetype']==1):?> checked<?php endif?>>
 							모듈연결 
 						</a>
 					</div>
 				</div>
 			</div>
 			<div class="form-group tab-content">
-				<div class="tab-pane form-group<?php if(!$R['uid']||$R['pagetype']==3):?> active<?php endif?>" id="codeBox1">
+				<div class="tab-pane active form-group" id="codeBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<?php if($R['uid']):?>
 						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=source" class="btn btn-default btn-block" type="button"><i class="fa fa-pencil fa-lg"></i> 직접편집</a>
@@ -126,7 +125,7 @@ if ($uid)
 						<?php endif?>
 					</div>
 				</div>
-				<div class="tab-pane form-group<?php if($R['pagetype']==2):?> active<?php endif?>" id="widgetBox1">
+				<div class="tab-pane form-group" id="widgetBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<?php if($R['uid']):?>
 						<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.page&_page=<?php echo $R['uid']?>&type=widget" class="btn btn-default btn-block" type="button"><i class="fa fa-puzzle-piece fa-lg"></i> 위젯으로 꾸미기</a>				
@@ -135,7 +134,7 @@ if ($uid)
 						<?php endif?>
 					</div>
 				</div>
-				<div class="tab-pane form-group<?php if($R['pagetype']==1):?> active<?php endif?>" id="jointBox1">
+				<div class="tab-pane form-group" id="jointBox1">
 					<div class="col-md-offset-2 col-md-10 col-lg-9">
 						<div class="input-group">
 							<input type="text" name="joint" id="jointf" value="<?php echo $R['joint']?>" class="form-control" />
@@ -143,9 +142,11 @@ if ($uid)
 								<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-module-joint">
 									<i class="fa fa-link fa-lg"></i> 모듈연결
 								</button>
-								<button class="btn btn-default" type="button" onclick="getId('jointf').value!=''?window.open(getId('jointf').value):alert('모듈연결 주소를 등록해 주세요.');">
+								<?php if($R['joint']):?>
+								<button class="btn btn-default" type="button" onclick="window.open('<?php echo $R['joint']?>');">
 									<i class="fa fa-external-link fa-lg"></i> 미리보기
 								</button>
+								<?php endif?>
 							</span>
 						</div>
 						<span class="help-block">
@@ -162,7 +163,6 @@ if ($uid)
 				<label class="col-md-2 col-lg-2 control-label">레이아웃</label>
 				<div class="col-md-10 col-lg-9">
 					<select class="col-md-12 form-control" name="layout" tabindex="-1">
-					<option value="">사이트 대표레이아웃</option>
 					<?php $dirs = opendir($g['path_layout'])?>
 					<?php while(false !== ($tpl = readdir($dirs))):?>
 					<?php if($tpl=='.' || $tpl == '..' || $tpl == '_blank' || is_file($g['path_layout'].$tpl))continue?>
@@ -170,7 +170,7 @@ if ($uid)
 					<optgroup label="<?php echo getFolderName($g['path_layout'].$tpl)?>">
 					<?php while(false !== ($tpl1 = readdir($dirs1))):?>
 					<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
-					<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?><?php if($R['layout']==$tpl.'/'.$tpl1):?> (<?php echo getFolderName($g['path_layout'].$tpl)?>)<?php endif?></option>
+					<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?></option>
 					<?php endwhile?>
 					<?php closedir($dirs1)?>
 					</optgroup>

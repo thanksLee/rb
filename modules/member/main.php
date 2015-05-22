@@ -28,7 +28,7 @@ switch ($front)
 		{
 			if (!$d['member']['join_mobile'])
 			{
-				getLink(RW(0),'','죄송합니다. 회원가입은 PC모드로 접속해야 합니다.','');
+				getLink('','','죄송합니다. 회원가입은 PC모드로 접속해야 합니다.','-1');
 			}
 		}
 		if ($my['uid'])

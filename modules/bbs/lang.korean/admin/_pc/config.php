@@ -32,7 +32,7 @@ include_once $g['path_module'].$module.'/var/var.php';
 				<?php endwhile?>
 				<?php closedir($dirs)?>
 				</select>
-				<div id="guide_skin" class="guide hideq">
+				<div id="guide_skin" class="guide hide">
 				지정된 대표테마는 게시판설정시 별도의 테마지정없이 자동으로 적용됩니다.<br />
 				가장 많이 사용하는 테마를 지정해 주세요.
 				</div>
@@ -75,7 +75,7 @@ include_once $g['path_module'].$module.'/var/var.php';
 				<?php endwhile?>
 				<?php closedir($dirs)?>
 				</select>
-				<div id="guide_total" class="guide hideq">
+				<div id="guide_total" class="guide hide">
 				통합보드란 모든 게시판의 전체 게시물을 하나의 게시판으로 출력해 주는 서비스입니다.<br />
 				사용하시려면 통합보드용 테마를 지정해 주세요.<br />
 				통합보드의 호출은 <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>" target="_blank" class="b u"><?php echo $g['r']?>/?m=<?php echo $module?></a> 입니다.

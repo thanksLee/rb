@@ -9,7 +9,8 @@ foreach ($_filterSet as $_ft)
 
 if ($_SERVER['HTTP_REFERER'] && strpos($_SERVER['HTTP_REFERER'],'m=bbs'))
 {
-	if ($m != 'bbs' && $m != 'upload') exit;
+	if ($m != 'bbs') exit;
+	
 }
 
 $g['act_module0'] = $g['dir_module'].$a.'.php';

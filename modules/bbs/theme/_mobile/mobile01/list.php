@@ -31,7 +31,7 @@
 			<span class="subject ntc"><?php echo $R['subject']?></span>
 			<?php if($R['comment']):?><span class="comment">[<?php echo $R['comment']?><?php if($R['oneline']):?>+<?php echo $R['oneline']?><?php endif?>]</span><?php endif?>
 			<?php if($R['trackback']):?><span class="trackback">[<?php echo $R['trackback']?>]</span><?php endif?>
-			<?php if(getNew($R['d_regis'],$d['bbs']['newtime'])):?><span class="new">new</span><?php endif?>
+			<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 		</div>
 		<div class="info"> 
 			<?php echo $R[$_HS['nametype']]?> <span>|</span> 
@@ -54,7 +54,7 @@
 			<span class="subject"><?php echo $R['subject']?></span>
 			<?php if($R['comment']):?><span class="comment">[<?php echo $R['comment']?><?php if($R['oneline']):?>+<?php echo $R['oneline']?><?php endif?>]</span><?php endif?>
 			<?php if($R['trackback']):?><span class="trackback">[<?php echo $R['trackback']?>]</span><?php endif?>
-			<?php if(getNew($R['d_regis'],$d['bbs']['newtime'])):?><span class="new">new</span><?php endif?>
+			<?php if(getNew($R['d_regis'],24)):?><span class="new">new</span><?php endif?>
 		</div>
 		<div class="info">
 			<?php echo $R[$_HS['nametype']]?> <span>|</span> 

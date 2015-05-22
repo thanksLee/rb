@@ -27,7 +27,7 @@ $R = getDbData($table['s_module'],"id='".$id."'",'*');
 			<div class="col-md-2 col-sm-2">
 				<span class="fa-stack fa-3x">
 					<i class="fa fa-square fa-stack-2x"></i>
-					<i class="<?php echo $R['icon'] ? $R['icon'].(strstr($R['icon'],'kf-') ? ' kf kf-inverse' : ' fa fa-inverse') :'kf-'.$R['id'].' kf kf-inverse'?> fa-stack-1x" id="_moduleIcon1_"></i>
+					<i class="kf <?php echo $R['icon']?$R['icon']:'kf-'.$R['id']?> fa-stack-1x kf-inverse"></i>
 				</span>
 			</div>
 			<div class="col-md-10 col-sm-10">
@@ -104,19 +104,19 @@ $R = getDbData($table['s_module'],"id='".$id."'",'*');
 		</div>
 		<!-- /모듈 아이콘  -->
 		<div class="form-group">
-			<label class="col-md-2 control-label">퀵링크 패널</label>
+			<label class="col-md-2 control-label">모듈감추기</label>
 			<div class="col-md-10">
 				<div class="btn-group btn-group-justified" data-toggle="buttons">
-					<label class="btn btn-default<?php if(!$R['hidden']):?> active<?php endif?>">
-						<input id="option1" type="radio" name="hidden" value="0"<?php if(!$R['hidden']):?> checked<?php endif?>>
+					<label class="btn btn-default<?php if($R['hidden']):?> active<?php endif?>">
+						<input id="option1" type="radio" name="hidden" value="1"<?php if($R['hidden']):?> checked<?php endif?>>
 						<span class="glyphicon glyphicon-eye-open"></span>&nbsp;출력함
 					</label>
-					<label class="btn btn-default<?php if($R['hidden']):?> active<?php endif?>">
-						<input id="option2" type="radio" name="hidden" value="1"<?php if($R['hidden']):?> checked<?php endif?>>
+					<label class="btn btn-default<?php if(!$R['hidden']):?> active<?php endif?>">
+						<input id="option2" type="radio" name="hidden" value="0"<?php if(!$R['hidden']):?> checked<?php endif?>>
 						<i class="fa fa-eye-slash fa-lg"></i>&nbsp;감춤
 					</label>
 				</div>
-				<span class="help-block">퀵링크 패널에서 출력하거나 감춤</span>
+				<span class="help-block">모듈 리스트에서 출력하거나 감춤</span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -163,5 +163,5 @@ $R = getDbData($table['s_module'],"id='".$id."'",'*');
 </div>
 </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
-</form>
+ </form>
 :RESULT]

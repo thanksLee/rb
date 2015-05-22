@@ -130,9 +130,9 @@ while($_L=db_fetch_array($_LEVELDATA)) $_LEVELNAME['l'.$_L['uid']] = $_L['name']
 		<td><input type="checkbox" name="bbs_members[]" value="<?php echo $R['uid']?>" /></td>
 		<td><?php echo $NUM-((($p-1)*$recnum)+$_rec++)?></td>
 		<td class="bid"><a href="<?php echo RW('m='.$module.'&bid='.$R['id'])?>" target="_blank"><?php echo $R['id']?></a></td>
-		<td class="sbj">
+		<td class="sbj tooltip">
 			<input type="text" name="name_<?php echo $R['uid']?>" value="<?php echo $R['name']?>" />
-			<span class="_right _r150 _w200 hide">
+			<span class="_right _r150 _w200">
 			<b>최신글제외</b> : <?php echo $d['bbs']['display']?'Yes':'No'?><br />
 			<b>쿼리생략</b> : <?php echo $d['bbs']['hidelist']?'Yes':'No'?><br />
 			<b>RSS발행</b> : <?php echo $d['bbs']['rss']?'Yes':'No'?><br />
@@ -150,9 +150,9 @@ while($_L=db_fetch_array($_LEVELDATA)) $_LEVELNAME['l'.$_L['uid']] = $_L['name']
 		<td class="cat"><?php echo $d['bbs']['snsconnect']?'<span>Y</span>':'N'?></td>
 		<td class="cat"><?php echo $R['imghead']||is_file($g['path_module'].$module.'/var/code/'.$R['id'].'.header.php')?'<span>Y</span>':'N'?></td>
 		<td class="cat"><?php echo $R['imgfoot']||is_file($g['path_module'].$module.'/var/code/'.$R['id'].'.footer.php')?'<span>Y</span>':'N'?></td>
-		<td class="lay">
+		<td class="lay tooltip">
 			<?php echo $d['bbs']['layout']?'<i>Y</i>':'N'?> / <?php echo $d['bbs']['skin']?'<i>Y</i>':'N'?> / <?php echo $d['bbs']['c_skin']?'<i>Y</i>':'N'?>
-			<span class="_left _l250 _w250 hide">
+			<span class="_left _l250 _w250">
 			<b>레이아웃</b> : <?php echo $d['bbs']['layout']?'':'사이트 대표레이아웃'?><br />
 			<b>게시판테마</b>(pc) : <?php echo $d['bbs']['skin']?getFolderName( $g['path_module'].$module.'/theme/'.$d['bbs']['skin']).'('.basename($d['bbs']['skin']).')':'대표테마'?><br />
 			<b>게시판테마</b>(mobile) :  <?php echo $d['bbs']['m_skin']?getFolderName( $g['path_module'].$module.'/theme/'.$d['bbs']['m_skin']).'('.basename($d['bbs']['m_skin']).')':'대표테마'?><br />
@@ -160,18 +160,18 @@ while($_L=db_fetch_array($_LEVELDATA)) $_LEVELNAME['l'.$_L['uid']] = $_L['name']
 			<b>댓글테마</b>(mobile) :  <?php echo $d['bbs']['c_mskin']?getFolderName( $g['path_module'].'comment/theme/'.$d['bbs']['c_mskin']).'('.basename($d['bbs']['c_mskin']).')':'대표테마'?><br /><i></i>
 			</span>
 		</td>
-		<td class="perm">
+		<td class="perm tooltip">
 			<?php echo $d['bbs']['perm_l_list']?> / <?php echo $d['bbs']['perm_l_view']?> / <?php echo $d['bbs']['perm_l_write']?>
-			<span class="_left _l150 _w150 hide">
+			<span class="_left _l150 _w150">
 			<b>목록</b> : <?php echo $_LEVELNAME['l'.$d['bbs']['perm_l_list']]?><br />
 			<b>열람</b> : <?php echo $_LEVELNAME['l'.$d['bbs']['perm_l_view']]?><br />
 			<b>쓰기</b> : <?php echo $_LEVELNAME['l'.$d['bbs']['perm_l_write']]?><br />
 			<b>다운</b> : <?php echo $_LEVELNAME['l'.$d['bbs']['perm_l_down']]?><br /><i></i>
 			</span>
 		</td>
-		<td class="perm">
+		<td class="perm tooltip">
 			<?php echo number_format($d['bbs']['point1'])?> / <?php echo number_format($d['bbs']['point2'])?> / <?php echo number_format($d['bbs']['point3'])?>
-			<span class="_left _l150 _w150 hide">
+			<span class="_left _l150 _w150">
 			<b>등록</b> : <?php echo number_format($d['bbs']['point1'])?>P 지급<br />
 			<b>열람</b> : <?php echo number_format($d['bbs']['point2'])?>P 차감<br />
 			<b>다운</b> : <?php echo number_format($d['bbs']['point3'])?>P 차감<br /><i></i>

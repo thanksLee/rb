@@ -8,10 +8,9 @@ $NUM = getDbRows($table['s_page'],$catque);
 $TPG = getTotalPage($NUM,$recnum);
 ?>
 
-[RESULT:
 
 <div id="mjointbox">
-<!--
+
 	<div class="title">
 		<form action="<?php echo $g['s']?>/" method="get">
 		<input type="hidden" name="r" value="<?php echo $r?>" />
@@ -42,15 +41,15 @@ $TPG = getTotalPage($NUM,$recnum);
 		<input type="button" value=" 리셋 " class="btngray" onclick="this.form.p.value=1;this.form.cat.value='';this.form._keyw.value='';this.form.submit();" />
 		
 		</form>
+
 	</div>
--->
 
 	<?php if($NUM):?>
 	<table>
 		<?php while($PR = db_fetch_array($PAGES)):?>
 		<tr>
 		<td class="name"><a href="<?php echo RW('mod='.$PR['id'])?>" target="_blank" title="페이지보기"><?php echo $PR['name']?></a><span>(<?php echo $PR['id']?>)</span></td>
-		<td class="aply"><input type="button" value="연결" class="btnblue" data-dismiss="modal" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>&mod=<?php echo $PR['id']?>');" /></td>
+		<td class="aply"><input type="button" value="연결" class="btnblue" onclick="dropJoint('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $smodule?>&mod=<?php echo $PR['id']?>');" /></td>
 		</tr>
 		<?php endwhile?>
 	</table>
@@ -72,6 +71,3 @@ $TPG = getTotalPage($NUM,$recnum);
 #mjointbox table .aply {text-align:right;}
 #mjointbox .pagebox01 {text-align:center;padding:15px 0 15px 0;margin:15px 0 0 0;border-top:#efefef solid 1px;}
 </style>
-
-
-:RESULT]

@@ -1,137 +1,3 @@
-<!-- Modal-모듈연결 -->
-<style type="text/css">
-@media screen and (min-width: 768px) {
-    #modal-module-joint .modal-dialog {
-        width: 730px;
-    }
-}
-
-#modal-module-joint .modal-header h4 {
-    width: 140px;
-    float: left;
-}
-#modal-module-joint .modal-body {
-    padding: 0 15px;
-}
-#modal-module-joint .modal-footer {
-    margin-top: 0
-}
-#modal-module-joint .modal-header small {
-    font-size: 11px;
-    color: #999;
-    float: left;
-    padding: 6px 0 0 0;
-}
-#modal-module-joint .panel .panel-heading h4 {
-    padding: 11px 0 11px 50px;
-}
-#modal-module-joint .panel .panel-heading h4.panel-title {
-    font-size: 14px;
-}
-#modal-module-joint .col-sm-4 {
-    overflow-y: scroll;
-    padding: 15px 7px;
-    height:480px;
-}
-#modal-module-joint .col-sm-8 {
-    overflow: auto;
-    padding: 15px;
-    height:480px;
-}
-#modal-module-joint .col-sm-8 .page-header {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0
-}
-#modal-module-joint .tab-content .tab-pane {
-    height: 360px
-}
-</style>
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="modal-module-joint" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content kimsq">
-            <form>
-                <div class="modal-header clearfix">
-                    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        <i class="fa kf-module fa-lg"></i>  모듈연결 
-                    </h4>
-                    <small>콘텐츠를 제공하는 모듈은 메뉴나 페이지에 연결할 수 있습니다.</small>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                            <!-- 모듈선택 -->
-                            <div class="list-group" id="_module_list_">
-							<?php $MODULES = getDbArray($table['s_module'],'','*','gid','asc',0,1)?>
-							<?php while($R=db_fetch_array($MODULES)):?>
-							<?php if($R['id']== 'site')continue?>
-							
-							<?php $_jfile0 = $g['path_module'].$R['id'].'/lang.'.$_HS['lang'].'/admin/_mobile/var/var.joint.php'?>
-							<?php $_jfile1 = $g['path_module'].$R['id'].'/lang.'.$_HS['lang'].'/admin/_pc/var/var.joint.php'?>
-							<?php $_jfile2 = $g['path_module'].$R['id'].'/admin/_pc/var/var.joint.php'?>
-							<?php if((!is_file($_jfile0)&&!is_file($_jfile1)&&!is_file($_jfile2))||strstr($cmodule,'['.$R['id'].']'))continue?>
-							<?php if($smodule==$R['id']) $g['var_joint_file'] = is_file($_jfile0)?$_jfile0:(is_file($_jfile1)?$_jfile1:$_jfile2)?>
-
-							<a class="list-group-item<?php if($smodule==$R['id']):?> active<?php endif?>" data-toggle="modal" href="#." onclick="moduleJoint(this);getAjaxData('<?php echo $g['s']?>/?r=<?php echo $r?>&amp;system=popup.joint&amp;iframe=Y&amp;dropfield=<?php echo $dropfield?>&amp;smodule=<?php echo $R['id']?>&amp;cmodule=<?php echo $cmodule?>','_modal_module_joint_');">
-								<i class="fa <?php echo $R['icon']?$R['icon']:'fa-th-large'?> fa-lg fa-fw"></i> <?php echo $R['name']?>
-								<small>(<?php echo $R['id']?>)</small>
-							</a>
-
-							<?php endwhile?>
-                            </div>
-                            <!-- //모듈선택 -->
-                        </div>
-                        <div id="_modal_module_joint_" class="col-sm-8">
-<!--
-                            <div class="page-header">
-                                <h4>
-                                    이 모듈 <small>(통합검색)</small> 을 연결 하시겠습니까?
-                                </h4>
-                            </div>
-
-                            <p>
-                                <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-link fa-lg"></i> 연결</button>
-                            </p>
--->
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default btn-block" data-dismiss="modal" type="button">취소</button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<script type="text/javascript">
-//<![CDATA[
-function moduleJoint(obj)
-{
-	var modules = getId('_module_list_');
-	var i;
-	for (i =0; i < modules.children.length; i++)
-	{
-		modules.children[i].className = 'list-group-item';
-	}
-	obj.className = 'list-group-item active';
-}
-function dropJoint(m)
-{
-	var f = getId('jointf');
-	f.value = m;
-	f.focus();
-}
-//]]>
-</script>
-
-
-
-
-
 
   <!-- 포스트 신규 -->
   <div class="modal fade" id="modal-post-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -921,6 +787,123 @@ function dropJoint(m)
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Modal-모듈연결 -->
+<style type="text/css">
+@media screen and (min-width: 768px) {
+    #modal-module-joint .modal-dialog {
+        width: 730px;
+    }
+}
+
+#modal-module-joint .modal-header h4 {
+    width: 140px;
+    float: left;
+}
+#modal-module-joint .modal-body {
+    padding: 0 15px;
+}
+#modal-module-joint .modal-footer {
+    margin-top: 0
+}
+#modal-module-joint .modal-header small {
+    font-size: 11px;
+    color: #999;
+    float: left;
+    padding: 6px 0 0 0;
+}
+#modal-module-joint .panel .panel-heading h4 {
+    padding: 11px 0 11px 50px;
+}
+#modal-module-joint .panel .panel-heading h4.panel-title {
+    font-size: 14px;
+}
+#modal-module-joint .col-sm-4 {
+    overflow-y: scroll;
+    padding: 15px 7px;
+    height:480px;
+}
+#modal-module-joint .col-sm-8 {
+    overflow: auto;
+    padding: 15px;
+    height:480px;
+}
+#modal-module-joint .col-sm-8 .page-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0
+}
+#modal-module-joint .tab-content .tab-pane {
+    height: 360px
+}
+</style>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="modal-module-joint" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content kimsq">
+            <form>
+                <div class="modal-header clearfix">
+                    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa kf-module fa-lg"></i>  모듈연결 
+                    </h4>
+                    <small>콘텐츠를 제공하는 모듈은 메뉴나 페이지에 연결할 수 있습니다.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <!-- 모듈선택 -->
+                            <div class="list-group">
+                                <a class="list-group-item" data-toggle="modal" href="">
+                                    <i class="fa kf-home fa-lg fa-fw"></i> 사이트
+                                    <small>(home)</small>
+                                </a>
+                                <a class="list-group-item" href="#">
+                                    <i class="fa kf-member fa-lg fa-fw"></i> 회원관리
+                                    <small>(member)</small>
+                                </a>
+                                <a class="list-group-item" data-toggle="modal" href="">
+                                    <i class="fa kf-bbs fa-lg fa-fw"></i> 게시판
+                                    <small>(bbs)</small>
+                                </a>
+                                <a class="list-group-item" data-toggle="modal" href="#">
+                                    <i class="fa kf-comment fa-lg fa-fw"></i> 댓글
+                                    <small>(comment)</small>
+                                <a class="list-group-item active" data-toggle="modal" href="#">
+                                    <i class="fa kf-search fa-lg fa-fw"></i> 통합검색
+                                    <small>(search)</small>
+                                </a>
+                                <a class="list-group-item" data-toggle="modal" href="#">
+                                    <i class="fa kf-contents fa-lg fa-fw"></i> 컨텐츠
+                                    <small>(contents)</small>
+                                </a>                                            </a>
+                            </div>
+                            <!-- //모듈선택 -->
+                        </div>
+                        <div class="col-sm-8">
+
+                            <div class="page-header">
+                                <h4>
+                                    이 모듈 <small>(통합검색)</small> 을 연결 하시겠습니까?
+                                </h4>
+                            </div>
+
+                            <p>
+                                <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-link fa-lg"></i> 연결</button>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default btn-block" data-dismiss="modal" type="button">취소</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 
 
 <!-- Modal-아이콘 갤러리 -->

@@ -106,7 +106,7 @@ if ($R['uid'])
 							<optgroup label="<?php echo getFolderName($g['path_layout'].$tpl)?>">
 							<?php while(false !== ($tpl1 = readdir($dirs1))):?>
 							<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
-							<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?><?php if($R['layout']==$tpl.'/'.$tpl1):?> (<?php echo getFolderName($g['path_layout'].$tpl)?>)<?php endif?></option>
+							<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>><?php echo str_replace('.php','',$tpl1)?></option>
 							<?php endwhile?>
 							<?php closedir($dirs1)?>
 							</optgroup>
