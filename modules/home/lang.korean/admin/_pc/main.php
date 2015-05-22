@@ -1,909 +1,435 @@
+<?php
+$SITES = getDbArray($table['s_site'],'','*','gid','asc',0,$p);
+$SITEN = db_num_rows($SITES);
+$PAGES1 = getDbArray($table['s_page'],'ismain=1','*','uid','asc',0,$p);
+$PAGES2 = getDbArray($table['s_page'],'mobile=1','*','uid','asc',0,$p);
+
+if ($type != 'makesite')
+{
+	$R = $_HS;
+}
+if ($R['uid'])
+{
+	$DOMAINS = getDbArray($table['s_domain'],'site='.$R['uid'],'*','gid','asc',0,$p);
+	$DOMAINN = db_num_rows($DOMAINS);
+}
+?>
 
 
-<div class="panel panel-default">
-	<div class="panel-body">
-		<div class="row site">
+<?php if(!$_isDragScript):?>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/core.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/events.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/css.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/coordinates.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/drag.js"></script>
+<script type="text/javascript" src="<?php echo $g['url_root']?>/_core/opensrc/tool-man/dragsort.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var dragsort = ToolMan.dragsort();
+//]]>
+</script>
+<?php endif?>
 
 
-				<ul class="list-inline hidden-xs hidden-sm">
-					<li>
-						<a href="#">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x text-primary"></i>
-							  <i class="fa fa-home fa-stack-1x text-primary"></i>
-							</span>
-							<p><span class="text-primary">레드블럭</span></p>
-						</a>
-					</li>
-					<li>
-						 <a href="#">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-shopping-cart fa-stack-1x"></i>
-							</span>
-							<p><span>쇼핑몰</span></p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-group fa-stack-1x"></i>
-							</span>
-							<p><span>그룹웨어</span></p>
-						</a>
-					</li>
-					<li>
-						  <a href="#">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-search fa-stack-1x"></i>
-							</span>
-							<p><span>통합검색</span></p>
-						</a>
-					</li>
-				</ul>
+<div id="sitebox">
 
+	<form name="" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>">
+	<input type="hidden" name="r" value="<?php echo $r?>" />
+	<input type="hidden" name="m" value="<?php echo $module?>" />
+	<input type="hidden" name="a" value="siteorder_update" />
 
-
-
-				<ul class="list-inline visible-xs visible-sm">
-					<li>
-						<a data-toggle="modal" href="#home-Modal-site-info">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x text-primary"></i>
-							  <i class="fa fa-home fa-stack-1x text-primary"></i>
-							</span>
-							<p><span class="text-primary">레드블럭</span></p>
-						</a>
-					</li>
-					<li>
-						<a data-toggle="modal" href="#home-Modal-site-info">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-shopping-cart fa-stack-1x"></i>
-							</span>
-							<p><span>쇼핑몰</span></p>
-						</a>
-					</li>
-					<li>
-						<a data-toggle="modal" href="#home-Modal-site-info">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-group fa-stack-1x"></i>
-							</span>
-							<p><span>그룹웨어</span></p>
-						</a>
-					</li>
-					<li>
-						<a data-toggle="modal" href="#home-Modal-site-info">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-square-o fa-stack-2x"></i>
-							  <i class="fa fa-search fa-stack-1x"></i>
-							</span>
-							<p><span>통합검색</span></p>
-						</a>
-					</li>
-				</ul>
-	 
-
-
-
-
+	<table width="100%"><tr><td class="pannel">
+		<ul id="siteorder">
+		<?php while($S = db_fetch_array($SITES)):?>
+		<li>
+		<div id="iconbg<?php echo $S['uid']?>" class="site<?php if($S['uid']==$R['uid']):?> selected<?php endif?>" style="background:url('<?php echo $g['img_core']?>/siteicon/<?php echo $S['icon']?>') center center no-repeat;" title="<?php echo $S['name']?>">
+			<input type="checkbox" name="sitemembers[]" value="<?php echo $S['uid']?>" checked="checked" />
+			<div class="delbtn">
+			<?php if($S['uid']==$R['uid']):?><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=deletesite&amp;account=<?php echo $R['uid']?>" target="_action_frame_<?php echo $m?>" onclick="return confirm('사이트관련 모든 데이터가 삭제됩니다.\n정말로 선택된 사이트를 삭제하시겠습니까?');" title="사이트삭제"><img src="<?php echo $g['img_core']?>/_public/btn_del_s01.gif" alt="삭제" /></a><?php endif?>
+			</div>
+			<div class="icon"><a href="<?php echo $g['s']?>/?r=<?php echo $S['id']?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>"><img src="<?php echo $g['img_core']?>/blank.gif" alt="<?php echo $S['name']?>" /></a></div>
+			<div class="name"><div class="namex" ondblclick="window.open('<?php echo $g['r']?>s=<?php echo $S['uid']?>');"><?php echo $S['name']?></div></div>
 		</div>
+		</li>
 
+		<?php endwhile?>
+		</ul>
+
+		<?php if(!$SITEN):?>
+		<div class="none">
+		등록된 사이트가 없습니다. 
+		</div>
+		<div class="none1">
+		사이트를 등록하려면 사이트 기본정보를 입력한 후 [신규사이트 등록]버튼을 클릭해 주세요.<br />
+		필요한만큼 사이트를 추가할 수 있으며 각각의 사이트에 개별도메인을 지정할 수 있습니다.
+		</div>
+		<?php endif?>
+		
+		<div class="clear"></div>
+	</td></tr></table>
+
+	<div class="savebtn">
+		<a href="<?php echo $g['adm_href']?>&amp;type=makesite" title="사이트추가"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="추가" /></a>
+		<input type="image" src="<?php echo $g['img_core']?>/_public/btn_save.gif" title="순서저장" alt="save" />
 	</div>
-	<div class="panel-footer">
-		<div class="btn-group">
-			<a data-toggle="modal" href="#home-Modal-site" class="btn btn-link btn-sm visible-lg"><span class="glyphicon glyphicon-plus"></span> 사이트 추가</a>
-			<button class="btn btn-link btn-sm" type="button">
-				<span class="glyphicon glyphicon-saved"></span>
-				순서저장</button>
-		</div>
-	</div>
-</div>
-
-<!-- 사이트 상세정보  -->
-<div class="hidden-xs hidden-sm">
-	<div class="page-header" id="home-site-info">
-		<h4>
-			<span class="glyphicon glyphicon-globe"></span>&nbsp;사이트 기본 정보
-			<small>(홈페이지1)</small></h4>
-	</div>
-	<form class="form-horizontal">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">사이트명</label>
-					<div class="col-lg-9">
-						<input class="form-control" placeholder="" type="text">
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">사이트제목</label>
-					<div class="col-lg-9">
-						<div class="input-group">
-							<input class="form-control" placeholder="" type="text">
-							<span class="input-group-addon">
-								<input type="checkbox">
-								고정 
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">사이트 언어</label>
-					<div class="col-lg-9">
-						<select class="form-control">
-							<option value="">한국어</option>
-							<option value="">영어</option>
-						</select>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">사이트코드</label>
-					<div class="col-lg-9">
-						<div class="input-group">
-							<input class="form-control" placeholder="" type="text">
-							<span class="input-group-addon">
-								<input type="checkbox">
-								사용 
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">레이아웃</label>
-					<div class="col-lg-9">
-						<select class="col-md-12 form-control" id="" tabindex="-1">
-							<optgroup label="kimsQ 2.0 default">
-								<option value="default">kimsQ 2.0 default-default</option>
-								<option value="home">kimsQ 2.0 default-home</option>
-								<option value="blank">kimsQ 2.0 default-blank</option>
-							</optgroup>
-							<optgroup label="Developer default">
-								<option value="default">Developer default-default</option>
-								<option value="home">Developer default-home</option>
-								<option value="blank">Developer default-blank</option>
-							</optgroup>
-							<optgroup label="Tabula">
-								<option value="default">Tabula-default</option>
-								<option value="home">Tabula-home</option>
-								<option value="blank">Tabula-blank</option>
-							</optgroup>
-							<optgroup label="Bootstrap 3.0">
-								<option value="default">Bootstrap 3.0-default</option>
-								<option value="home">Bootstrap 3.0-home</option>
-								<option value="blank">Bootstrap 3.0-blank</option>
-							</optgroup>
-						</select>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">시작페이지</label>
-					<div class="col-lg-9">
-						<div class="input-group">
-							<select class="form-control" name="startpage">
-								<option value="">&nbsp;+ 선택하세요</option>
-								<option selected="selected" value="1">ㆍ메인화면(main)</option>
-							</select>
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-							</span>
-						</div>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label"><span class="text-muted">모바일접속</span></label>
-					<div class="col-lg-9">
-						<select class="form-control" name="m_layout">
-							<option value="">&nbsp;+ PC접속과 동일</option>
-							<option value="tabula/main.php">ㆍtabula (main)</option>
-							<option value="tabula/zone.php">ㆍtabula (zone)</option>
-							<option value="mobile/main.php">ㆍ1.2.0 모바일(main)</option>
-							<option value="bootstrap/main.php">ㆍbootstrap 3.0(main)</option>
-							<option value="bootstrap/default.php">ㆍbootstrap 3.0(default)</option>
-							<option value="default/main.php">ㆍ1.2.0 기본형(main)</option>
-							<option value="default/zone.php">ㆍ1.2.0 기본형(zone)</option>
-						</select>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label"><span class="text-muted">모바일접속</span></label>
-					<div class="col-lg-9">
-						<div class="input-group">
-							<select class="form-control" name="m_startpage">
-								<option value="">&nbsp;+ PC접속과 동일</option>
-								<option value="1">ㆍ메인화면(main)</option>
-								<option value="9">ㆍ메인화면(main_mobile)</option>
-							</select>
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-							</span>
-						</div>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">서비스상태</label>
-					<div class="col-lg-9">
-						<div class="visible-lg">
-						<div class="visible-lg">
-							<label class="radio-inline">
-							   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 정상서비스
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 관리자오픈 
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"> 정지 
-							</label>
-						</div> 
-						</div>      
-						<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default">
-								<input id="option1" name="options" type="radio">
-								정상서비스 
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">
-								관리자오픈 
-							</label>
-							<label class="btn btn-default">
-								<input id="option3" name="options" type="radio">
-								정지 
-							</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">DTD형식</label>
-					<div class="col-lg-9">
-						<div class="visible-lg">
-							<label class="radio-inline">
-							   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> HTML 5
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> XHTML 1.0
-							</label>
-						</div>   
-						<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default">
-								<input id="option1" name="options" type="radio">
-								HTML 5
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">
-								XHTML 1.0
-							</label>
-						</div>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">이름표시</label>
-					<div class="col-lg-9">
-						<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default">
-								<input id="option1" name="options" type="radio">닉네임
-							</label>
-							<label class="btn btn-default">
-								<input id="option2" name="options" type="radio">이름(실명)
-							</label>
-							<label class="btn btn-default">
-								<input id="option3" name="options" type="radio">아이디
-							</label>
-						</div>
-						<div class="visible-lg">
-							<label class="radio-inline">
-							   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 닉네임
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 이름(실명) 
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"> 아이디 
-							</label>
-						</div>   
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">시간조정</label>
-					<div class="col-lg-9">
-						<select class="form-control" name="timecal">
-							<option value="-23">ㆍ-23시간</option>
-							<option value="-22">ㆍ-22시간</option>
-							<option value="-21">ㆍ-21시간</option>
-							<option value="-20">ㆍ-20시간</option>
-							<option value="-19">ㆍ-19시간</option>
-							<option value="-18">ㆍ-18시간</option>
-							<option value="-17">ㆍ-17시간</option>
-							<option value="-16">ㆍ-16시간</option>
-							<option value="-15">ㆍ-15시간</option>
-							<option value="-14">ㆍ-14시간</option>
-							<option value="-13">ㆍ-13시간</option>
-							<option value="-12">ㆍ-12시간</option>
-							<option value="-11">ㆍ-11시간</option>
-							<option value="-10">ㆍ-10시간</option>
-							<option value="-9">ㆍ-9시간</option>
-							<option value="-8">ㆍ-8시간</option>
-							<option value="-7">ㆍ-7시간</option>
-							<option value="-6">ㆍ-6시간</option>
-							<option value="-5">ㆍ-5시간</option>
-							<option value="-4">ㆍ-4시간</option>
-							<option value="-3">ㆍ-3시간</option>
-							<option value="-2">ㆍ-2시간</option>
-							<option value="-1">ㆍ-1시간</option>
-							<option selected="selected" value="0">ㆍ조정안함</option>
-							<option value="1">ㆍ+1시간</option>
-							<option value="2">ㆍ+2시간</option>
-							<option value="3">ㆍ+3시간</option>
-							<option value="4">ㆍ+4시간</option>
-							<option value="5">ㆍ+5시간</option>
-							<option value="6">ㆍ+6시간</option>
-							<option value="7">ㆍ+7시간</option>
-							<option value="8">ㆍ+8시간</option>
-							<option value="9">ㆍ+9시간</option>
-							<option value="10">ㆍ+10시간</option>
-							<option value="11">ㆍ+11시간</option>
-							<option value="12">ㆍ+12시간</option>
-							<option value="13">ㆍ+13시간</option>
-							<option value="14">ㆍ+14시간</option>
-							<option value="15">ㆍ+15시간</option>
-							<option value="16">ㆍ+16시간</option>
-							<option value="17">ㆍ+17시간</option>
-							<option value="18">ㆍ+18시간</option>
-							<option value="19">ㆍ+19시간</option>
-							<option value="20">ㆍ+20시간</option>
-							<option value="21">ㆍ+21시간</option>
-							<option value="22">ㆍ+22시간</option>
-							<option value="23">ㆍ+23시간</option>
-						</select>
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="col-lg-3 control-label">퍼포먼스</label>
-					<div class="col-lg-9">
-						<div class="visible-lg">
-							<label class="checkbox-inline">
-							  <input type="checkbox" id="inlineCheckbox1" value="option1"> 짧은주소사용
-							</label>
-							<label class="checkbox-inline">
-							  <input type="checkbox" id="inlineCheckbox2" value="option2"> 버퍼전송사용
-							</label>
-							<label class="checkbox-inline">
-							  <input type="checkbox" id="inlineCheckbox2" value="option2"> 검색엔진 크롤링 차단
-							</label>
-						</div>   
-						<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-							<label class="btn btn-default">
-								<input type="checkbox">
-								짧은주소사용 
-							</label>
-							<label class="btn btn-default">
-								<input type="checkbox">
-								버퍼전송사용 
-							</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group error">
-					<label class="col-lg-3 control-label">연결도메인</label>
-					<div class="col-lg-9">
-						<p class="form-control-static">
-							<span class="text-muted">
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								연결된 도메인이 없습니다.</span></p>
-						<a class="btn btn-default btn-block" href="">도메인 연결하기</a>
-						<ul class="list-unstyled">
-							<li>
-								<span class="glyphicon glyphicon-globe"></span>
-								<a href="http://redblock.co.kr" target="_blank">redblock.co.kr</a></li>
-							<li>
-								<span class="glyphicon glyphicon-globe"></span>
-								<a href="http://redblock.co.kr" target="_blank">redblock.co.kr</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 	</form>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="page-header">
-				<label class="checkbox-inline">
-					<input id="" type="checkbox" value="">
-					<h4>헤더/테일 코드
-						<small>사이트 전역에 사용자 코드를 적용할 수 있습니다.</small></h4>
-				</label>
-			</div>
-			<div class="tabbable box-tabs">
-				<ul class="nav nav-tabs tabs-left">
-					<li class=""><a href="#box_tab3" data-toggle="tab">테일코드</a></li>
-					<li class=""><a href="#box_tab2" data-toggle="tab">헤더코드</a></li>
-					<li class="active"><a href="#box_tab1" data-toggle="tab">PHP코드</a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="box_tab1">
-						<div class="alert alert-info">
-							이 사이트에 전용으로 사용될 PHP코드가 있을 경우 등록해 주세요.</div>
-						<textarea class="form-control" rows="7"></textarea>
-					</div>
-					<div class="tab-pane" id="box_tab2">
-						<div class="alert alert-info">
-							<code>&lt;head&gt;</code>
-							와 
-							<code>&lt;/head&gt;</code>
-							사이에 삽입하고자 할 코드가 있을 경우 등록해 주세요..</div>
-						<textarea class="form-control" rows="7"></textarea>
-					</div>
-					<div class="tab-pane" id="box_tab3">
-						<div class="alert alert-info">
-							<code>&lt;/body&gt;&lt;/html&gt;</code>
-							바로앞에 삽입하고자 할 코드가 있을 경우 등록해 주세요.</div>
-						<textarea class="form-control" rows="7"></textarea>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div>
-		<button class="btn btn-primary btn-block btn-lg" type="button">사이트
-			속성 변경</button>
-	</div>
-</div>
-<!-- //사이트 상세정보  -->
-</div>
 
 
+	<div class="infobox">
+		<form name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+		<input type="hidden" name="r" value="<?php echo $r?>" />
+		<input type="hidden" name="m" value="<?php echo $module?>" />
+		<input type="hidden" name="a" value="regissite" />
+		<input type="hidden" name="site_uid" value="<?php echo $R['uid']?>" />
+		<input type="hidden" name="icon" value="<?php echo $R['icon']?$R['icon']:'1.png'?>" />
+		<input type="hidden" name="backgo" value="admin" />
+		<input type="hidden" name="iconaction" value="" />
 
-<!-- 사이트 수정 모달 -->
 
-<!-- Modal -->
-<div class="modal fade" id="home-Modal-site-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-	<div class="modal-header">
-	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	  <h4 class="modal-title">
-		<span class="glyphicon glyphicon-globe"></span>&nbsp;사이트 정보 수정
-	  </h4>
-	</div>
-	<div class="modal-body">
-		<form class="form-horizontal">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">사이트명</label>
-						<div class="col-lg-9">
-							<input class="form-control" placeholder="" type="text" value="홈페이지1">
-						</div>
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="td1">사 이 트 명</td>
+				<td class="td2">
+
+					<div id="iconlayer">
+					<div class="icons">
+					<?php $idir = $g['path_core'].'image/siteicon/'?>
+					<?php $dirs = opendir($idir)?>
+					<?php while(false !== ($f = readdir($dirs))):?>
+					<?php if(!is_file($idir.$f))continue?>
+					<img src="<?php echo $g['img_core']?>/siteicon/<?php echo $f?>" alt="" onclick="iconDrop('<?php echo $R['uid']?>','<?php echo $f?>');" />
+					<?php endwhile?>
+					<?php closedir($dirs)?>
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">사이트제목</label>
-						<div class="col-lg-9">
-							<div class="input-group">
-								<input class="form-control" placeholder="" type="text" value="(주)레드블럭 홈페이지">
-								<span class="input-group-addon">
-									<input type="checkbox">
-									고정 
-								</span>
-							</div>
-						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">사이트 언어</label>
-						<div class="col-lg-9">
-							<select class="form-control">
-								<option value="">한국어</option>
-								<option value="">영어</option>
-							</select>
-							<span class="help-block"></span>
-						</div>
+
+					<input type="text" name="name" class="input sname" value="<?php echo $R['name']?>" />
+					<img src="<?php echo $g['img_core']?>/_public/btn_layout.gif" alt="아이콘선택" title="아이콘선택" class="hand" onclick="iconSelect();" />
+				</td>
+				<td class="td1">
+					사이트제목
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_title','block','none');" />				
+				</td>
+				<td class="td2">
+					<input type="text" name="title" class="input sname" value="<?php echo $R['title']?>" />
+					<input type="checkbox" name="titlefix" value="1"<?php if($R['titlefix']):?> checked="checked"<?php endif?> />고정
+				</td>
+			</tr>
+			<tr>
+				<td class="td1">
+					사이트언어
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_language','block','none');" />
+				</td>
+				<td class="td2">
+					<select name="sitelang" class="select1">
+					<?php $dirs = opendir($g['path_var'].'language/')?>
+					<?php while(false !== ($tpl = readdir($dirs))):?>
+					<?php if($tpl=='.'||$tpl=='..')continue?>
+					<option value="<?php echo $tpl?>"<?php if($g['sys_selectlang']==$tpl):?> selected="selected"<?php endif?> title="<?php echo $tpl?>">ㆍ<?php echo getFolderName($g['path_var'].'language/'.$tpl)?></option>
+					<?php endwhile?>
+					<?php closedir($dirs)?>
+					</select>
+				</td>
+				<td class="td1">
+					사이트코드
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_sitecode','block','none');" />	
+				</td>
+				<td class="td2">
+					<input type="text" name="id" class="input sname" value="<?php echo $R['id']?>" title="영문 대소문자/숫자/_ 조합으로 입력해 주세요." />
+					<input type="checkbox" name="usescode" value="1"<?php if($R['usescode']):?> checked="checked"<?php endif?> />사용
+				</td>
+			</tr>
+			<tr>
+				<td class="td1">레 이 아 웃</td>
+				<td class="td2">
+					<select name="layout" class="select1">
+					<option value="">&nbsp;+ 선택하세요</option>
+					<?php $dirs = opendir($g['path_layout'])?>
+					<?php while(false !== ($tpl = readdir($dirs))):?>
+					<?php if($tpl=='.' || $tpl == '..' || $tpl == '_blank' || is_file($g['path_layout'].$tpl))continue?>
+					<?php $dirs1 = opendir($g['path_layout'].$tpl)?>
+					<option value="">--------------------------------</option>
+					<?php while(false !== ($tpl1 = readdir($dirs1))):?>
+					<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
+					<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>>ㆍ<?php echo getFolderName($g['path_layout'].$tpl)?>(<?php echo str_replace('.php','',$tpl1)?>)</option>
+					<?php endwhile?>
+					<?php closedir($dirs1)?>
+					<?php endwhile?>
+					<?php closedir($dirs)?>
+					</select>
+				</td>
+				<td class="td1">시작페이지</td>
+				<td class="td2">
+					<select name="startpage" class="select1">
+					<option value="">&nbsp;+ 선택하세요</option>
+					<option value="">--------------------------------</option>
+					<?php while($S = db_fetch_array($PAGES1)):?>
+					<option value="<?php echo $S['uid']?>"<?php if($R['startpage']==$S['uid']):?> selected="selected"<?php endif?>>ㆍ<?php echo $S['name']?>(<?php echo $S['id']?>)</option>
+					<?php endwhile?>
+					<?php if(!db_num_rows($PAGES1)):?>
+					<option value="">ㆍ시작페이지 등록 후 지정</option>
+					<?php endif?>
+					</select>
+					<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=page&amp;type=makepage"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="페이지추가" title="페이지추가" /></a>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="td1 m">
+					(모바일접속) 
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="himg hand" onclick="layerShowHide('guide_mobile','block','none');" />
+				</td>
+				<td class="td2">
+					<select name="m_layout" class="select1">
+					<option value="">&nbsp;+ PC접속과 동일</option>
+					<?php $dirs = opendir($g['path_layout'])?>
+					<?php while(false !== ($tpl = readdir($dirs))):?>
+					<?php if($tpl=='.' || $tpl == '..' || $tpl == '_blank' || is_file($g['path_layout'].$tpl))continue?>
+					<?php $dirs1 = opendir($g['path_layout'].$tpl)?>
+					<option value="">--------------------------------</option>
+					<?php while(false !== ($tpl1 = readdir($dirs1))):?>
+					<?php if(!strstr($tpl1,'.php') || $tpl1=='_main.php')continue?>
+					<option value="<?php echo $tpl?>/<?php echo $tpl1?>"<?php if($R['m_layout']==$tpl.'/'.$tpl1):?> selected="selected"<?php endif?>>ㆍ<?php echo getFolderName($g['path_layout'].$tpl)?>(<?php echo str_replace('.php','',$tpl1)?>)</option>
+					<?php endwhile?>
+					<?php closedir($dirs1)?>
+					<?php endwhile?>
+					<?php closedir($dirs)?>
+					</select>
+				</td>
+				<td class="td1 m">(모바일접속)</td>
+				<td class="td2">
+					<select name="m_startpage" class="select1">
+					<option value="">&nbsp;+ PC접속과 동일</option>
+					<option value="">--------------------------------</option>
+					<?php while($S = db_fetch_array($PAGES2)):?>
+					<option value="<?php echo $S['uid']?>"<?php if($R['m_startpage']==$S['uid']):?> selected="selected"<?php endif?>>ㆍ<?php echo $S['name']?>(<?php echo $S['id']?>)</option>
+					<?php endwhile?>
+					<?php if(!db_num_rows($PAGES2)):?>
+					<option value="">ㆍ모바일페이지 등록 후 지정</option>
+					<?php endif?>
+					</select>
+					<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=page&amp;type=makepage"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="페이지추가" title="페이지추가" /></a>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="td1">서비스상태</td>
+				<td class="td2">
+					<select name="open" class="select1">
+					<option value="1"<?php if($R['open']=='1'):?> selected="selected"<?php endif?>>ㆍ정상서비스</option>
+					<option value="2"<?php if($R['open']=='2'):?> selected="selected"<?php endif?>>ㆍ관리자오픈</option>
+					<option value="3"<?php if($R['open']=='3'):?> selected="selected"<?php endif?>>ㆍ정지</option>
+					</select>
+				</td>
+
+				<td class="td1">D T D 형식</td>
+				<td class="td2">
+					<select name="dtd" class="select1">
+					<option value="xhtml_1"<?php if($_HS['dtd']=='xhtml_1'):?> selected="selected"<?php endif?>>ㆍXHTML 1.0</option>
+					<option value="html5"<?php if($_HS['dtd']=='html5'):?> selected="selected"<?php endif?>>ㆍHTML 5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="td1">이 름 표 시</td>
+				<td class="td2">
+					<select name="nametype" class="select1">
+					<option value="nic"<?php if($R['nametype']=='nic'):?> selected="selected"<?php endif?>>ㆍ닉네임</option>
+					<option value="name"<?php if($R['nametype']=='name'):?> selected="selected"<?php endif?>>ㆍ이름(실명)</option>
+					<option value="id"<?php if($R['nametype']=='id'):?> selected="selected"<?php endif?>>ㆍ아이디</option>
+					</select>
+				</td>
+
+				<td class="td1">시 간 조 정</td>
+				<td class="td2">
+					<select name="timecal" class="select1">
+					<?php for($i = -23; $i < 24; $i++):?>
+					<option value="<?php echo $i?>"<?php if($i == $R['timecal']):?> selected="selected"<?php endif?>>ㆍ<?php if($i > 0):?>+<?php endif?><?php echo $i?$i.'시간':'조정안함'?></option>
+					<?php endfor?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="td1">
+					퍼 포 먼 스
+					<img src="<?php echo $g['img_core']?>/_public/ico_q.gif" alt="도움말" title="도움말" class="hand" onclick="layerShowHide('guide_rewrite','block','none');" />	
+				</td>
+				<td class="td2">
+					<div class="shift">
+					<div class="shift">
+					<input type="checkbox" name="rewrite" value="1"<?php if($R['rewrite']):?> checked="checked"<?php endif?> />짧은주소사용
+					<input type="checkbox" name="buffer" value="1"<?php if($R['buffer']):?> checked="checked"<?php endif?> />버퍼전송사용
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">사이트코드</label>
-						<div class="col-lg-9">
-							<div class="input-group">
-								<input class="form-control" placeholder="" type="text">
-								<span class="input-group-addon">
-									<input type="checkbox">
-									사용 
-								</span>
-							</div>
-						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">레이아웃</label>
-						<div class="col-lg-9">
-							<select class="col-md-12 form-control" id="" tabindex="-1">
-								<optgroup label="Alaskan/Hawaiian Time Zone">
-									<option value="AK">Alaska</option>
-									<option value="HI">Hawaii</option>
-								</optgroup>
-								<optgroup label="Pacific Time Zone">
-									<option value="CA">California</option>
-									<option value="NV">Nevada</option>
-									<option value="OR">Oregon</option>
-									<option value="WA">Washington</option>
-								</optgroup>
-								<optgroup label="Mountain Time Zone">
-									<option value="AZ">Arizona</option>
-									<option value="CO">Colorado</option>
-								</optgroup>
-								<optgroup label="Central Time Zone">
-									<option value="AL">Alabama</option>
-									<option value="AR">Arkansas</option>
-								</optgroup>
-							</select>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">시작페이지</label>
-						<div class="col-lg-9">
-							<div class="input-group">
-								<select class="form-control" name="startpage">
-									<option value="">&nbsp;+ 선택하세요</option>
-									<option selected="selected" value="1">ㆍ메인화면(main)</option>
-								</select>
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-								</span>
-							</div>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label"><span class="text-muted">모바일접속</span></label>
-						<div class="col-lg-9">
-							<select class="form-control" name="m_layout">
-								<option value="">&nbsp;+ PC접속과 동일</option>
-								<option value="tabula/main.php">ㆍtabula (main)</option>
-								<option value="tabula/zone.php">ㆍtabula (zone)</option>
-								<option value="mobile/main.php">ㆍ1.2.0 모바일(main)</option>
-								<option value="bootstrap/main.php">ㆍbootstrap 3.0(main)</option>
-								<option value="bootstrap/default.php">ㆍbootstrap 3.0(default)</option>
-								<option value="default/main.php">ㆍ1.2.0 기본형(main)</option>
-								<option value="default/zone.php">ㆍ1.2.0 기본형(zone)</option>
-							</select>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label"><span class="text-muted">모바일접속</span></label>
-						<div class="col-lg-9">
-							<div class="input-group">
-								<select class="form-control" name="m_startpage">
-									<option value="">&nbsp;+ PC접속과 동일</option>
-									<option value="1">ㆍ메인화면(main)</option>
-									<option value="9">ㆍ메인화면(main_mobile)</option>
-								</select>
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-								</span>
-							</div>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">서비스상태</label>
-						<div class="col-lg-9">
-							<div class="visible-lg">
-							<div class="visible-lg">
-								<label class="radio-inline">
-								   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 정상서비스
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 관리자오픈 
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"> 정지 
-								</label>
-							</div> 
-							</div>      
-							<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-default">
-									<input id="option1" name="options" type="radio">
-									정상서비스 
-								</label>
-								<label class="btn btn-default">
-									<input id="option2" name="options" type="radio">
-									관리자오픈 
-								</label>
-								<label class="btn btn-default">
-									<input id="option3" name="options" type="radio">
-									정지 
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">DTD형식</label>
-						<div class="col-lg-9">
-							<div class="visible-lg">
-								<label class="radio-inline">
-								   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> HTML 5
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> XHTML 1.0
-								</label>
-							</div>   
-							<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-default">
-									<input id="option1" name="options" type="radio">
-									HTML 5
-								</label>
-								<label class="btn btn-default">
-									<input id="option2" name="options" type="radio">
-									XHTML 1.0
-								</label>
-							</div>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">이름표시</label>
-						<div class="col-lg-9">
-							<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-default">
-									<input id="option1" name="options" type="radio">닉네임
-								</label>
-								<label class="btn btn-default">
-									<input id="option2" name="options" type="radio">이름(실명)
-								</label>
-								<label class="btn btn-default">
-									<input id="option3" name="options" type="radio">아이디
-								</label>
-							</div>
-							<div class="visible-lg">
-								<label class="radio-inline">
-								   <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 닉네임
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 이름(실명) 
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"> 아이디 
-								</label>
-							</div>   
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">시간조정</label>
-						<div class="col-lg-9">
-							<select class="form-control" name="timecal">
-								<option value="-23">ㆍ-23시간</option>
-								<option value="-22">ㆍ-22시간</option>
-								<option value="-21">ㆍ-21시간</option>
-								<option value="-20">ㆍ-20시간</option>
-								<option value="-19">ㆍ-19시간</option>
-								<option value="-18">ㆍ-18시간</option>
-								<option value="-17">ㆍ-17시간</option>
-								<option value="-16">ㆍ-16시간</option>
-								<option value="-15">ㆍ-15시간</option>
-								<option value="-14">ㆍ-14시간</option>
-								<option value="-13">ㆍ-13시간</option>
-								<option value="-12">ㆍ-12시간</option>
-								<option value="-11">ㆍ-11시간</option>
-								<option value="-10">ㆍ-10시간</option>
-								<option value="-9">ㆍ-9시간</option>
-								<option value="-8">ㆍ-8시간</option>
-								<option value="-7">ㆍ-7시간</option>
-								<option value="-6">ㆍ-6시간</option>
-								<option value="-5">ㆍ-5시간</option>
-								<option value="-4">ㆍ-4시간</option>
-								<option value="-3">ㆍ-3시간</option>
-								<option value="-2">ㆍ-2시간</option>
-								<option value="-1">ㆍ-1시간</option>
-								<option selected="selected" value="0">ㆍ조정안함</option>
-								<option value="1">ㆍ+1시간</option>
-								<option value="2">ㆍ+2시간</option>
-								<option value="3">ㆍ+3시간</option>
-								<option value="4">ㆍ+4시간</option>
-								<option value="5">ㆍ+5시간</option>
-								<option value="6">ㆍ+6시간</option>
-								<option value="7">ㆍ+7시간</option>
-								<option value="8">ㆍ+8시간</option>
-								<option value="9">ㆍ+9시간</option>
-								<option value="10">ㆍ+10시간</option>
-								<option value="11">ㆍ+11시간</option>
-								<option value="12">ㆍ+12시간</option>
-								<option value="13">ㆍ+13시간</option>
-								<option value="14">ㆍ+14시간</option>
-								<option value="15">ㆍ+15시간</option>
-								<option value="16">ㆍ+16시간</option>
-								<option value="17">ㆍ+17시간</option>
-								<option value="18">ㆍ+18시간</option>
-								<option value="19">ㆍ+19시간</option>
-								<option value="20">ㆍ+20시간</option>
-								<option value="21">ㆍ+21시간</option>
-								<option value="22">ㆍ+22시간</option>
-								<option value="23">ㆍ+23시간</option>
-							</select>
-							<span class="help-block"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-lg-3 control-label">퍼포먼스</label>
-						<div class="col-lg-9">
-							<div class="visible-lg">
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 짧은주소사용
-								</label>
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 버퍼전송사용
-								</label>
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 검색엔진 크롤링 차단
-								</label>
-							</div>   
-							<div class="btn-group hidden-lg btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-default">
-									<input type="checkbox">
-									짧은주소사용 
-								</label>
-								<label class="btn btn-default">
-									<input type="checkbox">
-									버퍼전송사용 
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group error">
-						<label class="col-lg-3 control-label">연결도메인</label>
-						<div class="col-lg-9">
-							<p class="form-control-static">
-								<span class="text-muted">
-									<span class="glyphicon glyphicon-exclamation-sign"></span>
-									연결된 도메인이 없습니다.</span></p>
-							<a class="btn btn-default btn-block" href="">도메인 연결하기</a>
-							<ul class="list-unstyled">
-								<li>
-									<span class="glyphicon glyphicon-globe"></span>
-									<a href="http://redblock.co.kr" target="_blank">redblock.co.kr</a></li>
-								<li>
-									<span class="glyphicon glyphicon-globe"></span>
-									<a href="http://redblock.co.kr" target="_blank">redblock.co.kr</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="page-header">
-					<label class="checkbox-inline">
-						<input id="" type="checkbox" value="">
-						<h4>헤더/테일 코드
-							<small>사이트 전역에 사용자 코드를 적용할 수 있습니다.</small></h4>
-					</label>
-				</div>
-				<div class="tabbable box-tabs">
-					<ul class="nav nav-tabs tabs-left">
-						<li class="text-center active" style="width:33.3%"><a href="#box_tab1" data-toggle="tab">헤더</a></li>
-						<li class="text-center" style="width:33.3%"><a href="#box_tab2" data-toggle="tab">테일</a></li>
-						<li class="text-center" style="width:33.3%"><a href="#box_tab3" data-toggle="tab">PHP</a></li>
+				</td>
+				<td class="td1">연결도메인</td>
+				<td class="td2" colspan="3">
+					
+					<?php if($R['uid']):?>
+					<?php if($DOMAINN):?>
+					<ul>
+					<?php while($D=db_fetch_array($DOMAINS)):?>
+					<li><a href="#." onclick="viewDomainMode('<?php echo $D['name']?>');"><?php echo $D['name']?></a></li>
+					<?php endwhile?>
 					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="box_tab1">
-							<div class="alert alert-info">
-								<code>&lt;head&gt;</code>
-								와 
-								<code>&lt;/head&gt;</code>
-								사이에 삽입하고자 할 코드가 있을 경우 등록해 주세요..</div>
-							<textarea class="form-control" rows="7"></textarea>
-						</div>
-						<div class="tab-pane" id="box_tab2">
-							<div class="alert alert-info">
-								<code>&lt;/body&gt;&lt;/html&gt;</code>
-								바로앞에 삽입하고자 할 코드가 있을 경우 등록해 주세요.</div>
-							<textarea class="form-control" rows="7"></textarea>
-						</div>
-						<div class="tab-pane" id="box_tab3">
-							<div class="alert alert-info">
-								이 사이트에 전용으로 사용될 PHP코드가 있을 경우 등록해 주세요.</div>
-							<textarea class="form-control" rows="7"></textarea>
-						</div>
-					</div>
-				</div>
-			</div>
+					<?php else:?>
+					<span class="nodomain">연결된 도메인이 없습니다.</span>
+					<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=domain&amp;selsite=<?php echo $R['uid']?>&amp;type=makedomain" class="jtdomain">도메인연결하기</a>
+					<?php endif?>
+					<?php else:?>
+					<span class="nodomain">사이트생성 후 연결할 수 있습니다.</span>
+					<?php endif?>
+
+				</td>
+			</tr>
+		</table>
+
+		<br />
+
+		<div id="guide_title" class="guide hide">
+		<div class="b">사이트제목 :</div>
+		사이트제목에 입력된 메세지는 브라우져의 타이틀에 출력됩니다.<br />
+		[고정]에 체크하면 입력된 타이틀이 모든페이지에 고정되며 체크해제시 페이지별로 타이틀이 출력됩니다.<br />
+		이 입력값은 일부 레이아웃의 사이트제목으로 사용됩니다.<br />
 		</div>
+
+		<div id="guide_language" class="guide hide">
+		<div class="b">사이트언어 :</div>
+		지정된 언어팩이 포함되어 있지 않은 모듈이 사용될 경우에는 <span class="b"><?php echo getFolderName($g['path_var'].'language/'.$g['sys_lang'])?></span>로 적용됩니다.<br />
+		<?php if($R['lang']!=$g['sys_selectlang']):?>
+		현재 선택된 언어는 <span class="b"><?php echo getFolderName($g['path_var'].'language/'.$g['sys_selectlang'])?></span>이나 언어팩이 존재하지 않아 <span class="b"><?php echo getFolderName($g['path_var'].'language/'.$g['sys_lang'])?></span>로 처리되었습니다.
+		<?php else:?>
+		현재 선택된 언어는 <span class="b"><?php echo getFolderName($g['path_var'].'language/'.$g['sys_selectlang'])?></span>입니다.
+		<?php endif?>
+		</div>
+
+		<div id="guide_sitecode" class="guide hide">
+		<div class="b">사이트코드 :</div>
+		사이트별로 계정아이디를 등록합니다.(영문대/소문자+숫자+_ 조합으로 등록할 수 있습니다)<br />
+		[사용]에 체크하면 사이트별로 계정값을 부여할 수 있으며 하나의 도메인으로 복수의 사이트에 접속할 수 있습니다.<br />
+		사용하지 않을경우 현재의 도메인(<?php echo str_replace('/rb','',str_replace('http://','',$g['url_root']))?>)으로 사이트패널내의 첫번째 사이트만 접속할 수 있으며 나머지 사이트를 접속하려면 별도의 도메인을 연결해야 합니다.<br />
+		사이트코드를 사용하면 사이트코드만큼 주소가 길어집니다.(kimsq.com/rb/ -> kimsq.com/rb/사이트코드/)<br />
+		영문사이트 서비스 연결예제) kimsq.com/rb/kr/ , kimsq.com/rb/en/<br />
+		</div>
+
+		<div id="guide_mobile" class="guide hide">
+		<div class="b">모바일접속 :</div>
+		모바일기기로 접속시 출력할 사이트 레이아웃(UI)을 지정합니다.<br />
+		지정된 모바일 레이아웃은 모든메뉴,모든페이지에 대해서 일괄적용됩니다.<br />
+		모바일기기에 대해 정의하거나 모바일 전용사이트 등으로 이동시키려면 <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=mobile" target="_blank" class="u">모바일설정</a>을 이용하세요.<br />
+		</div>
+
+		<div id="guide_rewrite" class="guide hide">
+		<div class="b">짧은주소사용 :</div>
+		긴 주소줄을 간단하게 줄일 수 있습니다.(서버에서 rewrite_mod 를 허용해야합니다)<br />
+		보기) ./?c=menu&uid=1000 -> /c/menu/1000<br />
+		사이트코드를 사용하면 사이트코드를 포함한 주소를 줄여줍니다.<br />
+		보기) ./?r=home&c=menu&uid=1000 -> /home/c/menu/1000<br />
+		<div class="b">버퍼전송사용 :</div>
+		실행결과를 브라우져에 출력해주는 과정에서 버퍼에 담아두었다가 실행이 완료되면 화면에 출력해 줍니다.<br />
+		실행속도가 느릴경우 화면이 일부분만 출력되는 것을 한번에 열리도록 합니다.
+		</div>
+
+		<div id="headertail" class="headertail">
+			<div class="tt">PHP코드 <span>- 이 사이트에 전용으로 사용될 PHP코드가 있을 경우 등록해 주세요.</span></div>
+			<div><textarea name="sitephpcode" rows="8" cols="70"><?php if($R['uid']&&is_file($g['path_var'].'sitephp/'.$R['uid'].'.php')) echo htmlspecialchars(implode('',file($g['path_var'].'sitephp/'.$R['uid'].'.php')))?></textarea></div>
+
+			<div class="tt">헤더코드 <span>- &lt;head&gt; 와 &lt;/head&gt; 사이에 삽입하고자 할 코드가 있을 경우 등록해 주세요.</span></div>
+			<div><textarea name="headercode" rows="8" cols="70"><?php echo htmlspecialchars($R['headercode'])?></textarea></div>
+
+			<div class="tt">테일코드 <span>- &lt;/body&gt;&lt;/html&gt; 바로앞에 삽입하고자 할 코드가 있을 경우 등록해 주세요.</span></div>
+			<div><textarea name="footercode" rows="8" cols="70"><?php echo htmlspecialchars($R['footercode'])?></textarea></div>
+		</div>
+
+		<div class="submitbox">
+			<input type="button" class="btngray" value="헤더/테일코드" onclick="layerShowHide('headertail','block','none');" />
+			<input type="submit" class="btnblue" value="<?php echo $R['uid']?'사이트속성 변경':'신규사이트 등록'?>" />
+			<div class="clear"></div>
+		</div>
+
+		</form>
 	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary btn-block btn-lg" type="button">사이트 속성 변경</button>
-		<button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">닫기</button>
-	</div>
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>
+<?php include_once $g['path_module'].$module.'/lang.'.$_HS['lang'].'/action/a.inscheck.php'?>
+<script type="text/javascript">
+//<![CDATA[
+function viewDomainMode(domain)
+{
+	var ux = location.href.split('?');
+	var us = ux[0].split('/');
+	var uh = 'http://'+domain+'/'+us[us.length-2].replace('index.php','')+'/';
+
+	window.open(uh);
+}
+function iconSelect()
+{
+	var f = document.procForm;
+	if (getId('iconlayer').style.display == 'block')
+	{
+		getId('iconlayer').style.display = 'none';
+	}
+	else {
+		getId('iconlayer').style.display = 'block';
+	}
+}
+function iconDrop(uid,val)
+{
+	var f = document.procForm;
+	f.icon.value = val;
+	getId('iconlayer').style.display = 'none';
+	if (uid != '')
+	{
+		getId('iconbg'+uid).style.background = "url('<?php echo $g['img_core']?>/siteicon/"+val+"') center center no-repeat";
+		f.iconaction.value = '1';
+		f.submit();
+	}
+}
+function saveCheck(f)
+{
+	if (f.name.value == '')
+	{
+		alert('사이트명을 입력해 주세요.      ');
+		f.name.focus();
+		return false;
+	}
+	if (f.title.value == '')
+	{
+		alert('사이트제목을 입력해 주세요.      ');
+		f.title.focus();
+		return false;
+	}
+	if (f.id.value == '')
+	{
+		alert('사이트코드를 입력해 주세요.      ');
+		f.id.focus();
+		return false;
+	}
+	if (!chkFnameValue(f.id.value))
+	{
+		alert('사이트코드는 영문대소문자/숫자/_/- 만 사용할 수 있습니다.      ');
+		f.id.focus();
+		return false;
+	}
+	if (f.layout.value == '')
+	{
+		alert('대표 레이아웃을 지정해 주세요.      ');
+		f.layout.focus();
+		return false;
+	}
+	if (f.startpage.value == '')
+	{
+		alert('시작페이지를 지정해 주세요.      ');
+		f.startpage.focus();
+		return false;
+	}
+	return confirm('정말로 실행하시겠습니까?         ');
+}
+
+
+
+dragsort.makeListSortable(getId("siteorder"));
+<?php if($type == 'makesite' || $nosite == 'Y'):?>
+document.procForm.name.focus();
+<?php endif?>
+//]]>
+</script>

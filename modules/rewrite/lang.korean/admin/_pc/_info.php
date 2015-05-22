@@ -76,14 +76,14 @@
 		<td class="td1">홈페이지</td>
 		<td>:</td>
 		<td class="td2">
-			<a href="http://www.kimsq.com" target="_blank">www.kimsq.com</a>
+			<a href="http://www.kimsq.co.kr" target="_blank">www.kimsq.co.kr</a>
 		</td>
 	</tr>
 	<tr>
 		<td class="td1">라이센스</td>
 		<td>:</td>
 		<td class="td2">
-			RBL
+			LGPL
 		</td>
 	</tr>
 	</table>

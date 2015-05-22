@@ -16,19 +16,3 @@
 #catinfo li {list-style-type:none;padding:0 0 10px 0;color:#666;}
 
 
-/*권기택 추가*/
-
-#tab-content-list .panel-body .checkbox .breadcrumb {
-	margin-left: -15px
-}
-#tab-content-list .panel-body .checkbox .breadcrumb input {
-	margin-left: 0
-}
-
-#tab-content-list .panel-body .breadcrumb {
-	margin-bottom: 5px;
-}
-
-#tab-content-list .panel-body .nav .breadcrumb {
-	cursor: move;
-}
