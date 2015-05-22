@@ -92,5 +92,5 @@ getDbUpdate($table[$m.'category'],'r_num=r_num+1','uid='.$category);
 
 if ($gid == 100000000) db_query("OPTIMIZE TABLE ".$table[$m.'data'],$DB_CONNECT); 
 
-getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front='.($type==1?'main':'vod'),'parent.','','');
+getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&fornt='.($type==1?'main':'vod'),'parent.','','');
 ?>

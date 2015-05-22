@@ -225,8 +225,30 @@ $TPG = getTotalPage($NUM,$recnum);
 				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
 				</ul>
 			  </div>
+			  <!--
+			  <div class="btn-group" data-toggle="tooltip" data-placement="top" title="" data-original-title="태그">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				  <i class="fa fa-tags fa-lg"></i>
+				  <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 킴스큐</a></li>
+				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 학습자료</a></li>
+				</ul>
+			  </div>
+			  -->
 			</div>
 			
+			<!--
+			<div class="btn-group" data-toggle="buttons">
+			  <label class="btn btn-default active" data-toggle="tooltip" data-placement="top" title="" data-original-title="셈네일보기">
+				<input type="radio" name="options" id="option1"> <i class="fa fa-th-large fa-lg"></i>
+			  </label>
+			  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="목록보기">
+				<input type="radio" name="options" id="option2"> <i class="fa fa-th-list fa-lg"></i>
+			  </label>
+			</div>
+			-->
 
 			<div class="btn-group">
 				<label data-toggle="tooltip" data-placement="top" title="" data-original-title="필터바 열기/닫기" onclick="formSubmit(document.listForm,'filterbar','<?php echo $filterbar?'':1?>');">
@@ -364,9 +386,11 @@ $TPG = getTotalPage($NUM,$recnum);
                             <i class="fa fa-edit fa-lg"></i>
                             </button>
 
-							<button class="btn btn-default btn-xs<?php if($album==$_cat2_):?> disabled<?php endif?>" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
+							<?php if($album!=$_cat2_):?>
+							<button class="btn btn-default btn-xs" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
 							<i class="fa fa-trash-o fa-lg"></i>
 							</button>
+							<?php endif?>
 
 							 <a href="<?php echo $_R['url']?>/<?php echo $_R['name']?>" class="btn btn-default btn-xs" data-original-title="크게보기" data-placement="top" data-toggle="tooltip" title="" ><i class="fa fa-resize-full fa-lg"></i></a>
 							
@@ -374,7 +398,7 @@ $TPG = getTotalPage($NUM,$recnum);
 							<i class="fa fa-info-circle fa-lg"></i>
 							</button>
 
-							<button class="btn btn-default btn-xs" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&photo=<?php echo $_R['uid']?>');">
+							<button class="btn btn-default btn-xs" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('http://kimsq.me/rb/home/p/user-media-photo-pag');">
 							<i class="fa fa-external-link fa-lg"></i>
 							</button>
 						</div>
@@ -420,7 +444,30 @@ $TPG = getTotalPage($NUM,$recnum);
 				  <li><a href="#." onclick="elementsMove('photo_members[]','<?php echo $_cat2_?>');"><i class="fa fa-trash-o fa-lg"></i> 휴지통</a></li>
 				</ul>
 			  </div>
+			  <!--
+			  <div class="btn-group" data-toggle="tooltip" data-placement="top" title="" data-original-title="태그">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				  <i class="fa fa-tags fa-lg"></i>
+				  <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 킴스큐</a></li>
+				  <li><a href="#"><i class="fa fa-tag fa-lg"></i> 학습자료</a></li>
+				</ul>
+			  </div>
+			  -->
 			</div>
+			
+			<!--
+			<div class="btn-group" data-toggle="buttons">
+			  <label class="btn btn-default active" data-toggle="tooltip" data-placement="top" title="" data-original-title="셈네일보기">
+				<input type="radio" name="options" id="option1"> <i class="fa fa-th-large fa-lg"></i>
+			  </label>
+			  <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="목록보기">
+				<input type="radio" name="options" id="option2"> <i class="fa fa-th-list fa-lg"></i>
+			  </label>
+			</div>
+			-->
 
 			<div class="btn-group">
 				<label data-toggle="tooltip" data-placement="top" title="" data-original-title="필터바 열기/닫기" onclick="formSubmit(document.listForm,'filterbar','<?php echo $filterbar?'':1?>');">
@@ -574,9 +621,11 @@ $TPG = getTotalPage($NUM,$recnum);
                             <i class="fa fa-edit fa-lg"></i>
                             </button>
 
-							<button class="btn btn-default<?php if($album==$_cat2_):?> disabled<?php endif?>" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('_photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
+							<?php if($album!=$_cat2_):?>
+							<button class="btn btn-default" data-original-title="휴지통" data-placement="top" data-toggle="tooltip" title="" type="button" onclick="elementsTrash('_photo_members[]','<?php echo $_cat2_?>','<?php echo $_i?>');">
 							<i class="fa fa-trash-o fa-lg"></i>
 							</button>
+							<?php endif?>
 
 							 <a href="<?php echo $_R['url']?>/<?php echo $_R['name']?>" class="btn btn-default" data-original-title="크게보기" data-placement="top" data-toggle="tooltip" title="" ><i class="fa fa-resize-full fa-lg"></i></a>
 							
@@ -584,7 +633,7 @@ $TPG = getTotalPage($NUM,$recnum);
 							<i class="fa fa-info-circle fa-lg"></i>
 							</button>
 
-							<button class="btn btn-default" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('<?php echo $g['url_root']?>/?r=<?php echo $r?>&m=<?php echo $module?>&photo=<?php echo $_R['uid']?>');">
+							<button class="btn btn-default" data-original-title="페이지" data-placement="top" data-toggle="tooltip" title="" type="button" onClick="window.open('http://kimsq.me/rb/home/p/user-media-photo-pag');">
 							<i class="fa fa-external-link fa-lg"></i>
 							</button>
 						</div>
@@ -1121,16 +1170,6 @@ function modifyCheck1(f)
 }
 function upCheck(f)
 {
-	if (f.file.value == '')
-	{
-		alert('파일을 첨부해 주세요.   ');
-		return false;
-	}
-	getIframeForAction(f);
-	return true;
-}
-function upCheck1(f)
-{
 	if (f.link.value == '')
 	{
 		alert('이미지URL 입력해 주세요.   ');
@@ -1149,21 +1188,20 @@ function deleteFile(uid)
 		frames.__iframe_for_action__.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=multi_delete&type=photo&_data_=['+uid+']&back=main&album=<?php echo $album?>';
 	}
 }
-function deleteFile1(uid,type,album)
+</script>
+
+
+
+
+<script type="text/javascript">
+function upCheck(f)
 {
-	if (confirm('정말로 삭제하시겠습니까?   '))
+	if (f.file.value == '')
 	{
-		getIframeForAction('');
-		frames.__iframe_for_action__.location.href = '<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $module?>&a=multi_delete&type='+type+'&_data_=['+uid+']&back='+type+'&layer=Y&album='+album;
-	}
-}
-function getVodPreview()
-{
-	if (getId('_vod_embed_code_').value.indexOf('<iframe') == -1)
-	{
-		alert('유투브 iframe 소스를 입력해주세요.   ');
+		alert('파일을 첨부해 주세요.   ');
 		return false;
 	}
-	getId('_vod_play_layer_').innerHTML = getId('_vod_embed_code_').value.replace('640','100%').replace('360','100%');
+	getIframeForAction(f);
+	return true;
 }
 </script>

@@ -33,17 +33,7 @@ foreach($_file_members['data'] as $val)
 
 if ($back)
 {
-	if($layer == 'Y')
-	{
-		echo '<script>';
-		?>
-		parent.getModal('_HiddenModal_','<?php echo $g['s']?>/?r=<?php echo $r?>&m=admin&module=<?php echo $m?>&front=_modal_.<?php echo $back?>&album=<?php echo $album?>&type=library');
-		<?php
-		echo '</script>';
-	}
-	else {
-		getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front='.$back.'&album='.$album,'parent.','','');
-	}
+	getLink($g['s'].'/?r='.$r.'&m=admin&module='.$m.'&front='.$back.'&album='.$album,'parent.','','');
 }
 else {
 	getLink('reload','parent.','','');
