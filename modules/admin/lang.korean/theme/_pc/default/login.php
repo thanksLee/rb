@@ -66,7 +66,6 @@
 				</button>
 
 			</div>
-			<!--
 			<div class="forget-password">
 				<p>
 					<a href="#forget-form" data-toggle="tab">패스워드를 잊어버리셨나요 ?</a>
@@ -77,7 +76,6 @@
 					<a href="#register-form" data-toggle="tab">새 회원계정 만들기</a>
 				</p>
 			</div>
-			-->
 		</form>
 		<form name="SSLLoginForm" action="https://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']?>" method="post" target="_action_frame_<?php echo $m?>">
 			<input type="hidden" name="r" value="<?php echo $r?>">
@@ -182,7 +180,7 @@
 </div>
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="<?php echo $g['url_module_skin']?>/assets/plugins/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo $g['url_module_skin']?>/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo $g['url_module_skin']?>/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="<?php echo $g['url_module_skin']?>/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
 <script src="<?php echo $g['url_module_skin']?>/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>	

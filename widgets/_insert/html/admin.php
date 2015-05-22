@@ -79,7 +79,7 @@ function saveCheck()
 	opener.blocktitle[n] = 'HTML소스';
 	opener.blockarray[n] = "<?php echo $swidget?>,savename^" + f.savename.value;
 	opener.getId('wtitle'+n).innerHTML = opener.blocktitle[n];
-	setTimeout("top.close()",50);
+	top.close();
 }
 //]]>
 </script>

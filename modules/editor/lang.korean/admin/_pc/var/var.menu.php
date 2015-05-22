@@ -1,4 +1,4 @@
 <?php
-$d['amenu']['_info'] = '모듈정보';
-$d['amenu']['main'] = '환경설정';
+$d['amenu']['main'] = '설정';
+$d['amenu']['_info'] = '정보';
 ?>

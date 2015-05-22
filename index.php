@@ -4,6 +4,23 @@ define('__KIMS__',true);
 error_reporting(E_ALL ^ E_NOTICE);
 session_save_path('./_tmp/session');
 session_start();
+$d = array();
+$g = array(
+	'path_root'   => './',
+	'path_core'   => './_core/',
+	'path_var'    => './_var/',
+	'path_tmp'    => './_tmp/',
+	'path_layout' => './layouts/',
+	'path_module' => './modules/',
+	'path_widget' => './widgets/',
+	'path_switch' => './switchs/',
+	'path_page'   => './pages/',
+	'path_file'   => './files/',
+	'sys_lang'    => 'korean'
+);
+
+$g['time_split'] = explode(' ',microtime());
+$g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
 
 if(!get_magic_quotes_gpc())
 {
@@ -27,25 +44,6 @@ else {
 		extract($_POST);
 	}
 }
-
-$d = array();
-$g = array(
-	'path_root'   => './',
-	'path_core'   => './_core/',
-	'path_var'    => './_var/',
-	'path_tmp'    => './_tmp/',
-	'path_layout' => './layouts/',
-	'path_module' => './modules/',
-	'path_widget' => './widgets/',
-	'path_switch' => './switchs/',
-	'path_page'   => './pages/',
-	'path_file'   => './files/',
-	'sys_lang'    => 'korean'
-);
-
-$g['time_split'] = explode(' ',microtime());
-$g['time_start'] = $g['time_split'][0]+$g['time_split'][1];
-
 if (is_file($g['path_var'].'db.info.php'))
 {
 	require $g['path_module'].'admin/var/var.system.php';
@@ -108,14 +106,13 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 ?>
 <?php if($_HS['dtd']=='xhtml_1'):?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html id="kimsQStart" lang="<?php echo $lang['sys']['lang']?>" xml:lang="<?php echo $lang['sys']['lang']?>" xmlns="http://www.w3.org/1999/xhtml"<?php echo $d['layout']['htmltag']?' '.$d['layout']['htmltag']:''?>>
+<html id="kimsQStart" lang="<?php echo $lang['sys']['lang']?>" xml:lang="<?php echo $lang['sys']['lang']?>" xmlns="http://www.w3.org/1999/xhtml">
 <?php else:?>
 <!DOCTYPE html>
-<html lang="<?php echo $lang['sys']['lang']?>"<?php echo $d['layout']['htmltag']?' '.$d['layout']['htmltag']:''?>>
+<html lang="<?php echo $lang['sys']['lang']?>">
 <?php endif?>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php if($g['mobile']&&$_SESSION['pcmode']!='Y'&&$_HS['m_layout']):?>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi" />
 <meta name="apple-mobile-web-app-capable" content="no" />
@@ -124,11 +121,10 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <title><?php echo $g['browtitle']?></title>
 <?php require $g['path_core'].'engine/cssjs.engine.php'?>
 </head>
-<body<?php echo $d['layout']['bodytag']?' '.$d['layout']['bodytag']:''?>>
-<?php if(!$d['admin']['hidepannel']&&$my['admin']&&!$iframe&&(!$g['mobile']||$_SESSION['pcmode']=='Y')&&$m!='admin'):?>
+<body>
+<?php if(!$d['admin']['hidepannel']&&$my['admin']&&!$iframe&&(!$g['mobile']||$_SESSION['pcmode']=='Y')):?>
 <?php include $g['path_var'].'language/'.$g['sys_selectlang'].'/_top.lang.php'?>
 <?php include $g['path_core'].'engine/adminbar.engine.php'?>
-<?php $g['disp_adm_bar'] = true?>
 <?php endif?>
 <?php include $g['path_layout'].$d['layout']['php']?>
 <?php if($g['mobile']&&$_SESSION['pcmode']=='Y'&&$iframe!='Y'):?>
@@ -139,7 +135,7 @@ if ($m!='admin'){include $g['path_var'].'sitephp/'.$_HS['uid'].'.php';if($_HS['b
 <div id="_action_layer_"></div>
 <div id="_hidden_layer_"></div>
 <div id="_overLayer_" class="hide"></div>
-<iframe name="_action_frame_<?php echo $m?>" src="<?php echo $g['path_core']?>lib/blank.html" width="0" height="0" frameborder="0" scrolling="no" class="hide"></iframe>
+<iframe name="_action_frame_<?php echo $m?>" width="0" height="0" frameborder="0" scrolling="no" style="display: none;"></iframe>
 <script type="text/javascript">
 //<![CDATA[
 document.body.onclick = closeMemberLayer;
@@ -148,7 +144,6 @@ document.onkeydown = closeImgLayer;
 </script>
 <?php foreach($g['switch_3'] as $_switch) include $_switch?>
 <?php echo $_HS['footercode']?>
-<?php if(is_file($g['libdir'].'_footer.import.php'))include $g['libdir'].'_footer.import.php'?>
 </body>
 </html>
 <?php foreach($g['switch_4'] as $_switch) include $_switch?>

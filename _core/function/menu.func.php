@@ -14,15 +14,15 @@ function getMenuShow($site,$table,$j,$parent,$depth,$uid,$CXA,$hidden)
 		$numprintx = !$numhidden && $C['num'] ? '&lt;span class="num"&gt;('.$C['num'].')&lt;/span&gt;' : '';
 		$C['name'] = $headfoot && ($C['imghead']||$C['imgfoot']||$C['codhead']||$C['codfoot']) ? '&lt;b&gt;'.$C['name'].'&lt;b&gt;' : $C['name'];
 		$name = $C['uid'] != $cat ? addslashes($C['name']): '&lt;span class="on"&gt;'.addslashes($C['name']).'&lt;/span&gt;';
-		$name = '&lt;span class="ticon tdepth'.$C['depth'].'"&gt;&lt;/span&gt;&lt;span class="name'.($C['hidden']||$C['reject']?' xhidden':'').' ndepth'.$C['depth'].'"&gt;'.$name.'&lt;/span&gt;';
+		$name = '&lt;span class="ticon tdepth'.$C['depth'].'"&gt;&lt;/span&gt;&lt;span class="name'.($C['hidden']||$C['reject']?' hidden':'').' ndepth'.$C['depth'].'"&gt;'.$name.'&lt;/span&gt;';
 
 		if($checkbox) $icon1 = '&lt;input type="checkbox" name="members[]" value="'.$C['uid'].'" /&gt;';
 		$icon2 = $C['mobile'] ? ' &lt;img src="'.$g['img_core'].'/_public/ico_mobile.gif" class="mobile" alt="" /&gt;' : '';
-		$icon3 = $C['reject'] ? ' &lt;img src="'.$g['img_core'].'/_public/ico_hidden.gif" class="reject" alt="" /&gt;' : '';
+		$icon3 = $C['reject'] ? ' &lt;img src="'.$g['img_core'].'/_public/ico_hidden.gif" alt="" /&gt;' : '';
 
 		if ($C['isson'])
 		{
-			echo "['".$icon1.$name.$icon2.$icon3.$numprintx."','".$C['uid']."',";
+			echo "['".$icon1.$name.$icon2.$numprintx."','".$C['uid']."',";
 			getMenuShow($site,$table,$j,$C['uid'],$C['depth'],$uid,$CXA,$hidden);
 			echo "],\n";
 		}

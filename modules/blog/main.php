@@ -57,11 +57,6 @@ else {
 	$CXA = array();
 	include $g['dir_module'].'lib/tree.func.php';
 	$ISCAT = getDbRows($table[$m.'category'],'blog='.$B['uid']);
-	if($rwcat)
-	{
-		$_rwcat = getDbData($table[$m.'category'],'blog='.$B['uid']." and id='".$rwcat."'",'uid');
-		$cat = $_rwcat['uid'];
-	}
 	if($cat)
 	{
 		if($front!='write'&&$front!='meta') $front = 'list';
@@ -165,15 +160,6 @@ else {
 	$g['blog_act']  = $g['blog_home'].$cat.'&amp;vtype='.$vtype.'&amp;recnum='.$recnum.'&amp;where='.$where.'&amp;keyword='.urlencode($_keyword).'&amp;a=';
 	$g['blog_view'] = $g['blog_base'].'&amp;p='.$p.'&amp;uid=';
 	$g['pagelink']	= $g['blog_base'];
-
-	if ($d['blog']['rewrite'])
-	{
-		$g['blog_home_rw'] = $g['s'].'/blog/'.$B['id'];
-		if($front=='main')
-		{
-			$g['blog_view'] = $g['blog_home_rw'].'/';
-		}
-	}
 
 	$g['dir_module_skin'] = $g['dir_module'].'theme/'.$d['blog']['theme'].'/';
 	$g['url_module_skin'] = $g['url_module'].'/theme/'.$d['blog']['theme'];

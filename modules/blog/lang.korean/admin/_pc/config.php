@@ -8,7 +8,7 @@
 	<input type="hidden" name="a" value="admin/config" />
 
 	<div class="title">
-		기초환경
+		블로그 기초환경
 	</div>
 
 	<table>
@@ -31,7 +31,7 @@
 				<?php closedir($dirs)?>
 				</select>
 				<div id="guide_skin" class="guide hide">
-				지정된 대표테마는 서비스 개별 설정시 별도의 테마를 지정하지 않으면 자동으로 적용됩니다.<br />
+				지정된 대표테마는 블로그 개별 설정시 별도의 테마를 지정하지 않으면 자동으로 적용됩니다.<br />
 				가장 많이 사용하는 테마를 지정해 주세요.
 				</div>
 			</td>
@@ -67,7 +67,6 @@
 #블로그모듈
 RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/?$ ./index.php?r=<?php echo $r?>&m=$1&blog=$2 [L]
 RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/c/([a-zA-Z0-9_\-]+)/?$ ./index.php?r=<?php echo $r?>&m=$1&blog=$2&front=list&rwcat=$3 [L]
-RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/c/([a-zA-Z0-9_\-]+)/([0-9]+)/?$ ./index.php?r=<?php echo $r?>&m=$1&blog=$2&front=list&rwcat=$3&uid=$4 [L]
 RewriteRule ^(blog)/([a-zA-Z0-9_\-]+)/([0-9]+)/?$ ./index.php?r=<?php echo $r?>&m=$1&blog=$2&front=list&uid=$3 [L]
 </textarea>
 				</div>

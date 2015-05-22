@@ -104,10 +104,11 @@
       <ul class="nav navbar-nav">
         <li role="presentation" class="dropdown-header">Module List</li>
 
+		<?php $_i=0?>
 		<?php foreach($_MODULES['disp0'] as $R):?>
 		<?php if(strpos('_'.$my['adm_view'],'['.$R['id'].']')) continue?>
-        <li<?php if($R['id']==$module):?> class="active"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><i class="fa <?php echo $R['icon']?> fa-lg fa-fw"></i>&nbsp;<?php echo $R['name']?> <?php echo ucfirst($R['id'])?></a><!-- <span class="badge pull-right">0</span>--></li> 
-		<?php endforeach?>
+        <li<?php if($R['id']==$module):?> class="active"<?php endif?>><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $R['id']?>"><i class="fa <?php echo $_fontset[$_i]?$_fontset[$_i]:'fa-th-large'?> fa-lg fa-fw"></i>&nbsp;<?php echo $R['name']?> <?php echo ucfirst($R['id'])?></a><!-- <span class="badge pull-right">0</span>--></li> 
+		<?php $_i++;endforeach?>
         <li role="presentation" class="divider"></li>
         <li><a href="#" class="btn btn-default btn-block navbar-btn btn-lg" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-chevron-up"></span> 닫기</a></li>
       </ul>

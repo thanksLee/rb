@@ -136,7 +136,7 @@ function tmT()
 			(this.tmK.length?'<a href="javascript:trees['+this.tm4.tmC+'].tmB('+this.tmC+')"><img src="'+this.tmP(true)+'" name="j_img'+this.tm4.tmC+'_'+this.tmC+
 			'" alt="" /></a>':'<img src="'+this.tmP(true)+'" alt="" />'):'')+
 			'<img src="'+this.tmP()+'" name="i_img'+this.tm4.tmC+'_'+this.tmC+'" alt="" />'+
-			'<a title="CODE:'+this.tm3[1]+'" href="'+ulink+this.tm3[1]+'#cat" target="'+this.tm4.tm2['target']+
+			'<a title="CODE:'+this.tm3[1]+'" href="'+ulink+this.tm3[1]+'" target="'+this.tm4.tm2['target']+
 			'" id="i_txt'+this.tm4.tmC+'_'+this.tmC+'">'+
 			(this.tm3[0]?this.tm3[0].replace(/&lt;/g,'<').replace(/&gt;/g,'>'):'')+
 			'</a></div>'+

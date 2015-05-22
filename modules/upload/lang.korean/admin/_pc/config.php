@@ -7,7 +7,7 @@
 	<input type="hidden" name="m" value="<?php echo $module?>" />
 	<input type="hidden" name="a" value="config" />
 
-	<input type="hidden" name="use_fileserver" value="<?php echo $d['upload']['use_fileserver']?>" />
+	<input type="hidden" name="use_fileservera" value="<?php echo $d['upload']['use_fileserver']?>" />
 	<input type="hidden" name="ftp_host" value="<?php echo $d['upload']['ftp_host']?>" />
 	<input type="hidden" name="ftp_port" value="<?php echo $d['upload']['ftp_port']?>" />
 	<input type="hidden" name="ftp_user" value="<?php echo $d['upload']['ftp_user']?>" />

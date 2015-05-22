@@ -3,10 +3,10 @@ function getBlogLogo($blog)
 {
 	if ($blog['imglogo_use'])
 	{
-		return '<a href="'.($GLOBALS['g']['blog_home_rw']?$GLOBALS['g']['blog_home_rw']:$GLOBALS['g']['blog_home']).'" class="_logo_img"><img src="'.$GLOBALS['g']['url_module'].'/theme/'.$GLOBALS['d']['blog']['theme'].'/_var/'.$blog['imglogo'].'" width="'.$blog['imglogo_w'].'" height="'.$blog['imglogo_h'].'" alt="" /></a>';
+		return '<a href="'.$GLOBALS['g']['blog_home'].'" class="_logo_img"><img src="'.$GLOBALS['g']['url_module'].'/theme/'.$GLOBALS['d']['blog']['theme'].'/_var/'.$blog['imglogo'].'" width="'.$blog['imglogo_w'].'" height="'.$blog['imglogo_h'].'" alt="" /></a>';
 	}
 	else {
-		return '<h1 class="_logo_txt"><a id="_layout_title_color_" href="'.($GLOBALS['g']['blog_home_rw']?$GLOBALS['g']['blog_home_rw']:$GLOBALS['g']['blog_home']).'" style="font-family:'.$blog['title_font'].';font-size:'.$blog['title_size'].'px;color:'.$blog['title_color'].';">'.$blog['title'].'</a></h1>';
+		return '<h1 class="_logo_txt"><a id="_layout_title_color_" href="'.$GLOBALS['g']['blog_home'].'" style="font-family:'.$blog['title_font'].';font-size:'.$blog['title_size'].'px;color:'.$blog['title_color'].';">'.$blog['title'].'</a></h1>';
 	}
 }
 
@@ -40,7 +40,7 @@ include $d['blog']['vartheme'];
 		<?php endif?>
 		<div id="_layout_memberlink_" class="login" style="top:<?php echo $d['b_layout']['title_b']?>px;">
 			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>" style="color:<?php echo $d['b_layout']['memberlink_color']?>;">홈</a> <i style="background:<?php echo $d['b_layout']['split_color']?>;"></i> 
-			<a href="<?php echo $g['blog_home_rw']?$g['blog_home_rw']:$g['blog_home']?>" style="color:<?php echo $d['b_layout']['memberlink_color']?>;">블로그</a> <i style="background:<?php echo $d['b_layout']['split_color']?>;"></i> 
+			<a href="<?php echo $g['blog_home']?>" style="color:<?php echo $d['b_layout']['memberlink_color']?>;">블로그</a> <i style="background:<?php echo $d['b_layout']['split_color']?>;"></i> 
 			<?php if($my['uid']):?>
 			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;a=logout" style="color:<?php echo $d['b_layout']['memberlink_color']?>;">로그아웃</a>
 			<?php else:?>

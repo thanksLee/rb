@@ -104,32 +104,32 @@ include $_tmptfile;
 
 $gid = 0;
 
-$mdlarray = array('admin','market','module','site','layout','member','bbs','comment','mediaset','notification','blog');
+$mdlarray = array('home','layout','module','market','admin','member','bbs','comment','upload');
 foreach($mdlarray as $_val)
 {
 	$QUE = "insert into ".$table['s_module']." 
-	(gid,system,hidden,mobile,name,id,tblnum,d_regis,icon) 
+	(gid,system,hidden,mobile,name,id,tblnum,d_regis) 
 	values 
-	('".$gid."','1','0','1','".getFolderName($g['path_module'].$moduledir[$_val][0])."','".$moduledir[$_val][0]."','".$moduledir[$_val][1]."','".$date['totime']."','kf-".($moduledir[$_val][0]!='site'?$moduledir[$_val][0]:'home')."')";
+	('".$gid."','1','0','1','".getFolderName($g['path_module'].$moduledir[$_val][0])."','".$moduledir[$_val][0]."','".$moduledir[$_val][1]."','".$date['totime']."')";
 	db_query($QUE,$DB_CONNECT);
 	$gid++;
 }
 
-$mdlarray = array('dashboard','upload','popup','filemanager','dbmanager','mobile','domain','counter','search','widget','tag','trackback','editor','rewrite','zipsearch');
+$mdlarray = array('popup','filemanager','dbmanager','mobile','domain','counter','search','widget','tag','trackback','editor','rewrite','zipsearch');
 
 foreach($mdlarray as $_val)
 {
 	$QUE = "insert into ".$table['s_module']." 
-	(gid,system,hidden,mobile,name,id,tblnum,d_regis,icon) 
+	(gid,system,hidden,mobile,name,id,tblnum,d_regis) 
 	values 
-	('".$gid."','".(strstr('[counter][widget][tag][rewrite]','['.$_val.']')?0:1)."','1','".(strstr('[rewrite][zipsearch]','['.$_val.']')?0:1)."','".getFolderName($g['path_module'].$moduledir[$_val][0])."','".$moduledir[$_val][0]."','".$moduledir[$_val][1]."','".$date['totime']."','kf-".$moduledir[$_val][0]."')";
+	('".$gid."','".(strstr('[counter][widget][tag][rewrite]','['.$_val.']')?0:1)."','".(strstr('[rewrite][zipsearch]','['.$_val.']')?1:0)."','".(strstr('[rewrite][zipsearch]','['.$_val.']')?0:1)."','".getFolderName($g['path_module'].$moduledir[$_val][0])."','".$moduledir[$_val][0]."','".$moduledir[$_val][1]."','".$date['totime']."')";
 	db_query($QUE,$DB_CONNECT);
 	$gid++;
 }
 
 $siteid = 'home';
 $QKEY = "gid,id,name,title,titlefix,icon,layout,startpage,m_layout,m_startpage,lang,open,dtd,nametype,timecal,rewrite,buffer,usescode,headercode,footercode";
-$QVAL = "'0','".$siteid."','$sitename','$sitename','0','kf-home','$layout','1','mobile/main.php','9','$sitelang','1','html5','nic','0','0','0','0','',''";
+$QVAL = "'0','".$siteid."','$sitename','$sitename','0','1.png','$layout','1','mobile/main.php','9','$sitelang','1','xhtml_1','nic','0','0','0','0','',''";
 getDbInsert($table['s_site'],$QKEY,$QVAL);
 db_query("OPTIMIZE TABLE ".$table['s_site'],$DB_CONNECT); 
 

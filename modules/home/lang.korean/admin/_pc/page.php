@@ -1,24 +1,17 @@
+
 <div class="row">
 	<div class="col-md-4 col-lg-3" id="tab-content-list">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="icon">
-					<i class="fa fa-file-text-o fa-2x"></i>
+					<i class="glyphicon glyphicon-globe"></i>
 				</div>
-				<h4 class="dropdown panel-title">
+				<h4 class="dropdown">
 					<a class=" dropdown-toggle" data-toggle="dropdown" href="#">
-						전체페이지&nbsp;<b class="caret"></b>
+						<span class="current-font">admin</span>&nbsp;<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<li role="presentation" class="dropdown-header">페이지 분류</li>
-						<li><a href="#">분류1 <small>(1)</small></a></li>
-						<li><a href="#">분류2 <small>(11)</small></a></li>
-						<li><a href="#">분류3 <small>(1)</small></a></li>
-						<li><a href="#">분류4 <small>(11)</small></a></li>
-						<li class="active"><a href="#">분류5 <small>(1)</small></a></li>
-						<li><a href="#">분류6 <small>(11)</small></a></li>
-						<li><a href="#">분류7 <small>(1)</small></a></li>
-						<li><a href="#">분류8 <small>(11)</small></a></li>
+						<li><a href="#">홈페이지2</a></li>
 					</ul>
 				</h4>
 			</div>
@@ -26,85 +19,89 @@
 
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-pencil fa-lg"></i>
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
 					</span>메인화면
 					<small>(main)</small>
 				</a>
-				<a class="list-group-item hidden-xs" href="#">
+				<a class="list-group-item hidden-xs" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-pencil fa-lg"></i>
-					</span>
-					메인화면
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>메인화면
 					<small>(main)</small>
 				</a>
 
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-pencil fa-lg"></i>
-					</span>
-					통합검색
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>통합검색
 					<small>(search)</small>
 				</a>
-				<a class="list-group-item hidden-xs" href="#">
+				<a class="list-group-item hidden-xs" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-pencil fa-lg"></i>
-					</span>
-					통합검색
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>통합검색
 					<small>(search)</small>
 				</a>
 
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
-					</span>
-					회원가입
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>회원가입
 					<small>(join)</small>
 				</a>
-				<a class="list-group-item visible-md visible-lg" href="#">
+				<a class="list-group-item visible-md visible-lg" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
 					</span>회원가입
 					<small>(join)</small>
 				</a>
 
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
-					</span>
-					로그인
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>로그인
 					<small>(login)</small>
 				</a>
-				<a class="list-group-item visible-md visible-lg" href="#">
+				<a class="list-group-item visible-md visible-lg" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
-					</span>
-					로그인
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>로그인
 					<small>(login)</small>
 				</a>
 
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
-					</span>
-					마이페이지
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>마이페이지
 					<small>(mypage)</small>
 				</a>
-				<a class="list-group-item active visible-md visible-lg" href="#">
+				<a class="list-group-item visible-md visible-lg" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-puzzle-piece fa-lg"></i>
-					</span>
-					마이페이지
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
+					</span>마이페이지
 					<small>(mypage)</small>
 				</a>
 				<a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
 					<span class="badge">
-						<i class="fa fa-link fa-lg"></i>
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
 					</span>홈페이지 이용약관
 					<small>(agreement)</small>
 				</a>
-				<a class="list-group-item visible-md visible-lg" href="#">
+				<a class="list-group-item visible-md visible-lg" href="#tab-content-view">
 					<span class="badge">
-						<i class="fa fa-link fa-lg"></i>
+						<span class="glyphicon glyphicon-home"></span>
+						<span class="glyphicon glyphicon-phone"></span>
 					</span>홈페이지 이용약관
 					<small>(agreement)</small>
 				</a>
@@ -124,7 +121,7 @@
 	<div class="col-md-8 col-lg-9 hidden-xs hidden-sm" id="tab-content-view">
 		<div class="page-header">
 			<h4>
-				<i class="fa fa-cog fa-lg"></i> &nbsp;페이지 등록정보
+				<i class="fa fa-file-text-o fa-lg"></i> &nbsp;페이지 등록정보
 				<span class="text-muted">( 통합검색 )</span></h4>
 		</div>
 
@@ -132,29 +129,35 @@
 
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">명칭</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">명칭</label>
+				<div class="col-md-10">
 					<input class="form-control col-md-6" placeholder="" type="text" value="홈페이지">
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-9">
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox1" value="option1"> <span class="glyphicon glyphicon-home"></span>	시작 페이지 
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox2" value="option2"> <span class="glyphicon glyphicon-phone"></span> 모바일 전용 
-					</label>
+				<div class="col-md-offset-2 col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input type="checkbox">
+							<span class="glyphicon glyphicon-home"></span>
+							시작페이지 
+						</label>
+						<label class="btn btn-default">
+							<input type="checkbox">
+							<span class="glyphicon glyphicon-phone"></span>
+							모바일용페이지 
+						</label>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">코드</label>
-				<div class="col-md-10 col-lg-9">
+				<div class="col-md-10">
 					<div class="input-group">
 						<input class="form-control" type="text" value="search">
 						<span class="input-group-btn">
-							<button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" data-original-title="페이지삭제">
-								<i class="fa fa-trash-o fa-lg"></i>
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</span>
 					</div>
@@ -170,8 +173,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">분류</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">분류</label>
+				<div class="col-md-10">
 					<div class="input-group">
 						<input class="form-control" type="text">
 						<div class="input-group-btn">
@@ -189,94 +192,135 @@
 					<span class="help-block">관리가 편하도록 페이지분류를 적절히 지정하여 등록해 주세요.</span>
 				</div>
 			</div>
+			<!-- 전시내용-직접꾸미기 일때  -->
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">전시내용</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">전시내용</label>
+				<div class="col-md-10">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<a href="#codeBox" class="btn btn-default active" data-toggle="tab">
+						<label class="btn btn-default active">
 							<input id="option1" name="options" type="radio">
 							직접꾸미기 
-						</a>
-						<a href="#widgetBox" class="btn btn-default" data-toggle="tab">
+						</label>
+						<label class="btn btn-default">
 							<input id="option2" name="options" type="radio">
 							위젯전시 
-						</a>
-						<a href="#jointBox" class="btn btn-default" data-toggle="tab">
+						</label>
+						<label class="btn btn-default">
 							<input id="option3" name="options" type="radio">
 							모듈연결 
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="form-group tab-content">
-				<div class="tab-pane active form-group" id="codeBox">
-					<div class="col-md-offset-2 col-md-10 col-lg-9">
-						<a href="/rb/?r=home&m=admin&module=home&front=page-new" class="btn btn-default btn-block" type="button"><i class="fa fa-pencil fa-lg"></i> 페이지 직접편집</a>
-					</div>
-				</div>
-				<div class="tab-pane form-group" id="widgetBox">
-					<div class="col-md-offset-2 col-md-10 col-lg-9">
-						<button class="btn btn-default btn-block" type="button"><i class="fa fa-puzzle-piece fa-lg"></i> 위젯으로
-							꾸미기</button>
-					</div>
-				</div>
-				<div class="tab-pane form-group" id="jointBox">
-					<div class="col-md-offset-2 col-md-10 col-lg-9">
-						<div class="input-group">
-							<input class="form-control" type="text" value="/rb/home/c/home/site">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<i class="fa fa-link fa-lg"></i> 모듈연결
-								</button>
-								<button class="btn btn-default" type="button">
-									<i class="fa fa-external-link fa-lg"></i> 미리보기
-								</button>
-							</span>
-						</div>
-						<span class="help-block">
-							<ul class="list-unstyled">
-								<li>이 메뉴에 연결시킬 모듈이 있을 경우 모듈연결을 클릭한 후 선택해 주세요.</li>
-								<li>모듈 연결주소가 지정되면 이 메뉴를 호출시 해당 연결주소의 모듈이 출력됩니다.</li>
-								<li>접근권한은 연결된 모듈의 권한설정을 따릅니다.</li>
-							</ul>
-						</span>
+						</label>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">레이아웃</label>
-				<div class="col-md-10 col-lg-9">
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-default btn-block" type="button">소스코드
+						직접편집</button>
+				</div>
+			</div>
+			<!-- /전시내용-직접꾸미기 일때  -->
+			<!-- 전시내용-위젯전시 일때 -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">전시내용</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							직접꾸미기 
+						</label>
+						<label class="btn btn-default active">
+							<input id="option2" name="options" type="radio">
+							위젯전시 
+						</label>
+						<label class="btn btn-default">
+							<input id="option3" name="options" type="radio">
+							모듈연결 
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-default btn-block" type="button">위젯으로
+						꾸미기</button>
+				</div>
+			</div>
+			<!-- /전시내용-위젯전시 일때  -->
+			<!-- 전시내용-모듈 컨텐츠일때 -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">전시내용</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							직접꾸미기 
+						</label>
+						<label class="btn btn-default">
+							<input id="option2" name="options" type="radio">
+							위젯전시 
+						</label>
+						<label class="btn btn-default active">
+							<input id="option3" name="options" type="radio">
+							모듈연결 
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<div class="input-group">
+						<input class="form-control" type="text" value="/rb/home/c/home/site">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-link"></span>
+							</button>
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-globe"></span>
+							</button>
+						</span>
+					</div>
+					<span class="help-block">
+						<ul class="list-unstyled">
+							<li>이 메뉴에 연결시킬 모듈이 있을 경우 모듈연결을 클릭한 후 선택해 주세요.</li>
+							<li>모듈 연결주소가 지정되면 이 메뉴를 호출시 해당 연결주소의 모듈이 출력됩니다.</li>
+							<li>접근권한은 연결된 모듈의 권한설정을 따릅니다.</li>
+						</ul>
+					</span>
+				</div>
+			</div>
+			<!-- 전시내용-모듈 컨텐츠일때  -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">레이아웃</label>
+				<div class="col-md-10">
 					<select class="col-md-12 form-control" id="" tabindex="-1">
-						<optgroup label="kimsQ 2.0 default">
-							<option value="default">kimsQ 2.0 default-default</option>
-							<option value="home">kimsQ 2.0 default-home</option>
-							<option value="blank">kimsQ 2.0 default-blank</option>
+						<optgroup label="Alaskan/Hawaiian Time Zone">
+							<option value="AK">Alaska</option>
+							<option value="HI">Hawaii</option>
 						</optgroup>
-						<optgroup label="Developer default">
-							<option value="default">Developer default-default</option>
-							<option value="home">Developer default-home</option>
-							<option value="blank">Developer default-blank</option>
+						<optgroup label="Pacific Time Zone">
+							<option value="CA">California</option>
+							<option value="NV">Nevada</option>
+							<option value="OR">Oregon</option>
+							<option value="WA">Washington</option>
 						</optgroup>
-						<optgroup label="Tabula">
-							<option value="default">Tabula-default</option>
-							<option value="home">Tabula-home</option>
-							<option value="blank">Tabula-blank</option>
+						<optgroup label="Mountain Time Zone">
+							<option value="AZ">Arizona</option>
+							<option value="CO">Colorado</option>
 						</optgroup>
-						<optgroup label="Bootstrap 3.0">
-							<option value="default">Bootstrap 3.0-default</option>
-							<option value="home">Bootstrap 3.0-home</option>
-							<option value="blank">Bootstrap 3.0-blank</option>
+						<optgroup label="Central Time Zone">
+							<option value="AL">Alabama</option>
+							<option value="AR">Arkansas</option>
 						</optgroup>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">소속메뉴</label>
-				<div class="col-md-10 col-lg-9"></div>
+				<label class="col-md-2 control-label">소속메뉴</label>
+				<div class="col-md-10"></div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">허용등급</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">허용등급</label>
+				<div class="col-md-10">
 					<select class="col-md-12 form-control" name="perm_l">
 						<option value="">&nbsp;+ 전체허용</option>
 						<option value="1">ㆍ레벨1(1) 이상</option>
@@ -303,8 +347,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">차단그룹</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">차단그룹</label>
+				<div class="col-md-10">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
 						<label class="btn btn-default active">
 							<input id="option1" name="options" type="radio">
@@ -312,13 +356,13 @@
 						</label>
 						<label class="btn btn-default">
 							<input id="option2" name="options" type="radio">
-							<i class="fa fa-ban fa-lg"></i> 차단함 
+							차단함 
 						</label>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-9">
+				<div class="col-md-offset-2 col-md-10">
 					<select class="col-md-12 form-control" disabled multiple name="_perm_g" size="5">
 						<option value="1">ㆍA그룹(1)</option>
 						<option value="2">ㆍB그룹(0)</option>
@@ -332,8 +376,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">캐시적용</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">캐시적용</label>
+				<div class="col-md-10">
 					<select class="col-md-12 form-control" name="cachetime">
 						<option value="">&nbsp;+ 적용안함</option>
 						<option value="1">01분</option>
@@ -400,8 +444,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 col-lg-2 control-label">주소</label>
-				<div class="col-md-10 col-lg-9">
+				<label class="col-md-2 control-label">주소</label>
+				<div class="col-md-10">
 					<dl class="dl-horizontal">
 						<dt>물리주소</dt>
 						<dd>
@@ -419,8 +463,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-9">
-					<button class="btn btn-primary btn-block btn-lg" type="button"><i class="fa fa-check fa-lg"></i> 속성
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-primary btn-block btn-lg" type="button">메뉴 속성
 						변경</button>
 				</div>
 			</div>
@@ -437,7 +481,7 @@
   <div class="modal-content">
 	<div class="modal-header">
 	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	  <h4 class="modal-title"><i class="fa fa-cog fa-lg"></i> &nbsp;페이지 등록정보</h4>
+	  <h4 class="modal-title"><i class="fa fa-file-text fa-lg"></i> &nbsp;페이지 등록정보</h4>
 	</div>
 	<div class="modal-body">
 
@@ -470,8 +514,8 @@
 					<div class="input-group">
 						<input class="form-control" type="text" value="search">
 						<span class="input-group-btn">
-							<button class="btn btn-danger" type="button">
-								<i class="fa fa-trash-o fa-lg"></i> 삭제
+							<button class="btn btn-default" type="button">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</span>
 					</div>
@@ -506,58 +550,126 @@
 					<span class="help-block">관리가 편하도록 페이지분류를 적절히 지정하여 등록해 주세요.</span>
 				</div>
 			</div>
+			<!-- 전시내용-직접꾸미기 일때  -->
 			<div class="form-group">
 				<label class="col-md-2 control-label">전시내용</label>
 				<div class="col-md-10">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<a href="#codeBox-xs" class="btn btn-default active" data-toggle="tab">
+						<label class="btn btn-default active">
 							<input id="option1" name="options" type="radio">
 							직접꾸미기 
-						</a>
-						<a href="#widgetBox-xs" class="btn btn-default" data-toggle="tab">
+						</label>
+						<label class="btn btn-default">
 							<input id="option2" name="options" type="radio">
 							위젯전시 
-						</a>
-						<a href="#jointBox-xs" class="btn btn-default" data-toggle="tab">
+						</label>
+						<label class="btn btn-default">
 							<input id="option3" name="options" type="radio">
 							모듈연결 
-						</a>
+						</label>
 					</div>
 				</div>
 			</div>
-			<div class="form-group tab-content">
-				<div class="tab-pane active form-group" id="codeBox-xs">
-					<div class="col-md-offset-2 col-md-10">
-						<a href="/rb/?r=home&m=admin&module=home&front=page-new" class="btn btn-default btn-block" type="button"><i class="fa fa-pencil fa-lg"></i> 페이지 직접편집</a>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-default btn-block" type="button">소스코드
+						직접편집</button>
+				</div>
+			</div>
+			<!-- /전시내용-직접꾸미기 일때  -->
+			<!-- 전시내용-위젯전시 일때 -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">전시내용</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							직접꾸미기 
+						</label>
+						<label class="btn btn-default active">
+							<input id="option2" name="options" type="radio">
+							위젯전시 
+						</label>
+						<label class="btn btn-default">
+							<input id="option3" name="options" type="radio">
+							모듈연결 
+						</label>
 					</div>
 				</div>
-				<div class="tab-pane form-group" id="widgetBox-xs">
-					<div class="col-md-offset-2 col-md-10">
-						<button class="btn btn-default btn-block" type="button"><i class="fa fa-puzzle-piece fa-lg"></i> 위젯으로
-							꾸미기</button>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-default btn-block" type="button">위젯으로
+						꾸미기</button>
+				</div>
+			</div>
+			<!-- /전시내용-위젯전시 일때  -->
+			<!-- 전시내용-모듈 컨텐츠일때 -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">전시내용</label>
+				<div class="col-md-10">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input id="option1" name="options" type="radio">
+							직접꾸미기 
+						</label>
+						<label class="btn btn-default">
+							<input id="option2" name="options" type="radio">
+							위젯전시 
+						</label>
+						<label class="btn btn-default active">
+							<input id="option3" name="options" type="radio">
+							모듈연결 
+						</label>
 					</div>
 				</div>
-				<div class="tab-pane form-group" id="jointBox-xs">
-					<div class="col-md-offset-2 col-md-10">
-						<div class="input-group">
-							<input class="form-control" type="text" value="/rb/home/c/home/site">
-							<span class="input-group-btn">
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<div class="input-group">
+						<input class="form-control" type="text" value="/rb/home/c/home/site">
+						<span class="input-group-btn">
 							<button class="btn btn-default" type="button">
-								<i class="fa fa-link fa-lg"></i>
+								<span class="glyphicon glyphicon-link"></span>
 							</button>
 							<button class="btn btn-default" type="button">
-								<i class="fa fa-external-link fa-lg"></i>
+								<span class="glyphicon glyphicon-globe"></span>
 							</button>
-							</span>
-						</div>
-						<span class="help-block">
-							<ul class="list-unstyled">
-								<li>이 메뉴에 연결시킬 모듈이 있을 경우 모듈연결을 클릭한 후 선택해 주세요.</li>
-								<li>모듈 연결주소가 지정되면 이 메뉴를 호출시 해당 연결주소의 모듈이 출력됩니다.</li>
-								<li>접근권한은 연결된 모듈의 권한설정을 따릅니다.</li>
-							</ul>
 						</span>
 					</div>
+					<span class="help-block">
+						<ul class="list-unstyled">
+							<li>이 메뉴에 연결시킬 모듈이 있을 경우 모듈연결을 클릭한 후 선택해 주세요.</li>
+							<li>모듈 연결주소가 지정되면 이 메뉴를 호출시 해당 연결주소의 모듈이 출력됩니다.</li>
+							<li>접근권한은 연결된 모듈의 권한설정을 따릅니다.</li>
+						</ul>
+					</span>
+				</div>
+			</div>
+			<!-- 전시내용-모듈 컨텐츠일때  -->
+			<div class="form-group">
+				<label class="col-md-2 control-label">레이아웃</label>
+				<div class="col-md-10">
+					<select class="col-md-12 form-control" id="" tabindex="-1">
+						<optgroup label="Alaskan/Hawaiian Time Zone">
+							<option value="AK">Alaska</option>
+							<option value="HI">Hawaii</option>
+						</optgroup>
+						<optgroup label="Pacific Time Zone">
+							<option value="CA">California</option>
+							<option value="NV">Nevada</option>
+							<option value="OR">Oregon</option>
+							<option value="WA">Washington</option>
+						</optgroup>
+						<optgroup label="Mountain Time Zone">
+							<option value="AZ">Arizona</option>
+							<option value="CO">Colorado</option>
+						</optgroup>
+						<optgroup label="Central Time Zone">
+							<option value="AL">Alabama</option>
+							<option value="AR">Arkansas</option>
+						</optgroup>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -602,7 +714,7 @@
 						</label>
 						<label class="btn btn-default">
 							<input id="option2" name="options" type="radio">
-							<i class="fa fa-ban fa-lg"></i> 차단함 
+							차단함 
 						</label>
 					</div>
 				</div>
@@ -712,7 +824,7 @@
 
 	</div>
 	<div class="modal-footer">
-	  <button type="button" class="btn btn-primary btn-lg btn-block"><i class="fa fa-check fa-lg"></i> 속성변경</button>
+	  <button type="button" class="btn btn-primary btn-lg btn-block">속성변경</button>
 	  <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">닫기</button>
 	</div>
 </div><!-- /.modal-dialog -->

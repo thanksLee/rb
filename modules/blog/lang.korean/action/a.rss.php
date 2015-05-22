@@ -19,7 +19,6 @@ if($type == 'rss1') :?>
 		<title><?php echo htmlspecialchars($B['name'])?></title>
 		<link><?php echo $g['url_root']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $B['id']?></link> 
 		<dc:language><?php echo substr($_HS['lang'],0,2)?></dc:language>
-		<description><?php echo htmlspecialchars($B['name'])?></description>
 <?php while($R=db_fetch_array($RCD)):?>
 <?php $_M=getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*')?>
 		<item>
@@ -35,7 +34,7 @@ if($type == 'rss1') :?>
 			<?php endfor?>
 			<?php endif?>
 			<guid><?php echo $g['url_root']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $B['id']?>&amp;front=list&amp;uid=<?php echo $R['uid']?></guid>
-			<pubDate><?php echo getDateFormat($R['d_regis'],'r')?></pubDate>
+			<dc:date><?php echo getDateFormat($R['d_regis'],'r')?></dc:date>
 			<dc:subject></dc:subject>
 		</item>
 <?php endwhile?>
@@ -78,7 +77,6 @@ if($type == 'rss1') :?>
 		<title><?php echo htmlspecialchars($B['name'])?></title>
 		<link><?php echo $g['url_root']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $B['id']?></link> 
 		<dc:language><?php echo substr($_HS['lang'],0,2)?></dc:language>
-		<description><?php echo htmlspecialchars($B['name'])?></description>
 <?php while($R=db_fetch_array($RCD)):?>
 <?php $_M=getDbData($table['s_mbrdata'],'memberuid='.$R['mbruid'],'*')?>
 		<item>
@@ -94,7 +92,7 @@ if($type == 'rss1') :?>
 			<?php endfor?>
 			<?php endif?>
 			<guid><?php echo $g['url_root']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $B['id']?>&amp;front=list&amp;uid=<?php echo $R['uid']?></guid>
-			<pubDate><?php echo getDateFormat($R['d_regis'],'r')?></pubDate>
+			<dc:date><?php echo getDateFormat($R['d_regis'],'r')?></dc:date>
 			<dc:subject></dc:subject>
 		</item>
 <?php endwhile?>

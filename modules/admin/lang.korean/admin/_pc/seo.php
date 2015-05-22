@@ -1,3 +1,302 @@
+<div class="row">
+	<div class="col-md-4 col-lg-3" id="tab-content-list">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="icon">
+						<i class="fa fa-sitemap fa-2x"></i>
+					</div>
+					<h4><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">메뉴</a></h4>
+				</div>
+				<div class="panel-collapse collapse in" id="collapseOne">
+					<div class="panel-body">
+						여기는  트리영역 입니다.
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="icon">
+						<i class="fa fa-file-text-o fa-2x"></i>
+					</div>
+					<h4 class="panel-title">
+						<a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">
+							페이지
+						</a>
+					</h4>
+				</div>
+				<div class="panel-collapse collapse" id="collapseTwo">
+	                <div class="list-group">
+
+	                    <a class="list-group-item visible-xs" data-toggle="modal" href="#admin-seo-info">
+							<i class="fa fa-check-circle fa-lg pull-right"></i> <!-- seo정보가 등록되었을 때 아이콘 출력 됨 -->
+							메인화면
+	                        <small>(main)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" href="#">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							메인화면
+	                        <small>(main)</small>
+	                    </a>
+	                    <a class="list-group-item visible-xs" data-toggle="modal" href="#admin-seo-info">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							회사소개
+	                        <small>(company)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" data-toggle="modal" href="#">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							회사소개
+	                        <small>(company)</small>
+	                    </a>
+	                    <a class="list-group-item visible-xs" data-toggle="modal" href="#admin-seo-info">
+							이용약관
+	                        <small>(agreement)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" href="#">
+							이용약관
+	                        <small>(agreement)</small>
+	                    </a>
+	                </div>
+	                <div class="panel-footer text-center">
+	                    <ul class="pagination">
+	                        <li><a href="#">&laquo;</a></li>
+	                        <li><a href="#">1</a></li>
+	                        <li><a href="#">2</a></li>
+	                        <li><a href="#">3</a></li>
+	                        <li><a href="#">&raquo;</a></li>
+	                    </ul>
+	                </div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="icon">
+						<i class="kf-bbs fa-2x fa-fw"></i>
+					</div>
+					<h4 class="panel-title">
+						<a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapseThree">
+							게시판
+						</a>
+					</h4>
+				</div>
+				<div class="panel-collapse collapse" id="collapseThree">
+	                <div class="list-group">
+
+	                    <a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
+							<i class="fa fa-check-circle fa-lg pull-right"></i> <!-- seo정보가 등록되었을 때 아이콘 출력 됨 -->
+							자유게시판
+	                        <small>(main)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" href="#tab-content-view">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							자유게시판
+	                        <small>(main)</small>
+	                    </a>
+	                    <a class="list-group-item visible-xs" data-toggle="modal" href="#page-modal">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							자료실
+	                        <small>(company)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" data-toggle="modal" href="#page-modal">
+							<i class="fa fa-check-circle fa-lg pull-right"></i>
+							자료실
+	                        <small>(company)</small>
+	                    </a>
+	                    <a class="list-group-item visible-xs" href="#tab-content-view">
+							FAQ
+	                        <small>(agreement)</small>
+	                    </a>
+	                    <a class="list-group-item hidden-xs" href="#tab-content-view">
+							FAQ
+	                        <small>(agreement)</small>
+	                    </a>
+	                </div>
+	                <div class="panel-footer text-center">
+	                    <ul class="pagination">
+	                        <li><a href="#">&laquo;</a></li>
+	                        <li><a href="#">1</a></li>
+	                        <li><a href="#">2</a></li>
+	                        <li><a href="#">3</a></li>
+	                        <li><a href="#">&raquo;</a></li>
+	                    </ul>
+	                </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8 col-lg-9 hidden-xs hidden-sm" id="tab-content-view">
+		<div class="page-header">
+			<h4>
+				<i class="kf-admin fa-lg fa-fw"></i>
+				SEO 등록정보
+				<span class="text-muted"></span>
+			</h4>
+		</div>
+
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">SEO 고유주소</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="" placeholder="이 문서를 잘 표현할 수 있는 단어로 입력해 주세요.">
+					<span class="help-block">영문대소문자/숫자/_/- 조합으로 등록할 수 있으며 중복될 수 없습니다.</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">타이틀(title)</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">주제(subject)</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">키워드(keywords)</label>
+				<div class="col-lg-10">
+					<textarea class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">설명(description)</label>
+				<div class="col-lg-10">
+					<textarea class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">분류(classification)</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="" placeholder="보기) 킴스큐">
+					<span class="help-block">이 문서의 분류,카테고리라 할 수 있으며 핵심적인 키워드 1개를 기입합니다.</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">연락처(reply-to)</label>
+				<div class="col-lg-10">
+					<input type="email" class="form-control" id="" placeholder="">
+					<span class="help-block">문서에 관한 문의처 이메일 주소를 등록합니다.</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">언어(content-language)</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="" placeholder="보기) kr">
+					<span class="help-block">제작된 언어를 등록합니다. 한글 "kr", 영어 "en" , 일어 "ja" </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">제작일(build)</label>
+				<div class="col-lg-10">
+					<input type="date" class="form-control" id="" >
+					<span class="help-block">제작 년월일을 등록합니다</span>
+				</div>
+			</div>
+	        <div class="form-group">
+	            <div class="col-md-offset-2 col-md-10">
+	                <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-check fa-lg"></i> 정보등록/수정</button>
+
+					<hr>
+					<div class="well hidden-xs">
+					<ul>
+					<li>검색 엔진 최적화(SEO; Search Engine Optimization)를 위해 메타정보를 등록해 주세요.</li>
+					<li>SEO 에서 가장 중요한 요소는 키워드와 설명이므로 필히 등록해 주세요</li>
+					<li>SEO 등록방법은 <a href="http://docs.kimsq.com/kr/" target="_blank">킴스큐 매뉴얼</a>을 참고하세요</li>
+					</ul>
+					</div>
+
+	            </div>
+	        </div>
+		</form>	
+	</div>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="admin-seo-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><i class="kf-admin fa-lg fa-fw"></i> SEO 등록정보 <small>(페이지)</small></h4>
+        </div>
+        <div class="modal-body">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">SEO 고유주소</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" placeholder="이 문서를 잘 표현할 수 있는 단어로 입력해 주세요.">
+						<span class="help-block">영문대소문자/숫자/_/- 조합으로 등록할 수 있으며 중복될 수 없습니다.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">타이틀(title)</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">주제(subject)</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">키워드(keywords)</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">설명(description)</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">분류(classification)</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" placeholder="보기) 킴스큐">
+						<span class="help-block">이 문서의 분류,카테고리라 할 수 있으며 핵심적인 키워드 1개를 기입합니다.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">연락처(reply-to)</label>
+					<div class="col-lg-10">
+						<input type="email" class="form-control" id="" placeholder="">
+						<span class="help-block">문서에 관한 문의처 이메일 주소를 등록합니다.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">언어(content-language)</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" placeholder="보기) kr">
+						<span class="help-block">제작된 언어를 등록합니다. 한글 "kr", 영어 "en" , 일어 "ja" </span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail1" class="col-lg-2 control-label">제작일(build)</label>
+					<div class="col-lg-10">
+						<input type="date" class="form-control" id="" >
+						<span class="help-block">제작 년월일을 등록합니다</span>
+					</div>
+				</div>
+			</form>	
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg btn-block"><i class="fa fa-check fa-lg"></i> 정보등록/수정</button>
+          <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">닫기</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+<br><br><br>
+<!-- 여기까지 권기택 작업 입니다.  -->
+
+
 <?php
 $account = $account ? $account : $s;
 if ($s != $account)

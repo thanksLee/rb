@@ -59,7 +59,7 @@ $TPG = getTotalPage($NUM,$recnum);
 <link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/css/chosen.css" />
 
 <!-- uniform -->
-<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/plugins/uniform/uniform.default.css" /> 
+<link rel="stylesheet" href="<?php echo $g['url_module_skin']?>/assets/uniform/uniform.default.css" /> 
 
 <div id="_HiddenModal_"></div>
 

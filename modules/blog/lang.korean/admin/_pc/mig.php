@@ -5,8 +5,8 @@ $maxupsize = str_replace('M','',ini_get('upload_max_filesize'));
 <div id="mainbox">
 	<h2>데이터 마이그레이션</h2>
 	<div class="notice">
-		타 블로그의 데이터를 킴스큐-Rb 콘텐츠팩용 데이터로 이전할 수 있습니다.<br />
-		킴스큐-Rb 콘텐츠팩용 마이그레이션 XML파일을 직접 등록하시거나 주소를 입력해 주세요..<br />
+		타 블로그의 데이터를 킴스큐-Rb 블로그용 데이터로 이전할 수 있습니다.<br />
+		킴스큐-Rb 블로그용 마이그레이션 XML파일을 직접 등록하시거나 주소를 입력해 주세요..<br />
 	</div>
 
 
@@ -18,13 +18,13 @@ $maxupsize = str_replace('M','',ini_get('upload_max_filesize'));
 
 	<div class="msg">
 		<img src="<?php echo $g['img_core']?>/_public/ico_notice.gif" alt="" />
-		콘텐츠팩용 데이터를 이전합니다.(서비스와 카테고리를 미리 생성해주세요)
+		블로그 데이터를 이전합니다.(블로그와 카테고리를 미리 생성해주세요)
 	</div>
 
 	<table>
 		<?php $BLOGLIST = getDbArray($table[$module.'list'],'uid','*','gid','asc',0,1)?>
 		<tr>
-			<td class="td1">이전대상 서비스</td>
+			<td class="td1">이전대상 블로그</td>
 			<td class="td2">
 				<select name="blog" class="select1" onchange="goHref('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=<?php echo $front?>&blog='+this.value);">
 				<option value="">&nbsp;+ 선택하세요</option>
@@ -33,7 +33,7 @@ $maxupsize = str_replace('M','',ini_get('upload_max_filesize'));
 				<option value="<?php echo $R['uid']?>"<?php if($R['uid']==$blog):$_blog=$R['id']?> selected="selected"<?php endif?>>ㆍ<?php echo $R['name']?>(<?php echo $R['id']?> - <?php echo number_format($R['num_w'])?>개)</option>
 				<?php endwhile?>
 				</select>
-				<a href="#." onclick="crLayer('서비스 추가','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y','iframe',800,650,'5%');"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="서비스만들기" /></a>
+				<a href="#." onclick="crLayer('블로그 추가','<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=<?php echo $module?>&amp;front=makeblog&amp;iframe=Y','iframe',800,650,'5%');"><img src="<?php echo $g['img_core']?>/_public/btn_add.gif" alt="게시판만들기" /></a>
 			</td>
 		</tr>
 		<?php if($blog):$ISCAT = getDbRows($table[$module.'category'],'blog='.$blog)?>
@@ -45,7 +45,7 @@ $maxupsize = str_replace('M','',ini_get('upload_max_filesize'));
 
 
 <div class="tbox">
-	<div class="treetop"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;blog=<?php echo $_blog?>" target="_blank">서비스보기</a></div>
+	<div class="treetop"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;blog=<?php echo $_blog?>" target="_blank">블로그보기</a></div>
 	<div class="joinimg"></div>
 	<div class="tree">
 
@@ -82,7 +82,7 @@ $maxupsize = str_replace('M','',ini_get('upload_max_filesize'));
 				<div class="guide">
 				이전할 데이터는 샘플파일과 같은 형식이어야 합니다.<br />
 				샘플파일(modules/<?php echo $module?>/lang.korean/admin/_pc/var/post.xml)과 같은 형식으로<br />
-				이전할 서비스의 포스트를 추출한 후 해당 XML 파일을 등록해 주세요.<br />
+				이전할 블로그의 포스트를 추출한 후 해당 XML 파일을 등록해 주세요.<br />
 				이전가능대상 : 제목,요약내용,상세내용,태그,조회수,등록일시,수정일시<br />
 				</div>
 			</td>
@@ -111,7 +111,7 @@ function saveCheck(f)
 	}
 	if (f.blog.value == '')
 	{
-		alert('이전대상 서비스를 선택해 주세요.    ');
+		alert('이전대상 블로그를 선택해 주세요.    ');
 		f.blog.focus();
 		return false;
 	}

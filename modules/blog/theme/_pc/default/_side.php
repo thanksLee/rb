@@ -19,7 +19,7 @@
 
 <?php if($d['b_layout']['dsp_category']):if($front=='write')$checkbox=true?>
 <div class="tbox">
-	<div class="treetop"><a href="<?php if($g['blog_home_rw']):?><?php echo $g['blog_home_rw']?>/c/0<?php else:?><?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;front=list<?php endif?>">카테고리</a></div>
+	<div class="treetop"><a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;front=list">카테고리</a></div>
 	<div class="joinimg"></div>
 	<div class="tree">
 
@@ -27,7 +27,7 @@
 	<script type="text/javascript">
 	//<![CDATA[
 	var TreeImg = "<?php echo $g['img_core']?>/tree/default_none";
-	var ulink = "<?php if($g['blog_home_rw']):?><?php echo $g['blog_home_rw']?>/c/<?php else:?><?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;cat=<?php endif?>";
+	var ulink = "<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;blog=<?php echo $blog?>&amp;cat=";
 	//]]>
 	</script>
 	<script type="text/javascript" src="<?php echo $g['s']?>/_core/js/tree.js"></script>
@@ -106,7 +106,7 @@
 	<?php while($_R=db_fetch_array($_RCD)):?>
 	<?php $L=getOverTime($date['totime'],$_R['d_regis'])?>
 	<li>
-		<a href="<?php echo $g['blog_view'].$_R['parent']?><?php if(!$g['blog_home_rw']):?>&amp;comment=<?php echo $_R['uid']?><?php endif?>"><?php echo getStrCut($_R['content'],50,'..')?></a><?php if($_R['oneline']):?><span>(<?php echo $_R['oneline']?>)</span><?php endif?>
+		<a href="<?php echo $g['blog_view'].$_R['parent']?>&amp;comment=<?php echo $_R['uid']?>"><?php echo getStrCut($_R['content'],50,'..')?></a><?php if($_R['oneline']):?><span>(<?php echo $_R['oneline']?>)</span><?php endif?>
 		<i><?php echo $L[1]<4?$L[0].$lang['sys']['time'][$L[1]].'전':getDateFormat($_R['d_regis'],'Y.m.d H:i')?> , <?php echo $_R['name']?>님</i>
 		<?php if(getNew($_R['d_regis'],24)):?><u>new</u><?php endif?>
 	</li>

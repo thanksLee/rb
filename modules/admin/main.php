@@ -99,11 +99,5 @@ else {
 		include_once $g['adm_module_varmenu'];
 	}
 	$g['main'] = $my['admin'] && $iframe == 'Y' ? $g['adm_module'] : $g['dir_module_mode'].'.php';
-
-	$g['libdir'] = $g['dir_module_skin'];
-	$d['layout']['use_bootstrap'] = "1";
-	$d['layout']['use_jquerymobile'] = "0";
-	$d['layout']['htmltag'] = "";
-	$d['layout']['bodytag'] = "";
 }
 ?>

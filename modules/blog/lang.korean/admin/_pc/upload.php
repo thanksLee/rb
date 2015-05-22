@@ -36,7 +36,7 @@ $TPG = getTotalPage($NUM,$recnum);
 
 		<div>
 		<select name="blog" style="width:250px;" onchange="this.form.submit();">
-		<option value="">&nbsp;+ 서비스(전체)</option>
+		<option value="">&nbsp;+ 블로그(전체)</option>
 		<option value="">---------------------------------------------------</option>
 		<?php $BLOGS = getDbArray($table[$module.'list'],'','*','gid','asc',100,1)?>
 		<?php while($B=db_fetch_array($BLOGS)):?>
