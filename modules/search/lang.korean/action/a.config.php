@@ -7,8 +7,6 @@ $_tmpdfile = $g['dir_module'].'var/var.search.php';
 $fp = fopen($_tmpdfile,'w');
 fwrite($fp, "<?php\n");
 
-fwrite($fp, "\$d['search']['s_post'] = \"".$s_post."\";\n");
-fwrite($fp, "\$d['search']['s_vod'] = \"".$s_vod."\";\n");
 fwrite($fp, "\$d['search']['s_bbs'] = \"".$s_bbs."\";\n");
 fwrite($fp, "\$d['search']['s_comment'] = \"".$s_comment."\";\n");
 fwrite($fp, "\$d['search']['s_image'] = \"".$s_image."\";\n");

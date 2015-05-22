@@ -474,111 +474,6 @@ if ($is_regismode)
 	  </div>
 	</div>
 	<?php endif?>
-
-
-	<div class="form-group">
-	  <label class="col-md-2 control-label">코드확장</label>
-	  <div class="col-md-10 col-lg-9">
-		<div class="btn-group btn-group-justified hidden-xs" data-toggle="buttons">
-		  <label class="btn btn-default<?php if($_COOKIE['ck_menu_header']=='block'):?> active<?php endif?>" onclick="codShowHide('menu_header','block','none');">
-			<input type="checkbox">
-			메뉴 헤더 
-		  </label>
-		  <label class="btn btn-default<?php if($_COOKIE['ck_menu_footer']=='block'):?> active<?php endif?>" onclick="codShowHide('menu_footer','block','none');">
-			<input type="checkbox">
-			메뉴 풋터 
-		  </label>
-		  <label class="btn btn-default<?php if($_COOKIE['ck_menu_addinfo']=='block'):?> active<?php endif?>" onclick="codShowHide('menu_addinfo','block','none');">
-			<input type="checkbox">
-			부가필드
-		  </label>
-		</div>
-	  </div>
-	</div>
-
-
-	<div id="menu_header" class="well well-sm col-lg-offset-2 col-lg-9<?php if(!$_COOKIE['ck_menu_header']||$_COOKIE['ck_menu_header']=='none'):?> hidden<?php endif?>">
-		<div class="form-group">
-		  <label class="col-md-2 control-label" for="menuheader-InputFile">헤더파일</label>
-		  <div class="col-md-10 col-lg-10">
-			<input type="file" name="imghead" id="menuheader-InputFile" />
-			<?php if($CINFO['imghead']):?>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $m?>&amp;module=filemanager&amp;front=main&amp;editmode=Y&amp;pwd=./_var/menu/&file=<?php echo $CINFO['imghead']?>" target="_blank" title="<?php echo $CINFO['imghead']?>" class="u">파일수정</a> <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=menu_file_delete&amp;cat=<?php echo $CINFO['uid']?>&amp;dtype=head" target="_action_frame_<?php echo $m?>" class="u" onclick="return confirm('정말로 삭제하시겠습니까?     ');">삭제</a>
-			<?php else:?>
-			<span>(gif/jpg/png/swf 가능)</span>
-			<?php endif?>
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label">헤더코드<br><button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="에디터 열기" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y&droparea=codheadArea');"><i class="fa fa-pencil fa-lg"></i></button></label>
-		  <div class="col-md-10 col-lg-10">
-			<textarea name="codhead" id="codheadArea" class="form-control" rows="5"><?php if(is_file($g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.header.php')) echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.header.php')))?></textarea>
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label">노출위치</label>
-		  <div class="col-md-10 col-lg-10">
-			<select name="puthead" class="form-control">
-			<option value="0"<?php if(!$CINFO['puthead']):?> selected="selected"<?php endif?>>콘텐트</option>
-			<option value="1"<?php if($CINFO['puthead']):?> selected="selected"<?php endif?>>콘테이너</option>
-			</select>
-		  </div>
-		</div>
-	</div>
-
-	<div id="menu_footer" class="well well-sm col-lg-offset-2 col-lg-9<?php if(!$_COOKIE['ck_menu_footer']||$_COOKIE['ck_menu_footer']=='none'):?> hidden<?php endif?>">
-		<div class="form-group">
-		  <label class="col-md-2 control-label" for="menuheader-InputFile">풋터파일</label>
-		  <div class="col-md-10 col-lg-10">
-			<input type="file" name="imgfoot" id="menufooter-InputFile" />
-			<?php if($CINFO['imgfoot']):?>
-			<a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=admin&amp;module=filemanager&amp;front=main&amp;editmode=Y&amp;pwd=./_var/menu/&file=<?php echo $CINFO['imgfoot']?>" target="_blank" title="<?php echo $CINFO['imgfoot']?>" class="u">파일수정</a> <a href="<?php echo $g['s']?>/?r=<?php echo $r?>&amp;m=<?php echo $module?>&amp;a=menu_file_delete&amp;cat=<?php echo $CINFO['uid']?>&amp;dtype=foot" target="_action_frame_<?php echo $m?>" class="u" onclick="return confirm('정말로 삭제하시겠습니까?     ');">삭제</a>
-			<?php else:?>
-			<span>(gif/jpg/png/swf 가능)</span>
-			<?php endif?>
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label">풋터코드<br><button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="에디터 열기" onclick="OpenWindow('<?php echo $g['s']?>/?r=<?php echo $r?>&system=edit.editor&iframe=Y&droparea=codfootArea');"><i class="fa fa-pencil fa-lg"></i></button></label>
-		  <div class="col-md-10 col-lg-10">
-			<textarea name="codfoot" id="codfootArea" class="form-control" rows="5"><?php if(is_file($g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.footer.php')) echo htmlspecialchars(implode('',file($g['path_page'].'menu/'.sprintf('%05d',$CINFO['uid']).'.footer.php')))?></textarea>
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label">노출위치</label>
-		  <div class="col-md-10 col-lg-10">
-			<select name="putfoot" class="form-control">
-			<option value="0"<?php if(!$CINFO['putfoot']):?> selected="selected"<?php endif?>>콘텐트</option>
-			<option value="1"<?php if($CINFO['putfoot']):?> selected="selected"<?php endif?>>콘테이너</option>
-			</select>
-		  </div>
-		</div>
-	</div>
-
-	<div id="menu_addinfo" class="well well-sm col-lg-offset-2 col-lg-9<?php if(!$_COOKIE['ck_menu_addinfo']||$_COOKIE['ck_menu_addinfo']=='none'):?> hidden<?php endif?>">
-		<div class="form-group">
-		  <label class="col-md-2 control-label">부가필드</label>
-		  <div class="col-md-10 col-lg-10">
-			<textarea name="addinfo" class="form-control" rows="3"><?php echo htmlspecialchars($CINFO['addinfo'])?></textarea>
-			<span class="help-block">이 메뉴에 대해서 추가적인 정보가 필요할 경우 사용하며 필드명은<code>[addinfo]</code> 입니다.</span>
-		  </div>
-		</div>
-	</div>
-
-	<?php if($is_fcategory && $CINFO['isson']):?>
-	<div class="form-group">
-	<div class="col-md-offset-2 col-lg-9">
-	  <hr>
-	  <div class="checkbox">
-		<label>
-		  <input type="checkbox" name="subcopy" id="cubcopy" value="1" checked="checked" /> 이 설정을 서브메뉴에도 일괄적용 <small class="text-muted">(메뉴숨김, 레이아웃, 권한)</small>
-		</label> 
-	  </div>
-	</div>
-	</div>
-	<?php endif?>
-
-
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-10 col-lg-9">
 			<button class="btn btn-primary btn-block btn-lg visible-lg" type="submit" onclick="this.form.type.value=1;"><i class="fa fa-check fa-lg"></i> <?php if($CINFO['uid']):?>속성변경<?php else:?>신규메뉴 등록<?php endif?></button>
@@ -629,16 +524,18 @@ function displaySelect(obj)
 		getId('codeBox').style.display = 'none';
 	}
 }
-function codShowHide(layer,show,hide)
+function codShowHide(layer,show,hide,img)
 {
-	if(getId(layer).className.indexOf('hidden') != -1)
+	if(getId(layer).style.display != show)
 	{
-		getId(layer).className = getId(layer).className.replace('hidden','');
+		getId(layer).style.display = show;
+		img.src = img.src.replace('ico_under','ico_over');
 		setCookie('ck_'+layer,show,1);
 	}
 	else
 	{
-		getId(layer).className += ' hidden';
+		getId(layer).style.display = hide;
+		img.src = img.src.replace('ico_over','ico_under');
 		setCookie('ck_'+layer,hide,1);
 	}
 }
@@ -707,15 +604,18 @@ function slideshowOpen()
 
 	if (ch == 'block')
 	{
-		getId('menu_header').className = getId('menu_header').className.replace('hidden','');
+		getId('menu_header').style.display = ch;
+		getId('dm_img_header').src = getId('dm_img_header').src.replace('ico_under','ico_over');
 	}
 	if (cf == 'block')
 	{
-		getId('menu_footer').className = getId('menu_footer').className.replace('hidden','');
+		getId('menu_footer').style.display = cf;
+		getId('dm_img_footer').src = getId('dm_img_footer').src.replace('ico_under','ico_over');
 	}
 	if (ca == 'block')
 	{
-		getId('menu_addinfo').className = getId('menu_addinfo').className.replace('hidden','');
+		getId('menu_addinfo').style.display = ca;
+		getId('dm_img_addinfo').src = getId('dm_img_addinfo').src.replace('ico_under','ico_over');
 	}
 	<?php endif?>
 
