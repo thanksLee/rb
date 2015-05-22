@@ -22,11 +22,10 @@ if ($uid)
 				</div>
 				<h4 class="dropdown panel-title">
 					<a class=" dropdown-toggle" data-toggle="dropdown" href="#">
-						<?php echo $cat?$cat:'전체페이지'?>&nbsp;<b class="caret"></b>
+						전체페이지&nbsp;<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
 						<li role="presentation" class="dropdown-header">페이지 분류</li>
-						<li<?php if(!$cat):?> class="active"<?php endif?>><a href="<?php echo $g['adm_href']?>">전체페이지</a></li>
 						<?php $_cats=array()?>
 						<?php $CATS=db_query("select *,count(*) as cnt from ".$table['s_page']." group by category",$DB_CONNECT)?>
 						<?php while($C=db_fetch_array($CATS)):$_cats[]=$C['category']?>
@@ -39,15 +38,7 @@ if ($uid)
 				
 				<?php $_pagetypeset=array('','fa-link','fa-puzzle-piece','fa-pencil')?>
 				<?php while($PR = db_fetch_array($PAGES)):?>
-				<a class="list-group-item hidden-xs<?php if($uid==$PR['uid']):?> active<?php endif?>" href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=<?php echo $p?>&amp;uid=<?php echo $PR['uid']?>#cat">
-					<span class="badge">
-						<i class="fa <?php echo $_pagetypeset[$PR['pagetype']]?> fa-lg"></i>
-					</span>
-					<?php echo $PR['name']?>
-					<small>(<?php echo $PR['id']?>)</small>
-				</a>
-
-				<a class="list-group-item visible-xs<?php if($uid==$PR['uid']):?> active<?php endif?>" data-toggle="modal" href="#page-modal" onclick="getAjaxData('<?php echo $g['s']?>/?r=<?php echo $r?>&m=<?php echo $m?>&module=<?php echo $module?>&front=modal.page&cat=<?php echo urlencode($cat)?>&p=<?php echo $p?>&uid=<?php echo $PR['uid']?>','page-modal');">
+				<a class="list-group-item<?php if($uid==$PR['uid']):?> active<?php endif?>" href="<?php echo $g['adm_href']?>&amp;cat=<?php echo urlencode($cat)?>&amp;p=<?php echo $p?>&amp;uid=<?php echo $PR['uid']?>#cat">
 					<span class="badge">
 						<i class="fa <?php echo $_pagetypeset[$PR['pagetype']]?> fa-lg"></i>
 					</span>
@@ -70,7 +61,7 @@ if ($uid)
 	</div>
 	
 	<a name="cat"></a>
-	<div class="col-md-8 col-lg-9 hidden-xs hidden-sm" id="tab-content-view">
+	<div class="col-md-8 col-lg-9" id="tab-content-view">
 		<div class="page-header">
 			<h4>
 				<?php if($R['uid']):?>
@@ -84,7 +75,7 @@ if ($uid)
 
 
 
-		<form name="procForm1" class="form-horizontal" role="form" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
+		<form class="form-horizontal" role="form" name="procForm" action="<?php echo $g['s']?>/" method="post" target="_action_frame_<?php echo $m?>" onsubmit="return saveCheck(this);">
 		<input type="hidden" name="r" value="<?php echo $r?>" />
 		<input type="hidden" name="m" value="<?php echo $module?>" />
 		<input type="hidden" name="a" value="regispage" />
@@ -146,12 +137,12 @@ if ($uid)
 							</button>
 							<ul class="dropdown-menu pull-right">
 								<?php foreach($_cats as $_val):?>
-								<li><a href="#." onclick="document.procForm1.category.value=this.innerHTML;"><?php echo $_val?></a></li>
+								<li><a href="#." onclick="document.procForm.category.value=this.innerHTML;"><?php echo $_val?></a></li>
 								<?php endforeach?>
 								<?php if(count($_cats)):?>
 								<li class="divider"></li>
 								<?php endif?>
-								<li><a href="#." onclick="document.procForm1.category.value='';document.procForm1.category.focus();">직접입력</a></li>
+								<li><a href="#." onclick="document.procForm.category.value='';document.procForm.category.focus();">직접입력</a></li>
 							</ul>
 						</div><!-- /btn-group -->
 					</div>
@@ -321,8 +312,7 @@ if ($uid)
 </div>
 
 
-<div class="modal fade" id="page-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-</div>
+
 
 
 <script type="text/javascript">
@@ -381,7 +371,7 @@ function saveCheck(f)
 	return confirm('정말로 실행하시겠습니까?         ');
 }
 <?php if($type == 'makepage'):?>
-document.procForm1.name.focus();
+document.procForm.name.focus();
 <?php endif?>
 //]]>
 </script>

@@ -344,11 +344,6 @@ function getAjaxFilterString(str,code)
 	var arr2 = arr1[1].split(':'+code+']');
 	return arr2[0];
 }
-function getAjaxData(url,layer)
-{
-	var result = getHttprequest(url);
-	getId(layer).innerHTML=getAjaxFilterString(result,'RESULT');
-}
 //iframe_for_action
 function getIframeForAction(f)
 {
