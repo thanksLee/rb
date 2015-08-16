@@ -41,10 +41,10 @@ $tel2		= $tel2_1 && $tel2_2 && $tel2_3 ? $tel2_1 .'-'. $tel2_2 .'-'. $tel2_3 : '
 
 if(!$foreign)
 {
-	$zip		= $zip_1.$zip_2;
+	//$zip		= $zip;
 	$addrx		= explode(' ',$addr1);
-	$addr0		= $addr1 && $addr2 ? $addrx[0] : '';
-	$addr1		= $addr1 && $addr2 ? $addr1 : '';
+	$addr0		= substr($addrx[0],0,6);
+	$addr1		= trim($addr1);
 	$addr2		= trim($addr2);
 }
 else {
@@ -100,9 +100,10 @@ if ($comp)
 	$comp_jongmok = trim($comp_jongmok);
 	$comp_tel	= $comp_tel_1 && $comp_tel_2 ? $comp_tel_1 .'-'. $comp_tel_2 .($comp_tel_3 ? '-'.$comp_tel_3 : '') : '';
 	$comp_fax	= $comp_fax_1 && $comp_fax_2 && $comp_fax_3 ? $comp_fax_1 .'-'. $comp_fax_2 .'-'. $comp_fax_3 : '';
-	$comp_zip	= $comp_zip_1.$comp_zip_2;
-	$comp_addr0	= $comp_addr1 && $comp_addr2 ? substr($comp_addr1,0,6) : '';
-	$comp_addr1	= $comp_addr1 && $comp_addr2 ? $comp_addr1 : '';
+	//$comp_zip	= $comp_zip;
+	$comp_addrx		= explode(' ',$comp_addr1);
+	$comp_addr0	= substr($comp_addrx[0],0,6);
+	$comp_addr1	= trim($comp_addr1);
 	$comp_addr2	= trim($comp_addr2);
 	$comp_part	= trim($comp_part); 
 	$comp_level	= trim($comp_level);
