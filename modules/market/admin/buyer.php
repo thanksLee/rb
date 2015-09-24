@@ -41,7 +41,7 @@ else:?>
 	<tr>
 	<th scope="col" class="side1">번호</th>
 	<th scope="col">상품명</th>
-	<th scope="col">버젼</th>
+	<th scope="col">버전</th>
 	<th scope="col">결제금액</th>
 	<th scope="col">판매자</th>
 	<th scope="col">결제방식</th>
